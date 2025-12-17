@@ -1,56 +1,54 @@
-# Implementation Plan: Physical AI & Humanoid Robotics Online Book
+# Implementation Plan: [FEATURE]
 
-**Branch**: `001-update-book-spec` | **Date**: 2025-12-17 | **Spec**: [link]
-**Input**: Feature specification from `/specs/001-update-book-spec/spec.md`
+**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
 **Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
 
-Development of a comprehensive online book on Physical AI & Humanoid Robotics using Docusaurus as the documentation framework. The book will be organized in a module-chapter-lesson structure with hands-on projects using ROS 2, Gazebo, Unity, and NVIDIA Isaac. The implementation includes Docusaurus setup, tool integration (Context7, Docfork, Playwright MCP), content organization, and deployment pipeline.
+Development of a comprehensive Physical AI & Humanoid Robotics book focusing on Introduction and Module 1 (The Robotic Nervous System - ROS 2). The implementation uses Docusaurus documentation framework to create a structured curriculum with hands-on projects, emphasizing practical, executable examples using Python 3.10+ and ROS 2 Humble Hawksbill. Content follows a progressive learning path from foundational Physical AI concepts to advanced ROS 2 implementation, with each lesson including theory, code examples, and hands-on exercises.
 
 ## Technical Context
 
-**Language/Version**: JavaScript/TypeScript, Node.js 18+ for Docusaurus, Python 3.8+ for ROS 2 integration examples
-**Primary Dependencies**: Docusaurus 3.x, React, Node.js, Context7, Docfork, Playwright MCP, ROS 2 (Humble Hawksbill or Iron Irwini), Gazebo, Unity (LTS), NVIDIA Isaac ROS
-**Storage**: Git-based version control with GitHub, static file storage for documentation, images and assets
-**Testing**: Playwright for UI testing, automated content validation, manual review processes, cross-browser compatibility testing
-**Target Platform**: Web-based (HTML/CSS/JavaScript), responsive design for desktop and mobile, accessible via modern browsers
-**Project Type**: Static web application / documentation site
-**Performance Goals**: <2s page load time, 95% uptime, <100ms search response time, support 1000+ concurrent users
-**Constraints**: Content must be accessible on consumer hardware, examples compatible with open-source tools, <4-6 hours per chapter completion time, content deployable in simulation environments
-**Scale/Scope**: 4 modules, 20+ chapters, 50+ lessons, 100k+ words, 100+ code examples, 50+ images/videos, 4 assessment projects
+**Language/Version**: Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework
+**Primary Dependencies**: ROS 2 Humble Hawksbill (LTS version), Docusaurus 3.x documentation framework, rclpy (Python ROS 2 client library), React for documentation UI
+**Storage**: Static file storage for documentation, images and assets
+**Testing**: Documentation validation, code example verification in simulation environments
+**Target Platform**: Linux/Ubuntu (primary for ROS 2 development), with cross-platform compatibility for documentation access
+**Project Type**: Documentation/static website with code examples and simulation assets
+**Performance Goals**: Fast documentation loading (<2s initial load), responsive search functionality, reliable code examples execution
+**Constraints**: Content must be accessible to beginners while valuable to intermediates, examples must run on consumer hardware, all dependencies must be open-source
+**Scale/Scope**: Focused on Introduction and Module 1 initially, with modular design for future expansion to additional modules
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-**Gates determined based on constitution file**:
-- ✅ Learning Philosophy: All content will provide practical, implementable examples with hands-on projects
-- ✅ Content Quality Standards: Technical content will be verified and tested in real implementations
-- ✅ Project-Based Learning: Knowledge organized around complete, meaningful projects
-- ✅ Accessible and Practical Tone: Technical concepts explained with clear language and visual aids
-- ✅ Progressive Complexity: Content follows logical progression from fundamental to advanced
-- ✅ Technical Constraints: Examples run on consumer hardware, compatible with Python 3.8+
-- ✅ Resource Constraints: Content freely accessible, open-source tools used
-- ✅ Content Constraints: Chapters completable within 4-6 hours, code examples <100 lines
+### Pre-Design Alignment Check
+- ✅ **Hands-On Mastery Principle**: Plan includes practical, implementable examples with code and exercises
+- ✅ **Technical Accuracy and Accessibility**: Content targets Python 3.10+ and ROS 2 Humble Hawksbill with beginner-accessible explanations
+- ✅ **Project-Based Learning**: Module 1 includes a comprehensive assessment project covering ROS 2 fundamentals
+- ✅ **Accessible and Practical Tone**: Docusaurus framework enables clear navigation and well-documented code examples
+- ✅ **Progressive Complexity**: Content structured from Introduction to Module 1 fundamentals, building toward advanced topics
 
-**Post-Design Re-check**:
-- ✅ Learning Philosophy: Docusaurus framework supports practical examples with interactive elements
-- ✅ Content Quality Standards: Integration with Context7 and Playwright MCP ensures content accuracy
-- ✅ Project-Based Learning: Module structure with assessment projects maintains project focus
-- ✅ Accessible and Practical Tone: Markdown-based content allows for clear explanations and visual aids
-- ✅ Progressive Complexity: Hierarchical structure (module→chapter→lesson) supports logical progression
-- ✅ Technical Constraints: Docusaurus-based static site works on consumer hardware
-- ✅ Resource Constraints: Open-source tools (Docusaurus, ROS 2, Gazebo) support accessibility
-- ✅ Content Constraints: Markdown format allows for appropriate content chunking
+### Post-Design Alignment Check (After Phase 1)
+- ✅ **Hands-On Mastery Principle**: Data model includes handsOnExercises for every lesson, code examples integrated throughout
+- ✅ **Technical Accuracy and Accessibility**: API contracts specify Python 3.10+/ROS 2 Humble compatibility, content structure supports accessibility
+- ✅ **Project-Based Learning**: Assessment project entity defined with clear evaluation criteria
+- ✅ **Accessible and Practical Tone**: Navigation API enables easy content discovery, search functionality planned
+- ✅ **Progressive Complexity**: Sequential ordering system implemented in data model (order fields for sections/chapters/lessons)
+
+### Gate Status
+- **Pass**: All core principles aligned with implementation approach both before and after design phase
+- **No violations** requiring justification at this stage
 
 ## Project Structure
 
 ### Documentation (this feature)
 
 ```text
-specs/001-update-book-spec/
+specs/[###-feature]/
 ├── plan.md              # This file (/sp.plan command output)
 ├── research.md          # Phase 0 output (/sp.plan command)
 ├── data-model.md        # Phase 1 output (/sp.plan command)
@@ -59,46 +57,41 @@ specs/001-update-book-spec/
 └── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
 ```
 
-### Source Code (repository root)
-
+### Book Content (repository root)
 ```text
 book/
-├── docs/                    # Main documentation content
-│   ├── module-1-ros2/       # Module 1 content
-│   │   ├── chapter-1/       # Chapter-level content
-│   │   │   ├── lesson-1.md  # Individual lesson files
-│   │   │   ├── lesson-2.md
-│   │   │   └── _category_.json  # Chapter configuration
-│   │   ├── chapter-2/
-│   │   └── _category_.json  # Module configuration
-│   ├── module-2-digital-twin/
-│   ├── module-3-isaac-ai/
-│   ├── module-4-vision-action/
-│   ├── intro/
-│   ├── appendix/
-│   └── assets/              # Shared assets
-│       ├── images/
-│       ├── videos/
-│       └── code-samples/
-├── src/                     # Custom React components and styling
-│   ├── components/
-│   ├── css/
-│   └── pages/
-├── static/                  # Static files
-│   ├── img/
-│   └── files/
-├── docusaurus.config.js     # Main Docusaurus configuration
-├── sidebars.js              # Navigation configuration
-├── package.json             # Project dependencies
-├── babel.config.js
-├── tsconfig.json            # TypeScript configuration
-└── .github/                 # CI/CD workflows
-    └── workflows/
-        ├── deploy.yml
-        └── test.yml
+├── intro/                    # Introduction section: "Welcome to Physical AI"
+│   ├── index.md             # Introduction landing page
+│   ├── foundations-of-physical-ai/
+│   │   ├── index.md         # Foundations of Physical AI and embodied intelligence
+│   │   ├── digital-ai-transition/
+│   │   ├── humanoid-landscape/
+│   │   ├── why-physical-ai/
+│   │   └── sensor-systems-overview/
+│   └── prerequisites-setup/
+├── module-1/                 # Module 1: "The Robotic Nervous System - ROS 2"
+│   ├── index.md             # Module 1 landing page
+│   ├── ros2-architecture/
+│   ├── nodes-topics-services/
+│   ├── actions-robotic-systems/
+│   ├── python-rclpy-bridge/
+│   ├── building-ros2-packages/
+│   ├── launch-files-params/
+│   └── urdf-humanoids/
+├── projects/                 # Assessment projects and hands-on exercises
+│   └── module-1-assessment/   # Comprehensive project for Module 1
+├── assets/                   # Images, diagrams, and visual assets
+├── src/                      # Code examples and snippets
+│   ├── python-examples/
+│   └── ros2-packages/
+├── supplemental/             # Setup guides, appendices, resources, FAQ
+│   ├── setup-guide/
+│   ├── troubleshooting/
+│   └── resources/
+└── docusaurus.config.js     # Docusaurus configuration
 ```
 
-**Structure Decision**: Single static web application using Docusaurus framework with modular content organization by modules, chapters, and lessons as specified in the feature requirements.
+**Structure Decision**: Docusaurus-based documentation structure selected to provide a static website with clear navigation between Introduction and Module 1 content. The modular organization allows for easy expansion to additional modules while maintaining clear separation between content types (introductory concepts, technical modules, projects, and supplementary materials).
 
 ## Complexity Tracking
 
@@ -106,4 +99,5 @@ book/
 
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
-| [N/A] | [No violations found] | [All constitution gates passed] |
+| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
