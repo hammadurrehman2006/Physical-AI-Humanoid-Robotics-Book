@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "ros2_documentation": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://gitmcp.io/ros2/ros2_documentation"
+      ],
+      "env": {}
+    }
+  }
+}

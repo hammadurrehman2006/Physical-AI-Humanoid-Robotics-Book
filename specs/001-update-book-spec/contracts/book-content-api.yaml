@@ -1,0 +1,186 @@
+# API Contract: Physical AI & Humanoid Robotics Book Content Management
+
+## Overview
+This contract defines the content structure and access patterns for the Physical AI & Humanoid Robotics Book, specifically for the Introduction and Module 1 sections.
+
+## Content Structure API
+
+### Book Section Resource
+```
+GET /api/v1/sections
+```
+- **Description**: Retrieve all book sections (Introduction and Module 1)
+- **Response**:
+  - 200: Array of Section objects
+    ```json
+    [
+      {
+        "id": "intro",
+        "title": "Welcome to Physical AI",
+        "description": "Foundations of Physical AI and embodied intelligence",
+        "learningObjectives": ["Understand Physical AI foundations", "Learn about embodied intelligence", "Explore humanoid robotics landscape"],
+        "prerequisites": ["Basic Python knowledge", "AI fundamentals"],
+        "chapters": ["foundations-of-physical-ai", "digital-ai-transition", ...],
+        "order": 1,
+        "type": "introduction"
+      },
+      {
+        "id": "module-1",
+        "title": "The Robotic Nervous System - ROS 2",
+        "description": "ROS 2 architecture and core concepts",
+        "learningObjectives": ["Master ROS 2 architecture", "Build ROS 2 packages", "Implement robot control systems"],
+        "prerequisites": ["Introduction section completed", "Python 3.10+"],
+        "chapters": ["ros2-architecture", "nodes-topics-services", ...],
+        "assessmentProject": "module-1-assessment",
+        "order": 2,
+        "type": "module"
+      }
+    ]
+    ```
+
+### Chapter Resource
+```
+GET /api/v1/sections/{sectionId}/chapters
+```
+- **Description**: Retrieve all chapters within a specific section
+- **Path Parameters**:
+  - sectionId: The ID of the section (e.g., "intro", "module-1")
+- **Response**:
+  - 200: Array of Chapter objects
+    ```json
+    [
+      {
+        "id": "ros2-architecture",
+        "title": "ROS 2 Architecture and Core Concepts",
+        "description": "Understanding the fundamental architecture of ROS 2",
+        "learningObjectives": ["Explain ROS 2 architecture", "Identify core components"],
+        "estimatedDuration": 2,
+        "lessons": ["architecture-overview", "core-components", ...],
+        "order": 1,
+        "sectionId": "module-1"
+      }
+    ]
+    ```
+
+### Lesson Resource
+```
+GET /api/v1/chapters/{chapterId}/lessons
+```
+- **Description**: Retrieve all lessons within a specific chapter
+- **Path Parameters**:
+  - chapterId: The ID of the chapter
+- **Response**:
+  - 200: Array of Lesson objects
+    ```json
+    [
+      {
+        "id": "architecture-overview",
+        "title": "ROS 2 Architecture Overview",
+        "content": "Markdown content of the lesson",
+        "learningObjectives": ["Describe ROS 2 architecture", "Identify nodes, topics, and services"],
+        "prerequisites": ["Basic understanding of robotics"],
+        "codeExamples": ["publisher-subscriber-example", "service-client-example"],
+        "handsOnExercises": ["create-simple-publisher", "implement-service"],
+        "troubleshooting": ["common-setup-issues", "network-configuration"],
+        "estimatedDuration": 45,
+        "order": 1,
+        "chapterId": "ros2-architecture"
+      }
+    ]
+    ```
+
+### Content Asset Resource
+```
+GET /api/v1/assets/{assetId}
+```
+- **Description**: Retrieve a specific content asset (image, video, code example)
+- **Path Parameters**:
+  - assetId: The ID of the asset
+- **Response**:
+  - 200: Asset object with file path and metadata
+    ```json
+    {
+      "id": "publisher-subscriber-example",
+      "title": "Publisher Subscriber Example",
+      "type": "code",
+      "filePath": "/src/python-examples/ros2-basics/publisher_subscriber.py",
+      "description": "Basic publisher subscriber implementation in ROS 2",
+      "associatedLessons": ["architecture-overview", "nodes-topics-services"],
+      "size": 2048,
+      "createdAt": "2025-12-17T10:00:00Z"
+    }
+    ```
+
+## Content Navigation API
+
+### Breadcrumb Navigation
+```
+GET /api/v1/navigation/breadcrumb?lessonId={lessonId}
+```
+- **Description**: Get the navigation path from book root to a specific lesson
+- **Query Parameters**:
+  - lessonId: The ID of the target lesson
+- **Response**:
+  - 200: Navigation path
+    ```json
+    {
+      "path": [
+        {"type": "section", "id": "module-1", "title": "The Robotic Nervous System - ROS 2"},
+        {"type": "chapter", "id": "nodes-topics-services", "title": "ROS 2 Nodes, Topics, and Services"},
+        {"type": "lesson", "id": "nodes-implementation", "title": "Implementing ROS 2 Nodes"}
+      ]
+    }
+    ```
+
+## Search API
+
+### Content Search
+```
+GET /api/v1/search?q={query}&section={sectionId}
+```
+- **Description**: Search for content across the book
+- **Query Parameters**:
+  - q: Search query string
+  - section: Optional section ID to limit search scope
+- **Response**:
+  - 200: Search results
+    ```json
+    {
+      "results": [
+        {
+          "id": "lesson-id",
+          "title": "Lesson Title",
+          "type": "lesson",
+          "sectionId": "module-1",
+          "chapterId": "nodes-topics-services",
+          "relevance": 0.95,
+          "preview": "Content preview..."
+        }
+      ]
+    }
+    ```
+
+## Assessment API
+
+### Module Assessment
+```
+GET /api/v1/assessments/{moduleId}
+```
+- **Description**: Retrieve the assessment project for a specific module
+- **Path Parameters**:
+  - moduleId: The ID of the module (e.g., "module-1")
+- **Response**:
+  - 200: Assessment project details
+    ```json
+    {
+      "id": "module-1-assessment",
+      "title": "ROS 2 Fundamentals Assessment",
+      "description": "Comprehensive project covering all ROS 2 concepts",
+      "learningObjectives": ["Implement ROS 2 nodes", "Create topics and services", "Use actions in robotic systems"],
+      "requirements": ["ROS 2 Humble Hawksbill", "Python 3.10+", "Basic robot simulation"],
+      "instructions": "Detailed project instructions...",
+      "evaluationCriteria": ["Code quality", "Functionality", "Documentation"],
+      "estimatedDuration": 8,
+      "associatedSection": "module-1"
+    }
+    ```
