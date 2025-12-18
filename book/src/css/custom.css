@@ -1,0 +1,230 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom CSS for Physical AI & Humanoid Robotics Book */
+
+/* Code Runner Component Styles */
+.code-runner {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.code-header {
+  background-color: #f6f8fa;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.code-title {
+  font-weight: bold;
+  color: #24292f;
+}
+
+.code-language {
+  font-size: 0.8em;
+  color: #656d76;
+  background-color: #afb8c133;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.code-description {
+  padding: 8px 16px;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #ddd;
+  color: #57606a;
+  font-size: 0.9em;
+}
+
+.code-content {
+  padding: 0;
+}
+
+.code-content pre {
+  margin: 0;
+  border-radius: 0;
+}
+
+.code-actions {
+  padding: 8px 16px;
+  background-color: #f6f8fa;
+  border-top: 1px solid #ddd;
+  text-align: right;
+}
+
+.btn-copy {
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.btn-copy:hover {
+  background-color: #f3f4f6;
+}
+
+/* Quiz Component Styles */
+.quiz-component {
+  border: 1px solid #3291ff;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 1rem 0;
+  background-color: #f0f9ff;
+}
+
+.quiz-question {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eaeef2;
+}
+
+.quiz-question:last-child {
+  border-bottom: none;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
+}
+
+.quiz-options {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.quiz-options li {
+  margin: 0.5rem 0;
+}
+
+.quiz-options input[type="radio"] {
+  margin-right: 8px;
+}
+
+.correct-answer {
+  color: #2da44e;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.incorrect-answer {
+  color: #cf222e;
+  margin-top: 0.5rem;
+}
+
+.submit-quiz-btn {
+  background-color: #238636;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.submit-quiz-btn:hover {
+  background-color: #2da44e;
+}
+
+.quiz-results {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eaeef2;
+}
+
+/* Simulation Viewer Styles */
+.simulation-viewer {
+  border: 1px solid #8a63d2;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 1rem 0;
+  background-color: #f8f5ff;
+}
+
+.simulation-placeholder {
+  text-align: center;
+  padding: 2rem;
+  border: 2px dashed #d0d7de;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.simulation-controls {
+  margin-top: 1rem;
+}
+
+.simulation-controls button {
+  margin: 0 4px;
+  padding: 6px 12px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.simulation-controls button:hover {
+  background-color: #f6f8fa;
+}
+
+.btn-play {
+  background-color: #238636;
+  color: white;
+  border-color: #238636;
+}
+
+.btn-pause {
+  background-color: #d29922;
+  color: white;
+  border-color: #d29922;
+}
+
+.btn-reset {
+  background-color: #da3633;
+  color: white;
+  border-color: #da3633;
+}
+
+/* Custom admonitions for exercises */
+.admonition-exercise {
+  border-left-color: #3291ff;
+}
+
+.admonition-exercise .admonition-heading {
+  background-color: rgba(50, 145, 255, 0.1);
+}
+
+/* Table of contents improvements */
+.table-of-contents {
+  border-left: 3px solid #3291ff;
+}
