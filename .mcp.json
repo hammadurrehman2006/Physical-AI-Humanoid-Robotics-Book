@@ -8,6 +8,15 @@
         "https://gitmcp.io/ros2/ros2_documentation"
       ],
       "env": {}
+    },
+    "gazebo_docs": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://gitmcp.io/gazebosim/docs"
+      ],
+      "env": {}
     }
   }
 }
