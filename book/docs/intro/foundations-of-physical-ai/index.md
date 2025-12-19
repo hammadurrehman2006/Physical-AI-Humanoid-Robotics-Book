@@ -34,11 +34,11 @@ Embodied intelligence emphasizes that intelligence emerges from the interaction 
 - **Adaptability**: Continuous learning through environmental interaction
 - **Emergent Behaviors**: Complex behaviors arising from simple rules
 
-## Theoretical Foundation: Embodied Intelligence Simulation
+## Theoretical Foundation: Embodied Intelligence Concepts
 
 Understanding how embodied agents operate in physical environments is crucial to grasping the principles of Physical AI. While practical implementation is important, we'll first focus on the theoretical understanding of how agents interact with their environment.
 
-### Key Concepts in Embodied Agent Simulation
+### Key Concepts in Embodied Agent Theory
 
 1. **Sensory Integration**: How agents gather information from multiple sensors
 2. **Environmental Interaction**: The relationship between an agent's actions and environmental changes

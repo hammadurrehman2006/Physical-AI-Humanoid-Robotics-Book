@@ -46,6 +46,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarCollapsible: true,
         },
         blog: {
           showReadingTime: true,
@@ -70,6 +71,17 @@ const config: Config = {
   ],
 
   plugins: [
+    async function myPlugin(context, options) {
+      return {
+        name: "docusaurus-tailwindcss",
+        configurePostCss(postcssOptions) {
+          // Appends TailwindCSS and AutoPrefixer.
+          postcssOptions.plugins.push(require("@tailwindcss/postcss"));
+          postcssOptions.plugins.push(require("autoprefixer"));
+          return postcssOptions;
+        },
+      };
+    },
     // Additional docs plugins for different sections
   ],
 

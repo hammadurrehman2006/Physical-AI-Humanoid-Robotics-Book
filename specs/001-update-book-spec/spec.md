@@ -17,7 +17,7 @@ A beginner to intermediate learner with foundational AI knowledge and Python 3.1
 
 **Acceptance Scenarios**:
 
-1. **Given** a beginner with Python/AI knowledge, **When** they start the Introduction section, **Then** they can understand the foundations of Physical AI and embodied intelligence with clear explanations of why it matters.
+1. **Given** a beginner with Python/AI knowledge, **When** they start the Introduction section, **Then** they can understand the foundations of Physical AI and embodied intelligence with clear explanations of why it matters and complete the required setup.
 2. **Given** a user working through Module 1 lessons, **When** they encounter ROS 2 code examples, **Then** they can execute them successfully and see expected results in simulation environments.
 3. **Given** a user completing Module 1, **When** they finish the ROS 2 assessment project, **Then** they demonstrate mastery of ROS 2 concepts covered in that module.
 
@@ -63,7 +63,7 @@ A robotics developer wants to use the Introduction and Module 1 content as a ref
 ### Functional Requirements
 
 - **FR-001**: System MUST provide a structured curriculum organized by modules, chapters, and lessons without time-based distribution, focusing on Introduction and Module 1 (ROS 2)
-- **FR-002**: System MUST include hands-on projects and simulations for the Introduction and Module 1 that users can execute in ROS 2 Humble Hawksbill environments
+- **FR-002**: System MUST include hands-on projects and simulations for Module 1 (not Introduction) that users can execute in ROS 2 Humble Hawksbill environments; Introduction section provides setup and foundational concepts
 - **FR-003**: System MUST provide 1 assessment project for Module 1 that focuses on ROS 2 fundamentals (Nodes, Topics, Services, Actions, rclpy integration, package building, launch files, URDF)
 - **FR-004**: System MUST follow a consistent lesson format template with prerequisites, learning objectives, theory, code examples, hands-on exercises, and troubleshooting
 - **FR-005**: System MUST be implemented using Docusaurus documentation framework with proper navigation, search, and content organization
@@ -72,13 +72,13 @@ A robotics developer wants to use the Introduction and Module 1 content as a ref
 - **FR-008**: System MUST support content progression from simple concepts (Introduction) to ROS 2 implementation using scaffolding approach
 - **FR-009**: System MUST organize content into 2 distinct sections: Introduction ("Welcome to Physical AI") and Module 1 ("The Robotic Nervous System - ROS 2") with clear chapter and lesson breakdowns
 - **FR-010**: System MUST provide clear navigation between Introduction, Module 1 chapters, and lessons with appropriate linking structure
-- **FR-011**: System MUST ensure every lesson includes practical, hands-on exercises that users can execute
+- **FR-011**: System MUST ensure every lesson in Module 1 includes practical, hands-on exercises that users can execute; Introduction section lessons may only include setup commands and prerequisites
 
 ### Key Entities *(include if feature involves data)*
 
 - **Book Section**: A major section of the curriculum (Introduction: "Welcome to Physical AI", Module 1: "The Robotic Nervous System - ROS 2") with specific learning objectives and assessment projects
 - **Book Chapter**: A subsection within a section containing multiple related lessons on a specific topic
-- **Lesson**: A structured learning unit within a chapter containing theory, code examples, hands-on exercises, and checkpoints
+- **Lesson**: A structured learning unit within a chapter containing theory, code examples, hands-on exercises, and checkpoints (Introduction lessons focus on theory and setup; Module 1 lessons include hands-on exercises)
 - **Assessment Project**: A comprehensive project that evaluates user understanding of a section's concepts and skills (specifically ROS 2 fundamentals for Module 1)
 - **Simulation Environment**: Technical framework (ROS 2 Humble Hawksbill) used for hands-on learning experiences
 - **Content Asset**: Media, code examples, diagrams, or other materials that support learning objectives
@@ -105,3 +105,7 @@ A robotics developer wants to use the Introduction and Module 1 content as a ref
 - Q: What should be the approach for the Module 1 assessment? → A: One comprehensive assessment project covering all ROS 2 fundamentals
 - Q: Should lessons include hands-on exercises? → A: Every lesson must include practical, hands-on exercises that users can execute
 - Q: What Python version should be required? → A: Python 3.10+ (latest stable with better features)
+
+### Session 2025-12-19
+
+- Q: Should the Introduction section include hands-on code exercises? → A: No hands-on code but only the setup commands in prerequisites-setup/

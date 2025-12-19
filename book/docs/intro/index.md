@@ -1,6 +1,7 @@
 ---
 title: Welcome to Physical AI
 sidebar_position: 1
+id: overview
 ---
 
 # Welcome to Physical AI: Bridging Digital AI with Embodied Intelligence

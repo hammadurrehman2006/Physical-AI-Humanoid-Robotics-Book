@@ -33,253 +33,19 @@ The embodiment hypothesis suggests that intelligent behavior arises from the cou
 
 Physical AI systems are designed to operate in the real world, not just in simulation:
 
-```python
-class RealWorldProblemSolver:
-    def __init__(self):
-        self.sensors = ['camera', 'lidar', 'tactile', 'audio']
-        self.actuators = ['arms', 'legs', 'wheels', 'grippers']
-        self.real_world_awareness = True
-
-    def solve_problem(self, problem_description):
-        """
-        Solve problems in real-world context with physical constraints
-        """
-        # Sense the environment
-        environment_state = self.perceive_environment()
-
-        # Plan with physical constraints
-        plan = self.create_physical_plan(problem_description, environment_state)
-
-        # Execute with real actuators
-        result = self.execute_physical_plan(plan)
-
-        # Adapt based on real feedback
-        if not result['success']:
-            self.adapt_strategy(result['feedback'])
-
-        return result
-
-    def perceive_environment(self):
-        """
-        Perceive real environment using multiple sensors
-        """
-        perception = {}
-        for sensor in self.sensors:
-            perception[sensor] = self.get_sensor_data(sensor)
-        return perception
-
-    def create_physical_plan(self, problem, environment):
-        """
-        Create plan considering physical constraints
-        """
-        # Consider energy consumption
-        # Consider safety constraints
-        # Consider environmental obstacles
-        # Consider actuator limitations
-        return {'actions': ['move', 'grasp', 'manipulate'], 'constraints': 'physical'}
-
-    def execute_physical_plan(self, plan):
-        """
-        Execute plan using physical actuators
-        """
-        success = True
-        feedback = "Plan executed successfully"
-
-        for action in plan['actions']:
-            try:
-                # Execute action with real actuators
-                result = self.actuate(action)
-                if not result['success']:
-                    success = False
-                    feedback = result['error']
-                    break
-            except Exception as e:
-                success = False
-                feedback = f"Execution error: {str(e)}"
-                break
-
-        return {'success': success, 'feedback': feedback}
-
-    def get_sensor_data(self, sensor_type):
-        """
-        Get data from specified sensor
-        """
-        # Simulate sensor reading
-        return f"Data from {sensor_type}"
-
-    def actuate(self, action):
-        """
-        Perform physical action
-        """
-        # Simulate actuation
-        return {'success': True, 'result': f"Action {action} performed"}
-
-    def adapt_strategy(self, feedback):
-        """
-        Adapt strategy based on execution feedback
-        """
-        print(f"Adapting strategy due to: {feedback}")
-        # Implement adaptation logic
-        pass
-```
+Understanding how physical systems interact with the real world requires considering multiple components and constraints that digital systems don't face. This involves sensing the environment using multiple sensors such as cameras, LiDAR, tactile sensors, and audio systems. Planning must account for physical constraints including energy limitations, safety requirements, environmental obstacles, and actuator limitations. Execution happens with real actuators like arms, legs, wheels, and grippers. The system must then adapt based on real feedback through a perceive-plan-execute-adapt loop.
 
 ### 2. Energy Efficiency Through Embodiment
 
 Physical systems often achieve efficiency through their physical properties:
 
-```python
-class EnergyEfficientPhysicalAI:
-    def __init__(self):
-        self.energy_budget = 100.0  # in Joules
-        self.current_energy = 100.0
-        self.passive_dynamics = True  # Use passive dynamics when possible
-
-    def perform_task_with_energy_efficiency(self, task):
-        """
-        Perform task while optimizing for energy consumption
-        """
-        # Use passive dynamics when possible (e.g., pendulum motion)
-        if self.passive_dynamics and self.can_use_passive_dynamics(task):
-            energy_cost = self.estimate_passive_energy_cost(task)
-            if energy_cost < self.current_energy:
-                result = self.use_passive_dynamics(task)
-                self.current_energy -= energy_cost
-                return result
-
-        # Fallback to active control
-        energy_cost = self.estimate_active_energy_cost(task)
-        if energy_cost < self.current_energy:
-            result = self.use_active_control(task)
-            self.current_energy -= energy_cost
-            return result
-
-        return {'success': False, 'reason': 'Insufficient energy'}
-
-    def can_use_passive_dynamics(self, task):
-        """
-        Check if task can be performed using passive dynamics
-        """
-        # Simplified check
-        return task in ['walking', 'balancing', 'swinging']
-
-    def estimate_passive_energy_cost(self, task):
-        """
-        Estimate energy cost using passive dynamics
-        """
-        return 0.1  # Very low cost for passive dynamics
-
-    def estimate_active_energy_cost(self, task):
-        """
-        Estimate energy cost using active control
-        """
-        return 5.0  # Higher cost for active control
-
-    def use_passive_dynamics(self, task):
-        """
-        Perform task using passive dynamics
-        """
-        return {'success': True, 'method': 'passive'}
-
-    def use_active_control(self, task):
-        """
-        Perform task using active control
-        """
-        return {'success': True, 'method': 'active'}
-```
+Energy efficiency in physical systems can be achieved through various approaches. These include setting energy budgets and constraints to manage power consumption. Energy costs are estimated for different approaches, with passive dynamics typically requiring much lower energy than active control. Passive dynamics can be used when possible, such as in pendulum motion or other naturally occurring physical phenomena. Systems check if tasks can be performed using passive dynamics before resorting to active control, with walking, balancing, and swinging being common examples where passive dynamics are effective.
 
 ### 3. Safety Through Physical Constraints
 
 Physical systems have inherent safety properties:
 
-```python
-class SafePhysicalAI:
-    def __init__(self):
-        self.safety_constraints = {
-            'force_limits': {'max_force': 50.0},  # Newtons
-            'speed_limits': {'max_speed': 1.0},   # m/s
-            'power_limits': {'max_power': 100.0}, # Watts
-        }
-        self.collision_avoidance = True
-
-    def perform_safe_action(self, action_request):
-        """
-        Perform action while ensuring safety constraints are met
-        """
-        # Validate against safety constraints
-        if not self.validate_safety_constraints(action_request):
-            return {'success': False, 'reason': 'Safety constraint violation'}
-
-        # Perform action with safety monitoring
-        result = self.execute_with_safety_monitoring(action_request)
-
-        # Log safety data for learning
-        self.log_safety_data(action_request, result)
-
-        return result
-
-    def validate_safety_constraints(self, action_request):
-        """
-        Validate action against safety constraints
-        """
-        # Check force limits
-        if action_request.get('force', 0) > self.safety_constraints['force_limits']['max_force']:
-            return False
-
-        # Check speed limits
-        if action_request.get('speed', 0) > self.safety_constraints['speed_limits']['max_speed']:
-            return False
-
-        return True
-
-    def execute_with_safety_monitoring(self, action_request):
-        """
-        Execute action with real-time safety monitoring
-        """
-        # Monitor during execution
-        safety_ok = True
-        try:
-            # Execute action
-            result = self.execute_action(action_request)
-
-            # Monitor for safety violations
-            if self.detect_safety_violation():
-                safety_ok = False
-                self.emergency_stop()
-
-        except Exception as e:
-            safety_ok = False
-            self.emergency_stop()
-            return {'success': False, 'reason': f'Safety error: {str(e)}'}
-
-        return {'success': safety_ok, 'result': result if safety_ok else None}
-
-    def detect_safety_violation(self):
-        """
-        Detect potential safety violations
-        """
-        # Simplified detection
-        import random
-        return random.random() < 0.01  # 1% chance of violation
-
-    def emergency_stop(self):
-        """
-        Emergency stop for safety
-        """
-        print("EMERGENCY STOP: Safety violation detected!")
-        # Implement actual emergency stop
-
-    def execute_action(self, action_request):
-        """
-        Execute the requested action
-        """
-        return "Action completed"
-
-    def log_safety_data(self, action_request, result):
-        """
-        Log safety-related data for continuous improvement
-        """
-        print(f"Logging safety data for action: {action_request}")
-```
+Safety in physical systems is achieved through various constraints and monitoring approaches. This includes defining safety limits for force (typically measured in Newtons), speed (measured in meters per second), and power (measured in Watts). Collision avoidance systems are also implemented to prevent harmful interactions. Actions are validated against these safety constraints before execution. The system monitors for safety violations during operation and implements emergency stop mechanisms when violations are detected. Safety data is logged for learning and system improvement.
 
 ## Key Application Areas
 
@@ -287,134 +53,19 @@ class SafePhysicalAI:
 
 Physical AI enables robots to assist humans in daily activities:
 
-```python
-class AssistiveRobot:
-    def __init__(self):
-        self.user_profiles = {}
-        self.assistive_capabilities = [
-            'object_retrieval',
-            'navigation_assistance',
-            'monitoring',
-            'communication'
-        ]
-
-    def assist_user(self, user_id, request):
-        """
-        Provide assistance based on user needs and preferences
-        """
-        user_profile = self.get_user_profile(user_id)
-        assistance_plan = self.create_assistance_plan(user_profile, request)
-
-        # Execute assistance with safety and comfort prioritization
-        result = self.execute_assistance(assistance_plan, user_profile)
-
-        # Learn from interaction for future improvements
-        self.update_user_profile(user_id, result)
-
-        return result
-
-    def create_assistance_plan(self, user_profile, request):
-        """
-        Create personalized assistance plan
-        """
-        plan = {
-            'actions': [],
-            'safety_priority': user_profile.get('mobility_level', 'standard'),
-            'comfort_priority': user_profile.get('preferences', {}).get('pace', 'standard')
-        }
-
-        if request == 'retrieve_object':
-            plan['actions'] = ['navigate_to_object', 'grasp_object', 'deliver_object']
-        elif request == 'navigation_assistance':
-            plan['actions'] = ['accompany_user', 'provide_guidance', 'avoid_obstacles']
-
-        return plan
-```
+Assistive robotics involves creating systems that can help users with various tasks. These systems define assistive capabilities such as object retrieval, navigation assistance, monitoring, and communication. The user assistance workflow involves getting a user profile, creating a personalized assistance plan based on the user's needs and preferences, executing the assistance with safety and comfort prioritization, and updating the user profile based on the interaction. Personalized assistance plans consider safety priorities based on mobility levels and comfort preferences based on the user's preferred pace. Common tasks include object retrieval (navigate to object, grasp object, deliver object) and navigation assistance (accompany user, provide guidance, avoid obstacles).
 
 ### 2. Industrial Automation
 
 Physical AI enables more flexible and adaptive automation:
 
-```python
-class AdaptiveIndustrialRobot:
-    def __init__(self):
-        self.manufacturing_processes = {}
-        self.quality_standards = {}
-        self.adaptation_engine = True
-
-    def adapt_to_variations(self, process_id, variation_data):
-        """
-        Adapt manufacturing process to handle variations
-        """
-        base_process = self.manufacturing_processes[process_id]
-
-        # Adapt process parameters based on variation
-        adapted_process = self.adapt_process_parameters(base_process, variation_data)
-
-        # Execute with quality monitoring
-        result = self.execute_with_quality_monitoring(adapted_process)
-
-        # Update process model based on results
-        self.update_process_model(process_id, variation_data, result)
-
-        return result
-
-    def adapt_process_parameters(self, base_process, variation_data):
-        """
-        Adapt process parameters based on detected variations
-        """
-        adapted_process = base_process.copy()
-
-        # Adjust parameters based on variation characteristics
-        for param, variation in variation_data.items():
-            if param in adapted_process['parameters']:
-                adapted_process['parameters'][param] += variation * 0.1  # Adaptive factor
-
-        return adapted_process
-```
+Industrial automation systems can adapt to variations in manufacturing processes. These systems initialize parameters including manufacturing processes, quality standards, and adaptation engines. They adapt to process variations by getting the base process, adapting process parameters based on variation data, executing with quality monitoring, and updating the process model based on results. Process parameters are adjusted based on variation characteristics to maintain quality and efficiency in manufacturing.
 
 ### 3. Scientific Research
 
 Physical AI serves as a platform for scientific discovery:
 
-```python
-class ResearchRobot:
-    def __init__(self):
-        self.experiment_types = ['exploration', 'manipulation', 'observation']
-        self.data_collection = True
-        self.hypothesis_generation = True
-
-    def conduct_experiment(self, experiment_type, parameters):
-        """
-        Conduct physical experiment and collect data
-        """
-        if experiment_type not in self.experiment_types:
-            return {'success': False, 'reason': 'Unsupported experiment type'}
-
-        # Execute experiment
-        experimental_data = self.execute_experiment(experiment_type, parameters)
-
-        # Analyze results
-        analysis = self.analyze_data(experimental_data)
-
-        # Generate new hypotheses
-        if self.hypothesis_generation:
-            new_hypotheses = self.generate_hypotheses(analysis)
-
-        return {
-            'success': True,
-            'data': experimental_data,
-            'analysis': analysis,
-            'hypotheses': new_hypotheses if self.hypothesis_generation else None
-        }
-
-    def execute_experiment(self, exp_type, params):
-        """
-        Execute the physical experiment
-        """
-        # Simulate experiment execution
-        return {'measurements': [1.0, 2.0, 3.0], 'conditions': params}
-```
+Research robotics systems can conduct experiments and collect data. These systems define supported experiment types such as exploration, manipulation, and observation. They include data collection and hypothesis generation capabilities. The experimental process involves checking if experiment types are supported, executing experiments, analyzing results, and generating new hypotheses based on the findings. Experiments produce measurements and record conditions for scientific analysis.
 
 ## Theoretical Foundation: Physical AI Advantages
 

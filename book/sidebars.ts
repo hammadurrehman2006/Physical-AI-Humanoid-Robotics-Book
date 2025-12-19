@@ -28,42 +28,27 @@ const sidebars: SidebarsConfig = {
       ],
       link: {
         type: 'doc',
-        id: 'intro/foundations-of-physical-ai/index',
+        id: 'intro/overview',
       },
     },
     {
       type: 'category',
       label: 'Module 1: The Robotic Nervous System - ROS 2',
       items: [
-        'module-1/index',
         'module-1/ros2-architecture/index',
         'module-1/nodes-topics-services/index',
         'module-1/actions-robotic-systems/index',
         'module-1/python-rclpy-bridge/index',
         'module-1/building-ros2-packages/index',
         'module-1/launch-files-params/index',
-        'module-1/urdf-humanoids/index'
+        'module-1/urdf-humanoids/index',
+        'module-1/assessment/index',
+        'module-1/supplementary/index'
       ],
       link: {
         type: 'doc',
         id: 'module-1/index',
       },
-    },
-    {
-      type: 'category',
-      label: 'Assessment Projects',
-      items: [
-        'projects/module-1-assessment/index'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Supplementary Materials',
-      items: [
-        'supplemental/setup-guide/index',
-        'supplemental/troubleshooting/index',
-        'supplemental/resources/index'
-      ],
     }
   ],
 };

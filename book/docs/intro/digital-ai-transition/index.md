@@ -30,136 +30,21 @@ sidebar_position: 3
 
 ### 1. Real-time Processing Requirements
 
-Physical AI systems must process information and respond within strict time constraints:
-
-```python
-import time
-
-def real_time_processing_example():
-    """
-    Example of real-time constraint in physical AI
-    """
-    start_time = time.time()
-
-    # Simulate sensor processing
-    sensor_data = read_sensors()
-    processed_data = process_sensors(sensor_data)
-    action = decide_action(processed_data)
-    execute_action(action)
-
-    elapsed_time = time.time() - start_time
-
-    # Physical AI systems often have strict timing requirements
-    max_response_time = 0.1  # 100ms for real-time response
-    if elapsed_time > max_response_time:
-        print(f"Warning: Response took {elapsed_time:.3f}s, exceeding {max_response_time}s limit")
-
-    return elapsed_time
-
-def read_sensors():
-    # Simulate reading from multiple sensors
-    return {
-        'camera': 'image_data',
-        'lidar': 'distance_data',
-        'imu': 'orientation_data'
-    }
-
-def process_sensors(data):
-    # Process sensor data
-    return {'processed': True, 'features': ['object1', 'object2']}
-
-def decide_action(processed_data):
-    # Simple decision making
-    return 'move_forward'
-
-def execute_action(action):
-    # Simulate action execution
-    time.sleep(0.01)  # Simulate actuator delay
-    return True
-```
+Physical AI systems must process information and respond within strict time constraints. This requirement stems from the need to interact with the physical world in a timely manner, where delays can result in missed opportunities or safety issues. Real-time constraints typically require responses within specific time windows, such as 10ms for control systems or 100ms for higher-level decision making.
 
 ### 2. Sensor Fusion and Uncertainty Management
 
-Physical AI systems must handle multiple, often conflicting, sensor inputs:
-
-```python
-class SensorFusion:
-    def __init__(self):
-        self.sensors = {
-            'camera': {'confidence': 0.8, 'data': None},
-            'lidar': {'confidence': 0.9, 'data': None},
-            'imu': {'confidence': 0.95, 'data': None}
-        }
-
-    def fuse_sensors(self):
-        """
-        Combine sensor data with confidence weighting
-        """
-        weighted_sum = 0
-        total_weight = 0
-
-        for sensor_name, sensor_data in self.sensors.items():
-            if sensor_data['data'] is not None:
-                weight = sensor_data['confidence']
-                weighted_sum += sensor_data['data'] * weight
-                total_weight += weight
-
-        if total_weight > 0:
-            return weighted_sum / total_weight
-        else:
-            return None
-```
+Physical AI systems must handle multiple, often conflicting, sensor inputs. The challenge lies in combining information from different sensors that may have varying reliability, accuracy, and update rates. Effective sensor fusion requires understanding the characteristics of each sensor and appropriately weighting their contributions based on confidence levels and environmental conditions.
 
 ## Strategies for Bridging Digital and Physical AI
 
 ### 1. Simulation-to-Reality Transfer
 
-Use simulation for training and then adapt to real-world conditions:
-
-```python
-class SimToRealTransfer:
-    def __init__(self):
-        self.sim_model = None  # Model trained in simulation
-        self.domain_randomization = True
-
-    def adapt_to_real_world(self, real_data):
-        """
-        Adapt simulation-trained model to real-world data
-        """
-        # Apply domain adaptation techniques
-        adapted_model = self.apply_domain_adaptation(
-            self.sim_model,
-            real_data
-        )
-        return adapted_model
-
-    def apply_domain_adaptation(self, model, real_data):
-        # Simplified domain adaptation
-        # In practice, this would involve more sophisticated techniques
-        return model
-```
+Use simulation for training and then adapt to real-world conditions. This approach involves training AI models in simulated environments where conditions can be controlled and experiments repeated efficiently, then transferring the learned behaviors to real physical systems. The key challenge is addressing the differences between simulated and real environments, often addressed through domain randomization and adaptation techniques.
 
 ### 2. Robust Control Strategies
 
-Implement control strategies that can handle uncertainty:
-
-```python
-class RobustController:
-    def __init__(self):
-        self.uncertainty_threshold = 0.1
-        self.backup_plan = "stop_and_assess"
-
-    def execute_with_uncertainty_handling(self, action, uncertainty):
-        """
-        Execute action while monitoring uncertainty levels
-        """
-        if uncertainty > self.uncertainty_threshold:
-            # Execute backup plan
-            return self.backup_plan
-        else:
-            # Execute normal action
-            return action
-```
+Implement control strategies that can handle uncertainty. Physical AI systems must operate despite uncertain conditions, sensor noise, and environmental variations. Robust control approaches include developing fallback behaviors, implementing uncertainty monitoring, and creating adaptive control mechanisms that adjust to changing conditions.
 
 ## Theoretical Foundation: Digital to Physical AI Bridge
 

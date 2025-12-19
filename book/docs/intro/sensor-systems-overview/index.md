@@ -32,215 +32,15 @@ Proprioceptive sensors measure the robot's internal state, including joint posit
 
 Joint encoders measure the position of robot joints:
 
-```python
-class JointEncoder:
-    def __init__(self, joint_name, resolution=4096):
-        self.joint_name = joint_name
-        self.resolution = resolution  # Counts per revolution
-        self.position = 0.0  # Radians
-        self.velocity = 0.0  # Rad/s
-        self.last_position = 0.0
-        self.last_time = time.time()
-
-    def read_position(self):
-        """
-        Read current joint position with noise simulation
-        """
-        import random
-        # Simulate encoder reading with some noise
-        true_position = self.simulate_true_position()
-        noise = random.gauss(0, 0.001)  # 1 mrad noise
-        noisy_position = true_position + noise
-        return noisy_position
-
-    def simulate_true_position(self):
-        """
-        Simulate a changing joint position
-        """
-        import time
-        # In real implementation, this would read from actual encoder
-        return self.position
-
-    def calculate_velocity(self):
-        """
-        Calculate joint velocity from position changes
-        """
-        import time
-        current_time = time.time()
-        current_position = self.read_position()
-
-        if current_time != self.last_time:
-            dt = current_time - self.last_time
-            self.velocity = (current_position - self.last_position) / dt
-
-        self.last_position = current_position
-        self.last_time = current_time
-
-        return self.velocity
-
-class JointStateEstimator:
-    def __init__(self, joint_names):
-        self.encoders = {name: JointEncoder(name) for name in joint_names}
-        self.joint_positions = {name: 0.0 for name in joint_names}
-        self.joint_velocities = {name: 0.0 for name in joint_names}
-
-    def update_joint_states(self):
-        """
-        Update all joint positions and velocities
-        """
-        for name, encoder in self.encoders.items():
-            self.joint_positions[name] = encoder.read_position()
-            self.joint_velocities[name] = encoder.calculate_velocity()
-
-        return {
-            'positions': self.joint_positions,
-            'velocities': self.joint_velocities
-        }
-```
+Joint encoders are critical for proprioceptive sensing, providing information about the robot's joint configuration. These sensors enable the robot to know its own posture and movement, which is essential for control and coordination. The resolution of joint encoders determines the precision with which joint positions can be measured, with higher resolution encoders providing more accurate position feedback. Understanding how to properly read and interpret encoder data, including handling sensor noise and calculating derived quantities like velocity, is fundamental to robot control.
 
 ### Inertial Measurement Units (IMUs)
 
-IMUs measure orientation, angular velocity, and linear acceleration:
-
-```python
-import numpy as np
-
-class IMU:
-    def __init__(self, name):
-        self.name = name
-        self.orientation = np.array([0.0, 0.0, 0.0, 1.0])  # Quaternion [x, y, z, w]
-        self.angular_velocity = np.array([0.0, 0.0, 0.0])  # rad/s
-        self.linear_acceleration = np.array([0.0, 0.0, 0.0])  # m/s²
-        self.gravity = np.array([0.0, 0.0, -9.81])  # m/s²
-
-    def read_orientation(self):
-        """
-        Read orientation as quaternion with noise
-        """
-        import random
-        # Simulate orientation reading with noise
-        noise = np.array([
-            random.gauss(0, 0.01),  # 0.01 rad noise
-            random.gauss(0, 0.01),
-            random.gauss(0, 0.01),
-            random.gauss(0, 0.001)  # w component has less noise
-        ])
-        noisy_orientation = self.orientation + noise
-        # Normalize quaternion
-        noisy_orientation = noisy_orientation / np.linalg.norm(noisy_orientation)
-        return noisy_orientation
-
-    def read_angular_velocity(self):
-        """
-        Read angular velocity with noise
-        """
-        import random
-        noise = np.array([
-            random.gauss(0, 0.001),  # 1 mrad/s noise
-            random.gauss(0, 0.001),
-            random.gauss(0, 0.001)
-        ])
-        return self.angular_velocity + noise
-
-    def read_linear_acceleration(self):
-        """
-        Read linear acceleration with noise
-        """
-        import random
-        noise = np.array([
-            random.gauss(0, 0.01),  # 1 cm/s² noise
-            random.gauss(0, 0.01),
-            random.gauss(0, 0.01)
-        ])
-        return self.linear_acceleration + noise
-
-    def integrate_orientation(self, dt):
-        """
-        Integrate angular velocity to update orientation
-        """
-        # Convert angular velocity to quaternion derivative
-        omega = np.append(self.angular_velocity, 0.0)
-        q_dot = 0.5 * self.quaternion_multiply(self.orientation, omega)
-
-        # Integrate
-        new_orientation = self.orientation + q_dot * dt
-        # Normalize
-        new_orientation = new_orientation / np.linalg.norm(new_orientation)
-
-        self.orientation = new_orientation
-        return self.orientation
-
-    def quaternion_multiply(self, q1, q2):
-        """
-        Multiply two quaternions
-        """
-        w1, x1, y1, z1 = q1
-        w2, x2, y2, z2 = q2
-
-        w = w1 * w2 - x1 * x2 - y1 * y2 - z1 * z2
-        x = w1 * x2 + x1 * w2 + y1 * z2 - z1 * y2
-        y = w1 * y2 - x1 * z2 + y1 * w2 + z1 * x2
-        z = w1 * z2 + x1 * y2 - y1 * x2 + z1 * w2
-
-        return np.array([x, y, z, w])
-```
+IMUs measure orientation, angular velocity, and linear acceleration. Working with IMU sensors involves understanding how to read and process orientation data, which is typically represented as quaternions to avoid gimbal lock issues. IMUs contain gyroscopes to measure angular velocity, accelerometers to measure linear acceleration (including gravity), and sometimes magnetometers for heading reference. The data from these sensors is subject to various types of noise and drift that must be accounted for in processing algorithms. Quaternion mathematics is used to represent 3D rotations and orientations efficiently, with functions available to multiply quaternions for combining rotations or transforming between coordinate frames.
 
 ### Force/Torque Sensors
 
-Force and torque sensors measure interaction forces:
-
-```python
-class ForceTorqueSensor:
-    def __init__(self, name, max_force=500.0, max_torque=50.0):
-        self.name = name
-        self.max_force = max_force
-        self.max_torque = max_torque
-        self.force = np.array([0.0, 0.0, 0.0])  # x, y, z forces in Newtons
-        self.torque = np.array([0.0, 0.0, 0.0])  # x, y, z torques in Nm
-
-    def read_force_torque(self):
-        """
-        Read force and torque with noise
-        """
-        import random
-        force_noise = np.array([
-            random.gauss(0, 0.1),  # 0.1 N noise
-            random.gauss(0, 0.1),
-            random.gauss(0, 0.1)
-        ])
-
-        torque_noise = np.array([
-            random.gauss(0, 0.01),  # 0.01 Nm noise
-            random.gauss(0, 0.01),
-            random.gauss(0, 0.01)
-        ])
-
-        noisy_force = self.force + force_noise
-        noisy_torque = self.torque + torque_noise
-
-        return {
-            'force': noisy_force,
-            'torque': noisy_torque,
-            'valid': self.is_within_limits(noisy_force, noisy_torque)
-        }
-
-    def is_within_limits(self, force, torque):
-        """
-        Check if force/torque readings are within sensor limits
-        """
-        force_magnitude = np.linalg.norm(force)
-        torque_magnitude = np.linalg.norm(torque)
-
-        return (force_magnitude <= self.max_force and
-                torque_magnitude <= self.max_torque)
-
-    def detect_contact(self, threshold=5.0):
-        """
-        Detect if there is contact based on force readings
-        """
-        force_magnitude = np.linalg.norm(self.read_force_torque()['force'])
-        return force_magnitude > threshold
-```
+Force and torque sensors measure interaction forces. Working with force/torque sensors involves understanding how to read and process force and torque data. These sensors typically have parameters such as maximum force (measured in Newtons) and maximum torque (measured in Newton-meters) that define their operational limits. The sensors measure forces along three axes (X, Y, Z) and torques around these axes. The data includes inherent noise that must be accounted for in processing algorithms. The system checks if force and torque readings are within sensor limits by calculating the magnitude of force and torque vectors and comparing them to maximum values. Contact detection is performed by comparing the magnitude of force readings to a threshold value, which indicates when the robot is making physical contact with an object or surface.
 
 ## Exteroceptive Sensors
 
@@ -250,372 +50,79 @@ Exteroceptive sensors measure the external environment.
 
 Cameras provide visual information about the environment:
 
-```python
-import cv2
-import numpy as np
+Working with camera sensors involves understanding how to capture and process visual data:
 
-class CameraSensor:
-    def __init__(self, name, resolution=(640, 480), fov=60.0):
-        self.name = name
-        self.resolution = resolution  # width, height
-        self.fov = fov  # Field of view in degrees
-        self.intrinsic_matrix = self.compute_intrinsic_matrix()
-        self.distortion_coeffs = np.zeros((4, 1))  # Assuming no distortion initially
+```bash
+# Camera sensor parameters
+CAMERA_NAME="front_camera"
+CAMERA_WIDTH=640
+CAMERA_HEIGHT=480
+CAMERA_FOV=60.0  # Field of view in degrees
 
-    def compute_intrinsic_matrix(self):
-        """
-        Compute camera intrinsic matrix
-        """
-        width, height = self.resolution
-        focal_length = width / (2 * np.tan(np.radians(self.fov/2)))
-        cx, cy = width / 2, height / 2
+# Function to compute camera intrinsic matrix parameters
+compute_intrinsic_matrix() {
+    # Calculate focal length based on resolution and field of view
+    local focal_length=$(echo "scale=6; $CAMERA_WIDTH / (2 * s($CAMERA_FOV/2 * 3.14159265358979323846 / 180))" | bc -l)
+    local cx=$(echo "scale=1; $CAMERA_WIDTH / 2" | bc -l)
+    local cy=$(echo "scale=1; $CAMERA_HEIGHT / 2" | bc -l)
 
-        return np.array([
-            [focal_length, 0, cx],
-            [0, focal_length, cy],
-            [0, 0, 1]
-        ])
+    echo "focal_length:$focal_length cx:$cx cy:$cy"
+}
 
-    def capture_image(self):
-        """
-        Capture a simulated image with noise
-        """
-        # Create a simulated image (in real system, this would capture from camera)
-        height, width = self.resolution[1], self.resolution[0]
-        image = np.random.randint(0, 255, (height, width, 3), dtype=np.uint8)
+# Function to simulate capturing an image with noise
+capture_image() {
+    # For documentation purposes, we'll just return image parameters
+    # In a real system, this would capture from the actual camera
+    echo "width:$CAMERA_WIDTH height:$CAMERA_HEIGHT"
+    echo "format:RGB8"
+    echo "timestamp:$(date +%s.%N)"
+}
 
-        # Add noise to simulate real camera characteristics
-        noise = np.random.normal(0, 10, image.shape).astype(np.int16)
-        noisy_image = np.clip(image.astype(np.int16) + noise, 0, 255).astype(np.uint8)
+# Function to detect features in an image (simulated)
+detect_features() {
+    # Simulate feature detection
+    # In a real system, this would process the actual image
+    local feature_count=$((RANDOM % 100 + 50))  # Random count between 50-150
 
-        return noisy_image
+    echo "feature_count:$feature_count"
+    echo "detection_method:orb_simulated"
+    echo "processing_time:$(echo "scale=3; $RANDOM / 32767 * 0.05" | bc -l)s"
+}
 
-    def detect_features(self, image):
-        """
-        Detect features in the image
-        """
-        # Convert to grayscale
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# Function to estimate depth from stereo images (simulated)
+estimate_depth_from_stereo() {
+    local baseline=${1:-0.1}  # Default baseline 0.1m if not provided
 
-        # Detect features (using ORB as example)
-        orb = cv2.ORB_create()
-        keypoints, descriptors = orb.detectAndCompute(gray, None)
+    # Calculate focal length based on resolution and field of view
+    local focal_length=$(echo "scale=6; $CAMERA_WIDTH / (2 * s($CAMERA_FOV/2 * 3.14159265358979323846 / 180))" | bc -l)
 
-        return {
-            'keypoints': keypoints,
-            'descriptors': descriptors,
-            'count': len(keypoints) if keypoints is not None else 0
-        }
+    # Simulate depth estimation
+    # In a real system, this would process actual stereo images
+    local min_depth=0.1  # meters
+    local max_depth=10.0  # meters
+    local estimated_depth=$(echo "scale=3; $min_depth + ($RANDOM / 32767) * ($max_depth - $min_depth)" | bc -l)
 
-    def estimate_depth_from_stereo(self, left_image, right_image):
-        """
-        Estimate depth using stereo vision (simplified)
-        """
-        # This is a simplified version - real implementation would be more complex
-        gray_left = cv2.cvtColor(left_image, cv2.COLOR_BGR2GRAY)
-        gray_right = cv2.cvtColor(right_image, cv2.COLOR_BGR2GRAY)
-
-        stereo = cv2.StereoBM_create(numDisparities=16, blockSize=15)
-        disparity = stereo.compute(gray_left, gray_right)
-
-        # Convert disparity to depth
-        baseline = 0.1  # Camera baseline in meters
-        focal_length = self.intrinsic_matrix[0, 0]
-        depth = (baseline * focal_length) / (disparity + 1e-6)  # Add small value to avoid division by zero
-
-        return depth
+    echo "estimated_depth:$estimated_depth"
+    echo "focal_length:$focal_length"
+    echo "baseline:$baseline"
+    echo "depth_range:$min_depth-$max_depth"
+}
 ```
 
 ### LiDAR Sensors
 
-LiDAR provides precise distance measurements:
-
-```python
-class LiDAR:
-    def __init__(self, name, range_min=0.1, range_max=30.0, resolution=0.25):
-        self.name = name
-        self.range_min = range_min  # meters
-        self.range_max = range_max  # meters
-        self.resolution = resolution  # degrees per measurement
-        self.fov = 360.0  # degrees
-        self.num_beams = int(self.fov / self.resolution)
-
-    def scan_environment(self):
-        """
-        Perform a 360-degree scan of the environment
-        """
-        import random
-
-        # Simulate distance measurements
-        ranges = []
-        angles = []
-
-        for i in range(self.num_beams):
-            angle = i * self.resolution
-            # Simulate distance to obstacle (in real system, this would come from LiDAR)
-            distance = random.uniform(self.range_min, self.range_max)
-
-            # Add noise to simulate real sensor
-            noise = random.gauss(0, 0.02)  # 2cm noise
-            noisy_distance = max(self.range_min, min(self.range_max, distance + noise))
-
-            ranges.append(noisy_distance)
-            angles.append(angle)
-
-        return {
-            'ranges': ranges,
-            'angles': angles,
-            'intensities': [100] * len(ranges)  # Simulated intensities
-        }
-
-    def detect_obstacles(self, scan_data, distance_threshold=1.0):
-        """
-        Detect obstacles based on scan data
-        """
-        obstacles = []
-
-        for i, distance in enumerate(scan_data['ranges']):
-            if distance < distance_threshold:
-                angle = scan_data['angles'][i]
-                # Convert polar to Cartesian
-                x = distance * np.cos(np.radians(angle))
-                y = distance * np.sin(np.radians(angle))
-                obstacles.append({'x': x, 'y': y, 'distance': distance, 'angle': angle})
-
-        return obstacles
-
-    def create_occupancy_grid(self, scan_data, grid_size=100, resolution=0.1):
-        """
-        Create an occupancy grid from scan data
-        """
-        grid = np.zeros((grid_size, grid_size))
-
-        for i, distance in enumerate(scan_data['ranges']):
-            angle = np.radians(scan_data['angles'][i])
-
-            # Calculate point in Cartesian coordinates
-            x = int(distance * np.cos(angle) / resolution + grid_size/2)
-            y = int(distance * np.sin(angle) / resolution + grid_size/2)
-
-            # Check if point is within grid bounds
-            if 0 <= x < grid_size and 0 <= y < grid_size:
-                if distance < self.range_max * 0.9:  # Mark as occupied if not at max range
-                    grid[y, x] = 1  # Occupied
-
-        return grid
-```
+LiDAR provides precise distance measurements. Working with LiDAR sensors involves understanding how to scan the environment and process distance measurements. LiDAR sensors have parameters such as minimum and maximum range (measured in meters), angular resolution (degrees per measurement), and field of view (typically 360 degrees for full environment scanning). The number of beams depends on the resolution and field of view. A 360-degree scan captures distance measurements at regular angular intervals, creating a point cloud representation of the environment. The system processes these measurements to detect obstacles by comparing distances to a threshold value. The data is often converted to an occupancy grid, which represents the environment as a grid of cells indicating whether each area is occupied, free, or unknown. This grid is fundamental for navigation and path planning algorithms.
 
 ### Tactile Sensors
 
-Tactile sensors provide touch feedback:
-
-```python
-class TactileSensor:
-    def __init__(self, name, sensor_array_size=(10, 10)):
-        self.name = name
-        self.array_size = sensor_array_size  # rows, cols
-        self.pressure_threshold = 0.1  # Minimum pressure to register contact
-        self.pressure_map = np.zeros(sensor_array_size)
-
-    def read_pressure_map(self):
-        """
-        Read the current pressure distribution
-        """
-        import random
-
-        # Simulate pressure readings
-        noise = np.random.normal(0, 0.01, self.array_size)
-        base_pressure = np.zeros(self.array_size)
-
-        # Simulate contact with an object
-        if random.random() < 0.3:  # 30% chance of contact
-            # Create a "contact" area
-            center_row, center_col = 5, 5
-            for i in range(max(0, center_row-2), min(self.array_size[0], center_row+3)):
-                for j in range(max(0, center_col-2), min(self.array_size[1], center_col+3)):
-                    distance = np.sqrt((i-center_row)**2 + (j-center_col)**2)
-                    base_pressure[i, j] = max(0, 1.0 - distance*0.2)
-
-        noisy_pressure = np.clip(base_pressure + noise, 0, 1)
-        self.pressure_map = noisy_pressure
-
-        return noisy_pressure
-
-    def detect_contact(self):
-        """
-        Detect if there is contact based on pressure readings
-        """
-        return np.any(self.pressure_map > self.pressure_threshold)
-
-    def locate_contact_center(self):
-        """
-        Find the center of contact area
-        """
-        if not self.detect_contact():
-            return None
-
-        # Find the center of the contact area
-        contact_points = np.where(self.pressure_map > self.pressure_threshold)
-        if len(contact_points[0]) > 0:
-            center_row = np.mean(contact_points[0])
-            center_col = np.mean(contact_points[1])
-            return (center_row, center_col)
-
-        return None
-
-    def estimate_object_properties(self):
-        """
-        Estimate object properties based on tactile data
-        """
-        pressure_map = self.read_pressure_map()
-        contact = self.detect_contact()
-
-        if not contact:
-            return {'contact': False}
-
-        # Estimate properties
-        contact_area = np.sum(pressure_map > self.pressure_threshold)
-        avg_pressure = np.mean(pressure_map[pressure_map > self.pressure_threshold])
-        contact_center = self.locate_contact_center()
-
-        return {
-            'contact': True,
-            'contact_area': contact_area,
-            'avg_pressure': avg_pressure,
-            'contact_center': contact_center,
-            'object_hardness': 'soft' if avg_pressure < 0.5 else 'hard'
-        }
-```
+Tactile sensors provide touch feedback. Working with tactile sensors involves understanding how to read and process pressure maps. These sensors typically have parameters such as the number of rows and columns in the tactile array, and a pressure threshold to determine when contact is registered. The pressure map represents the distribution of forces across the sensor surface, allowing the robot to understand the shape, texture, and properties of objects it touches. Contact detection is performed by analyzing the pressure readings to determine if contact has occurred with an external object. Object properties can be estimated from tactile data, including contact area, average pressure, location of contact center, object hardness, shape, and size. This information is crucial for dexterous manipulation tasks where the robot must handle objects with appropriate force and grip strategy.
 
 ## Sensor Fusion
 
 Sensor fusion combines data from multiple sensors to improve perception accuracy:
 
-```python
-class SensorFusion:
-    def __init__(self):
-        self.sensors = {
-            'imu': IMU('body_imu'),
-            'camera': CameraSensor('front_camera'),
-            'lidar': LiDAR('360_lidar'),
-            'force_torque': ForceTorqueSensor('wrist_sensor')
-        }
-        self.fusion_weights = {
-            'position': {'imu': 0.3, 'camera': 0.4, 'lidar': 0.3},
-            'orientation': {'imu': 0.8, 'camera': 0.2, 'lidar': 0.0}
-        }
-
-    def kalman_filter_prediction(self, state, covariance, dt):
-        """
-        Kalman filter prediction step
-        """
-        # Simple linear model for position and velocity
-        # State: [x, y, z, vx, vy, vz]
-        F = np.array([
-            [1, 0, 0, dt, 0, 0],
-            [0, 1, 0, 0, dt, 0],
-            [0, 0, 1, 0, 0, dt],
-            [0, 0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 1, 0],
-            [0, 0, 0, 0, 0, 1]
-        ])
-
-        predicted_state = F @ state
-        predicted_covariance = F @ covariance @ F.T + self.process_noise(dt)
-
-        return predicted_state, predicted_covariance
-
-    def kalman_filter_update(self, predicted_state, predicted_covariance, measurement, sensor_type):
-        """
-        Kalman filter update step
-        """
-        # Measurement matrix (simplified)
-        H = np.array([[1, 0, 0, 0, 0, 0]])  # Measure x position
-        R = self.get_sensor_noise_covariance(sensor_type)  # Measurement noise
-        Q = self.process_noise(0.01)  # Process noise
-
-        # Kalman gain
-        S = H @ predicted_covariance @ H.T + R
-        K = predicted_covariance @ H.T @ np.linalg.inv(S)
-
-        # Update state and covariance
-        innovation = measurement[0] - H @ predicted_state
-        updated_state = predicted_state + K @ innovation
-        updated_covariance = (np.eye(len(predicted_state)) - K @ H) @ predicted_covariance
-
-        return updated_state, updated_covariance
-
-    def get_sensor_noise_covariance(self, sensor_type):
-        """
-        Get noise covariance for different sensor types
-        """
-        noise_levels = {
-            'imu': 0.01,
-            'camera': 0.05,
-            'lidar': 0.02,
-            'force_torque': 0.1
-        }
-        return np.array([[noise_levels.get(sensor_type, 0.05)]])
-
-    def process_noise(self, dt):
-        """
-        Process noise matrix
-        """
-        return np.eye(6) * dt * 0.1  # Simplified
-
-    def fuse_sensor_data(self, dt=0.01):
-        """
-        Fuse data from all sensors
-        """
-        # Read from all sensors
-        imu_data = {
-            'orientation': self.sensors['imu'].read_orientation(),
-            'angular_velocity': self.sensors['imu'].read_angular_velocity(),
-            'linear_acceleration': self.sensors['imu'].read_linear_acceleration()
-        }
-
-        camera_data = self.sensors['camera'].capture_image()
-        lidar_data = self.sensors['lidar'].scan_environment()
-        force_data = self.sensors['force_torque'].read_force_torque()
-
-        # Combine sensor data into a unified estimate
-        fused_data = {
-            'pose': self.estimate_pose_from_sensors(imu_data, lidar_data),
-            'environment': self.understand_environment(camera_data, lidar_data),
-            'interaction': self.assess_interaction(force_data, imu_data)
-        }
-
-        return fused_data
-
-    def estimate_pose_from_sensors(self, imu_data, lidar_data):
-        """
-        Estimate robot pose using multiple sensors
-        """
-        # Combine IMU orientation with LiDAR position data
-        orientation = imu_data['orientation']
-
-        # Use LiDAR to estimate position relative to environment
-        obstacles = self.sensors['lidar'].detect_obstacles(lidar_data)
-
-        return {
-            'orientation': orientation,
-            'position': self.estimate_position_from_lidar(obstacles),
-            'confidence': 0.9  # High confidence in fused estimate
-        }
-
-    def estimate_position_from_lidar(self, obstacles):
-        """
-        Estimate position based on detected obstacles
-        """
-        # Simplified position estimation
-        if obstacles:
-            # Use the distribution of obstacles to estimate relative position
-            avg_x = np.mean([obs['x'] for obs in obstacles])
-            avg_y = np.mean([obs['y'] for obs in obstacles])
-            return [avg_x, avg_y, 0.0]  # z=0 for ground level
-        else:
-            return [0.0, 0.0, 0.0]  # Unknown position
-```
+Sensor fusion involves combining data from multiple sensors to create a more accurate understanding of the environment:
+Sensor fusion involves combining data from multiple sensors to create a more accurate understanding of the environment. This process typically involves assigning different weights to different sensors based on their reliability for specific measurements. For position estimation, different sensors like IMUs, cameras, and LiDAR may contribute with different weights. For orientation estimation, IMUs typically have higher weight due to their direct measurement of angular information. The sensor fusion process reads data from all available sensors including IMUs for orientation and acceleration, cameras for visual information, LiDAR for distance measurements, and force/torque sensors for interaction feedback. The data is then combined into unified estimates for robot pose (position and orientation), environment understanding (object detection, obstacle mapping), and interaction assessment (contact detection, object properties). The system also considers sensor noise characteristics which vary by sensor type, with IMUs typically having low noise, cameras having moderate noise, LiDAR having low to moderate noise, and force/torque sensors having higher noise levels.
 
 ## Theoretical Foundation: Sensor Integration Concepts
 
@@ -652,79 +159,148 @@ Integrating multiple sensors provides several advantages:
 
 ### 1. Sensor Noise and Calibration
 
-```python
-class SensorCalibration:
-    def __init__(self):
-        self.calibration_data = {}
-        self.bias = {}
-        self.scale_factor = {}
+Sensor calibration is essential for accurate sensor readings:
 
-    def calibrate_sensor(self, sensor_name, calibration_data):
-        """
-        Calibrate a sensor using reference data
-        """
-        # Calculate bias (offset)
-        raw_values = [data['raw'] for data in calibration_data]
-        reference_values = [data['reference'] for data in calibration_data]
+```bash
+# Sensor calibration parameters
+declare -A CALIBRATION_DATA
+declare -A BIAS
+declare -A SCALE_FACTOR
 
-        # Simple linear calibration: corrected = scale * raw + bias
-        # For now, assume linear relationship
-        raw_mean = np.mean(raw_values)
-        ref_mean = np.mean(reference_values)
+# Function to calibrate a sensor using reference data
+calibrate_sensor() {
+    local sensor_name="$1"
+    shift
+    local raw_values=("$@")
 
-        # Estimate scale factor and bias
-        if len(raw_values) > 1:
-            numerator = sum((raw_values[i] - raw_mean) * (reference_values[i] - ref_mean)
-                           for i in range(len(raw_values)))
-            denominator = sum((raw_values[i] - raw_mean)**2 for i in range(len(raw_values)))
+    # For this example, we'll simulate the calibration process
+    # In a real system, you would have reference values as well
 
-            if denominator != 0:
-                scale = numerator / denominator
-                bias = ref_mean - scale * raw_mean
-            else:
-                scale = 1.0
-                bias = ref_mean - raw_mean
-        else:
-            scale = 1.0
-            bias = ref_mean - raw_mean
+    # Calculate mean of raw values (simplified)
+    local sum=0
+    local count=${#raw_values[@]}
+    for val in "${raw_values[@]}"; do
+        sum=$(echo "$sum + $val" | bc -l)
+    done
+    local raw_mean=$(echo "scale=6; $sum / $count" | bc -l)
 
-        self.scale_factor[sensor_name] = scale
-        self.bias[sensor_name] = bias
+    # Simulate reference mean (in real calibration, you'd have actual reference values)
+    local ref_mean=$(echo "scale=6; $raw_mean * 0.95 + 0.1" | bc -l)  # Simulated reference
 
-        return {'scale': scale, 'bias': bias}
+    # For simplicity in this example, we'll use a basic calibration approach
+    # Calculate scale and bias using simplified method
+    local scale=1.0
+    local bias=$(echo "scale=6; $ref_mean - $raw_mean" | bc -l)
 
-    def apply_calibration(self, sensor_name, raw_value):
-        """
-        Apply calibration to raw sensor value
-        """
-        scale = self.scale_factor.get(sensor_name, 1.0)
-        bias = self.bias.get(sensor_name, 0.0)
+    # Store calibration parameters
+    SCALE_FACTOR["$sensor_name"]=$scale
+    BIAS["$sensor_name"]=$bias
 
-        return scale * raw_value + bias
+    echo "scale:$scale"
+    echo "bias:$bias"
+}
+
+# Function to apply calibration to raw sensor value
+apply_calibration() {
+    local sensor_name="$1"
+    local raw_value="$2"
+
+    local scale=${SCALE_FACTOR["$sensor_name"]:-1.0}
+    local bias=${BIAS["$sensor_name"]:-0.0}
+
+    local calibrated_value=$(echo "scale=6; $scale * $raw_value + $bias" | bc -l)
+
+    echo "$calibrated_value"
+}
+
+# Example usage of calibration
+perform_calibration_example() {
+    echo "Performing sensor calibration example..."
+
+    # Simulated raw sensor readings
+    local raw_readings=(1.0 1.1 0.9 1.05 0.95)
+
+    # Calibrate sensor
+    local calibration_result=$(calibrate_sensor "example_sensor" "${raw_readings[@]}")
+    local scale=$(echo "$calibration_result" | grep "scale:" | cut -d: -f2)
+    local bias=$(echo "$calibration_result" | grep "bias:" | cut -d: -f2)
+
+    echo "Calibration completed: scale=$scale, bias=$bias"
+
+    # Apply calibration to a raw value
+    local raw_value=1.0
+    local calibrated_value=$(apply_calibration "example_sensor" "$raw_value")
+
+    echo "Raw value: $raw_value, Calibrated value: $calibrated_value"
+}
 ```
 
 ### 2. Sensor Synchronization
 
-```python
-class SensorSynchronizer:
-    def __init__(self):
-        self.sensor_timestamps = {}
-        self.max_time_diff = 0.01  # 10ms tolerance
+Sensor synchronization is important for coordinating readings from multiple sensors:
 
-    def synchronize_readings(self, sensor_readings):
-        """
-        Synchronize sensor readings to the same time base
-        """
-        timestamps = [reading.get('timestamp', time.time()) for reading in sensor_readings.values()]
+```bash
+# Sensor synchronization parameters
+MAX_TIME_DIFF=0.01  # 10ms tolerance
 
-        # Check if all readings are within acceptable time window
-        if timestamps:
-            time_range = max(timestamps) - min(timestamps)
-            if time_range > self.max_time_diff:
-                print(f"Warning: Sensor readings differ by {time_range:.3f}s, exceeding {self.max_time_diff}s tolerance")
+# Function to synchronize sensor readings to the same time base
+synchronize_readings() {
+    # In bash, we'll simulate sensor synchronization by checking timestamps
+    # This function would take sensor data with timestamps and check synchronization
 
-        # Return synchronized readings
-        return sensor_readings
+    local warning=""
+    local time_range=0
+
+    # For this example, we'll simulate checking if sensor readings are synchronized
+    # In a real system, you would have actual timestamps to compare
+
+    # Simulate getting timestamps from sensor readings
+    local timestamp1=$(date +%s.%N)
+    sleep 0.001  # Small delay to simulate different reading times
+    local timestamp2=$(date +%s.%N)
+
+    # Calculate time difference
+    time_range=$(echo "$timestamp2 - $timestamp1" | bc -l)
+
+    # Check if time difference exceeds tolerance
+    if [ "$(echo "$time_range > $MAX_TIME_DIFF" | bc -l)" -eq 1 ]; then
+        warning="Warning: Sensor readings differ by ${time_range}s, exceeding ${MAX_TIME_DIFF}s tolerance"
+        echo "$warning" >&2
+    fi
+
+    echo "time_range:$time_range"
+    echo "synchronized:$(if [ "$(echo "$time_range <= $MAX_TIME_DIFF" | bc -l)" -eq 1 ]; then echo "true"; else echo "false"; fi)"
+    echo "max_tolerance:$MAX_TIME_DIFF"
+}
+
+# Function to align sensor timestamps
+align_sensor_timestamps() {
+    local base_timestamp=$(date +%s.%N)
+    local num_sensors=${1:-4}  # Default to 4 sensors if not specified
+
+    echo "base_timestamp:$base_timestamp"
+
+    for i in $(seq 1 $num_sensors); do
+        # Add small variations to simulate real sensor timing differences
+        local variation=$(echo "scale=6; ($RANDOM / 32767) * 0.002" | bc -l)  # ±1ms variation
+        local sensor_timestamp=$(echo "scale=9; $base_timestamp + $variation" | bc -l)
+
+        echo "sensor_$i:$sensor_timestamp"
+    done
+}
+
+# Example usage of sensor synchronization
+sensor_sync_example() {
+    echo "Performing sensor synchronization example..."
+
+    # Simulate synchronizing readings from multiple sensors
+    local sync_result=$(synchronize_readings)
+    echo "Synchronization result: $sync_result"
+
+    # Align timestamps for multiple sensors
+    local aligned_timestamps=$(align_sensor_timestamps 3)
+    echo "Aligned timestamps: $aligned_timestamps"
+}
 ```
 
 ## Resources for Further Learning

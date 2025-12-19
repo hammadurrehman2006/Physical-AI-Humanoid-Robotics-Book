@@ -7,41 +7,58 @@
 
 ## Summary
 
-Development of a comprehensive Physical AI & Humanoid Robotics book focusing on Introduction and Module 1 (The Robotic Nervous System - ROS 2). The implementation uses Docusaurus documentation framework to create a structured curriculum with hands-on projects, emphasizing practical, executable examples using Python 3.10+ and ROS 2 Humble Hawksbill. Content follows a progressive learning path from foundational Physical AI concepts to advanced ROS 2 implementation, with each lesson including theory, code examples, and hands-on exercises.
+Create the Introduction section "Welcome to Physical AI" for the Physical AI & Humanoid Robotics Book. This section will cover foundational concepts of Physical AI and embodied intelligence, the transition from digital AI to robots that understand physical laws, an overview of the humanoid robotics landscape, why Physical AI matters, sensor systems overview (LIDAR, cameras, IMUs, force/torque sensors), course roadmap and learning approach, and prerequisites and setup requirements. The Introduction will focus on theory and setup without hands-on code exercises, following the Docusaurus documentation framework with proper navigation and content organization.
 
 ## Technical Context
 
-**Language/Version**: Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework
-**Primary Dependencies**: ROS 2 Humble Hawksbill (LTS version), Docusaurus 3.x documentation framework, rclpy (Python ROS 2 client library), React for documentation UI
-**Storage**: Static file storage for documentation, images and assets
-**Testing**: Documentation validation, code example verification in simulation environments
-**Target Platform**: Linux/Ubuntu (primary for ROS 2 development), with cross-platform compatibility for documentation access
-**Project Type**: Documentation/static website with code examples and simulation assets
-**Performance Goals**: Fast documentation loading (<2s initial load), responsive search functionality, reliable code examples execution
-**Constraints**: Content must be accessible to beginners while valuable to intermediates, examples must run on consumer hardware, all dependencies must be open-source
-**Scale/Scope**: Focused on Introduction and Module 1 initially, with modular design for future expansion to additional modules
+**Language/Version**: Python 3.10+ for ROS 2 Humble Hawksbill compatibility, Node.js 18+ for Docusaurus framework
+**Primary Dependencies**: Docusaurus 3.x, ROS 2 Humble Hawksbill, rclpy, React
+**Storage**: N/A - static documentation site with file-based content
+**Testing**: Jest for JavaScript/React components, pytest for Python examples, Playwright for E2E testing
+**Target Platform**: Multi-platform (Linux, macOS, Windows) with web-based documentation
+**Project Type**: Static documentation site with embedded code examples
+**Performance Goals**: <2s documentation page load, <2 min Docusaurus build time, reasonable execution time for learning examples
+**Constraints**: <200ms p95 page load, <100MB memory for example code, compatible with consumer hardware, offline-capable documentation
+**Scale/Scope**: Target thousands of users, 100+ documentation pages, 50+ code examples, modular structure
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-### Pre-Design Alignment Check
-- ✅ **Hands-On Mastery Principle**: Plan includes practical, implementable examples with code and exercises
-- ✅ **Technical Accuracy and Accessibility**: Content targets Python 3.10+ and ROS 2 Humble Hawksbill with beginner-accessible explanations
-- ✅ **Project-Based Learning**: Module 1 includes a comprehensive assessment project covering ROS 2 fundamentals
-- ✅ **Accessible and Practical Tone**: Docusaurus framework enables clear navigation and well-documented code examples
-- ✅ **Progressive Complexity**: Content structured from Introduction to Module 1 fundamentals, building toward advanced topics
+### Learning Philosophy: Hands-On Mastery
+- [x] Introduction provides practical setup commands (prerequisites section)
+- [x] Theory is introduced in service of practical application
+- [x] Introduction builds foundation for hands-on Module 1 content
 
-### Post-Design Alignment Check (After Phase 1)
-- ✅ **Hands-On Mastery Principle**: Data model includes handsOnExercises for every lesson, code examples integrated throughout
-- ✅ **Technical Accuracy and Accessibility**: API contracts specify Python 3.10+/ROS 2 Humble compatibility, content structure supports accessibility
-- ✅ **Project-Based Learning**: Assessment project entity defined with clear evaluation criteria
-- ✅ **Accessible and Practical Tone**: Navigation API enables easy content discovery, search functionality planned
-- ✅ **Progressive Complexity**: Sequential ordering system implemented in data model (order fields for sections/chapters/lessons)
+### Content Quality Standards: Technical Accuracy and Accessibility
+- [x] Content will be rigorously verified and tested
+- [x] Complex concepts will be broken down into digestible learning units
+- [x] Content will be accessible to beginners while remaining valuable to intermediate learners
 
-### Gate Status
-- **Pass**: All core principles aligned with implementation approach both before and after design phase
-- **No violations** requiring justification at this stage
+### Project-Based Learning Approach
+- [x] Introduction sets up for project-based learning in Module 1
+- [x] Content organized around complete learning experience
+- [x] Projects will culminate in tangible outcomes in Module 1
+
+### Accessible and Practical Tone
+- [x] Technical concepts will be explained using clear language and analogies
+- [x] Theoretical concepts will be connected to practical applications
+
+### Progressive Complexity
+- [x] Introduction provides foundation for progressive complexity in Module 1
+- [x] Prerequisites clearly identified
+- [x] Content builds meaningfully on previous knowledge
+
+### Technical Constraints Compliance
+- [x] All examples will run on standard consumer hardware
+- [x] Code examples will be compatible with Python 3.8+
+- [x] Content will be deployable in accessible simulation environments
+- [x] Docusaurus-based documentation will remain performant
+
+### Content Constraints Compliance
+- [x] Content will be completable within appropriate timeframes
+- [x] Mathematical concepts will be explained with intuitive visualizations
+- [x] External dependencies will be stable and well-maintained
 
 ## Project Structure
 
@@ -57,41 +74,28 @@ specs/[###-feature]/
 └── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
 ```
 
-### Book Content (repository root)
+### Source Code (repository root)
+
 ```text
 book/
-├── intro/                    # Introduction section: "Welcome to Physical AI"
-│   ├── index.md             # Introduction landing page
-│   ├── foundations-of-physical-ai/
-│   │   ├── index.md         # Foundations of Physical AI and embodied intelligence
-│   │   ├── digital-ai-transition/
-│   │   ├── humanoid-landscape/
-│   │   ├── why-physical-ai/
-│   │   └── sensor-systems-overview/
-│   └── prerequisites-setup/
-├── module-1/                 # Module 1: "The Robotic Nervous System - ROS 2"
-│   ├── index.md             # Module 1 landing page
-│   ├── ros2-architecture/
-│   ├── nodes-topics-services/
-│   ├── actions-robotic-systems/
-│   ├── python-rclpy-bridge/
-│   ├── building-ros2-packages/
-│   ├── launch-files-params/
-│   └── urdf-humanoids/
-├── projects/                 # Assessment projects and hands-on exercises
-│   └── module-1-assessment/   # Comprehensive project for Module 1
-├── assets/                   # Images, diagrams, and visual assets
-├── src/                      # Code examples and snippets
-│   ├── python-examples/
-│   └── ros2-packages/
-├── supplemental/             # Setup guides, appendices, resources, FAQ
-│   ├── setup-guide/
-│   ├── troubleshooting/
-│   └── resources/
-└── docusaurus.config.js     # Docusaurus configuration
+├── docs/
+│   ├── intro/
+│   │   ├── index.md              # Introduction landing page
+│   │   ├── foundations-of-physical-ai.md
+│   │   ├── transition-digital-physical.md
+│   │   ├── humanoid-robotics-landscape.md
+│   │   ├── why-physical-ai-matters.md
+│   │   ├── sensor-systems-overview.md
+│   │   ├── roadmap-learning-approach.md
+│   │   └── prerequisites-setup.md
+│   └── module-1/                 # Placeholder for future Module 1
+├── src/
+│   └── components/               # Custom Docusaurus components
+├── static/                       # Static assets (images, files)
+└── docusaurus.config.js          # Docusaurus configuration
 ```
 
-**Structure Decision**: Docusaurus-based documentation structure selected to provide a static website with clear navigation between Introduction and Module 1 content. The modular organization allows for easy expansion to additional modules while maintaining clear separation between content types (introductory concepts, technical modules, projects, and supplementary materials).
+**Structure Decision**: Single documentation project using Docusaurus framework with modular content organization. The Introduction section content will be placed in book/docs/intro/ directory following the specified content breakdown from the feature specification. This structure supports the progressive learning approach with clear navigation between sections.
 
 ## Complexity Tracking
 
