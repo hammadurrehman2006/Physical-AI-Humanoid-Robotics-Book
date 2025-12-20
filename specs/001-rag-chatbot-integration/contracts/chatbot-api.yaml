@@ -1,0 +1,276 @@
+openapi: 3.0.3
+info:
+  title: RAG Chatbot API
+  description: API for the Integrated Chatbot for Physical AI & Humanoid Robotics Book
+  version: 1.0.0
+servers:
+  - url: https://api.chatbot.example.com
+    description: Production server
+  - url: https://staging-api.chatbot.example.com
+    description: Staging server
+
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the health status of the service
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-12-20T10:00:00Z"
+
+  /chat:
+    post:
+      summary: General book content Q&A
+      description: Submit a query about the book content and receive a response with source citations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The question or query about book content
+                  example: "Explain how inverse kinematics works in humanoid robots"
+                session_id:
+                  type: string
+                  description: Session identifier for maintaining conversation history
+                  example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                user_id:
+                  type: string
+                  description: User identifier (optional, creates anonymous session if not provided)
+                  example: "user123"
+      responses:
+        '200':
+          description: Successful response with answer and citations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: The chatbot's response to the query
+                    example: "Inverse kinematics in humanoid robots..."
+                  citations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SourceCitation'
+                  conversation_id:
+                    type: string
+                    description: Identifier for the conversation thread
+                    example: "c1b2c3d4-e5f6-7890-1234-567890abcdef"
+        '400':
+          description: Bad request - invalid input
+        '500':
+          description: Internal server error
+
+  /chat/selected-text:
+    post:
+      summary: Selected text Q&A
+      description: Submit a query about selected text and receive a response with source citations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+                - selected_text
+              properties:
+                query:
+                  type: string
+                  description: The question about the selected text
+                  example: "Can you explain this algorithm in more detail?"
+                selected_text:
+                  type: string
+                  description: The text that was selected by the user
+                  example: "The inverse kinematics algorithm calculates joint angles..."
+                session_id:
+                  type: string
+                  description: Session identifier for maintaining conversation history
+                  example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                user_id:
+                  type: string
+                  description: User identifier (optional)
+                  example: "user123"
+      responses:
+        '200':
+          description: Successful response with answer and citations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: The chatbot's response to the query
+                    example: "This algorithm works by..."
+                  citations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SourceCitation'
+                  conversation_id:
+                    type: string
+                    description: Identifier for the conversation thread
+                    example: "c1b2c3d4-e5f6-7890-1234-567890abcdef"
+        '400':
+          description: Bad request - invalid input
+        '500':
+          description: Internal server error
+
+  /conversations/{conversation_id}:
+    get:
+      summary: Get conversation history
+      description: Retrieve the history of messages in a specific conversation
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The conversation identifier
+      responses:
+        '200':
+          description: Conversation history retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversation:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+                  title:
+                    type: string
+                    description: The conversation title
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+        '404':
+          description: Conversation not found
+        '500':
+          description: Internal server error
+
+    delete:
+      summary: Delete conversation
+      description: Delete a specific conversation and its messages
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The conversation identifier
+      responses:
+        '204':
+          description: Conversation deleted successfully
+        '404':
+          description: Conversation not found
+        '500':
+          description: Internal server error
+
+  /sessions/{session_id}/conversations:
+    get:
+      summary: Get all conversations in a session
+      description: Retrieve all conversations associated with a specific session
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The session identifier
+      responses:
+        '200':
+          description: List of conversations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  conversations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        created_at:
+                          type: string
+                          format: date-time
+                        updated_at:
+                          type: string
+                          format: date-time
+        '404':
+          description: Session not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        sender_type:
+          type: string
+          enum: [USER, ASSISTANT]
+          description: Who sent the message
+        content:
+          type: string
+          description: The message content
+        created_at:
+          type: string
+          format: date-time
+          description: When the message was created
+        source_citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceCitation'
+
+    SourceCitation:
+      type: object
+      properties:
+        source_file:
+          type: string
+          description: Path to the source file
+        chapter:
+          type: string
+          description: Chapter name/number
+        lesson:
+          type: string
+          description: Lesson name/number
+        section_title:
+          type: string
+          description: Section title
+        text_preview:
+          type: string
+          description: Preview of the cited text
+        url:
+          type: string
+          description: URL to the source location (if applicable)
