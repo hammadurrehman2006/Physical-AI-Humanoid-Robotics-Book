@@ -42,10 +42,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           sidebarCollapsible: true,
         },
         blog: {
@@ -54,10 +50,6 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -71,17 +63,7 @@ const config: Config = {
   ],
 
   plugins: [
-    async function myPlugin(context, options) {
-      return {
-        name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require("@tailwindcss/postcss"));
-          postcssOptions.plugins.push(require("autoprefixer"));
-          return postcssOptions;
-        },
-      };
-    },
+    './src/plugins/tailwind-config.js',
     // Plugin for 3D/simulation embeds
     [
       '@docusaurus/plugin-content-docs',
@@ -104,6 +86,12 @@ const config: Config = {
         ],
       },
     ],
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      ({
+        hashed: true,
+      }),
+    ],
   ],
 
   themeConfig: {
@@ -123,13 +111,15 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Book',
+          label: 'Start Reading',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          href: 'https://github.com/hammadurrehman2006/Physical-AI-Humanoid-Robotics-Book',
           position: 'right',
+          className: 'header-github-link', // Add a class for potential styling or targeting
+          html: `<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="24" height="24">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.53-.49-.4-.94-.95-1.19-.95-1.19-.65-.45.07-.44.07-.44.73.05 1.12.75 1.12.75.64 1.09 1.78.78 2.21.6.06-.47.28-.78.51-.96-1.68-.18-3.46-.84-3.46-3.73 0-.82.29-1.49.79-2.01-.08-.18-.36-.95.07-1.99 0 0 .64-.2 2.1.79.6-.16 1.25-.26 1.9-.26.65 0 1.3.09 1.9.26 1.46-1 2.1-.79 2.1-.79.43 1.04.15 1.81.07 1.99.5.52.79 1.2.79 2.01 0 2.9-1.79 3.54-3.47 3.72.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.22 0 .2.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                  </svg>`,
         },
       ],
     },
@@ -170,10 +160,6 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
               label: 'GitHub',
               href: 'https://github.com/your-username/physical-ai-book',
             },
@@ -185,33 +171,6 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-    },
-    algolia: {
-      // The application ID provided by Algolia
-      appId: 'YOUR_APP_ID',
-
-      // Public API key: it is safe to commit it
-      apiKey: 'YOUR_SEARCH_API_KEY',
-
-      indexName: 'physical-ai-humanoid-robotics',
-
-      // Optional: see doc section below
-      contextualSearch: true,
-
-      // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-      // externalUrlRegex: 'external\\.example\\.com|thirdparty\\.example\\.com',
-
-      // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
-      // replaceSearchResultPathname: {
-      //   from: '/docs/', // or as RegExp: /\/docs\//
-      //   to: '/',
-      // },
-
-      // Optional: Algolia search parameters
-      searchParameters: {},
-
-      // Optional: path for search page that enabled by default (`false` to disable it)
-      searchPagePath: 'search',
     },
   } satisfies Preset.ThemeConfig,
 };
