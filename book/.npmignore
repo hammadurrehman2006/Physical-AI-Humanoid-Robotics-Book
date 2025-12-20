@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+dist/
+*.log
+coverage/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Testing
+junit.xml
+coverage.xml
+
+# Documentation source files (not needed in package)
+specs/
+.history/
+.history/**

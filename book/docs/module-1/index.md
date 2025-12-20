@@ -46,3 +46,7 @@ Before starting this module, you should have:
 ### Assessment Project
 
 At the end of this module, you'll complete a comprehensive assessment project that integrates all the concepts learned in this module, demonstrating your understanding of ROS 2 fundamentals.
+
+### Next Module
+
+After completing this module, proceed to [Module 2: The Digital Twin (Gazebo & Unity)](/docs/module-2/introduction/prerequisites) to learn about physics simulation and high-fidelity visualization for robotics applications.
