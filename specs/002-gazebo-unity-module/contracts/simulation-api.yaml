@@ -1,0 +1,144 @@
+# API Contract: Simulation Management Interface
+
+## Overview
+This contract defines the interface for managing Gazebo and Unity simulation environments in the context of the Physical AI & Humanoid Robotics book Module 2.
+
+## Endpoints
+
+### 1. Create Simulation Environment
+- **Method**: POST
+- **Path**: `/api/simulations`
+- **Description**: Creates a new simulation environment with specified parameters
+
+**Request Body**:
+```json
+{
+  "name": "string (required)",
+  "description": "string (optional)",
+  "gazebo_version": "string (required)",
+  "world_file": "string (required)",
+  "physics_properties": {
+    "gravity": {
+      "x": "number (default: 0)",
+      "y": "number (default: 0)",
+      "z": "number (default: -9.8)"
+    },
+    "real_time_factor": "number (default: 1.0)"
+  },
+  "robot_models": [
+    {
+      "model_file": "string (required)",
+      "format": "enum (URDF|SDF) (required)",
+      "initial_pose": {
+        "x": "number (default: 0)",
+        "y": "number (default: 0)",
+        "z": "number (default: 0)",
+        "roll": "number (default: 0)",
+        "pitch": "number (default: 0)",
+        "yaw": "number (default: 0)"
+      }
+    }
+  ]
+}
+```
+
+**Response**:
+```json
+{
+  "simulation_id": "string",
+  "status": "enum (created|configured|running|stopped)",
+  "created_at": "timestamp",
+  "gazebo_process_id": "string",
+  "error": "string (if applicable)"
+}
+```
+
+### 2. Start Simulation
+- **Method**: POST
+- **Path**: `/api/simulations/{simulation_id}/start`
+- **Description**: Starts a configured simulation environment
+
+**Response**:
+```json
+{
+  "simulation_id": "string",
+  "status": "enum (running|error)",
+  "started_at": "timestamp",
+  "gazebo_process_id": "string",
+  "error": "string (if applicable)"
+}
+```
+
+### 3. Stop Simulation
+- **Method**: POST
+- **Path**: `/api/simulations/{simulation_id}/stop`
+- **Description**: Stops a running simulation environment
+
+**Response**:
+```json
+{
+  "simulation_id": "string",
+  "status": "enum (stopped|error)",
+  "stopped_at": "timestamp",
+  "error": "string (if applicable)"
+}
+```
+
+### 4. Validate Simulation Configuration
+- **Method**: POST
+- **Path**: `/api/simulations/validate`
+- **Description**: Validates a simulation configuration without starting it
+
+**Request Body**:
+```json
+{
+  "world_file": "string (required)",
+  "robot_models": "array (required)",
+  "physics_properties": "object (required)"
+}
+```
+
+**Response**:
+```json
+{
+  "is_valid": "boolean",
+  "errors": [
+    {
+      "type": "string",
+      "message": "string",
+      "component": "string"
+    }
+  ],
+  "warnings": [
+    {
+      "type": "string",
+      "message": "string",
+      "component": "string"
+    }
+  ]
+}
+```
+
+## Error Responses
+
+All endpoints return standard error responses in the following format:
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "details": "object (optional)"
+  }
+}
+```
+
+## Authentication
+All endpoints require authentication via API key in the header:
+- Header: `X-API-Key: {your-api-key}`
+
+## Validation Rules
+- Simulation names must be 3-50 characters
+- World files must exist and be accessible
+- Robot models must have valid URDF/SDF format
+- Physics properties must have realistic values

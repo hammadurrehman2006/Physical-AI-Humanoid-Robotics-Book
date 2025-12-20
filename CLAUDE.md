@@ -214,6 +214,7 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - Git-based version control with GitHub, static file storage for documentation, images and assets (001-update-book-spec)
 - Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework + ROS 2 Humble Hawksbill (LTS version), Docusaurus 3.x documentation framework, rclpy (Python ROS 2 client library), React for documentation UI (001-update-book-spec)
 - Static file storage for documentation, images and assets (001-update-book-spec)
+- Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework + ROS 2 Humble Hawksbill, Gazebo Garden, Unity LTS (2022.3.x), Docusaurus 3.x, rclpy (Python ROS 2 client library), React for documentation UI (002-gazebo-unity-module)
 
 ## Recent Changes
 - 001-update-book-spec: Added JavaScript/TypeScript, Node.js 18+ for Docusaurus, Python 3.8+ for ROS 2 integration examples + Docusaurus 3.x, React, Node.js, Context7, Docfork, Playwright MCP, ROS 2 (Humble Hawksbill or Iron Irwini), Gazebo, Unity (LTS), NVIDIA Isaac ROS
