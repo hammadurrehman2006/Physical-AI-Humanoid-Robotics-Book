@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="simple_world">
+    <physics type="ode">
+      <gravity>0 0 -9.8</gravity>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Simple robot model -->
+    <include>
+      <uri>model://simple_robot</uri>
+      <pose>0 0 0.2 0 0 0</pose>
+    </include>
+
+    <!-- Some obstacles -->
+    <model name="box_obstacle_1">
+      <pose>2 1 0.2 0 0 0</pose>
+      <link name="box_link">
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <visual name="box_visual">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.4 0.2 1</ambient>
+            <diffuse>1.0 0.5 0.25 1</diffuse>
+          </material>
+        </visual>
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.4</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+
+    <model name="box_obstacle_2">
+      <pose>-2 -1 0.2 0 0 0</pose>
+      <link name="box_link">
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.01</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01</iyy>
+            <iyz>0</iyz>
+            <izz>0.01</izz>
+          </inertia>
+        </inertial>
+        <visual name="box_visual">
+          <geometry>
+            <box>
+              <size>0.3 0.8 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.8 0.4 1</ambient>
+            <diffuse>0.25 1.0 0.5 1</diffuse>
+          </material>
+        </visual>
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>0.3 0.8 0.6</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+  </world>
+</sdf>

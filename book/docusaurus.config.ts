@@ -82,7 +82,28 @@ const config: Config = {
         },
       };
     },
-    // Additional docs plugins for different sections
+    // Plugin for 3D/simulation embeds
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'simulations',
+        path: 'simulations_content',
+        routeBasePath: 'simulations',
+        sidebarPath: require.resolve('./sidebarsSimulations.js'),
+      },
+    ],
+    // Plugin for additional markdown features
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/docs/module-2/introduction/prerequisites', // new location
+            from: ['/docs/gazebo', '/docs/unity'], // old locations
+          },
+        ],
+      },
+    ],
   ],
 
   themeConfig: {
@@ -125,6 +146,10 @@ const config: Config = {
             {
               label: 'Module 1: ROS 2',
               to: '/docs/module-1',
+            },
+            {
+              label: 'Module 2: Digital Twin (Gazebo & Unity)',
+              to: '/docs/module-2',
             },
           ],
         },

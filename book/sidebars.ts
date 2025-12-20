@@ -49,6 +49,84 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'module-1/index',
       },
+    },
+    {
+      type: 'category',
+      label: 'Module 2: The Digital Twin (Gazebo & Unity)',
+      items: [
+        'module-2/introduction/prerequisites',
+        'module-2/introduction/setup-gazebo-environment',
+        'module-2/introduction/basic-robot-spawning',
+        'module-2/introduction/troubleshooting-guide',
+        {
+          type: 'category',
+          label: 'URDF/SDF Formats',
+          items: [
+            'module-2/urdf-sdf-formats/urdf-basics',
+            'module-2/urdf-sdf-formats/sdf-advanced',
+            'module-2/urdf-sdf-formats/creating-robot-models',
+            'module-2/urdf-sdf-formats/conversion-guide',
+            'module-2/urdf-sdf-formats/practical-urdf-sdf-examples'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Physics Simulation',
+          items: [
+            'module-2/physics-simulation/gravity-and-collisions',
+            'module-2/physics-simulation/material-properties',
+            'module-2/physics-simulation/environment-modeling',
+            'module-2/physics-simulation/physics-debugging-validation'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Sensor Simulation',
+          items: [
+            'module-2/sensor-simulation/lidar-simulation',
+            'module-2/sensor-simulation/camera-simulation',
+            'module-2/sensor-simulation/imu-simulation',
+            'module-2/sensor-simulation/sensor-fusion',
+            'module-2/sensor-simulation/sensor-data-validation'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Unity Integration',
+          items: [
+            'module-2/unity-integration/unity-setup',
+            'module-2/unity-integration/ros2-unity-bridge',
+            'module-2/unity-integration/visualization-techniques',
+            'module-2/unity-integration/unity-troubleshooting'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Assessment Project',
+          items: [
+            'module-2/assessment-project/project-overview',
+            'module-2/assessment-project/requirements',
+            'module-2/assessment-project/evaluation-criteria'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Module 2 Assessment Project',
+          items: [
+            'projects/module-2-assessment/project-scaffolding',
+            'projects/module-2-assessment/step-by-step-instructions',
+            'projects/module-2-assessment/solution-examples'
+          ]
+        }
+
+
+
+
+      ],
+      link: {
+        type: 'doc',
+        id: 'module-2/index',
+      },
     }
   ],
 };

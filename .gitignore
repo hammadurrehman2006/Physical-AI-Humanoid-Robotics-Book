@@ -1,0 +1,97 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+.env*
+.Python
+
+# Build outputs
+dist/
+build/
+*.log
+coverage/
+.nyc_output/
+.next/
+.nuxt/
+out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Testing
+junit.xml
+coverage.xml
+
+# Secrets
+secrets/
+*.key
+*.pem
+*.crt
+*.cert
+
+# Simulation assets that might be large
+*.dae
+*.fbx
+*.blend
+*.max
+*.ma
+*.mb
+
+# ROS/Gazebo
+*.log
+*.log.*
+*.cache
+*.gazebo/
+~/.gazebo/
+
+# Unity
+Library/
+Temp/
+Obj/
+Build/
+Logs/
+*.unityproj
+*.userprefs
+*.sln
+*.user
+*.pidb
+*.booproj
+*.svr
+*.meta
+*.DS_Store
+[Tt]humb.db
+[Tt]humbs.db
+*.swp
+*~
+.project
+*.pidb.meta
+*.pdb.meta
+*.userprefs.meta
+build/
+Build/
+[Ll]ibrary/[Aa]ssets/*
+[Ll]ibrary/[Aa]ssets.meta
+[Tt]emp/[Aa]ssets/*
+[Tt]emp/[Aa]ssets.meta
+[Oo]bj/[Aa]ssets/*
+[Oo]bj/[Aa]ssets.meta
+[Ll]ogs/
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Uu]nity-[Pp]rofiles/
+[Bb]uilds/
+[Aa]ssets/*/AssetStoreTools*
