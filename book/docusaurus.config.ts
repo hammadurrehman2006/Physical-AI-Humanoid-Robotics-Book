@@ -63,7 +63,6 @@ const config: Config = {
   ],
 
   plugins: [
-    './src/plugins/tailwind-config.js',
     // Plugin for 3D/simulation embeds
     [
       '@docusaurus/plugin-content-docs',
