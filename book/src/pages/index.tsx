@@ -8,27 +8,6 @@ import Heading from "@theme/Heading";
 
 import Hero from "../components/Hero";
 
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx("hero hero--primary", "py-16 text-center relative overflow-hidden")}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className="flex items-center justify-center">
-          <Link
-            className="button button--primary button--lg"
-            to="/docs/intro">
-            Start Reading
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
-
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -36,7 +15,7 @@ export default function Home(): ReactNode {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <HomepageHeader />
+      <Hero />
       <main>
         <HomepageFeatures />
       </main>

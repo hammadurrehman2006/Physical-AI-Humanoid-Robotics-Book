@@ -24,19 +24,19 @@ export default function Logo(props: Props): ReactNode {
       {/* Custom Robot Head Icon */}
       <div
         style={{
-          width: '50px',
-          height: '50px',
+          width: '40px',
+          height: '40px',
           background: 'linear-gradient(135deg, #4ade80, #15803d)', // Green gradient
-          borderRadius: '12px',
-          boxShadow: '0 4px 15px rgba(74, 222, 128, 0.5)', // Shining glow
+          borderRadius: '10px',
+          boxShadow: '0 3px 10px rgba(74, 222, 128, 0.4)', // Slightly smaller shadow
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          marginRight: '12px'
+          marginRight: '8px' // Reduced margin
         }}
         className="flex-shrink-0"
       >
-        <Bot size={32} color="white" />
+        <Bot size={24} color="white" />
       </div>
 
       {/* Standard Title Rendering */}
