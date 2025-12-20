@@ -6,23 +6,22 @@ import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
 
-import styles from "./index.module.css";
 import Hero from "../components/Hero";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+    <header className={clsx("hero hero--primary", "py-16 text-center relative overflow-hidden")}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+        <div className="flex items-center justify-center">
           <Link
-            className="button button--secondary button--lg"
+            className="button button--primary button--lg"
             to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            Start Reading
           </Link>
         </div>
       </div>
