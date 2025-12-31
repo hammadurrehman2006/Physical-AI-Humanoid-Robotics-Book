@@ -1,0 +1,239 @@
+openapi: 3.0.0
+info:
+  title: Vision-Language-Action Vision Processing API
+  description: API for computer vision and object detection in the Vision-Language-Action module
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/vision-language-action
+    description: Local development server
+
+paths:
+  /vision/snapshots:
+    post:
+      summary: Capture a new visual perception snapshot
+      description: Process image input and detect objects in the environment
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Image file in JPEG, PNG, or other common format
+                detection_threshold:
+                  type: number
+                  format: float
+                  minimum: 0.0
+                  maximum: 1.0
+                  default: 0.5
+                  description: Minimum confidence threshold for object detection
+                include_3d:
+                  type: boolean
+                  default: true
+                  description: Whether to include 3D position information
+      responses:
+        '201':
+          description: Visual perception snapshot successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisualPerceptionResponse'
+        '400':
+          description: Invalid image format or processing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /vision/snapshots/{id}:
+    get:
+      summary: Get specific visual perception snapshot
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the perception snapshot
+      responses:
+        '200':
+          description: Visual perception snapshot data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisualPerceptionResponse'
+        '404':
+          description: Snapshot not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /vision/objects:
+    get:
+      summary: Get current object detections
+      parameters:
+        - name: threshold
+          in: query
+          schema:
+            type: number
+            format: float
+            minimum: 0.0
+            maximum: 1.0
+            default: 0.5
+          description: Minimum confidence threshold for objects
+        - name: class_filter
+          in: query
+          schema:
+            type: string
+          description: Filter objects by class (e.g., "ball", "cup")
+      responses:
+        '200':
+          description: Current object detections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectsResponse'
+
+  /vision/detect:
+    post:
+      summary: Real-time object detection
+      description: Detect objects in a single image without storing the snapshot
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Image file for object detection
+                threshold:
+                  type: number
+                  format: float
+                  minimum: 0.0
+                  maximum: 1.0
+                  default: 0.5
+                  description: Minimum confidence threshold
+      responses:
+        '200':
+          description: Object detection results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectsResponse'
+        '400':
+          description: Invalid image format or processing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    VisualPerceptionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the perception snapshot
+        timestamp:
+          type: string
+          format: date-time
+          description: When the snapshot was captured
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetectedObject'
+        environment_map:
+          type: object
+          description: Spatial representation of the environment
+        camera_source:
+          type: string
+          description: Identifier of the camera that captured the data
+        detection_accuracy:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Overall accuracy score for the detection
+
+    DetectedObject:
+      type: object
+      properties:
+        object_id:
+          type: string
+          description: Unique identifier for the detected object
+        class:
+          type: string
+          description: Object category (e.g., "ball", "cup", "table")
+        bounding_box:
+          type: array
+          items:
+            type: number
+            format: float
+          minItems: 4
+          maxItems: 4
+          description: Coordinates of the object's bounding box [x, y, width, height]
+        confidence:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Confidence score for object detection
+        position_3d:
+          type: array
+          items:
+            type: number
+            format: float
+          minItems: 3
+          maxItems: 3
+          description: 3D coordinates in robot's coordinate system [x, y, z]
+        size:
+          type: array
+          items:
+            type: number
+            format: float
+          minItems: 3
+          maxItems: 3
+          description: Estimated size of the object [width, height, depth]
+        color:
+          type: string
+          description: Dominant color of the object
+
+    ObjectsResponse:
+      type: object
+      properties:
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetectedObject'
+        total_count:
+          type: integer
+          description: Total number of detected objects
+        timestamp:
+          type: string
+          format: date-time
+          description: When the detection was performed
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+        details:
+          type: object
+          description: Additional error details

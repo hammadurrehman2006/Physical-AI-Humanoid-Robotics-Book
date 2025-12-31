@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "فزکل ای آئی اور ہیومنوائڈ روبوٹکس",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "فزکل ای آئی اور ہیومنوائڈ روبوٹکس کا لوگو",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Start Reading": {
+    "message": "پڑھنا شروع کریں",
+    "description": "Navbar item with label Start Reading"
+  },
+  "item.label.Languages": {
+    "message": "زبانیں",
+    "description": "Navbar item with label Languages"
+  },
+  "item.label.GitHub": {
+    "message": "گِٹ ہب",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.Translation Test": {
+    "message": "Translation Test",
+    "description": "Navbar item with label Translation Test"
+  }
+}

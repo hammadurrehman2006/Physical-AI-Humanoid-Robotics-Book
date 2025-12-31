@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "URDF برائے ہیومنوائڈز",
+    "description": "The title for URDF for Humanoids page"
+  },
+  "description": {
+    "message": "ہیومنوائڈ روبوٹس کے لیے URDF کا استعمال سیکھیں",
+    "description": "The description for URDF for Humanoids page"
+  },
+  "sidebar.label": {
+    "message": "URDF برائے ہیومنوائڈز",
+    "description": "The label for URDF for Humanoids in the sidebar"
+  },
+  "content.title": {
+    "message": "URDF برائے ہیومنوائڈز",
+    "description": "Main content title for URDF for Humanoids"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.urdf-basics": {
+    "message": "URDF کی بنیاد",
+    "description": "Heading for URDF Basics section"
+  },
+  "content.heading.humanoid-structure": {
+    "message": "ہیومنوائڈ ساخت",
+    "description": "Heading for Humanoid Structure section"
+  },
+  "content.heading.joint-configurations": {
+    "message": "جوائنٹ کنفیگریشنز",
+    "description": "Heading for Joint Configurations section"
+  },
+  "content.heading.visual-collision": {
+    "message": "بصری اور تصادم ماڈل",
+    "description": "Heading for Visual and Collision Models section"
+  },
+  "content.heading.best-practices": {
+    "message": "بہترین طریقے",
+    "description": "Heading for Best Practices section"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "ROS 2 پیکجز تیار کرنا",
+    "description": "The title for Building ROS 2 Packages page"
+  },
+  "description": {
+    "message": "ROS 2 پیکجز کو تیار کرنا، بناانا اور اس کا انتظام کرنا سیکھیں",
+    "description": "The description for Building ROS 2 Packages page"
+  },
+  "sidebar.label": {
+    "message": "ROS 2 پیکجز تیار کرنا",
+    "description": "The label for Building ROS 2 Packages in the sidebar"
+  },
+  "content.title": {
+    "message": "ROS 2 پیکجز تیار کرنا",
+    "description": "Main content title for Building ROS 2 Packages"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.package-structure": {
+    "message": "پیکج کی ساخت",
+    "description": "Heading for Package Structure section"
+  },
+  "content.heading.creating-packages": {
+    "message": "پیکجز تیار کرنا",
+    "description": "Heading for Creating Packages section"
+  },
+  "content.heading.building-packages": {
+    "message": "پیکجز بنانا",
+    "description": "Heading for Building Packages section"
+  },
+  "content.heading.dependencies": {
+    "message": "انحصار",
+    "description": "Heading for Dependencies section"
+  },
+  "content.heading.testing": {
+    "message": "ٹیسٹنگ",
+    "description": "Heading for Testing section"
+  }
+}

@@ -48,15 +48,8 @@ export default function Hero() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden bg-white dark:bg-[#0F0F13] min-h-screen flex items-center justify-center">
+    <section ref={containerRef} className="relative overflow-hidden py-20 lg:py-32 flex items-center justify-center">
       
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[100px] opacity-50 mix-blend-multiply dark:mix-blend-screen animate-blob" />
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] opacity-50 mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000" />
-        <div className="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px] opacity-50 mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000" />
-      </div>
-
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
@@ -87,7 +80,7 @@ export default function Hero() {
             <div ref={buttonsRef} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-16">
               <Link
                 to="/docs/intro"
-                className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-200 bg-slate-900 dark:bg-white dark:text-slate-900 rounded-full hover:ring-4 hover:ring-slate-900/20 dark:hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900"
+                className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold !text-white dark:!text-black button-text-override transition-all duration-200 bg-slate-900 dark:bg-white rounded-full hover:ring-4 hover:ring-slate-900/20 dark:hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
                 Start Reading
@@ -95,8 +88,8 @@ export default function Hero() {
               </Link>
               
               <Link
-                href="https://github.com/your-username/physical-ai-book"
-                className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-slate-700 dark:text-slate-200 transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white"
+                href="https://github.com/hammadurrehman2006/Physical-AI-Humanoid-Robotics-Book"
+                className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold !text-black dark:!text-white button-text-override transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white"
               >
                 <Github className="w-5 h-5 mr-2" />
                 View on GitHub
@@ -120,7 +113,7 @@ export default function Hero() {
               </div>
 
               {/* Code Content */}
-              <div className="p-6 text-left overflow-hidden">
+              <div className="p-10 text-left overflow-hidden">
                 <pre className="font-mono text-sm md:text-base leading-relaxed">
                   <code className="block">
                     <span className="text-purple-400">import</span> <span className="text-blue-400">rclpy</span>{'\n'}

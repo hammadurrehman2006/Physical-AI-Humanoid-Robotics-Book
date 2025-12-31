@@ -1,0 +1,425 @@
+openapi: 3.0.0
+info:
+  title: Vision-Language-Action Action Execution API
+  description: API for action planning and execution in the Vision-Language-Action module
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/vision-language-action
+    description: Local development server
+
+paths:
+  /actions/plans:
+    post:
+      summary: Create a new action plan
+      description: Generate an action plan based on a command or direct action specification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateActionPlanRequest'
+      responses:
+        '201':
+          description: Action plan successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlanResponse'
+        '400':
+          description: Invalid action plan specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Action plan is not executable due to missing resources or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /actions/plans/{id}/execute:
+    post:
+      summary: Execute an action plan
+      description: Start execution of a previously created action plan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the action plan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                priority:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                  default: 3
+                  description: Priority level for execution (1-5, 5 being highest)
+                timeout:
+                  type: integer
+                  minimum: 1
+                  description: Maximum time to wait for completion in seconds
+      responses:
+        '200':
+          description: Action plan execution started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlanExecutionResponse'
+        '404':
+          description: Action plan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Action plan is already executing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /actions/plans/{id}:
+    get:
+      summary: Get action plan status and details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the action plan
+      responses:
+        '200':
+          description: Action plan details and status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlanResponse'
+        '404':
+          description: Action plan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /actions/plans/{id}/cancel:
+    put:
+      summary: Cancel ongoing action plan execution
+      description: Stop execution of an action plan if it's currently running
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the action plan
+      responses:
+        '200':
+          description: Action plan cancellation requested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlanCancellationResponse'
+        '404':
+          description: Action plan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Action plan is not currently executing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /actions/active:
+    get:
+      summary: Get currently executing action plans
+      responses:
+        '200':
+          description: List of currently executing action plans
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  active_plans:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ActionPlanSummary'
+
+  /actions/history:
+    get:
+      summary: Get action execution history
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Maximum number of history entries to return
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, validating, executing, completed, partially_failed, failed, fallback_executing, fallback_completed]
+          description: Filter by execution status
+      responses:
+        '200':
+          description: Action execution history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  history:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ActionPlanHistoryEntry'
+                  total:
+                    type: integer
+
+components:
+  schemas:
+    CreateActionPlanRequest:
+      type: object
+      required:
+        - actions
+      properties:
+        command_id:
+          type: string
+          description: Optional reference to the originating voice command
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionSpec'
+          description: Ordered list of actions to execute
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 5
+          default: 3
+          description: Priority level for execution (1-5, 5 being highest)
+        estimated_duration:
+          type: integer
+          minimum: 1
+          description: Estimated time to complete the plan (in seconds)
+        required_resources:
+          type: array
+          items:
+            type: string
+          description: List of resources needed for execution
+
+    ActionSpec:
+      type: object
+      required:
+        - type
+        - parameters
+      properties:
+        type:
+          type: string
+          enum: [navigation, manipulation, interaction, perception, wait, conditional]
+          description: Type of action to perform
+        parameters:
+          type: object
+          description: Specific parameters for the action
+          additionalProperties: true
+        timeout:
+          type: integer
+          minimum: 1
+          description: Maximum time allowed for this action (in seconds)
+        preconditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          description: Conditions that must be met before execution
+        postconditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          description: Expected state after execution
+        success_threshold:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          default: 0.9
+          description: Success threshold for the action
+
+    Condition:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of condition (e.g., "object_detected", "location_reached", "gripper_status")
+        parameters:
+          type: object
+          description: Parameters for the condition
+          additionalProperties: true
+
+    ActionPlanResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the action plan
+        command_id:
+          type: string
+          description: Reference to the originating voice command
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionSummary'
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 5
+          description: Priority level for execution (1-5, 5 being highest)
+        estimated_duration:
+          type: integer
+          description: Estimated time to complete the plan (in seconds)
+        required_resources:
+          type: array
+          items:
+            type: string
+          description: List of resources needed for execution
+        success_criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          description: Conditions that define successful completion
+        fallback_plan:
+          type: string
+          description: ID of fallback plan if primary plan fails
+        status:
+          type: string
+          enum: [pending, validating, executing, completed, partially_failed, failed, fallback_executing, fallback_completed]
+          description: Current execution status
+        execution_log:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionLogEntry'
+        created_at:
+          type: string
+          format: date-time
+          description: When the action plan was created
+        updated_at:
+          type: string
+          format: date-time
+          description: When the action plan was last updated
+
+    ActionSummary:
+      type: object
+      properties:
+        action_id:
+          type: string
+        type:
+          type: string
+        parameters:
+          type: object
+        status:
+          type: string
+          enum: [pending, executing, completed, failed, skipped]
+
+    ExecutionLogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        action_id:
+          type: string
+        status:
+          type: string
+          enum: [started, succeeded, failed, skipped]
+        details:
+          type: object
+          description: Additional details about the execution
+
+    ActionPlanExecutionResponse:
+      type: object
+      properties:
+        plan_id:
+          type: string
+          description: Unique identifier of the executed action plan
+        status:
+          type: string
+          enum: [executing, completed, failed]
+          description: Current execution status
+        execution_id:
+          type: string
+          description: Unique identifier for this execution instance
+        started_at:
+          type: string
+          format: date-time
+          description: When execution started
+
+    ActionPlanCancellationResponse:
+      type: object
+      properties:
+        plan_id:
+          type: string
+          description: Unique identifier of the canceled action plan
+        status:
+          type: string
+          enum: [cancellation_requested, already_completed, not_executing]
+          description: Result of the cancellation request
+        completed_at:
+          type: string
+          format: date-time
+          description: When cancellation was processed
+
+    ActionPlanSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum: [pending, validating, executing, completed, partially_failed, failed, fallback_executing, fallback_completed]
+        priority:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+
+    ActionPlanHistoryEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum: [pending, validating, executing, completed, partially_failed, failed, fallback_executing, fallback_completed]
+        success_rate:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+        execution_time:
+          type: integer
+          description: Actual execution time in seconds
+        created_at:
+          type: string
+          format: date-time
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+        details:
+          type: object
+          description: Additional error details

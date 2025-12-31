@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "لاؤنچ فائلیں اور پیرامیٹرز",
+    "description": "The title for Launch Files and Parameters page"
+  },
+  "description": {
+    "message": "ROS 2 لاؤنچ فائلوں اور سسٹم پیرامیٹرز کو سمجھنا اور استعمال کرنا",
+    "description": "The description for Launch Files and Parameters page"
+  },
+  "sidebar.label": {
+    "message": "لاؤنچ فائلیں اور پیرامیٹرز",
+    "description": "The label for Launch Files and Parameters in the sidebar"
+  },
+  "content.title": {
+    "message": "لاؤنچ فائلیں اور پیرامیٹرز",
+    "description": "Main content title for Launch Files and Parameters"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.launch-file-basics": {
+    "message": "لاؤنچ فائل کی بنیاد",
+    "description": "Heading for Launch File Basics section"
+  },
+  "content.heading.parameter-management": {
+    "message": "پیرامیٹر مینجمنٹ",
+    "description": "Heading for Parameter Management section"
+  },
+  "content.heading.yaml-launch-files": {
+    "message": "YAML لاؤنچ فائلیں",
+    "description": "Heading for YAML Launch Files section"
+  },
+  "content.heading.python-launch-files": {
+    "message": "Python لاؤنچ فائلیں",
+    "description": "Heading for Python Launch Files section"
+  },
+  "content.heading.best-practices": {
+    "message": "بہترین طریقے",
+    "description": "Heading for Best Practices section"
+  }
+}

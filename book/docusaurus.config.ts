@@ -28,12 +28,52 @@ const config: Config = {
 
   onBrokenLinks: 'warn',
 
+  headTags: [
+    // Preconnect to Google Fonts for performance optimization
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous',
+      },
+    },
+    // Load Urdu fonts from Google Fonts
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Jameel+Noori+Nastaleeq:wght@400&display=swap',
+      },
+    },
+  ],
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ur'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+        path: 'en',
+      },
+              ur: {
+                label: 'اردو',
+                direction: 'rtl',
+                htmlLang: 'ur-PK',
+                path: 'ur',
+              },    },
   },
 
   presets: [
@@ -93,7 +133,9 @@ const config: Config = {
       }),
     ],
   ],
-
+  themes: [
+    '@docusaurus/theme-mermaid',
+  ],
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -112,6 +154,10 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Start Reading',
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
         },
         {
           href: 'https://github.com/hammadurrehman2006/Physical-AI-Humanoid-Robotics-Book',
@@ -141,6 +187,14 @@ const config: Config = {
               label: 'Module 2: Digital Twin (Gazebo & Unity)',
               to: '/docs/module-2',
             },
+            {
+              label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac™)',
+              to: '/docs/module-3',
+            },
+            {
+              label: 'Module 4: Vision-Language-Action (VLA)',
+              to: '/docs/module-4',
+            },
           ],
         },
         {
@@ -161,7 +215,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/your-username/physical-ai-book',
+              href: 'https://github.com/hammadurrehman2006/Physical-AI-Humanoid-Robotics-Book',
             },
           ],
         },

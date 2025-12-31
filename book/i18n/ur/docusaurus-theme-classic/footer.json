@@ -1,0 +1,50 @@
+{
+  "link.title.Book Content": {
+    "message": "کتاب کا مواد",
+    "description": "The title of the footer links column with title=Book Content in the footer"
+  },
+  "link.title.Resources": {
+    "message": "وسائل",
+    "description": "The title of the footer links column with title=Resources in the footer"
+  },
+  "link.title.More": {
+    "message": "مزید",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Introduction": {
+    "message": "تعارف",
+    "description": "The label of footer link with label=Introduction linking to /docs/intro"
+  },
+  "link.item.label.Module 1: ROS 2": {
+    "message": "ماڈیول 1: ROS 2",
+    "description": "The label of footer link with label=Module 1: ROS 2 linking to /docs/module-1"
+  },
+  "link.item.label.Module 2: Digital Twin (Gazebo & Unity)": {
+    "message": "ماڈیول 2: ڈیجیٹل ٹوئن (Gazebo اور Unity)",
+    "description": "The label of footer link with label=Module 2: Digital Twin (Gazebo & Unity) linking to /docs/module-2"
+  },
+  "link.item.label.ROS 2 Documentation": {
+    "message": "ROS 2 دستاویزات",
+    "description": "The label of footer link with label=ROS 2 Documentation linking to https://docs.ros.org/en/humble/"
+  },
+  "link.item.label.Docusaurus": {
+    "message": "Docusaurus",
+    "description": "The label of footer link with label=Docusaurus linking to https://docusaurus.io"
+  },
+  "link.item.label.GitHub": {
+    "message": "گِٹ ہب",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/hammadurrehman2006/Physical-AI-Humanoid-Robotics-Book"
+  },
+  "copyright": {
+    "message": "کاپی رائٹ © 2025 فزیکل اے آئی اور ہیومنوائڈ روبوٹکس بک۔ Docusaurus کے ساتھ بنایا گیا۔",
+    "description": "The footer copyright"
+  },
+  "link.item.label.Module 3: The AI-Robot Brain (NVIDIA Isaac™)": {
+    "message": "ماڈیول 3: اے آئی روبوٹ برین (NVIDIA Isaac™)",
+    "description": "The label of footer link with label=Module 3: The AI-Robot Brain (NVIDIA Isaac™) linking to /docs/module-3"
+  },
+  "link.item.label.Module 4: Vision-Language-Action (VLA)": {
+    "message": "ماڈیول 4: ویژن لینگویج ایکشن (VLA)",
+    "description": "The label of footer link with label=Module 4: Vision-Language-Action (VLA) linking to /docs/module-4"
+  }
+}

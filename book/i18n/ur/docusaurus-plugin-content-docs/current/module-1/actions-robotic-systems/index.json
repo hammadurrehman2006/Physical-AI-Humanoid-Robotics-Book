@@ -1,0 +1,46 @@
+{
+  "title": {
+    "message": "روبوٹک سسٹم میں ایکشنز",
+    "description": "The title for Actions in Robotic Systems page"
+  },
+  "description": {
+    "message": "طویل مدتی کاموں اور گول مینجمنٹ کے لیے ROS 2 ایکشنز کو سمجھنا",
+    "description": "The description for Actions in Robotic Systems page"
+  },
+  "sidebar.label": {
+    "message": "روبوٹک سسٹم میں ایکشنز",
+    "description": "The label for Actions in Robotic Systems in the sidebar"
+  },
+  "content.title": {
+    "message": "روبوٹک سسٹم میں ایکشنز",
+    "description": "Main content title for Actions in Robotic Systems"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.introduction-to-ros2-actions": {
+    "message": "ROS 2 ایکشنز کا تعارف",
+    "description": "Heading for Introduction to ROS 2 Actions section"
+  },
+  "content.subheading.when-to-use-actions": {
+    "message": "ایکشنز کب استعمال کریں",
+    "description": "Subheading for When to Use Actions section"
+  },
+  "content.heading.action-server-and-client": {
+    "message": "ایکشن سرور اور کلائنٹ",
+    "description": "Heading for Action Server and Client section"
+  },
+  "content.heading.action-messages": {
+    "message": "ایکشن میسج",
+    "description": "Heading for Action Messages section"
+  },
+  "content.heading.action-implementation": {
+    "message": "ایکشن کا نفاذ",
+    "description": "Heading for Action Implementation section"
+  },
+  "content.heading.best-practices": {
+    "message": "بہترین طریقے",
+    "description": "Heading for Best Practices section"
+  }
+}

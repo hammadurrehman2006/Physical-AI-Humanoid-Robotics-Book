@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Urdu LTR Language Switching API
+  description: API contracts for language switching functionality in the Urdu LTR layout implementation
+  version: 1.0.0
+servers:
+  - url: https://your-docusaurus-site.example.com
+    description: Production server
+
+paths:
+  /:
+    get:
+      summary: Get default language content (English)
+      description: Returns the default English content for the site
+      responses:
+        '200':
+          description: English content successfully returned
+          content:
+            text/html:
+              schema:
+                type: string
+                description: HTML content in English with default layout
+
+  /ur/:
+    get:
+      summary: Get Urdu content with LTR layout
+      description: Returns Urdu content with Left-to-Right layout override
+      responses:
+        '200':
+          description: Urdu content successfully returned with LTR layout
+          content:
+            text/html:
+              schema:
+                type: string
+                description: HTML content in Urdu with LTR layout
+              example: |
+                <!DOCTYPE html>
+                <html lang="ur" dir="ltr">
+                <head>
+                  <meta charset="UTF-8">
+                  <title>... - Physical AI & Humanoid Robotics</title>
+                  <link rel="alternate" hreflang="en" href="https://...">
+                  <link rel="alternate" hreflang="ur" href="https://.../ur/">
+                </head>
+                <body dir="ltr">
+                  <!-- Urdu content with LTR layout -->
+                </body>
+                </html>
+
+  /ur/{path}:
+    get:
+      summary: Get specific Urdu content page with LTR layout
+      description: Returns specific Urdu content page with Left-to-Right layout override
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+            description: The documentation path in Urdu
+      responses:
+        '200':
+          description: Specific Urdu content page successfully returned with LTR layout
+          content:
+            text/html:
+              schema:
+                type: string
+                description: HTML content in Urdu with LTR layout
+        '404':
+          description: Urdu translation not available, may redirect to English
+
+components:
+  schemas:
+    LanguageConfig:
+      type: object
+      properties:
+        locale:
+          type: string
+          enum: [en, ur]
+          description: The locale identifier
+        label:
+          type: string
+          description: The display label for the language
+        direction:
+          type: string
+          enum: [ltr, rtl]
+          description: Text direction (overridden to ltr for Urdu)
+        htmlLang:
+          type: string
+          description: HTML language tag
+        path:
+          type: string
+          description: URL path prefix for the locale
+      required:
+        - locale
+        - label
+        - direction
+        - htmlLang
+        - path
+
+    LanguageSwitchRequest:
+      type: object
+      properties:
+        targetLocale:
+          type: string
+          enum: [en, ur]
+          description: The target locale to switch to
+        currentPage:
+          type: string
+          description: The current page path to maintain context
+      required:
+        - targetLocale
+        - currentPage
+
+    LanguageSwitchResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the language switch was successful
+        redirectUrl:
+          type: string
+          description: The URL to redirect to for the new language
+        currentLocale:
+          type: string
+          enum: [en, ur]
+          description: The current locale after the switch
+      required:
+        - success
+        - redirectUrl
+        - currentLocale

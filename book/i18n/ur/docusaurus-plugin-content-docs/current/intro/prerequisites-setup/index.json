@@ -1,0 +1,142 @@
+{
+  "title": {
+    "message": "ضروریات اور سیٹ اپ",
+    "description": "The title for the prerequisites and setup page"
+  },
+  "description": {
+    "message": "فزیکل ای آئی اور ہیومنوڈ روبوٹکس کی ترقی کے لیے ضروری تقاضے اور سیٹ اپ کی کارروائیاں",
+    "description": "The description for the prerequisites and setup page"
+  },
+  "sidebar.label": {
+    "message": "ضروریات اور سیٹ اپ",
+    "description": "The label for the sidebar entry"
+  },
+  "frontMatter.title": {
+    "message": "ضروریات اور سیٹ اپ",
+    "description": "The front matter title for the page"
+  },
+  "content.title": {
+    "message": "ضروریات اور سیٹ اپ",
+    "description": "The main content title"
+  },
+  "content.h2.1": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Learning objectives heading"
+  },
+  "content.h2.2": {
+    "message": "سافٹ ویئر ضروریات",
+    "description": "Software requirements heading"
+  },
+  "content.h2.3": {
+    "message": "ترقی کا ماحول سیٹ اپ",
+    "description": "Development environment setup heading"
+  },
+  "content.h2.4": {
+    "message": "آئی ڈی ای اور ترقی کے ٹولز",
+    "description": "IDE and development tools heading"
+  },
+  "content.h2.5": {
+    "message": "سیمولیشن ماحول سیٹ اپ",
+    "description": "Simulation environment setup heading"
+  },
+  "content.h2.6": {
+    "message": "نظریاتی بنیاد: ماحول سیٹ اپ کے تصورات",
+    "description": "Theoretical foundation of environment setup concepts heading"
+  },
+  "content.h2.7": {
+    "message": "ترقی ورک فلو سیٹ اپ",
+    "description": "Development workflow setup heading"
+  },
+  "content.h2.8": {
+    "message": "عام سیٹ اپ مسائل کا حل",
+    "description": "Common setup problems solutions heading"
+  },
+  "content.h2.9": {
+    "message": "کنٹینرائزڈ ترقی سیٹ اپ (اختیاری)",
+    "description": "Containerized development setup heading"
+  },
+  "content.h2.10": {
+    "message": "مزید سیکھنے کے لیے وسائل",
+    "description": "Further learning resources heading"
+  },
+  "content.h2.11": {
+    "message": "خلاصہ",
+    "description": "Summary heading"
+  },
+  "content.h3.1": {
+    "message": "آپریٹنگ سسٹم کی ضروریات",
+    "description": "Operating system requirements heading"
+  },
+  "content.h3.2": {
+    "message": "پائی تھون کی ضروریات",
+    "description": "Python requirements heading"
+  },
+  "content.h3.3": {
+    "message": "ROS 2 ہمبول ہاکسبل انسٹالیشن",
+    "description": "ROS 2 Humble Hawksbill installation heading"
+  },
+  "content.h3.4": {
+    "message": "اضافی انحصار",
+    "description": "Additional dependencies heading"
+  },
+  "content.h3.5": {
+    "message": "ورک اسپیس کریشن",
+    "description": "Workspace creation heading"
+  },
+  "content.h3.6": {
+    "message": "پائی تھون ورچوئل اینوائرمنٹ سیٹ اپ",
+    "description": "Python virtual environment setup heading"
+  },
+  "content.h3.7": {
+    "message": "ویژول اسٹوڈیو کوڈ سیٹ اپ",
+    "description": "Visual Studio Code setup heading"
+  },
+  "content.h3.8": {
+    "message": "ضروری وی ایس کوڈ ایکسٹینشنز",
+    "description": "Essential VS Code extensions heading"
+  },
+  "content.h3.9": {
+    "message": "گزیبو انسٹالیشن اور کنفیگریشن",
+    "description": "Gazebo installation and configuration heading"
+  },
+  "content.h3.10": {
+    "message": "یو آر ڈی ایف اور زیکرو سیٹ اپ",
+    "description": "URDF and Xacro setup heading"
+  },
+  "content.h3.11": {
+    "message": "بنیادی سسٹم کی ضروریات",
+    "description": "Basic system requirements heading"
+  },
+  "content.h3.12": {
+    "message": "ترقی ٹول چین کے اجزاء",
+    "description": "Development toolchain components heading"
+  },
+  "content.h3.13": {
+    "message": "توثیق اور ٹیسٹنگ فریم ورک",
+    "description": "Validation and testing framework heading"
+  },
+  "content.h3.14": {
+    "message": "ROS پروجیکٹس کے لیے گٹ کنفیگریشن",
+    "description": "Git configuration for ROS projects heading"
+  },
+  "content.h3.15": {
+    "message": "وی ایس کوڈ ورک اسپیس کنفیگریشن",
+    "description": "VS Code workspace configuration heading"
+  },
+  "content.h3.16": {
+    "message": "1. ROS 2 ماحول ماخذ نہیں کیا گیا",
+    "description": "ROS 2 environment not sourced issue heading"
+  },
+  "content.h3.17": {
+    "message": "2. گزیبو کے لیے اجازت کے مسائل",
+    "description": "Gazebo permission issues heading"
+  },
+  "content.h3.18": {
+    "message": "3. پائی تھون پیکج امپورٹ کے ایرر",
+    "description": "Python package import errors heading"
+  },
+  "content.h3.19": {
+    "message": "4. کولکون بلڈ کی ناکامیاں",
+    "description": "Colcon build failures heading"
+  }
+}

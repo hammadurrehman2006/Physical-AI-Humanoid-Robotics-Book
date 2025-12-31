@@ -1,0 +1,106 @@
+{
+  "title": {
+    "message": "فزیکل ای آئی کیوں اہم ہے",
+    "description": "The title for the why physical AI is important page"
+  },
+  "description": {
+    "message": "امبدڈ انٹیلی جنس کی اہمیت اور ممکنہ صلاحیت کو سمجھنا",
+    "description": "The description for the why physical AI is important page"
+  },
+  "sidebar.label": {
+    "message": "فزیکل ای آئی کیوں اہم ہے",
+    "description": "The label for the sidebar entry"
+  },
+  "frontMatter.title": {
+    "message": "فزیکل ای آئی کیوں اہم ہے",
+    "description": "The front matter title for the page"
+  },
+  "content.title": {
+    "message": "فزیکل ای آئی کیوں اہم ہے",
+    "description": "The main content title"
+  },
+  "content.h2.1": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Learning objectives heading"
+  },
+  "content.h2.2": {
+    "message": "فزیکل ای آئی کے لیے بنیادی کیس",
+    "description": "Physical AI rationale heading"
+  },
+  "content.h2.3": {
+    "message": "ڈیجیٹل ای آئی کے مقابلے فزیکل ای آئی کے فوائد",
+    "description": "Benefits of Physical AI compared to digital AI heading"
+  },
+  "content.h2.4": {
+    "message": "کلیدی ایپلی کیشن ایریا",
+    "description": "Key application areas heading"
+  },
+  "content.h2.5": {
+    "message": "نظریاتی بنیاد: فزیکل ای آئی کے فوائد",
+    "description": "Theoretical foundation of Physical AI benefits heading"
+  },
+  "content.h2.6": {
+    "message": "معاشرتی اثرات اور مستقبل کی اشاریہ",
+    "description": "Social impacts and future outlook heading"
+  },
+  "content.h2.7": {
+    "message": "عام مسائل کا حل",
+    "description": "Common problems solutions heading"
+  },
+  "content.h2.8": {
+    "message": "مزید سیکھنے کے لیے وسائل",
+    "description": "Further learning resources heading"
+  },
+  "content.h2.9": {
+    "message": "خلاصہ",
+    "description": "Summary heading"
+  },
+  "content.h3.1": {
+    "message": "امبدمنٹ کا نظریہ",
+    "description": "Embodiment theory heading"
+  },
+  "content.h3.2": {
+    "message": "1. حقیقی دنیا کے مسئلے حل کرنا",
+    "description": "Solving real world problems heading"
+  },
+  "content.h3.3": {
+    "message": "2. امبدمنٹ کے ذریعے انرجی کی کارآمدی",
+    "description": "Energy efficiency through embodiment heading"
+  },
+  "content.h3.4": {
+    "message": "3. جسمانی پابندیوں کے ذریعے حفاظت",
+    "description": "Safety through physical constraints heading"
+  },
+  "content.h3.5": {
+    "message": "1. اسسٹو روبوٹکس",
+    "description": "Assistive robotics heading"
+  },
+  "content.h3.6": {
+    "message": "2. صنعتی آٹومیشن",
+    "description": "Industrial automation heading"
+  },
+  "content.h3.7": {
+    "message": "3. سائنسی تحقیق",
+    "description": "Scientific research heading"
+  },
+  "content.h3.8": {
+    "message": "ایڈاپٹیشن اور حقیقی دنیا کے مسئلے حل کرنا",
+    "description": "Adaptation and real world problem solving heading"
+  },
+  "content.h3.9": {
+    "message": "جسمانی پابندیوں کے ذریعے حفاظت اور مضبوطی",
+    "description": "Safety and robustness through physical constraints heading"
+  },
+  "content.h3.10": {
+    "message": "امبدمنٹ کے ذریعے انرجی کی کارآمدی",
+    "description": "Energy efficiency through embodiment heading"
+  },
+  "content.h3.11": {
+    "message": "مثبت اثرات",
+    "description": "Positive impacts heading"
+  },
+  "content.h3.12": {
+    "message": "چیلنجز اور غور",
+    "description": "Challenges and considerations heading"
+  }
+}

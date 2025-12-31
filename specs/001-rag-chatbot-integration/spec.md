@@ -106,6 +106,12 @@ A learner wants to continue a conversation with the chatbot across multiple sess
 - **FR-015**: System MUST provide appropriate responses when no relevant content is found in the book, indicating that the requested information is not available in the current content
 - **FR-016**: System MUST utilize OpenAI Agents SDK for the agentic RAG functionality
 - **FR-017**: System MUST process Docusaurus sitemap content for embeddings and knowledge retrieval
+- **FR-018**: System MUST implement a floating chat button in the bottom-left corner of the screen as the primary access point
+- **FR-019**: System MUST provide a modal popup interface that can be triggered from various positions in the content
+- **FR-020**: System MUST support both full-book Q&A and selected-text Q&A modes with the same interface
+- **FR-021**: System MUST implement user authentication using better-auth framework
+- **FR-022**: System MUST locate all frontend components within the book/src/components/ directory
+- **FR-023**: System MUST integrate chatbot components with Docusaurus using dedicated React components in book/src/components/
 
 ### Key Entities *(include if feature involves data)*
 
@@ -115,6 +121,8 @@ A learner wants to continue a conversation with the chatbot across multiple sess
 - **Book Content Index**: Represents organized book content for search and retrieval, with metadata linking to original source
 - **Search Result**: Contains retrieved book content relevant to a user query, with source citations
 - **Source Citation**: Links chatbot responses to specific lessons, chapters, or sections in the book
+- **User Authentication**: Represents user identity and session management using better-auth framework
+- **Chatbot Frontend Component**: Represents the React components for the chatbot interface, located in book/src/components/
 
 ## Success Criteria *(mandatory)*
 
@@ -135,6 +143,10 @@ A learner wants to continue a conversation with the chatbot across multiple sess
 - **SC-008**: System can handle at least 100 concurrent users without performance degradation
 - **SC-009**: Source citation accuracy is 98% or higher (responses correctly reference actual book content)
 - **SC-010**: 80% of users who use the chatbot return to use it again within 7 days
+- **SC-011**: Authentication system using better-auth provides secure user sessions with less than 1% failure rate
+- **SC-012**: Floating chat button and modal popup interface achieve 95% accessibility compliance across different devices and screen sizes
+- **SC-013**: All chatbot frontend components are successfully integrated within the book/src/components/ directory structure
+- **SC-014**: Docusaurus integration with dedicated React components achieves seamless user experience without separate frontend directory
 
 ## Clarifications
 
@@ -142,3 +154,10 @@ A learner wants to continue a conversation with the chatbot across multiple sess
 
 - Q: What framework will be used for the agentic RAG system? → A: OpenAI Agents SDK
 - Q: What content will be used for embeddings? → A: Docusaurus sitemap content
+- Q: Which framework should be used for the RAG implementation? → A: OpenAI Agents SDK
+- Q: Where should the chatbot interface be positioned? → A: Floating button in bottom-left corner with modal popup option
+- Q: Which interaction modes should be supported? → A: Both full-book Q&A and selected-text Q&A modes with the same interface
+- Q: What authentication system should be used? → A: better-auth for authentications
+- Q: How should conversation history and embeddings be stored? → A: Store conversation history in Neon Serverless Postgres with vector storage in Qdrant Cloud
+- Q: Where should the RAG chatbot frontend components be located? → A: Inside the book directory, specifically in book/src/components/
+- Q: What is the preferred approach for integrating the chatbot with Docusaurus? → A: Create a dedicated chatbot component inside book/src/components/ and integrate it with Docusaurus

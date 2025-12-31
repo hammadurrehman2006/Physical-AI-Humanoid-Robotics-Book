@@ -1,0 +1,94 @@
+{
+  "title": {
+    "message": "ڈیجیٹل ای آئی سے فزیکل ای آئی میں منتقلی",
+    "description": "The title for the digital AI to physical AI transition page"
+  },
+  "description": {
+    "message": "ڈیجیٹل اور امبدڈ ای آئی سسٹم کے درمیان کلیدی فروق اور چیلنجز کو سمجھنا",
+    "description": "The description for the digital AI to physical AI transition page"
+  },
+  "sidebar.label": {
+    "message": "ڈیجیٹل ای آئی سے فزیکل ای آئی میں منتقلی",
+    "description": "The label for the sidebar entry"
+  },
+  "frontMatter.title": {
+    "message": "ڈیجیٹل ای آئی سے فزیکل ای آئی میں منتقلی",
+    "description": "The front matter title for the page"
+  },
+  "content.title": {
+    "message": "ڈیجیٹل ای آئی سے فزیکل ای آئی میں منتقلی",
+    "description": "The main content title"
+  },
+  "content.h2.1": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Learning objectives heading"
+  },
+  "content.h2.2": {
+    "message": "کلیدی فروق",
+    "description": "Key differences heading"
+  },
+  "content.h2.3": {
+    "message": "فزیکل ای آئی نافذ کاری میں چیلنجز",
+    "description": "Physical AI implementation challenges heading"
+  },
+  "content.h2.4": {
+    "message": "ڈیجیٹل اور فزیکل ای آئی کو جوڑنے کی حکمت عملیاں",
+    "description": "Strategies for bridging digital and physical AI heading"
+  },
+  "content.h2.5": {
+    "message": "نظریاتی بنیاد: ڈیجیٹل سے فزیکل ای آئی پل",
+    "description": "Theoretical foundation heading"
+  },
+  "content.h2.6": {
+    "message": "عام مسائل کا حل",
+    "description": "Common problems solutions heading"
+  },
+  "content.h2.7": {
+    "message": "مزید سیکھنے کے لیے وسائل",
+    "description": "Further learning resources heading"
+  },
+  "content.h2.8": {
+    "message": "خلاصہ",
+    "description": "Summary heading"
+  },
+  "content.h3.1": {
+    "message": "ڈیجیٹل ای آئی کی خصوصیات",
+    "description": "Digital AI characteristics heading"
+  },
+  "content.h3.2": {
+    "message": "فزیکل ای آئی کی خصوصیات",
+    "description": "Physical AI characteristics heading"
+  },
+  "content.h3.3": {
+    "message": "1. ریل ٹائم پروسیسنگ کی ضروریات",
+    "description": "Real-time processing requirements heading"
+  },
+  "content.h3.4": {
+    "message": "2. سینسر فیوژن اور عدم یقینی کا نظم",
+    "description": "Sensor fusion and uncertainty management heading"
+  },
+  "content.h3.5": {
+    "message": "1. سیمولیشن ٹو ریئلٹی ٹرانسفر",
+    "description": "Simulation to reality transfer heading"
+  },
+  "content.h3.6": {
+    "message": "2. مضبوط کنٹرول حکمت عملیاں",
+    "description": "Robust control strategies heading"
+  },
+  "content.h3.7": {
+    "message": "ڈیجیٹل بمقابلہ فزیکل ای آئی سسٹم میں کلیدی تصورات",
+    "description": "Key concepts in digital vs physical AI systems heading"
+  },
+  "content.h3.8": {
+    "message": "ماحولیاتی عدم یقینی اور اس کا نظم",
+    "description": "Environmental uncertainty and management heading"
+  },
+  "content.h3.9": {
+    "message": "سینسر فیوژن کی تکنیکیں",
+    "description": "Sensor fusion techniques heading"
+  },
+  "content.h3.10": {
+    "message": "ایڈاپٹیو کنٹرول حکمت عملیاں",
+    "description": "Adaptive control strategies heading"
+  }
+}

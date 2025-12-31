@@ -217,6 +217,16 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework + ROS 2 Humble Hawksbill, Gazebo Garden, Unity LTS (2022.3.x), Docusaurus 3.x, rclpy (Python ROS 2 client library), React for documentation UI (002-gazebo-unity-module)
 - Python 3.10+ for backend services, JavaScript/TypeScript for frontend integration with Docusaurus + FastAPI for backend API, Neon Serverless Postgres for user/session data, Qdrant Cloud for vector storage, gemini API for embeddings and chat completion, React for Docusaurus integration (001-rag-chatbot-integration)
 - Neon Serverless Postgres (user sessions, conversation history), Qdrant Cloud (book content embeddings) (001-rag-chatbot-integration)
+- Python 3.10+ for backend services, JavaScript/TypeScript (Node.js 18+) for frontend integration with Docusaurus + OpenAI Agents SDK for RAG functionality, Neon Serverless Postgres for user/session data, Qdrant Cloud for vector storage, better-auth for authentication, FastAPI for backend API, React for Docusaurus integration (001-rag-chatbot-integration)
+- Neon Serverless Postgres for conversation history and user sessions, Qdrant Cloud for book content embeddings (001-rag-chatbot-integration)
+- JavaScript/TypeScript (Node.js 18+), React for Docusaurus framework, CSS for styling + Docusaurus 3.x, React, Google Fonts API, React Context API for state management (001-urdu-translation-switch)
+- Markdown files for content storage, localStorage for user preference persistence, Google Fonts CDN for font loading (001-urdu-translation-switch)
+- Python 3.10+, C++ for Isaac Sim extensions, CUDA for hardware acceleration + ROS 2 Humble Hawksbill, Isaac Sim 2023.1+, Isaac ROS packages, Nav2, OpenCV, PyTorch/TensorRT (001-isaac-ai-brain-spec)
+- N/A (real-time robotics system with ephemeral state) (001-isaac-ai-brain-spec)
+- Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework + ROS 2 Humble Hawksbill, NVIDIA Isaac Sim 2023.1+, Isaac ROS packages, Nav2, Gazebo Garden, Docusaurus 3.x, rclpy (Python ROS 2 client library), React for documentation UI (001-isaac-ai-brain-spec)
+- Markdown files for content storage, N/A for real-time robotics system (ephemeral state) (001-isaac-ai-brain-spec)
+- Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework + ROS 2 Humble Hawksbill, OpenAI Whisper, GPT models, Computer Vision libraries (OpenCV, PyTorch), Docusaurus 3.x, rclpy (Python ROS 2 client library), React for documentation UI (001-vision-language-action)
+- JavaScript/TypeScript (Node.js 18+), Docusaurus 3.x, React + Docusaurus i18n plugin, React, CSS (001-urdu-ltr-layout)
 
 ## Recent Changes
 - 001-update-book-spec: Added JavaScript/TypeScript, Node.js 18+ for Docusaurus, Python 3.8+ for ROS 2 integration examples + Docusaurus 3.x, React, Node.js, Context7, Docfork, Playwright MCP, ROS 2 (Humble Hawksbill or Iron Irwini), Gazebo, Unity (LTS), NVIDIA Isaac ROS

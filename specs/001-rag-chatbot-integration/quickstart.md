@@ -7,7 +7,7 @@ This guide provides a quick start for setting up and running the RAG chatbot sys
 - Python 3.10+ installed
 - Node.js 18+ installed (for Docusaurus integration)
 - Docker and Docker Compose (for local development)
-- Access to gemini API (API key required)
+- Access to OpenAI API (for OpenAI Agents SDK - API key required)
 - Access to Neon Serverless Postgres (connection details)
 - Access to Qdrant Cloud (connection details)
 
@@ -36,10 +36,10 @@ cp .env.example .env
 # Edit .env with your actual API keys and connection strings
 ```
 
-### 3. Frontend Setup
+### 3. Book Directory Setup (Frontend Components)
 ```bash
-# Navigate to frontend directory
-cd frontend
+# Navigate to book directory (contains Docusaurus and chatbot components)
+cd book
 
 # Install dependencies
 npm install
@@ -60,8 +60,8 @@ QDRANT_HOST=your_qdrant_host
 QDRANT_API_KEY=your_qdrant_api_key
 QDRANT_PORT=6333
 
-# gemini API Configuration
-GEMINI_API_KEY=your_gemini_api_key
+# OpenAI API Configuration
+OPENAI_API_KEY=your_openai_api_key
 
 # Application Settings
 SECRET_KEY=your_secret_key
@@ -83,10 +83,10 @@ source venv/bin/activate
 uvicorn src.api.main:app --reload --port 8000
 ```
 
-### 2. Start Frontend (for development)
+### 2. Start Book Server (includes chatbot frontend components)
 ```bash
-cd frontend
-npm start
+cd book
+npm run start
 ```
 
 ## Content Ingestion
@@ -135,26 +135,17 @@ curl -X GET http://localhost:8000/conversations/conversation123
 
 ## Docusaurus Integration
 
-### 1. Install the Chatbot Component
-```bash
-# In your Docusaurus project
-npm install path/to/chatbot-frontend
+### Chatbot Component Location
+The chatbot components are already integrated in the book directory:
+```
+book/src/components/Chatbot/
+├── ChatWindow.tsx
+├── FloatingButton.tsx
+├── ModalPopup.tsx
+└── MessageBubble.tsx
 ```
 
-### 2. Add to Layout
-```jsx
-// In your Docusaurus layout
-import ChatbotWidget from '@site/src/components/ChatbotWidget';
-
-function Layout({children}) {
-  return (
-    <>
-      <ChatbotWidget />
-      {children}
-    </>
-  );
-}
-```
+The floating button is automatically positioned in the bottom-left corner and integrates seamlessly with Docusaurus.
 
 ## Testing
 
@@ -167,7 +158,7 @@ pytest tests/
 
 ### Frontend Tests
 ```bash
-cd frontend
+cd book
 npm test
 ```
 
@@ -198,6 +189,7 @@ docker-compose up -d
 2. **Database Connection Issues**: Check your Neon database connection string and credentials
 3. **Vector Search Issues**: Ensure Qdrant is running and accessible
 4. **Content Not Found**: Run the content ingestion process to index book content
+5. **Frontend Components Not Loading**: Verify that chatbot components exist in book/src/components/Chatbot/
 
 ### Logging
 Check the application logs for detailed error information:

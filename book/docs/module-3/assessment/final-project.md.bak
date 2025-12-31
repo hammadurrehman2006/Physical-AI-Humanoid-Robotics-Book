@@ -1,0 +1,1551 @@
+# Final Project: Complete Isaac Sim Implementation for Humanoid Robotics
+
+This final project integrates all the concepts covered in Module 3, providing a comprehensive implementation of NVIDIA Isaac Sim for humanoid robotics applications. Students will create a complete simulation environment with realistic physics, sensors, and reinforcement learning capabilities.
+
+## Project Overview
+
+### Objective
+
+The objective of this final project is to create a complete Isaac Sim environment that demonstrates:
+
+1. **Realistic Physics Simulation**: Accurate humanoid robot dynamics with stable balance
+2. **Sensor Integration**: Multiple sensor types working together for perception
+3. **Reinforcement Learning**: Training of control policies for locomotion
+4. **Performance Optimization**: Efficient simulation that runs in real-time
+5. **Real-World Application**: Transferable skills for actual humanoid robot development
+
+### Learning Outcomes
+
+By completing this project, students will demonstrate:
+
+- Understanding of Isaac Sim architecture and capabilities
+- Ability to configure complex simulation environments
+- Skills in integrating multiple sensor systems
+- Proficiency in setting up reinforcement learning pipelines
+- Knowledge of performance optimization techniques
+
+## Project Requirements
+
+### Technical Requirements
+
+1. **Environment Setup**: Complete Isaac Sim installation and configuration
+2. **Robot Model**: Import or create a humanoid robot model with realistic dynamics
+3. **Physics Configuration**: Properly configured physics parameters for stable simulation
+4. **Sensor Integration**: At least 3 different sensor types (camera, LiDAR, IMU)
+5. **Control System**: Basic control system for robot actuation
+6. **Performance**: Simulation runs at ≥30 FPS with multiple parallel environments
+7. **Documentation**: Complete documentation of the implementation
+
+### Deliverables
+
+1. **Complete Simulation Environment**: Fully functional Isaac Sim scene
+2. **Code Repository**: Well-organized code with clear documentation
+3. **Technical Report**: Detailed explanation of implementation choices
+4. **Performance Analysis**: Benchmarking and optimization results
+5. **Video Demonstration**: Showcasing the simulation capabilities
+6. **Presentation**: Summary of approach and results
+
+## Implementation Steps
+
+### Step 1: Environment Setup and Configuration
+
+```python
+#!/usr/bin/env python3
+"""
+Step 1: Complete environment setup for Isaac Sim project
+"""
+import torch
+import numpy as np
+from omni.isaac.core import World
+from omni.isaac.core.utils.stage import add_reference_to_stage
+from omni.isaac.core.utils.nucleus import get_assets_root_path
+from omni.isaac.core.robots import Robot
+from omni.isaac.core.articulations import ArticulationView
+from omni.isaac.sensor import Camera, RotatingLidarPhysX
+from omni.isaac.core.sensors import ImuSensor
+from omni.isaac.core.utils.prims import create_prim
+from omni.isaac.core.objects import DynamicCuboid, FixedCuboid
+import carb
+
+class IsaacSimProjectSetup:
+    """Complete setup for the Isaac Sim project"""
+
+    def __init__(self):
+        self.world = None
+        self.robots = {}
+        self.sensors = {}
+        self.environments = {}
+        self.config = self.get_project_config()
+
+    def get_project_config(self):
+        """Get project configuration parameters"""
+
+        config = {
+            "simulation": {
+                "stage_units_in_meters": 1.0,
+                "physics_dt": 1.0/60.0,
+                "rendering_dt": 1.0/60.0,
+                "num_envs": 1,
+                "env_spacing": 2.5
+            },
+            "robot": {
+                "model": "A1",  # Unitree A1 quadruped (easily adaptable to humanoid)
+                "initial_position": [0.0, 0.0, 0.6],
+                "initial_orientation": [0.0, 0.0, 0.0, 1.0]
+            },
+            "sensors": {
+                "camera": {
+                    "enabled": True,
+                    "resolution": [640, 480],
+                    "frequency": 30
+                },
+                "lidar": {
+                    "enabled": True,
+                    "channels": 16,
+                    "frequency": 10
+                },
+                "imu": {
+                    "enabled": True,
+                    "frequency": 100
+                }
+            },
+            "performance": {
+                "target_fps": 30,
+                "max_envs": 4096,
+                "memory_limit": "16GB"
+            }
+        }
+
+        return config
+
+    def setup_world(self):
+        """Set up the Isaac Sim world with project configuration"""
+
+        print("Setting up Isaac Sim world...")
+
+        self.world = World(
+            stage_units_in_meters=self.config["simulation"]["stage_units_in_meters"],
+            physics_dt=self.config["simulation"]["physics_dt"],
+            rendering_dt=self.config["simulation"]["rendering_dt"]
+        )
+
+        # Optimize physics settings
+        self._optimize_physics()
+
+        print("Isaac Sim world created successfully")
+
+    def _optimize_physics(self):
+        """Optimize physics settings for the project"""
+
+        physics_context = self.world.scene.get_physics_context()
+
+        # Set solver settings
+        physics_context.set_position_iteration_count(8)
+        physics_context.set_velocity_iteration_count(4)
+
+        # Enable GPU dynamics if available
+        if torch.cuda.is_available():
+            physics_context.enable_gpu_dynamics()
+
+        print("Physics settings optimized")
+
+    def setup_scene(self):
+        """Set up the complete scene with ground and objects"""
+
+        print("Setting up scene...")
+
+        # Create ground plane
+        create_prim("/World/defaultGroundPlane", "Plane", position=[0, 0, 0])
+
+        # Add some objects for environment
+        self._add_environment_objects()
+
+        print("Scene setup completed")
+
+    def _add_environment_objects(self):
+        """Add objects to the environment for testing"""
+
+        # Add some obstacles for navigation testing
+        for i in range(5):
+            self.world.scene.add(
+                DynamicCuboid(
+                    prim_path=f"/World/Obstacle_{i}",
+                    name=f"obstacle_{i}",
+                    position=[i*2.0, 0, 0.25],
+                    size=0.5,
+                    color=torch.tensor([0.5, 0.5, 0.5])
+                )
+            )
+
+        print("Environment objects added")
+
+    def setup_robot(self):
+        """Set up the humanoid robot in the simulation"""
+
+        print("Setting up robot...")
+
+        assets_root_path = get_assets_root_path()
+        if assets_root_path is None:
+            carb.log_error("Could not find Isaac Sim assets root path")
+            return
+
+        print(f"Assets root path: {assets_root_path}")
+
+        # For this project, we'll use a quadruped as a base (can be adapted for humanoid)
+        robot_path = assets_root_path + "/Isaac/Robots/Unitree/A1/a1.usd"
+
+        add_reference_to_stage(
+            usd_path=robot_path,
+            prim_path="/World/Robot"
+        )
+
+        # Create robot object
+        robot = Robot(
+            prim_path="/World/Robot",
+            name="project_robot"
+        )
+
+        self.robots["main"] = robot
+
+        # Initialize robot
+        self.world.reset()
+
+        print("Robot setup completed")
+
+    def setup_sensors(self):
+        """Set up sensors for the robot"""
+
+        print("Setting up sensors...")
+
+        # Set up camera
+        if self.config["sensors"]["camera"]["enabled"]:
+            self._setup_camera_sensor()
+
+        # Set up LiDAR
+        if self.config["sensors"]["lidar"]["enabled"]:
+            self._setup_lidar_sensor()
+
+        # Set up IMU
+        if self.config["sensors"]["imu"]["enabled"]:
+            self._setup_imu_sensor()
+
+        print("Sensors setup completed")
+
+    def _setup_camera_sensor(self):
+        """Set up camera sensor on the robot"""
+
+        # Create camera mount point
+        create_prim(
+            prim_path="/World/Robot/CameraMount",
+            prim_type="Xform",
+            position=[0.1, 0, 0.1]  # Position on robot
+        )
+
+        # Create camera
+        camera = Camera(
+            prim_path="/World/Robot/CameraMount/Camera",
+            position=[0, 0, 0],
+            frequency=self.config["sensors"]["camera"]["frequency"]
+        )
+        camera.initialize()
+
+        # Add render product
+        camera.add_render_product(
+            "/Render/Results/ProjectCamera",
+            self.config["sensors"]["camera"]["resolution"]
+        )
+
+        self.sensors["camera"] = camera
+
+        print("Camera sensor configured")
+
+    def _setup_lidar_sensor(self):
+        """Set up LiDAR sensor on the robot"""
+
+        # Create LiDAR mount point
+        create_prim(
+            prim_path="/World/Robot/LiDARMount",
+            prim_type="Xform",
+            position=[0.15, 0, 0.2]
+        )
+
+        # Create LiDAR
+        lidar = RotatingLidarPhysX(
+            prim_path="/World/Robot/LiDARMount/LiDAR",
+            translation=[0, 0, 0],
+            configuration={
+                "rotation_frequency": self.config["sensors"]["lidar"]["frequency"],
+                "channels": self.config["sensors"]["lidar"]["channels"],
+                "points_per_channel": 500,
+                "horizontal_fov": 360,
+                "vertical_fov": 30,
+                "range": 25.0,
+                "min_range": 0.1,
+                "angular_resolution": 0.36
+            }
+        )
+        lidar.initialize()
+
+        self.sensors["lidar"] = lidar
+
+        print("LiDAR sensor configured")
+
+    def _setup_imu_sensor(self):
+        """Set up IMU sensor on the robot"""
+
+        # Create IMU at robot's center of mass
+        imu = ImuSensor(
+            prim_path="/World/Robot/IMUMount/IMU",
+            name="project_imu",
+            translation=np.array([0, 0, 0]),
+            frequency=self.config["sensors"]["imu"]["frequency"]
+        )
+        imu.initialize()
+
+        self.sensors["imu"] = imu
+
+        print("IMU sensor configured")
+
+    def run_initial_test(self):
+        """Run initial test to verify setup"""
+
+        print("Running initial test...")
+
+        # Reset world
+        self.world.reset()
+
+        # Run simulation for a few steps
+        for i in range(100):  # 100 steps = ~1.67 seconds at 60 Hz
+            self.world.step(render=True)
+
+            # Print progress
+            if i % 20 == 0:
+                print(f"Step {i}/100 completed")
+
+        print("Initial test completed successfully")
+
+    def get_setup_summary(self):
+        """Get summary of the setup"""
+
+        summary = {
+            "world": {
+                "physics_dt": self.config["simulation"]["physics_dt"],
+                "rendering_dt": self.config["simulation"]["rendering_dt"]
+            },
+            "robot": {
+                "count": len(self.robots),
+                "type": self.config["robot"]["model"]
+            },
+            "sensors": {
+                "count": len(self.sensors),
+                "types": list(self.sensors.keys())
+            },
+            "environment": {
+                "objects": 5,  # From _add_environment_objects
+                "ground_plane": True
+            }
+        }
+
+        return summary
+
+def run_project_setup():
+    """Run the complete project setup"""
+
+    print("Starting Isaac Sim Project Setup...")
+    print("="*50)
+
+    # Create project setup
+    project = IsaacSimProjectSetup()
+
+    # Execute setup steps
+    project.setup_world()
+    project.setup_scene()
+    project.setup_robot()
+    project.setup_sensors()
+
+    # Run initial test
+    project.run_initial_test()
+
+    # Get and print summary
+    summary = project.get_setup_summary()
+    print("\nSetup Summary:")
+    print(f"- World physics: {summary['world']['physics_dt']*1000:.1f}ms step")
+    print(f"- Robot: {summary['robot']['type']} ({summary['robot']['count']} instances)")
+    print(f"- Sensors: {', '.join(summary['sensors']['types'])}")
+    print(f"- Environment: {summary['environment']['objects']} objects")
+
+    print("\n" + "="*50)
+    print("Project Setup Completed Successfully!")
+    print("Continue to next implementation steps...")
+
+    return project
+
+if __name__ == "__main__":
+    project = run_project_setup()
+```
+
+### Step 2: Physics Configuration and Optimization
+
+```python
+#!/usr/bin/env python3
+"""
+Step 2: Physics configuration and optimization for the project
+"""
+class PhysicsConfiguration:
+    """Configure and optimize physics for the project"""
+
+    def __init__(self, world):
+        self.world = world
+        self.physics_context = world.scene.get_physics_context()
+
+    def configure_robot_dynamics(self, robot):
+        """Configure robot-specific dynamics"""
+
+        print("Configuring robot dynamics...")
+
+        # Get DOF properties
+        robot_dof_props = robot.get_dof_properties()
+
+        # Configure joint properties for stable control
+        for i in range(len(robot_dof_props)):
+            # Set drive mode
+            robot_dof_props['driveMode'][i] = 1  # Position drive
+
+            # Set stiffness and damping for stable control
+            robot_dof_props['stiffness'][i] = 80.0  # N*m/rad
+            robot_dof_props['damping'][i] = 1.0     # N*m*s/rad
+
+            # Set position limits
+            robot_dof_props['hasPositionLimits'][i] = True
+            robot_dof_props['lower'][i] = -3.14
+            robot_dof_props['upper'][i] = 3.14
+
+        # Apply DOF properties
+        robot.set_dof_properties(robot_dof_props)
+
+        print("Robot dynamics configured")
+
+    def optimize_physics_performance(self):
+        """Optimize physics for performance"""
+
+        print("Optimizing physics performance...")
+
+        # Set solver type (0: TGS, 1: PGS)
+        self.physics_context.set_solver_type(0)  # TGS for better stability
+
+        # Set iteration counts
+        self.physics_context.set_position_iteration_count(8)
+        self.physics_context.set_velocity_iteration_count(4)
+
+        # Enable stabilization
+        self.physics_context.enable_stabilization()
+
+        # Set contact offsets
+        self.physics_context.set_contact_offset(0.002)
+        self.physics_context.set_rest_offset(0.001)
+
+        print("Physics performance optimized")
+
+    def configure_collision_properties(self):
+        """Configure collision properties"""
+
+        print("Configuring collision properties...")
+
+        # Set broadphase type
+        self.physics_context.set_broadphase_type("MBP")  # Multi-level bounding primitive
+
+        # Enable GPU dynamics if available
+        if torch.cuda.is_available():
+            self.physics_context.enable_gpu_dynamics()
+            self.physics_context.set_gpu_max_particles(1000000)
+            self.physics_context.set_gpu_max_rigid_contacts(1024000)
+
+        print("Collision properties configured")
+
+    def apply_physics_configuration(self, robot):
+        """Apply all physics configurations"""
+
+        self.configure_robot_dynamics(robot)
+        self.optimize_physics_performance()
+        self.configure_collision_properties()
+
+        print("All physics configurations applied")
+
+def configure_project_physics(project):
+    """Configure physics for the project"""
+
+    print("Configuring project physics...")
+
+    # Get robot from project
+    robot = project.robots["main"]
+
+    # Create physics configuration
+    physics_config = PhysicsConfiguration(project.world)
+
+    # Apply physics configuration
+    physics_config.apply_physics_configuration(robot)
+
+    print("Project physics configured successfully")
+```
+
+### Step 3: Sensor Integration and Fusion
+
+```python
+#!/usr/bin/env python3
+"""
+Step 3: Sensor integration and fusion for the project
+"""
+class SensorIntegration:
+    """Integrate and fuse multiple sensors for the project"""
+
+    def __init__(self, world, sensors):
+        self.world = world
+        self.sensors = sensors
+        self.fusion_data = {}
+
+    def synchronize_sensor_data(self):
+        """Synchronize data from multiple sensors"""
+
+        print("Synchronizing sensor data...")
+
+        # Step world to update all sensors
+        self.world.step(render=True)
+
+        # Collect data from all sensors
+        sensor_data = {}
+
+        # Get camera data
+        if "camera" in self.sensors:
+            try:
+                rgb_data = self.sensors["camera"].get_rgb()
+                depth_data = self.sensors["camera"].get_depth()
+                sensor_data["camera"] = {
+                    "rgb": rgb_data,
+                    "depth": depth_data
+                }
+            except Exception as e:
+                print(f"Camera data collection error: {e}")
+
+        # Get LiDAR data
+        if "lidar" in self.sensors:
+            try:
+                # Note: Actual LiDAR data access may vary
+                sensor_data["lidar"] = "lidar_data_placeholder"
+            except Exception as e:
+                print(f"LiDAR data collection error: {e}")
+
+        # Get IMU data
+        if "imu" in self.sensors:
+            try:
+                linear_acc = self.sensors["imu"].get_linear_acceleration()
+                angular_vel = self.sensors["imu"].get_angular_velocity()
+                orientation = self.sensors["imu"].get_orientation()
+                sensor_data["imu"] = {
+                    "linear_acceleration": linear_acc,
+                    "angular_velocity": angular_vel,
+                    "orientation": orientation
+                }
+            except Exception as e:
+                print(f"IMU data collection error: {e}")
+
+        self.fusion_data = sensor_data
+        print("Sensor data synchronized")
+
+    def implement_sensor_fusion(self):
+        """Implement basic sensor fusion techniques"""
+
+        print("Implementing sensor fusion...")
+
+        # Example fusion: combine IMU and camera data for better pose estimation
+        if "imu" in self.fusion_data and "camera" in self.fusion_data:
+            imu_data = self.fusion_data["imu"]
+            camera_data = self.fusion_data["camera"]
+
+            # Simple fusion example: use IMU for orientation, camera for position
+            fused_pose = {
+                "position": self.estimate_position_from_camera(camera_data),
+                "orientation": imu_data["orientation"] if imu_data else None
+            }
+
+            self.fusion_data["fused_pose"] = fused_pose
+
+        print("Sensor fusion implemented")
+
+    def estimate_position_from_camera(self, camera_data):
+        """Estimate position from camera data (simplified example)"""
+
+        # This would involve:
+        # 1. Feature detection and tracking
+        # 2. Structure from motion
+        # 3. Visual odometry
+        # For this example, we'll return a placeholder
+
+        return [0.0, 0.0, 0.0]  # Placeholder position
+
+    def validate_sensor_data(self):
+        """Validate that sensor data is being collected properly"""
+
+        print("Validating sensor data...")
+
+        validation_results = {}
+
+        # Validate camera data
+        if "camera" in self.fusion_data:
+            cam_data = self.fusion_data["camera"]
+            if cam_data["rgb"] is not None:
+                validation_results["camera"] = {
+                    "status": "valid",
+                    "shape": cam_data["rgb"].shape if hasattr(cam_data["rgb"], 'shape') else "unknown"
+                }
+            else:
+                validation_results["camera"] = {"status": "invalid", "error": "No RGB data"}
+
+        # Validate IMU data
+        if "imu" in self.fusion_data:
+            imu_data = self.fusion_data["imu"]
+            if imu_data["linear_acceleration"] is not None:
+                validation_results["imu"] = {"status": "valid"}
+            else:
+                validation_results["imu"] = {"status": "invalid", "error": "No IMU data"}
+
+        print(f"Sensor validation results: {validation_results}")
+        return validation_results
+
+    def run_sensor_integration(self):
+        """Run complete sensor integration process"""
+
+        self.synchronize_sensor_data()
+        self.implement_sensor_fusion()
+        validation_results = self.validate_sensor_data()
+
+        return validation_results
+
+def integrate_project_sensors(project):
+    """Integrate sensors for the project"""
+
+    print("Integrating project sensors...")
+
+    # Create sensor integration
+    sensor_integration = SensorIntegration(project.world, project.sensors)
+
+    # Run sensor integration
+    validation_results = sensor_integration.run_sensor_integration()
+
+    print("Project sensors integrated successfully")
+    return sensor_integration, validation_results
+```
+
+### Step 4: Reinforcement Learning Setup
+
+```python
+#!/usr/bin/env python3
+"""
+Step 4: Reinforcement learning setup for the project
+"""
+class RLSetup:
+    """Set up reinforcement learning for the project"""
+
+    def __init__(self, world, robot, sensors):
+        self.world = world
+        self.robot = robot
+        self.sensors = sensors
+        self.rl_environment = None
+        self.rl_agent = None
+
+    def create_rl_environment(self):
+        """Create RL environment for the robot"""
+
+        print("Creating RL environment...")
+
+        # This would involve creating a custom gym environment
+        # For this project, we'll define the key components:
+
+        # Action space: joint position commands
+        action_dim = len(self.robot.dof_names)  # Number of joints
+        action_space = {
+            "type": "continuous",
+            "shape": (action_dim,),
+            "low": -1.0,
+            "high": 1.0
+        }
+
+        # Observation space: sensor data + robot state
+        obs_dim = (  # Combined observation dimensions
+            12 +  # Joint positions
+            12 +  # Joint velocities
+            3 +   # Robot position
+            4 +   # Robot orientation (quaternion)
+            3 +   # Linear velocity
+            3 +   # Angular velocity
+            12    # Previous actions
+        )
+        observation_space = {
+            "type": "continuous",
+            "shape": (obs_dim,),
+            "low": -np.inf,
+            "high": np.inf
+        }
+
+        # Environment properties
+        env_properties = {
+            "action_space": action_space,
+            "observation_space": observation_space,
+            "max_episode_length": 1000,
+            "reward_function": self._default_reward_function
+        }
+
+        self.rl_environment = env_properties
+
+        print(f"RL environment created with action dim: {action_dim}, obs dim: {obs_dim}")
+
+    def _default_reward_function(self):
+        """Default reward function for the robot"""
+
+        # This would calculate rewards based on:
+        # - Forward progress
+        # - Energy efficiency
+        # - Balance maintenance
+        # - Goal achievement
+        # For this example, return a placeholder
+
+        return 0.0
+
+    def setup_rl_agent(self, algorithm="PPO"):
+        """Set up RL agent for training"""
+
+        print(f"Setting up {algorithm} agent...")
+
+        # For this project, we'll outline the setup process:
+        agent_config = {
+            "algorithm": algorithm,
+            "network_architecture": {
+                "actor_hidden_layers": [512, 256, 128],
+                "critic_hidden_layers": [512, 256, 128],
+                "activation_function": "tanh"
+            },
+            "training_parameters": {
+                "learning_rate": 3e-4,
+                "batch_size": 64,
+                "gamma": 0.99,
+                "gae_lambda": 0.95,
+                "clip_epsilon": 0.2,
+                "max_grad_norm": 1.0
+            },
+            "exploration": {
+                "noise_std": 1.0,
+                "noise_decay": 0.995
+            }
+        }
+
+        self.rl_agent = agent_config
+
+        print(f"{algorithm} agent configured")
+
+    def prepare_for_training(self):
+        """Prepare the setup for RL training"""
+
+        print("Preparing for RL training...")
+
+        # Verify all components are ready
+        if self.rl_environment is None:
+            self.create_rl_environment()
+
+        if self.rl_agent is None:
+            self.setup_rl_agent()
+
+        # Additional preparation steps:
+        # - Set up replay buffer
+        # - Initialize neural networks
+        # - Configure training loop
+        # - Set up logging and monitoring
+
+        print("RL setup prepared for training")
+
+    def run_training_loop(self, max_iterations=1000):
+        """Run a basic training loop (conceptual)"""
+
+        print(f"Running training loop for {max_iterations} iterations...")
+
+        # This would involve:
+        # 1. Collect experiences from the environment
+        # 2. Update the policy using collected experiences
+        # 3. Log training progress
+        # 4. Save model checkpoints
+
+        for iteration in range(max_iterations):
+            # Collect data
+            # Update policy
+            # Log metrics
+
+            if iteration % 100 == 0:
+                print(f"Training iteration {iteration}/{max_iterations}")
+
+        print("Training loop completed")
+
+    def get_rl_setup_summary(self):
+        """Get summary of RL setup"""
+
+        if self.rl_environment and self.rl_agent:
+            return {
+                "environment": {
+                    "action_space": self.rl_environment["action_space"]["shape"],
+                    "observation_space": self.rl_environment["observation_space"]["shape"],
+                    "max_episode_length": self.rl_environment["max_episode_length"]
+                },
+                "agent": {
+                    "algorithm": self.rl_agent["algorithm"],
+                    "actor_layers": self.rl_agent["network_architecture"]["actor_hidden_layers"],
+                    "learning_rate": self.rl_agent["training_parameters"]["learning_rate"]
+                }
+            }
+        else:
+            return "RL setup not initialized"
+
+def setup_project_rl(project):
+    """Set up reinforcement learning for the project"""
+
+    print("Setting up project RL system...")
+
+    # Get robot and sensors from project
+    robot = project.robots["main"]
+    sensors = project.sensors
+
+    # Create RL setup
+    rl_setup = RLSetup(project.world, robot, sensors)
+
+    # Prepare for training
+    rl_setup.prepare_for_training()
+
+    # Get summary
+    summary = rl_setup.get_rl_setup_summary()
+    print(f"RL setup summary: {summary}")
+
+    print("Project RL system set up successfully")
+    return rl_setup
+```
+
+### Step 5: Performance Optimization and Testing
+
+```python
+#!/usr/bin/env python3
+"""
+Step 5: Performance optimization and testing for the project
+"""
+import time
+import psutil
+import GPUtil
+from collections import deque
+
+class PerformanceOptimizer:
+    """Optimize performance and run tests for the project"""
+
+    def __init__(self, world, project_components):
+        self.world = world
+        self.project_components = project_components
+        self.performance_metrics = {
+            'fps': deque(maxlen=100),
+            'physics_steps_per_sec': deque(maxlen=100),
+            'memory_usage': deque(maxlen=100),
+            'cpu_load': deque(maxlen=100)
+        }
+
+    def optimize_simulation_performance(self):
+        """Optimize simulation performance"""
+
+        print("Optimizing simulation performance...")
+
+        # Physics optimizations
+        physics_context = self.world.scene.get_physics_context()
+        physics_context.set_position_iteration_count(4)  # Reduced for performance
+        physics_context.set_velocity_iteration_count(2)  # Reduced for performance
+
+        # Enable stabilization for better performance
+        physics_context.enable_stabilization()
+
+        # Memory optimizations
+        torch.backends.cudnn.benchmark = True  # Optimize for consistent input sizes
+
+        print("Simulation performance optimized")
+
+    def run_performance_tests(self, duration=10.0):
+        """Run performance tests for the specified duration"""
+
+        print(f"Running performance tests for {duration} seconds...")
+
+        start_time = time.time()
+        step_count = 0
+        last_time = start_time
+
+        while time.time() - start_time < duration:
+            # Step simulation
+            self.world.step(render=True)
+            step_count += 1
+
+            # Record metrics
+            current_time = time.time()
+            elapsed = current_time - last_time
+            if elapsed > 0:
+                fps = 1.0 / elapsed
+                self.performance_metrics['fps'].append(fps)
+
+            # Record system metrics
+            self.performance_metrics['cpu_load'].append(psutil.cpu_percent())
+            self.performance_metrics['memory_usage'].append(psutil.virtual_memory().percent)
+
+            last_time = current_time
+
+        total_time = time.time() - start_time
+        avg_fps = step_count / total_time if total_time > 0 else 0
+        avg_cpu = sum(self.performance_metrics['cpu_load']) / len(self.performance_metrics['cpu_load']) if self.performance_metrics['cpu_load'] else 0
+        avg_memory = sum(self.performance_metrics['memory_usage']) / len(self.performance_metrics['memory_usage']) if self.performance_metrics['memory_usage'] else 0
+
+        print(f"Performance test results:")
+        print(f"  - Average FPS: {avg_fps:.2f}")
+        print(f"  - Average CPU: {avg_cpu:.1f}%")
+        print(f"  - Average Memory: {avg_memory:.1f}%")
+        print(f"  - Total steps: {step_count}")
+
+        return {
+            'avg_fps': avg_fps,
+            'avg_cpu': avg_cpu,
+            'avg_memory': avg_memory,
+            'total_steps': step_count
+        }
+
+    def run_functional_tests(self):
+        """Run functional tests to verify all components work together"""
+
+        print("Running functional tests...")
+
+        test_results = {}
+
+        # Test 1: Robot control
+        try:
+            robot = self.project_components['robot']
+            initial_pos = robot.get_world_positions()
+
+            # Apply a small control action
+            current_pos = robot.get_joint_positions()
+            new_pos = current_pos + torch.ones_like(current_pos) * 0.01
+            robot.set_joint_positions(new_pos)
+
+            # Step simulation
+            self.world.step(render=True)
+
+            final_pos = robot.get_world_positions()
+
+            # Check if robot moved
+            movement = torch.norm(final_pos - initial_pos)
+            test_results['robot_control'] = movement.item() > 0.001
+
+        except Exception as e:
+            test_results['robot_control'] = f"Error: {e}"
+
+        # Test 2: Sensor data collection
+        try:
+            sensors = self.project_components['sensors']
+            sensor_data_collected = False
+
+            # Step to update sensors
+            self.world.step(render=True)
+
+            # Try to get data from each sensor
+            for sensor_name, sensor in sensors.items():
+                if sensor_name == "camera":
+                    try:
+                        data = sensor.get_rgb()
+                        sensor_data_collected = data is not None
+                        break
+                    except:
+                        continue
+
+            test_results['sensor_functionality'] = sensor_data_collected
+
+        except Exception as e:
+            test_results['sensor_functionality'] = f"Error: {e}"
+
+        # Test 3: Physics stability
+        try:
+            robot_pos = robot.get_world_positions()
+            robot_orientation = robot.get_world_quat()
+
+            # Check if robot is in reasonable position
+            height_ok = robot_pos[0, 2] > 0.3  # Should be above ground
+            orientation_ok = torch.abs(robot_orientation[0, 3]) > 0.5  # Should be somewhat upright
+
+            test_results['physics_stability'] = height_ok and orientation_ok
+
+        except Exception as e:
+            test_results['physics_stability'] = f"Error: {e}"
+
+        print(f"Functional test results: {test_results}")
+        return test_results
+
+    def optimize_memory_usage(self):
+        """Optimize memory usage"""
+
+        print("Optimizing memory usage...")
+
+        # Clear any cached data
+        torch.cuda.empty_cache() if torch.cuda.is_available() else None
+
+        # Optimize tensor usage
+        # Use appropriate data types
+        # Implement data streaming where possible
+
+        print("Memory optimization completed")
+
+    def generate_performance_report(self):
+        """Generate a comprehensive performance report"""
+
+        print("Generating performance report...")
+
+        # Collect final metrics
+        final_metrics = {}
+        for key, values in self.performance_metrics.items():
+            if values:
+                final_metrics[key] = {
+                    'avg': sum(values) / len(values),
+                    'min': min(values),
+                    'max': max(values),
+                    'count': len(values)
+                }
+
+        # System information
+        system_info = {
+            'cpu_count': psutil.cpu_count(),
+            'memory_total': psutil.virtual_memory().total / (1024**3),  # GB
+            'python_version': platform.python_version()
+        }
+
+        if torch.cuda.is_available():
+            system_info['gpu'] = torch.cuda.get_device_name()
+            system_info['gpu_memory'] = torch.cuda.get_device_properties(0).total_memory / (1024**3)  # GB
+
+        report = {
+            'performance_metrics': final_metrics,
+            'system_info': system_info,
+            'recommendations': self._generate_recommendations(final_metrics)
+        }
+
+        print("Performance report generated")
+        return report
+
+    def _generate_recommendations(self, metrics):
+        """Generate performance recommendations"""
+
+        recommendations = []
+
+        if metrics.get('fps', {}).get('avg', 0) < 30:
+            recommendations.append("FPS below target (30), consider reducing rendering quality or physics complexity")
+
+        if metrics.get('cpu_load', {}).get('avg', 0) > 80:
+            recommendations.append("High CPU usage, consider reducing environment complexity")
+
+        if metrics.get('memory_usage', {}).get('avg', 0) > 85:
+            recommendations.append("High memory usage, consider reducing batch sizes or using memory-efficient operations")
+
+        return recommendations
+
+def optimize_and_test_project(project):
+    """Run performance optimization and testing for the project"""
+
+    print("Running project optimization and testing...")
+
+    # Prepare project components
+    project_components = {
+        'robot': project.robots['main'],
+        'sensors': project.sensors,
+        'world': project.world
+    }
+
+    # Create performance optimizer
+    perf_optimizer = PerformanceOptimizer(project.world, project_components)
+
+    # Optimize performance
+    perf_optimizer.optimize_simulation_performance()
+    perf_optimizer.optimize_memory_usage()
+
+    # Run performance tests
+    perf_results = perf_optimizer.run_performance_tests(duration=5.0)  # 5 seconds for quick test
+
+    # Run functional tests
+    func_results = perf_optimizer.run_functional_tests()
+
+    # Generate performance report
+    report = perf_optimizer.generate_performance_report()
+
+    print(f"\nPerformance Results: {perf_results}")
+    print(f"Functional Test Results: {func_results}")
+    print(f"Performance Report: {report}")
+
+    print("Project optimization and testing completed")
+    return perf_optimizer, perf_results, func_results, report
+```
+
+### Step 6: Documentation and Reporting
+
+```python
+#!/usr/bin/env python3
+"""
+Step 6: Documentation and reporting for the project
+"""
+import json
+import os
+from datetime import datetime
+
+class ProjectDocumentation:
+    """Generate documentation and reports for the project"""
+
+    def __init__(self, project_name="Isaac Sim Humanoid Robotics Project"):
+        self.project_name = project_name
+        self.documentation_path = "project_documentation"
+        self.create_documentation_directory()
+
+    def create_documentation_directory(self):
+        """Create directory for project documentation"""
+
+        if not os.path.exists(self.documentation_path):
+            os.makedirs(self.documentation_path)
+            os.makedirs(os.path.join(self.documentation_path, "code"))
+            os.makedirs(os.path.join(self.documentation_path, "results"))
+            os.makedirs(os.path.join(self.documentation_path, "figures"))
+
+        print(f"Documentation directory created: {self.documentation_path}")
+
+    def generate_technical_report(self, project_summary, performance_results, test_results):
+        """Generate technical report for the project"""
+
+        print("Generating technical report...")
+
+        report_content = f"""
+# {self.project_name} - Technical Report
+
+**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+## Project Overview
+This report documents the implementation of NVIDIA Isaac Sim for humanoid robotics applications. The project demonstrates realistic physics simulation, sensor integration, and reinforcement learning capabilities.
+
+## Implementation Summary
+{self._format_project_summary(project_summary)}
+
+## Performance Results
+{self._format_performance_results(performance_results)}
+
+## Test Results
+{self._format_test_results(test_results)}
+
+## Key Achievements
+- Complete Isaac Sim environment setup
+- Realistic robot physics configuration
+- Multi-sensor integration and fusion
+- Performance optimization for real-time operation
+- Functional testing validation
+
+## Challenges and Solutions
+- Physics stability: Optimized solver parameters and damping
+- Sensor synchronization: Implemented proper timing and data collection
+- Performance: Applied GPU acceleration and memory optimization
+
+## Future Improvements
+- Advanced RL algorithms for complex behaviors
+- More sophisticated sensor fusion techniques
+- Real-world robot integration and validation
+- Scalable multi-robot simulation
+
+## Conclusion
+The project successfully demonstrates the capabilities of Isaac Sim for humanoid robotics development, providing a foundation for advanced robotics research and development.
+
+---
+
+**Generated by Isaac Sim Project Documentation System**
+        """
+
+        # Save report to file
+        report_path = os.path.join(self.documentation_path, "technical_report.md")
+        with open(report_path, 'w') as f:
+            f.write(report_content)
+
+        print(f"Technical report saved to: {report_path}")
+        return report_path
+
+    def _format_project_summary(self, summary):
+        """Format project summary for report"""
+
+        if isinstance(summary, dict):
+            formatted = ""
+            for key, value in summary.items():
+                if isinstance(value, dict):
+                    formatted += f"### {key}\n"
+                    for subkey, subvalue in value.items():
+                        formatted += f"- {subkey}: {subvalue}\n"
+                    formatted += "\n"
+                else:
+                    formatted += f"- {key}: {value}\n"
+            return formatted
+        else:
+            return str(summary)
+
+    def _format_performance_results(self, results):
+        """Format performance results for report"""
+
+        if isinstance(results, dict):
+            formatted = ""
+            for key, value in results.items():
+                formatted += f"- {key}: {value}\n"
+            return formatted
+        else:
+            return str(results)
+
+    def _format_test_results(self, results):
+        """Format test results for report"""
+
+        if isinstance(results, dict):
+            formatted = ""
+            for test_name, result in results.items():
+                status = "✅ PASS" if result is True else ("❌ FAIL" if result is False else f"⚠️ {result}")
+                formatted += f"- {test_name}: {status}\n"
+            return formatted
+        else:
+            return str(results)
+
+    def generate_implementation_guide(self, project_components):
+        """Generate implementation guide for the project"""
+
+        print("Generating implementation guide...")
+
+        guide_content = f"""
+# {self.project_name} - Implementation Guide
+
+## Overview
+This guide provides detailed instructions for implementing the Isaac Sim humanoid robotics project, including setup, configuration, and operation procedures.
+
+## System Requirements
+- NVIDIA GPU with RTX 3080 or better (RTX 4090 recommended)
+- 32GB+ system RAM (64GB+ recommended)
+- Ubuntu 22.04 LTS or Windows 10/11
+- CUDA 11.8+ with compatible GPU drivers
+- Isaac Sim 2023.1+ installed
+
+## Installation and Setup
+
+### 1. Isaac Sim Installation
+```bash
+# Install Isaac Sim via Omniverse Launcher or Docker
+# Follow the official NVIDIA Isaac Sim installation guide
+```
+
+### 2. Project Setup
+```bash
+# Clone the project repository
+git clone <project_repository>
+
+# Install required dependencies
+pip install -r requirements.txt
+```
+
+### 3. Environment Configuration
+```python
+# Configure the simulation environment
+from project_setup import IsaacSimProjectSetup
+
+project = IsaacSimProjectSetup()
+project.setup_world()
+project.setup_scene()
+project.setup_robot()
+project.setup_sensors()
+```
+
+## Component Configuration
+
+### Physics Configuration
+{self._get_physics_config_guide()}
+
+### Sensor Configuration
+{self._get_sensor_config_guide()}
+
+### Reinforcement Learning Setup
+{self._get_rl_config_guide()}
+
+## Performance Optimization
+
+### GPU Acceleration
+Enable GPU physics and rendering acceleration:
+- Configure CUDA settings
+- Optimize memory usage
+- Set appropriate solver parameters
+
+### Parallel Processing
+- Configure multiple simulation environments
+- Optimize batch processing
+- Balance CPU/GPU utilization
+
+## Testing and Validation
+
+### Functional Tests
+Run the complete test suite:
+```python
+from performance_optimizer import optimize_and_test_project
+
+# Run optimization and testing
+optimizer, perf_results, func_results, report = optimize_and_test_project(project)
+```
+
+### Performance Benchmarks
+- Target: ≥30 FPS for real-time operation
+- Physics stability: No explosions or NaN values
+- Sensor accuracy: Proper data collection and synchronization
+
+## Troubleshooting
+
+### Common Issues
+1. **Physics Instability**: Reduce solver iterations or adjust damping
+2. **Performance Issues**: Lower rendering quality or reduce environment complexity
+3. **Sensor Problems**: Verify sensor placement and configuration
+
+### Support Resources
+- NVIDIA Isaac Sim Documentation
+- Project GitHub Repository
+- Community Forums
+
+## Advanced Topics
+
+### Custom Robot Models
+- Import URDF/USD robot models
+- Configure joint properties and limits
+- Validate kinematic and dynamic properties
+
+### Advanced RL Training
+- Implement curriculum learning
+- Use domain randomization techniques
+- Deploy trained policies to real robots
+
+---
+
+**Document Version:** 1.0
+**Last Updated:** {datetime.now().strftime('%Y-%m-%d')}
+        """
+
+        # Save guide to file
+        guide_path = os.path.join(self.documentation_path, "implementation_guide.md")
+        with open(guide_path, 'w') as f:
+            f.write(guide_content)
+
+        print(f"Implementation guide saved to: {guide_path}")
+        return guide_path
+
+    def _get_physics_config_guide(self):
+        """Get physics configuration guide"""
+
+        return """
+- Set appropriate solver iterations (8-16 for stability)
+- Configure contact offsets (0.001-0.002m)
+- Enable GPU dynamics for acceleration
+- Adjust damping values for stable control
+"""
+
+    def _get_sensor_config_guide(self):
+        """Get sensor configuration guide"""
+
+        return """
+- Position sensors appropriately on the robot
+- Configure update frequencies for each sensor type
+- Verify sensor data collection and synchronization
+- Implement sensor fusion algorithms
+"""
+
+    def _get_rl_config_guide(self):
+        """Get RL configuration guide"""
+
+        return """
+- Define appropriate action and observation spaces
+- Create meaningful reward functions
+- Configure network architectures and hyperparameters
+- Implement proper training loops and monitoring
+"""
+
+    def save_project_artifacts(self, project, performance_results, test_results):
+        """Save project artifacts including configurations and results"""
+
+        print("Saving project artifacts...")
+
+        # Save project configuration
+        config_path = os.path.join(self.documentation_path, "project_config.json")
+        with open(config_path, 'w') as f:
+            json.dump(project.config, f, indent=2)
+
+        # Save performance results
+        perf_path = os.path.join(self.documentation_path, "performance_results.json")
+        with open(perf_path, 'w') as f:
+            json.dump(performance_results, f, indent=2)
+
+        # Save test results
+        test_path = os.path.join(self.documentation_path, "test_results.json")
+        with open(test_path, 'w') as f:
+            json.dump(test_results, f, indent=2)
+
+        print("Project artifacts saved successfully")
+
+def document_project(project, performance_results, test_results):
+    """Generate complete documentation for the project"""
+
+    print("Generating complete project documentation...")
+
+    # Create documentation instance
+    doc_system = ProjectDocumentation()
+
+    # Get project summary
+    project_summary = project.get_setup_summary()
+
+    # Generate technical report
+    report_path = doc_system.generate_technical_report(
+        project_summary,
+        performance_results,
+        test_results
+    )
+
+    # Generate implementation guide
+    guide_path = doc_system.generate_implementation_guide(project)
+
+    # Save project artifacts
+    doc_system.save_project_artifacts(project, performance_results, test_results)
+
+    print("Complete project documentation generated successfully")
+    print(f"Technical Report: {report_path}")
+    print(f"Implementation Guide: {guide_path}")
+
+    return doc_system
+```
+
+## Project Execution and Integration
+
+### Main Project Execution
+
+```python
+#!/usr/bin/env python3
+"""
+Main execution script for the Isaac Sim Humanoid Robotics Project
+"""
+def execute_complete_project():
+    """Execute the complete Isaac Sim project"""
+
+    print("="*60)
+    print("ISAAC SIM HUMANOID ROBOTICS PROJECT")
+    print("="*60)
+    print("Executing complete project implementation...")
+    print()
+
+    # Step 1: Environment Setup
+    print("Step 1: Environment Setup")
+    print("-" * 30)
+    project = run_project_setup()
+    print()
+
+    # Step 2: Physics Configuration
+    print("Step 2: Physics Configuration")
+    print("-" * 30)
+    configure_project_physics(project)
+    print()
+
+    # Step 3: Sensor Integration
+    print("Step 3: Sensor Integration")
+    print("-" * 30)
+    sensor_integration, sensor_validation = integrate_project_sensors(project)
+    print(f"Sensor validation results: {sensor_validation}")
+    print()
+
+    # Step 4: Reinforcement Learning Setup
+    print("Step 4: Reinforcement Learning Setup")
+    print("-" * 30)
+    rl_setup = setup_project_rl(project)
+    print()
+
+    # Step 5: Performance Optimization and Testing
+    print("Step 5: Performance Optimization and Testing")
+    print("-" * 30)
+    optimizer, perf_results, func_results, perf_report = optimize_and_test_project(project)
+    print()
+
+    # Step 6: Documentation
+    print("Step 6: Documentation and Reporting")
+    print("-" * 30)
+    documentation = document_project(project, perf_results, func_results)
+    print()
+
+    # Project Summary
+    print("="*60)
+    print("PROJECT EXECUTION SUMMARY")
+    print("="*60)
+
+    print(f"✓ Environment Setup: Completed")
+    print(f"✓ Physics Configuration: Completed")
+    print(f"✓ Sensor Integration: Validated ({len(project.sensors)} sensors)")
+    print(f"✓ RL Setup: Configured")
+    print(f"✓ Performance Testing: Completed (Avg FPS: {perf_results.get('avg_fps', 'N/A'):.2f})")
+    print(f"✓ Documentation: Generated")
+
+    print()
+    print("Functional Test Results:")
+    for test, result in func_results.items():
+        status = "✅ PASS" if result is True else ("❌ FAIL" if result is False else f"⚠️ {result}")
+        print(f"  - {test}: {status}")
+
+    print()
+    print("Performance Metrics:")
+    for metric, value in perf_results.items():
+        print(f"  - {metric}: {value}")
+
+    print()
+    print("Project documentation available in: project_documentation/")
+    print("Review technical_report.md and implementation_guide.md for details")
+    print()
+    print("ISAAC SIM HUMANOID ROBOTICS PROJECT COMPLETED SUCCESSFULLY!")
+    print("="*60)
+
+    return {
+        'project': project,
+        'sensor_integration': sensor_integration,
+        'rl_setup': rl_setup,
+        'optimizer': optimizer,
+        'documentation': documentation
+    }
+
+if __name__ == "__main__":
+    # Execute the complete project
+    project_results = execute_complete_project()
+```
+
+## Assessment Criteria
+
+### Evaluation Rubric
+
+The project will be evaluated based on the following criteria:
+
+1. **Technical Implementation (40%)**
+   - Correct setup of Isaac Sim environment
+   - Proper physics configuration
+   - Successful sensor integration
+   - Performance optimization applied
+
+2. **Functionality (30%)**
+   - All components work together seamlessly
+   - Proper data collection and processing
+   - Stable simulation performance
+   - Valid test results
+
+3. **Documentation (20%)**
+   - Complete technical report
+   - Clear implementation guide
+   - Proper code documentation
+   - Performance analysis
+
+4. **Innovation and Problem-Solving (10%)**
+   - Creative solutions to challenges
+   - Effective optimization techniques
+   - Advanced feature implementation
+
+## Conclusion
+
+This final project demonstrates comprehensive understanding of NVIDIA Isaac Sim for humanoid robotics applications. Students have successfully integrated physics simulation, sensor systems, and reinforcement learning in a performance-optimized environment, providing a solid foundation for advanced robotics research and development.
+
+The project showcases the practical application of all concepts covered in Module 3, from basic environment setup to advanced performance optimization, preparing students for real-world robotics development challenges.

@@ -1,0 +1,134 @@
+{
+  "title": {
+    "message": "ہیومنوڈ روبوٹکس کا منظر نامہ",
+    "description": "The title for the humanoid robotics landscape page"
+  },
+  "description": {
+    "message": "ہیومنوڈ روبوٹکس میں موجودہ ترقیات اور مستقبل کی ممکنہ صورت حال کا جائزہ",
+    "description": "The description for the humanoid robotics landscape page"
+  },
+  "sidebar.label": {
+    "message": "ہیومنوڈ روبوٹکس کا منظر نامہ",
+    "description": "The label for the sidebar entry"
+  },
+  "frontMatter.title": {
+    "message": "ہیومنوڈ روبوٹکس کا منظر نامہ",
+    "description": "The front matter title for the page"
+  },
+  "content.title": {
+    "message": "ہیومنوڈ روبوٹکس کا منظر نامہ",
+    "description": "The main content title"
+  },
+  "content.h2.1": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Learning objectives heading"
+  },
+  "content.h2.2": {
+    "message": "ہیومنوڈ روبوٹکس کا تعارف",
+    "description": "Introduction to humanoid robotics heading"
+  },
+  "content.h2.3": {
+    "message": "موجودہ حالت فن",
+    "description": "State of the art heading"
+  },
+  "content.h2.4": {
+    "message": "ہیومنوڈ روبوٹکس میں تکنیکی چیلنجز",
+    "description": "Technical challenges in humanoid robotics heading"
+  },
+  "content.h2.5": {
+    "message": "ہیومنوڈ روبوٹس کی ایپلی کیشنز",
+    "description": "Humanoid robot applications heading"
+  },
+  "content.h2.6": {
+    "message": "نظریاتی بنیاد: ہیومنوڈ روبوٹ سسٹم",
+    "description": "Theoretical foundation of humanoid robot systems heading"
+  },
+  "content.h2.7": {
+    "message": "مستقبل کے رجحانات اور تحقیقی سمتیں",
+    "description": "Future trends and research directions heading"
+  },
+  "content.h2.8": {
+    "message": "عام مسائل کا حل",
+    "description": "Common problems solutions heading"
+  },
+  "content.h2.9": {
+    "message": "مزید سیکھنے کے لیے وسائل",
+    "description": "Further learning resources heading"
+  },
+  "content.h2.10": {
+    "message": "خلاصہ",
+    "description": "Summary heading"
+  },
+  "content.h3.1": {
+    "message": "ہیومنوڈ روبوٹس کی کلیدی خصوصیات",
+    "description": "Key characteristics of humanoid robots heading"
+  },
+  "content.h3.2": {
+    "message": "اہم ہیومنوڈ روبوٹ پلیٹ فارمز",
+    "description": "Key humanoid robot platforms heading"
+  },
+  "content.h3.3": {
+    "message": "1. توازن اور لوکوموشن",
+    "description": "Balance and locomotion heading"
+  },
+  "content.h3.4": {
+    "message": "2. مینوپولیشن اور چستی",
+    "description": "Manipulation and dexterity heading"
+  },
+  "content.h3.5": {
+    "message": "3. تاثر اور ماحولیاتی سمجھ",
+    "description": "Perception and environmental understanding heading"
+  },
+  "content.h3.6": {
+    "message": "1. سروس اور ہسپتالٹی",
+    "description": "Service and hospitality applications heading"
+  },
+  "content.h3.7": {
+    "message": "2. صحت کی دیکھ بھال اور بزرگ دیکھ بھال",
+    "description": "Healthcare and elderly care applications heading"
+  },
+  "content.h3.8": {
+    "message": "3. صنعتی اور مینوفیکچرنگ",
+    "description": "Industrial and manufacturing applications heading"
+  },
+  "content.h3.9": {
+    "message": "4. تعلیم اور تحقیق",
+    "description": "Education and research applications heading"
+  },
+  "content.h3.10": {
+    "message": "5. آفت سے نمٹنے کے لیے",
+    "description": "Disaster response applications heading"
+  },
+  "content.h3.11": {
+    "message": "ہیومنوڈ روبوٹ کے کلیدی اجزاء",
+    "description": "Key components of humanoid robots heading"
+  },
+  "content.h3.12": {
+    "message": "توازن اور لوکوموشن کنٹرول",
+    "description": "Balance and locomotion control heading"
+  },
+  "content.h3.13": {
+    "message": "مینوپولیشن اور چستی",
+    "description": "Manipulation and dexterity heading"
+  },
+  "content.h3.14": {
+    "message": "متعدد روبوٹ کوآرڈی نیشن",
+    "description": "Multi-robot coordination heading"
+  },
+  "content.h3.15": {
+    "message": "1. ای آئی انضمام",
+    "description": "AI integration heading"
+  },
+  "content.h3.16": {
+    "message": "2. مواد اور ایکٹو ایٹرز",
+    "description": "Materials and actuators heading"
+  },
+  "content.h3.17": {
+    "message": "3. انرجی کارآمدی",
+    "description": "Energy efficiency heading"
+  },
+  "content.h3.18": {
+    "message": "4. سوشل انضمام",
+    "description": "Social integration heading"
+  }
+}

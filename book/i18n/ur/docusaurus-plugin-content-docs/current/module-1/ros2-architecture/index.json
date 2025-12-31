@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "ROS 2 آرکیٹیکچر",
+    "description": "The title for ROS 2 Architecture page"
+  },
+  "description": {
+    "message": "ROS 2 کی بنیادی تصورات اور ڈیزائن اصولوں کو سمجھنا",
+    "description": "The description for ROS 2 Architecture page"
+  },
+  "sidebar.label": {
+    "message": "ROS 2 آرکیٹیکچر",
+    "description": "The label for ROS 2 Architecture in the sidebar"
+  },
+  "content.title": {
+    "message": "ROS 2 آرکیٹیکچر",
+    "description": "Main content title for ROS 2 Architecture"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.architecture-overview": {
+    "message": "آرکیٹیکچر کا جائزہ",
+    "description": "Heading for Architecture Overview section"
+  },
+  "content.heading.middleware-layer": {
+    "message": "مڈل ویئر لیئر",
+    "description": "Heading for Middleware Layer section"
+  },
+  "content.heading.client-libraries": {
+    "message": "کلائنٹ لائبریریز",
+    "description": "Heading for Client Libraries section"
+  },
+  "content.heading.lifecycle": {
+    "message": "لائف سائیکل",
+    "description": "Heading for Lifecycle section"
+  },
+  "content.heading.quality-of-service": {
+    "message": "سروس کی معیار",
+    "description": "Heading for Quality of Service section"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "Nodes، Topics، اور Services",
+    "description": "The title for Nodes, Topics, and Services page"
+  },
+  "description": {
+    "message": "ROS 2 مواصلات کے نمونوں کو سمجھنا: Nodes، Topics، اور Services",
+    "description": "The description for Nodes, Topics, and Services page"
+  },
+  "sidebar.label": {
+    "message": "Nodes، Topics، اور Services",
+    "description": "The label for Nodes, Topics, and Services in the sidebar"
+  },
+  "content.title": {
+    "message": "Nodes، Topics، اور Services",
+    "description": "Main content title for Nodes, Topics, and Services"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.nodes-overview": {
+    "message": "Nodes کا جائزہ",
+    "description": "Heading for Nodes Overview section"
+  },
+  "content.heading.topics-and-publishers": {
+    "message": "Topics اور Publishers",
+    "description": "Heading for Topics and Publishers section"
+  },
+  "content.heading.services": {
+    "message": "Services",
+    "description": "Heading for Services section"
+  },
+  "content.heading.communication-patterns": {
+    "message": "مواصلاتی نمونے",
+    "description": "Heading for Communication Patterns section"
+  },
+  "content.heading.practical-examples": {
+    "message": "عملی مثالیں",
+    "description": "Heading for Practical Examples section"
+  }
+}

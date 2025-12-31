@@ -1,0 +1,50 @@
+{
+  "title": {
+    "message": "روبوٹک نروس سسٹم - ROS 2",
+    "description": "The title for Module 1"
+  },
+  "description": {
+    "message": "ROS 2 (روبوٹ آپریٹنگ سسٹم 2) کا تعارف، جو جدید روبوٹکس کا ایک مرکزی جزو ہے",
+    "description": "The description for Module 1"
+  },
+  "sidebar.label": {
+    "message": "روبوٹک نروس سسٹم - ROS 2",
+    "description": "The label for Module 1 in the sidebar"
+  },
+  "front_matter.title": {
+    "message": "ماڈیول 1: روبوٹک نروس سسٹم - ROS 2",
+    "description": "Front matter title for Module 1"
+  },
+  "content.title": {
+    "message": "ماڈیول 1: روبوٹک نروس سسٹم - ROS 2",
+    "description": "Main content title for Module 1"
+  },
+  "content.heading.introduction-to-ros-2": {
+    "message": "ROS 2 کا تعارف",
+    "description": "Heading for Introduction to ROS 2 section"
+  },
+  "content.subheading.what-is-ros-2": {
+    "message": "ROS 2 کیا ہے؟",
+    "description": "Subheading for What is ROS 2 section"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.module-structure": {
+    "message": "ماڈیول کی ساخت",
+    "description": "Heading for Module Structure section"
+  },
+  "content.heading.prerequisites": {
+    "message": "ضروریات",
+    "description": "Heading for Prerequisites section"
+  },
+  "content.heading.assessment-project": {
+    "message": "جائزہ پروجیکٹ",
+    "description": "Heading for Assessment Project section"
+  },
+  "content.heading.next-module": {
+    "message": "اگلا ماڈیول",
+    "description": "Heading for Next Module section"
+  }
+}

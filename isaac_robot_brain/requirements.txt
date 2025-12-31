@@ -1,0 +1,36 @@
+# ROS 2 Humble Dependencies
+rclpy>=3.0.0
+ros2cli>=0.9.0
+sensor_msgs>=4.0.0
+geometry_msgs>=4.0.0
+std_msgs>=4.0.0
+nav_msgs>=4.0.0
+
+# OpenAI Whisper for Voice Processing
+openai-whisper>=20230306
+torch>=1.13.0
+torchaudio>=0.13.0
+
+# OpenAI GPT for Language Understanding
+openai>=1.0.0
+tiktoken>=0.3.0
+
+# Computer Vision Libraries
+opencv-python>=4.8.0
+numpy>=1.21.0
+Pillow>=9.0.0
+torchvision>=0.14.0
+
+# Object Detection (YOLO/Detectron2)
+ultralytics>=8.0.0  # For YOLOv8
+# Alternative: detectron2>=0.6  # Uncomment if using Detectron2 instead of YOLO
+
+# ROS 2 Action Libraries
+action_msgs>=1.0.0
+builtin_interfaces>=1.0.0
+
+# Additional Utilities
+pyyaml>=6.0
+requests>=2.28.0
+asyncio>=3.4.3
+python-dotenv>=1.0.0

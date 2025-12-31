@@ -1,0 +1,27 @@
+```mermaid
+sequenceDiagram
+    participant User
+    participant VP as Voice Processing
+    participant LU as Language Understanding
+    participant CV as Computer Vision
+    participant AE as Action Execution
+    participant AI as AI Models
+    participant KB as Knowledge Base
+    participant RH as Robot Hardware
+
+    User->>VP: Speak Command ("Pick up the red ball")
+    VP->>AI: Request Speech-to-Text
+    AI-->>VP: Transcribed Text
+    VP-->>LU: Processed Text Command
+    LU->>KB: Query Context/Knowledge
+    KB-->>LU: Relevant Information
+    LU->>CV: Request Scene Analysis
+    CV->>AI: Request Object Detection
+    AI-->>CV: Detected Objects
+    CV-->>LU: Visual Context ("Red ball at position X,Y")
+    LU->>LU: Generate Action Plan
+    LU-->>AE: Action Plan ("Move to X,Y and grasp")
+    AE->>RH: Execute Motor Commands
+    RH-->>AE: Execution Status
+    AE-->>User: Completion Feedback
+```

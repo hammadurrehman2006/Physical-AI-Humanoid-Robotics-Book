@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "Python-rclpy برج",
+    "description": "The title for Python-rclpy Bridge page"
+  },
+  "description": {
+    "message": "Python ایجنٹس کو ROS کنٹرولرز سے منسلک کرنا سیکھیں",
+    "description": "The description for Python-rclpy Bridge page"
+  },
+  "sidebar.label": {
+    "message": "Python-rclpy برج",
+    "description": "The label for Python-rclpy Bridge in the sidebar"
+  },
+  "content.title": {
+    "message": "Python-rclpy برج",
+    "description": "Main content title for Python-rclpy Bridge"
+  },
+  "content.heading.learning-objectives": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Heading for Learning Objectives section"
+  },
+  "content.heading.rclpy-introduction": {
+    "message": "rclpy تعارف",
+    "description": "Heading for rclpy Introduction section"
+  },
+  "content.heading.node-creation": {
+    "message": "Node تخلیق",
+    "description": "Heading for Node Creation section"
+  },
+  "content.heading.topic-subscription": {
+    "message": "Topic سبسکرپشن",
+    "description": "Heading for Topic Subscription section"
+  },
+  "content.heading.service-calls": {
+    "message": "Service کالز",
+    "description": "Heading for Service Calls section"
+  },
+  "content.heading.best-practices": {
+    "message": "بہترین طریقے",
+    "description": "Heading for Best Practices section"
+  }
+}

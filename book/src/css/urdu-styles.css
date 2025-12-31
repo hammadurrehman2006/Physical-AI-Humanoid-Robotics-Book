@@ -1,0 +1,20 @@
+/* Urdu-specific styles with LTR layout enforcement */
+.urdu-text-renderer {
+  font-family: 'Jameel Noori Nastaleeq', 'Jameel Noori Nastaleeq Kasheeda', 'Gulzar', 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Noto Sans Urdu', serif;
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: embed;
+}
+
+/* Ensure all nested elements maintain LTR layout */
+.urdu-text-renderer * {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Specific styling for Urdu text to ensure proper display with LTR layout */
+.urdu-text {
+  font-size: 1.1em;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}

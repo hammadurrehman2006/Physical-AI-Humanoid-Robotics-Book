@@ -1,0 +1,8 @@
+{
+  "label": "URDF برائے ہیومنوائڈز",
+  "position": 7,
+  "link": {
+    "type": "doc",
+    "id": "module-1/urdf-humanoids/index"
+  }
+}

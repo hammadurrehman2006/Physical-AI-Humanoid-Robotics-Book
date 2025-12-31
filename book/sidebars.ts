@@ -127,6 +127,180 @@ const sidebars: SidebarsConfig = {
         type: 'doc',
         id: 'module-2/index',
       },
+    },
+    {
+      type: 'category',
+      label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac™)',
+      items: [
+        'module-3/introduction/index',
+        'module-3/introduction/isaac-sim-overview',
+        'module-3/introduction/prerequisites',
+        'module-3/introduction/validation-framework',
+        {
+          type: 'category',
+          label: 'Phase 1: Installation & Setup',
+          items: [
+            'module-3/phase-1-installation/isaac-sim-installation',
+            'module-3/phase-1-installation/hardware-requirements',
+            'module-3/phase-1-installation/gpu-requirements',
+            'module-3/phase-1-installation/jetson-agx-orin-platform',
+            'module-3/phase-1-installation/omniverse-compatibility',
+            'module-3/phase-1-installation/sdk-integration',
+            'module-3/phase-1-installation/environment-setup'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Phase 2: Scene Creation',
+          items: [
+            'module-3/phase-2-scene-creation/index',
+            'module-3/phase-2-scene-creation/photorealistic-scenes',
+            'module-3/phase-2-scene-creation/physics-configuration',
+            'module-3/phase-2-scene-creation/robot-integration'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Phase 3: Sensor Simulation',
+          items: [
+            'module-3/phase-3-sensor-simulation/sensor-configuration',
+            'module-3/phase-3-sensor-simulation/data-generation',
+            'module-3/phase-3-sensor-simulation/domain-randomization'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Phase 4: RL Infrastructure',
+          items: [
+            'module-3/phase-4-rl-infrastructure/rl-setup',
+            'module-3/phase-4-rl-infrastructure/training-environments',
+            'module-3/phase-4-rl-infrastructure/performance-optimization'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Phase 5: Visualization & Debugging Tools',
+          items: [
+            'module-3/phase-11-visualization-debugging-tools/visualization-and-debugging-tools'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Phase 6: Performance Optimization',
+          items: [
+            'module-3/phase-12-performance-optimization/index',
+            'module-3/phase-12-performance-optimization/isaac-sim-performance-optimization',
+            'module-3/phase-12-performance-optimization/quick-reference',
+            'module-3/phase-12-performance-optimization/practical-exercises'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Module 3 Assessment Project',
+          items: [
+            'module-3/assessment/final-project'
+          ]
+        }
+      ],
+      link: {
+        type: 'doc',
+        id: 'module-3/index',
+      },
+    },
+    {
+      type: 'category',
+      label: 'Module 4: Vision-Language-Action (VLA)',
+      items: [
+        'module-4/diagrams/vla-architecture-documentation',
+        {
+          type: 'category',
+          label: 'Voice Processing Setup',
+          items: [
+            'module-4/voice-processing/index',
+            'module-4/voice-processing/setup-tutorial',
+            'module-4/voice-processing/examples',
+            {
+              type: 'category',
+              label: 'Exercises',
+              items: [
+                'module-4/voice-processing/exercise-1-voice-recognition-testing',
+                'module-4/voice-processing/exercise-2-whisper-optimization',
+                'module-4/voice-processing/exercise-3-troubleshooting',
+                'module-4/voice-processing/exercises/audio-input-setup',
+                'module-4/voice-processing/exercises/audio-preprocessing',
+                'module-4/voice-processing/exercises/speech-recognition',
+                'module-4/voice-processing/exercises/voice-command-parsing',
+              ]
+            }
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Language Understanding',
+          items: [
+            'module-4/language-understanding/index',
+            'module-4/language-understanding/vision-examples',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Computer Vision Integration',
+          items: [
+            'module-4/computer-vision/index',
+            'module-4/computer-vision/exercises/object-detection',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Action Execution',
+          items: [
+            'module-4/action-execution/index',
+            'module-4/action-execution/exercises/action-planning',
+            'module-4/action-execution/exercises/robot-control',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Multi-Modal Fusion',
+          items: [
+            'module-4/multi-modal-fusion/index',
+            'module-4/multi-modal-fusion/exercises/cross-modal-attention',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Integration and Testing',
+          items: [
+            'module-4/integration/index',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Performance Optimization',
+          items: [
+            'module-4/optimization/index',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Advanced Applications and Deployment',
+          items: [
+            'module-4/applications/index',
+            'module-4/applications/ENHANCEMENT_SUMMARY',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Module 4 Assessment Project',
+          items: [
+            'module-4/assessment/final-project'
+          ]
+        }
+      ],
+      link: {
+        type: 'doc',
+        id: 'module-4/index',
+      },
     }
   ],
 };

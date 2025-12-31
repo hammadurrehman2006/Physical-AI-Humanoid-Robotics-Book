@@ -1,0 +1,50 @@
+{
+  "title": {
+    "message": "فزیکل ای آئی میں خوش آمدید",
+    "description": "The title for the intro overview page"
+  },
+  "description": {
+    "message": "فزیکل ای آئی اور ہیومنوڈ روبوٹکس پر جامع گائیڈ میں خوش آمدید۔ یہ کتاب آپ کو ڈیجیٹل مصنوعی ذہانت اور جسمانی نظاموں میں امبدڈ انٹیلی جنس کے درمیان فرق کو پانے میں مدد کے لیے تیار کی گئی ہے۔",
+    "description": "The description for the intro overview page"
+  },
+  "sidebar.label": {
+    "message": "فزیکل ای آئی میں خوش آمدید",
+    "description": "The label for the sidebar entry"
+  },
+  "slug": {
+    "message": "/intro",
+    "description": "The URL slug for the page"
+  },
+  "frontMatter.title": {
+    "message": "فزیکل ای آئی میں خوش آمدید: ڈیجیٹل ای آئی اور امبدڈ انٹیلی جنس کے درمیان پل",
+    "description": "The front matter title for the page"
+  },
+  "content.title": {
+    "message": "فزیکل ای آئی میں خوش آمدید: ڈیجیٹل ای آئی اور امبدڈ انٹیلی جنس کے درمیان پل",
+    "description": "The main content title"
+  },
+  "content.h2.1": {
+    "message": "تعارف",
+    "description": "Introduction heading"
+  },
+  "content.h3.1": {
+    "message": "فزیکل ای آئی کیا ہے؟",
+    "description": "What is Physical AI heading"
+  },
+  "content.h3.2": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Learning objectives heading"
+  },
+  "content.h3.3": {
+    "message": "ہدف کا شمارہ",
+    "description": "Target audience heading"
+  },
+  "content.h3.4": {
+    "message": "ضروریات",
+    "description": "Prerequisites heading"
+  },
+  "content.h3.5": {
+    "message": "اس کتاب کے بارے میں",
+    "description": "About this book heading"
+  }
+}

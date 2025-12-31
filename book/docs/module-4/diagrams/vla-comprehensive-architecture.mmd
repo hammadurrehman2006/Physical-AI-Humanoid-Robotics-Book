@@ -1,0 +1,103 @@
+```mermaid
+graph TB
+    %% Input Sources
+    subgraph "Input Sources"
+        A["🎤 Voice/Speech"]
+        B["📷 Camera/Video"]
+        C["📡 Sensors"]
+    end
+
+    %% Processing Modules
+    subgraph "VLA Processing Modules"
+        subgraph "Voice Processing Layer"
+            VP1["🎤 Audio Preprocessing"]
+            VP2["🗣️ Speech Recognition"]
+            VP3["💬 Text Processing"]
+        end
+
+        subgraph "Language Understanding Layer"
+            LU1["🧠 NLP Processing"]
+            LU2["🎯 Intent Recognition"]
+            LU3["📋 Semantic Analysis"]
+        end
+
+        subgraph "Computer Vision Layer"
+            CV1["🔍 Image Processing"]
+            CV2["👁️ Object Detection"]
+            CV3["🗺️ Scene Understanding"]
+        end
+
+        subgraph "Action Execution Layer"
+            AE1["⚙️ Motion Planning"]
+            AE2["🦾 Motor Control"]
+            AE3["🔄 Feedback Processing"]
+        end
+    end
+
+    %% Data Stores & External Services
+    subgraph "Knowledge & Services"
+        KB["📚 Knowledge Base"]
+        AI["🤖 AI Models & APIs"]
+        DM["💾 Data Management"]
+    end
+
+    %% Output
+    subgraph "Robot Actuators"
+        RA["🦵 Motor Actions"]
+        RF["📡 Feedback Systems"]
+    end
+
+    %% Connections
+    A --> VP1
+    VP1 --> VP2
+    VP2 --> VP3
+    VP3 --> LU1
+    VP3 --> DM
+
+    B --> CV1
+    CV1 --> CV2
+    CV2 --> CV3
+    CV3 --> DM
+
+    C --> AE3
+    AE3 --> AE2
+    AE2 --> RA
+
+    LU1 --> LU2
+    LU2 --> LU3
+    LU3 --> AE1
+    LU3 --> KB
+
+    CV3 --> LU1
+    LU2 --> AE1
+
+    AE1 --> AE2
+    AE1 --> AE3
+
+    KB --> LU1
+    KB --> LU2
+    KB --> LU3
+
+    AI --> VP2
+    AI --> LU1
+    AI --> CV2
+    AI --> AE1
+
+    DM --> LU1
+    DM --> CV1
+    DM --> AE1
+
+    AE2 --> RF
+    RF --> AE3
+
+    %% Styling
+    classDef inputStyle fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef processingStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef dataStyle fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef outputStyle fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+
+    class A,B,C inputStyle
+    class VP1,VP2,VP3,LU1,LU2,LU3,CV1,CV2,CV3,AE1,AE2,AE3 processingStyle
+    class KB,AI,DM dataStyle
+    class RA,RF outputStyle
+```

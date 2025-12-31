@@ -1,0 +1,1681 @@
+openapi: 3.0.0
+info:
+  title: NVIDIA Isaac AI Robot Brain API
+  description: API for controlling and monitoring the NVIDIA Isaac-based AI Robot Brain system
+  version: 1.0.0
+  contact:
+    name: Physical AI & Humanoid Robotics Team
+    email: robotics@physical-ai.org
+
+servers:
+  - url: http://localhost:8080
+    description: Development server
+  - url: https://isaac-robot-api.example.com
+    description: Production server
+
+paths:
+  /isaac-sim/environments:
+    get:
+      summary: List available simulation environments
+      description: Retrieve a list of all available Isaac Sim environments
+      responses:
+        '200':
+          description: List of simulation environments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IsaacSimEnvironment'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Create a new simulation environment
+      description: Create a new Isaac Sim environment with specified configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IsaacSimEnvironment'
+      responses:
+        '201':
+          description: Environment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsaacSimEnvironment'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /isaac-sim/environments/{envId}:
+    get:
+      summary: Get simulation environment details
+      description: Retrieve detailed information about a specific simulation environment
+      parameters:
+        - name: envId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Environment ID
+      responses:
+        '200':
+          description: Environment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsaacSimEnvironment'
+        '404':
+          description: Environment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      summary: Update simulation environment
+      description: Update an existing simulation environment configuration
+      parameters:
+        - name: envId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Environment ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IsaacSimEnvironment'
+      responses:
+        '200':
+          description: Environment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsaacSimEnvironment'
+        '404':
+          description: Environment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      summary: Delete simulation environment
+      description: Delete a specific simulation environment
+      parameters:
+        - name: envId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Environment ID
+      responses:
+        '204':
+          description: Environment deleted successfully
+        '404':
+          description: Environment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /vslam/config:
+    get:
+      summary: Get VSLAM configuration
+      description: Retrieve current VSLAM configuration
+      responses:
+        '200':
+          description: VSLAM configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAMConfig'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      summary: Update VSLAM configuration
+      description: Update VSLAM algorithm configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VSLAMConfig'
+      responses:
+        '200':
+          description: VSLAM configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAMConfig'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /vslam/start:
+    post:
+      summary: Start VSLAM algorithm
+      description: Start the VSLAM algorithm with current configuration
+      responses:
+        '200':
+          description: VSLAM started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "running"
+                  session_id:
+                    type: string
+                    example: "vslam-session-123"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /vslam/stop:
+    post:
+      summary: Stop VSLAM algorithm
+      description: Stop the currently running VSLAM algorithm
+      responses:
+        '200':
+          description: VSLAM stopped successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "stopped"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /vslam/result:
+    get:
+      summary: Get latest VSLAM result
+      description: Retrieve the most recent VSLAM result
+      responses:
+        '200':
+          description: Latest VSLAM result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAMResult'
+        '404':
+          description: No VSLAM result available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /navigation/config:
+    get:
+      summary: Get navigation configuration
+      description: Retrieve current navigation configuration
+      responses:
+        '200':
+          description: Navigation configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nav2Config'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      summary: Update navigation configuration
+      description: Update navigation algorithm configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nav2Config'
+      responses:
+        '200':
+          description: Navigation configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nav2Config'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /navigation/goal:
+    post:
+      summary: Set navigation goal
+      description: Set a navigation goal for the robot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NavigationGoal'
+      responses:
+        '200':
+          description: Navigation goal set successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationResult'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /navigation/cancel:
+    post:
+      summary: Cancel current navigation goal
+      description: Cancel the currently executing navigation goal
+      responses:
+        '200':
+          description: Navigation goal cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "cancelled"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /perception/pipeline:
+    get:
+      summary: List perception pipelines
+      description: Retrieve a list of all available perception pipelines
+      responses:
+        '200':
+          description: List of perception pipelines
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PerceptionPipeline'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Create a new perception pipeline
+      description: Create a new perception pipeline with specified configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerceptionPipeline'
+      responses:
+        '201':
+          description: Perception pipeline created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerceptionPipeline'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /perception/start:
+    post:
+      summary: Start perception pipeline
+      description: Start the specified perception pipeline
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pipeline_id:
+                  type: string
+                  description: ID of the pipeline to start
+      responses:
+        '200':
+          description: Perception pipeline started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "running"
+                  session_id:
+                    type: string
+                    example: "perception-session-123"
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /perception/stop:
+    post:
+      summary: Stop perception pipeline
+      description: Stop the currently running perception pipeline
+      responses:
+        '200':
+          description: Perception pipeline stopped successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "stopped"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /perception/result:
+    get:
+      summary: Get latest perception result
+      description: Retrieve the most recent perception result
+      responses:
+        '200':
+          description: Latest perception result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectionResult'
+        '404':
+          description: No perception result available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /safety/constraints:
+    get:
+      summary: Get safety constraints
+      description: Retrieve current safety constraints
+      responses:
+        '200':
+          description: Safety constraints
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SafetyConstraints'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      summary: Update safety constraints
+      description: Update safety constraint parameters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SafetyConstraints'
+      responses:
+        '200':
+          description: Safety constraints updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SafetyConstraints'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /safety/emergency-stop:
+    post:
+      summary: Trigger emergency stop
+      description: Trigger an emergency stop for the robot
+      requestBody:
+        required: false
+      responses:
+        '200':
+          description: Emergency stop triggered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "emergency_stop_activated"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /safety/reset:
+    post:
+      summary: Reset safety system
+      description: Reset the safety system after an emergency stop
+      requestBody:
+        required: false
+      responses:
+        '200':
+          description: Safety system reset successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "safety_reset"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /system/state:
+    get:
+      summary: Get system state
+      description: Retrieve the current state of the entire system
+      responses:
+        '200':
+          description: Current system state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsaacSystemState'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /system/health:
+    get:
+      summary: Get system health
+      description: Retrieve system health metrics
+      responses:
+        '200':
+          description: System health metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemHealth'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    IsaacSimEnvironment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the environment
+          example: "env-001"
+        name:
+          type: string
+          description: Display name for the environment
+          example: "Humanoid Test Arena"
+        description:
+          type: string
+          description: Environment description
+          example: "Testing environment for humanoid robot navigation"
+        physics_config:
+          $ref: '#/components/schemas/PhysicsConfig'
+        rendering_config:
+          $ref: '#/components/schemas/RenderingConfig'
+        robot_models:
+          type: array
+          items:
+            $ref: '#/components/schemas/IsaacRobotModel'
+        sensor_configs:
+          type: array
+          items:
+            $ref: '#/components/schemas/SensorConfig'
+        scene_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/SceneAsset'
+
+    PhysicsConfig:
+      type: object
+      properties:
+        gravity:
+          $ref: '#/components/schemas/Vector3'
+        solver_type:
+          type: string
+          enum: [TGS, PGS]
+          description: Physics solver type
+          example: "TGS"
+        substeps:
+          type: integer
+          description: Number of simulation substeps
+          example: 8
+        fixed_timestep:
+          type: number
+          format: float
+          description: Fixed simulation timestep in seconds
+          example: 0.001
+        max_depenetration_velocity:
+          type: number
+          format: float
+          description: Max velocity for collision resolution
+          example: 10.0
+
+    RenderingConfig:
+      type: object
+      properties:
+        resolution:
+          $ref: '#/components/schemas/Resolution'
+        fps:
+          type: integer
+          description: Target frames per second
+          example: 60
+        shadows:
+          type: boolean
+          description: Enable/disable shadows
+          example: true
+        reflection:
+          type: boolean
+          description: Enable/disable reflections
+          example: true
+        anti_aliasing:
+          type: string
+          enum: [FXAA, TAA, MSAA]
+          description: Anti-aliasing method
+          example: "TAA"
+
+    IsaacRobotModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+          example: "robot-001"
+        name:
+          type: string
+          description: Robot name
+          example: "Atlas Humanoid"
+        urdf_path:
+          type: string
+          description: Path to URDF file
+          example: "/models/atlas/urdf/atlas.urdf"
+        sdf_path:
+          type: string
+          description: Path to SDF file
+          example: "/models/atlas/sdf/atlas.sdf"
+        joint_configs:
+          type: array
+          items:
+            $ref: '#/components/schemas/JointConfig'
+        sensor_configs:
+          type: array
+          items:
+            $ref: '#/components/schemas/SensorConfig'
+        material_properties:
+          $ref: '#/components/schemas/MaterialProperties'
+
+    JointConfig:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Joint name
+          example: "left_knee_joint"
+        type:
+          type: string
+          enum: [revolute, prismatic, fixed, continuous, planar, floating]
+          description: Joint type
+          example: "revolute"
+        limits:
+          $ref: '#/components/schemas/JointLimits'
+        damping:
+          type: number
+          format: float
+          description: Joint damping coefficient
+          example: 0.1
+        friction:
+          type: number
+          format: float
+          description: Joint friction coefficient
+          example: 0.01
+
+    JointLimits:
+      type: object
+      properties:
+        lower:
+          type: number
+          format: float
+          description: Lower position limit
+          example: -1.57
+        upper:
+          type: number
+          format: float
+          description: Upper position limit
+          example: 1.57
+        velocity:
+          type: number
+          format: float
+          description: Max velocity
+          example: 2.0
+        effort:
+          type: number
+          format: float
+          description: Max effort
+          example: 100.0
+
+    SensorConfig:
+      type: object
+      properties:
+        sensor_type:
+          type: string
+          enum: [camera, lidar, imu, depth, rgbd, gps, magnetometer, barometer]
+          description: Sensor type
+          example: "camera"
+        name:
+          type: string
+          description: Sensor name
+          example: "front_camera"
+        position:
+          $ref: '#/components/schemas/Vector3'
+        orientation:
+          $ref: '#/components/schemas/Vector3'
+        parameters:
+          type: object
+          description: Sensor-specific parameters
+
+    Vector3:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+          example: 1.0
+        y:
+          type: number
+          format: float
+          example: 0.0
+        z:
+          type: number
+          format: float
+          example: 0.0
+
+    Resolution:
+      type: object
+      properties:
+        width:
+          type: integer
+          example: 1920
+        height:
+          type: integer
+          example: 1080
+
+    SceneAsset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+          example: "asset-001"
+        name:
+          type: string
+          description: Asset name
+          example: "wooden_table"
+        type:
+          type: string
+          enum: [mesh, light, environment, material]
+          description: Asset type
+          example: "mesh"
+        path:
+          type: string
+          description: File path
+          example: "/assets/furniture/wooden_table.obj"
+        properties:
+          type: object
+          description: Asset-specific properties
+
+    MaterialProperties:
+      type: object
+      properties:
+        color:
+          $ref: '#/components/schemas/Color'
+        metallic:
+          type: number
+          format: float
+          description: Metallic property (0-1)
+          example: 0.2
+        roughness:
+          type: number
+          format: float
+          description: Roughness property (0-1)
+          example: 0.7
+        specular:
+          type: number
+          format: float
+          description: Specular property (0-1)
+          example: 0.5
+
+    Color:
+      type: object
+      properties:
+        r:
+          type: number
+          format: float
+          description: Red (0-1)
+          example: 0.8
+        g:
+          type: number
+          format: float
+          description: Green (0-1)
+          example: 0.2
+        b:
+          type: number
+          format: float
+          description: Blue (0-1)
+          example: 0.1
+        a:
+          type: number
+          format: float
+          description: Alpha (0-1)
+          example: 1.0
+
+    VSLAMConfig:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+          example: "vslam-config-001"
+        algorithm:
+          type: string
+          enum: [ORB-SLAM, VINS-Mono, RTAB-Map, DSO]
+          description: SLAM algorithm
+          example: "ORB-SLAM"
+        camera_params:
+          $ref: '#/components/schemas/CameraParams'
+        tracking_params:
+          $ref: '#/components/schemas/TrackingParams'
+        mapping_params:
+          $ref: '#/components/schemas/MappingParams'
+        optimization_params:
+          $ref: '#/components/schemas/OptimizationParams'
+
+    CameraParams:
+      type: object
+      properties:
+        fx:
+          type: number
+          format: float
+          description: Focal length x
+          example: 525.0
+        fy:
+          type: number
+          format: float
+          description: Focal length y
+          example: 525.0
+        cx:
+          type: number
+          format: float
+          description: Principal point x
+          example: 319.5
+        cy:
+          type: number
+          format: float
+          description: Principal point y
+          example: 239.5
+        k1:
+          type: number
+          format: float
+          description: Radial distortion coefficient
+          example: 0.0
+        k2:
+          type: number
+          format: float
+          description: Radial distortion coefficient
+          example: 0.0
+        p1:
+          type: number
+          format: float
+          description: Tangential distortion coefficient
+          example: 0.0
+        p2:
+          type: number
+          format: float
+          description: Tangential distortion coefficient
+          example: 0.0
+        resolution:
+          $ref: '#/components/schemas/Resolution'
+
+    TrackingParams:
+      type: object
+      properties:
+        max_features:
+          type: integer
+          description: Maximum features to track
+          example: 1000
+        min_feature_distance:
+          type: number
+          format: float
+          description: Minimum distance between features
+          example: 10.0
+        tracking_threshold:
+          type: number
+          format: float
+          description: Tracking confidence threshold
+          example: 0.7
+        relocalization_threshold:
+          type: number
+          format: float
+          description: Relocalization confidence threshold
+          example: 0.5
+
+    MappingParams:
+      type: object
+      properties:
+        keyframe_threshold:
+          type: number
+          format: float
+          description: Keyframe selection threshold
+          example: 0.1
+        map_size:
+          type: integer
+          description: Maximum map size
+          example: 10000
+        bundle_adjustment:
+          type: boolean
+          description: Enable bundle adjustment
+          example: true
+        loop_closure:
+          type: boolean
+          description: Enable loop closure detection
+          example: true
+
+    OptimizationParams:
+      type: object
+      properties:
+        optimizer_type:
+          type: string
+          enum: [g2o, Ceres]
+          description: Optimizer type
+          example: "g2o"
+        max_iterations:
+          type: integer
+          description: Maximum optimization iterations
+          example: 100
+        convergence_threshold:
+          type: number
+          format: float
+          description: Optimization convergence threshold
+          example: 1e-6
+
+    VSLAMResult:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          format: float
+          description: Timestamp of result
+          example: 1620000000.123
+        position:
+          $ref: '#/components/schemas/Vector3'
+        orientation:
+          $ref: '#/components/schemas/Quaternion'
+        confidence:
+          type: number
+          format: float
+          description: Confidence score
+          example: 0.95
+        keypoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Keypoint'
+        map_points:
+          type: array
+          items:
+            $ref: '#/components/schemas/MapPoint'
+
+    Keypoint:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+          description: Image coordinate x
+          example: 100.5
+        y:
+          type: number
+          format: float
+          description: Image coordinate y
+          example: 200.3
+        descriptor:
+          type: array
+          items:
+            type: number
+            format: float
+          description: Feature descriptor
+        track_id:
+          type: integer
+          description: Tracking ID
+          example: 1234
+
+    MapPoint:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier
+          example: 5678
+        position:
+          $ref: '#/components/schemas/Vector3'
+        color:
+          $ref: '#/components/schemas/Color'
+        observations:
+          type: integer
+          description: Number of observations
+          example: 5
+
+    Quaternion:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+          example: 0.0
+        y:
+          type: number
+          format: float
+          example: 0.0
+        z:
+          type: number
+          format: float
+          example: 0.0
+        w:
+          type: number
+          format: float
+          example: 1.0
+
+    Nav2Config:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+          example: "nav2-config-001"
+        planner_type:
+          type: string
+          enum: [NavFn, GlobalPlanner, TEB, CARL, SmacPlanner]
+          description: Global planner type
+          example: "TEB"
+        controller_type:
+          type: string
+          enum: [DWA, MPC, PID, RPP, LatticePlanner]
+          description: Local controller type
+          example: "DWA"
+        costmap_params:
+          $ref: '#/components/schemas/CostmapParams'
+        global_planner_params:
+          $ref: '#/components/schemas/PlannerParams'
+        local_planner_params:
+          $ref: '#/components/schemas/PlannerParams'
+
+    CostmapParams:
+      type: object
+      properties:
+        resolution:
+          type: number
+          format: float
+          description: Map resolution in meters/cell
+          example: 0.05
+        origin_x:
+          type: number
+          format: float
+          description: Origin offset x
+          example: 0.0
+        origin_y:
+          type: number
+          format: float
+          description: Origin offset y
+          example: 0.0
+        width:
+          type: integer
+          description: Map width in cells
+          example: 200
+        height:
+          type: integer
+          description: Map height in cells
+          example: 200
+        obstacle_range:
+          type: number
+          format: float
+          description: Maximum obstacle detection range
+          example: 2.5
+        raytrace_range:
+          type: number
+          format: float
+          description: Maximum raytrace range
+          example: 3.0
+        footprint:
+          $ref: '#/components/schemas/Polygon'
+        inflation_radius:
+          type: number
+          format: float
+          description: Obstacle inflation radius
+          example: 0.55
+
+    Polygon:
+      type: object
+      properties:
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector2'
+
+    Vector2:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+          example: 0.3
+        y:
+          type: number
+          format: float
+          example: 0.3
+
+    PlannerParams:
+      type: object
+      properties:
+        planner_frequency:
+          type: number
+          format: float
+          description: Planning frequency
+          example: 1.0
+        max_planning_time:
+          type: number
+          format: float
+          description: Maximum planning time
+          example: 5.0
+        use_dijkstra:
+          type: boolean
+          description: Use Dijkstra algorithm
+          example: true
+        use_grid_path:
+          type: boolean
+          description: Use grid path
+          example: false
+
+    NavigationGoal:
+      type: object
+      properties:
+        target_pose:
+          $ref: '#/components/schemas/Pose'
+        behavior_tree:
+          type: string
+          description: Navigation behavior tree
+          example: "navigate_w_replanning_and_recovery"
+        tolerance:
+          type: number
+          format: float
+          description: Goal tolerance
+          example: 0.25
+
+    Pose:
+      type: object
+      properties:
+        position:
+          $ref: '#/components/schemas/Vector3'
+        orientation:
+          $ref: '#/components/schemas/Quaternion'
+
+    NavigationResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [succeeded, failed, in_progress, canceled]
+          description: Navigation status
+          example: "succeeded"
+        path:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pose'
+        execution_time:
+          type: number
+          format: float
+          description: Time to reach goal in seconds
+          example: 15.5
+        distance_traveled:
+          type: number
+          format: float
+          description: Distance traveled in meters
+          example: 3.2
+
+    PerceptionPipeline:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+          example: "pipeline-001"
+        name:
+          type: string
+          description: Pipeline name
+          example: "object_detection_pipeline"
+        sensor_inputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/SensorConfig'
+        processing_modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessingModule'
+        output_formats:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutputFormat'
+
+    ProcessingModule:
+      type: object
+      properties:
+        module_type:
+          type: string
+          enum: [object_detection, segmentation, classification, tracking, feature_extraction]
+          description: Processing module type
+          example: "object_detection"
+        model_path:
+          type: string
+          description: Path to model file
+          example: "/models/yolo/yolo_v8.pt"
+        input_format:
+          type: string
+          description: Input data format
+          example: "rgb_image"
+        output_format:
+          type: string
+          description: Output data format
+          example: "bounding_boxes"
+        confidence_threshold:
+          type: number
+          format: float
+          description: Detection confidence threshold
+          example: 0.5
+
+    OutputFormat:
+      type: object
+      properties:
+        format_type:
+          type: string
+          enum: [bounding_boxes, masks, features, classifications]
+          description: Output format type
+          example: "bounding_boxes"
+        confidence:
+          type: number
+          format: float
+          description: Detection confidence
+          example: 0.85
+        class_id:
+          type: integer
+          description: Object class ID
+          example: 1
+        class_name:
+          type: string
+          description: Object class name
+          example: "person"
+
+    DetectionResult:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          format: float
+          description: Detection timestamp
+          example: 1620000000.456
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetectedObject'
+        confidence_map:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+              format: float
+
+    DetectedObject:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier
+          example: 123
+        class_id:
+          type: integer
+          description: Object class ID
+          example: 1
+        class_name:
+          type: string
+          description: Object class name
+          example: "person"
+        confidence:
+          type: number
+          format: float
+          description: Detection confidence
+          example: 0.89
+        bbox:
+          $ref: '#/components/schemas/BoundingBox'
+        mask:
+          $ref: '#/components/schemas/Mask'
+
+    BoundingBox:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+          description: Top-left corner x
+          example: 100.0
+        y:
+          type: number
+          format: float
+          description: Top-left corner y
+          example: 50.0
+        width:
+          type: number
+          format: float
+          description: Bounding box width
+          example: 200.0
+        height:
+          type: number
+          format: float
+          description: Bounding box height
+          example: 300.0
+
+    Mask:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: array
+            items:
+              type: boolean
+          description: Binary mask data
+        encoding:
+          type: string
+          enum: [rle, uncompressed]
+          description: Mask encoding format
+          example: "rle"
+
+    SafetyConstraints:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+          example: "safety-001"
+        name:
+          type: string
+          description: Constraint set name
+          example: "humanoid_safety_constraints"
+        joint_limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/JointLimits'
+        torque_limits:
+          type: array
+          items:
+            type: number
+            format: float
+          description: Torque constraint limits
+        velocity_limits:
+          type: array
+          items:
+            type: number
+            format: float
+          description: Velocity constraint limits
+        safety_zones:
+          type: array
+          items:
+            $ref: '#/components/schemas/SafetyZone'
+
+    SafetyZone:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+          example: "zone-001"
+        type:
+          type: string
+          enum: [collision, human_interaction, workspace, restricted]
+          description: Safety zone type
+          example: "collision"
+        shape:
+          $ref: '#/components/schemas/GeometricShape'
+        threshold:
+          type: number
+          format: float
+          description: Safety threshold
+          example: 0.5
+        action:
+          type: string
+          enum: [warn, slow_down, stop, emergency_stop]
+          description: Safety action on violation
+          example: "stop"
+
+    GeometricShape:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [sphere, box, cylinder, capsule]
+          description: Shape type
+          example: "sphere"
+        parameters:
+          type: object
+          description: Shape-specific parameters
+
+    IsaacSystemState:
+      type: object
+      properties:
+        timestamp:
+          type: number
+          format: float
+          description: State timestamp
+          example: 1620000000.789
+        robot_state:
+          $ref: '#/components/schemas/RobotState'
+        navigation_state:
+          $ref: '#/components/schemas/NavigationState'
+        perception_state:
+          $ref: '#/components/schemas/PerceptionState'
+        safety_state:
+          $ref: '#/components/schemas/SafetyState'
+        system_health:
+          $ref: '#/components/schemas/SystemHealth'
+
+    RobotState:
+      type: object
+      properties:
+        joint_states:
+          type: array
+          items:
+            $ref: '#/components/schemas/JointState'
+        base_pose:
+          $ref: '#/components/schemas/Pose'
+        base_velocity:
+          $ref: '#/components/schemas/Twist'
+        end_effector_pose:
+          $ref: '#/components/schemas/Pose'
+
+    JointState:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Joint name
+          example: "left_knee_joint"
+        position:
+          type: number
+          format: float
+          description: Joint position
+          example: 0.5
+        velocity:
+          type: number
+          format: float
+          description: Joint velocity
+          example: 0.1
+        effort:
+          type: number
+          format: float
+          description: Joint effort
+          example: 10.0
+
+    Twist:
+      type: object
+      properties:
+        linear:
+          $ref: '#/components/schemas/Vector3'
+        angular:
+          $ref: '#/components/schemas/Vector3'
+
+    NavigationState:
+      type: object
+      properties:
+        current_goal:
+          $ref: '#/components/schemas/NavigationGoal'
+        current_path:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pose'
+        current_pose:
+          $ref: '#/components/schemas/Pose'
+        velocity_commands:
+          $ref: '#/components/schemas/Twist'
+
+    PerceptionState:
+      type: object
+      properties:
+        last_detection:
+          $ref: '#/components/schemas/DetectionResult'
+        tracked_objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackedObject'
+        sensor_data:
+          type: array
+          items:
+            type: object
+            description: Sensor-specific data
+
+    TrackedObject:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Object ID from detection
+          example: 123
+        position:
+          $ref: '#/components/schemas/Vector3'
+        velocity:
+          $ref: '#/components/schemas/Vector3'
+        last_seen:
+          type: number
+          format: float
+          description: Timestamp of last detection
+          example: 1620000000.456
+
+    SafetyState:
+      type: object
+      properties:
+        current_constraints:
+          $ref: '#/components/schemas/SafetyConstraints'
+        safety_events:
+          type: array
+          items:
+            $ref: '#/components/schemas/SafetyEvent'
+        emergency_stop_active:
+          type: boolean
+          description: Whether emergency stop is active
+          example: false
+
+    SystemHealth:
+      type: object
+      properties:
+        cpu_usage:
+          type: number
+          format: float
+          description: CPU usage percentage
+          example: 45.2
+        gpu_usage:
+          type: number
+          format: float
+          description: GPU usage percentage
+          example: 78.5
+        memory_usage:
+          type: number
+          format: float
+          description: Memory usage percentage
+          example: 62.1
+        temperature:
+          type: array
+          items:
+            type: number
+            format: float
+          description: Temperature readings
+        error_count:
+          type: integer
+          description: Number of recent errors
+          example: 0
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Invalid request parameters"
+        code:
+          type: string
+          description: Error code
+          example: "INVALID_PARAMS"
+        details:
+          type: object
+          description: Additional error details

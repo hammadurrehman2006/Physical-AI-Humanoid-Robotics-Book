@@ -1,0 +1,150 @@
+{
+  "version.label": {
+    "message": "اگلا",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Introduction": {
+    "message": "تعارف",
+    "description": "The label for category 'Introduction' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 1: The Robotic Nervous System - ROS 2": {
+    "message": "ماڈیول 1: روبوٹک نروس سسٹم - ROS 2",
+    "description": "The label for category 'Module 1: The Robotic Nervous System - ROS 2' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ROS 2 Architecture": {
+    "message": "ROS 2 آرکیٹیکچر",
+    "description": "The label for category 'ROS 2 Architecture' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Nodes, Topics, and Services": {
+    "message": "Nodes، Topics، اور Services",
+    "description": "The label for category 'Nodes, Topics, and Services' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Actions in Robotic Systems": {
+    "message": "روبوٹک سسٹم میں ایکشنز",
+    "description": "The label for category 'Actions in Robotic Systems' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Python-rclpy Bridge": {
+    "message": "Python-rclpy برج",
+    "description": "The label for category 'Python-rclpy Bridge' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Building ROS 2 Packages": {
+    "message": "ROS 2 پیکجز تیار کرنا",
+    "description": "The label for category 'Building ROS 2 Packages' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Launch Files and Parameters": {
+    "message": "لاؤنچ فائلیں اور پیرامیٹرز",
+    "description": "The label for category 'Launch Files and Parameters' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.URDF for Humanoids": {
+    "message": "URDF برائے ہیومنوائڈز",
+    "description": "The label for category 'URDF for Humanoids' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 1 Assessment": {
+    "message": "ماڈیول 1 جائزہ",
+    "description": "The label for category 'Module 1 Assessment' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 2: The Digital Twin (Gazebo & Unity)": {
+    "message": "مODULE 2: ڈیجیٹل ٹوئن (GAZEBO اور یونٹی)",
+    "description": "The label for category 'Module 2: The Digital Twin (Gazebo & Unity)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.URDF/SDF Formats": {
+    "message": "URDF/SDF فارمیٹس",
+    "description": "The label for category 'URDF/SDF Formats' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Physics Simulation": {
+    "message": "فزکس سیمولیشن",
+    "description": "The label for category 'Physics Simulation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Sensor Simulation": {
+    "message": "سینسر سیمولیشن",
+    "description": "The label for category 'Sensor Simulation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Unity Integration": {
+    "message": "یونٹی انٹیگریشن",
+    "description": "The label for category 'Unity Integration' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Assessment Project": {
+    "message": "ایسیسمنٹ پراجیکٹ",
+    "description": "The label for category 'Assessment Project' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 2 Assessment Project": {
+    "message": "مODULE 2 ایسیسمنٹ پراجیکٹ",
+    "description": "The label for category 'Module 2 Assessment Project' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 3: The AI-Robot Brain (NVIDIA Isaac™)": {
+    "message": "مODULE 3: ای آئی روبوٹ براہین (NVIDIA ISAAC™)",
+    "description": "The label for category 'Module 3: The AI-Robot Brain (NVIDIA Isaac™)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Phase 1: Installation & Setup": {
+    "message": "فیز 1: انسٹالیشن اور سیٹ اپ",
+    "description": "The label for category 'Phase 1: Installation & Setup' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Phase 2: Scene Creation": {
+    "message": "فیز 2: سین تخلیق",
+    "description": "The label for category 'Phase 2: Scene Creation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Phase 3: Sensor Simulation": {
+    "message": "فیز 3: سینسر سیمولیشن",
+    "description": "The label for category 'Phase 3: Sensor Simulation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Phase 4: RL Infrastructure": {
+    "message": "فیز 4: RL انفراسٹرکچر",
+    "description": "The label for category 'Phase 4: RL Infrastructure' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Phase 5: Visualization & Debugging Tools": {
+    "message": "فیز 5: وژولائزیشن اور ڈیبگنگ ٹولز",
+    "description": "The label for category 'Phase 5: Visualization & Debugging Tools' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Phase 6: Performance Optimization": {
+    "message": "فیز 6: کارکردگی کی بہتری",
+    "description": "The label for category 'Phase 6: Performance Optimization' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 3 Assessment Project": {
+    "message": "مODULE 3 ایسیسمنٹ پراجیکٹ",
+    "description": "The label for category 'Module 3 Assessment Project' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 4: Vision-Language-Action (VLA)": {
+    "message": "مODULE 4: وژن لینگویج ایکشن (VLA)",
+    "description": "The label for category 'Module 4: Vision-Language-Action (VLA)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Voice Processing Setup": {
+    "message": "وائس پروسیسنگ سیٹ اپ",
+    "description": "The label for category 'Voice Processing Setup' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Exercises": {
+    "message": "ورک ایکسائز",
+    "description": "The label for category 'Exercises' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Language Understanding": {
+    "message": "لینگویج اندرا سٹینڈنگ",
+    "description": "The label for category 'Language Understanding' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Computer Vision Integration": {
+    "message": "کمپیوٹر وژن انٹیگریشن",
+    "description": "The label for category 'Computer Vision Integration' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Action Execution": {
+    "message": "ایکشن ایگزیکیوشن",
+    "description": "The label for category 'Action Execution' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Multi-Modal Fusion": {
+    "message": "ملٹی موڈل فیوژن",
+    "description": "The label for category 'Multi-Modal Fusion' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Integration and Testing": {
+    "message": "انٹیگریشن اور ٹیسٹنگ",
+    "description": "The label for category 'Integration and Testing' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Performance Optimization": {
+    "message": "کارکردگی کی بہتری",
+    "description": "The label for category 'Performance Optimization' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Advanced Applications and Deployment": {
+    "message": "ایڈوانسڈ ایپلی کیشنز اور ڈیپلومنٹ",
+    "description": "The label for category 'Advanced Applications and Deployment' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Module 4 Assessment Project": {
+    "message": "مODULE 4 ایسیسمنٹ پراجیکٹ",
+    "description": "The label for category 'Module 4 Assessment Project' in sidebar 'tutorialSidebar'"
+  }
+}

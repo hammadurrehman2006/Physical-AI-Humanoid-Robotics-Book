@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "جائزہ",
+    "description": "The title for Assessment page"
+  },
+  "description": {
+    "message": "ROS 2 کے مفادات کا جائزہ لیں اور اپنے علم کو چیلنج کریں",
+    "description": "The description for Assessment page"
+  },
+  "sidebar.label": {
+    "message": "جائزہ",
+    "description": "The label for Assessment in the sidebar"
+  },
+  "content.title": {
+    "message": "جائزہ",
+    "description": "Main content title for Assessment"
+  },
+  "content.heading.assessment-overview": {
+    "message": "جائزہ کا جائزہ",
+    "description": "Heading for Assessment Overview section"
+  },
+  "content.heading.knowledge-check": {
+    "message": "نالج چیک",
+    "description": "Heading for Knowledge Check section"
+  },
+  "content.heading.practical-exercises": {
+    "message": "عملی مشقیں",
+    "description": "Heading for Practical Exercises section"
+  },
+  "content.heading.project-requirements": {
+    "message": "پروجیکٹ کی ضروریات",
+    "description": "Heading for Project Requirements section"
+  },
+  "content.heading.evaluation-criteria": {
+    "message": "جائزہ کے معیار",
+    "description": "Heading for Evaluation Criteria section"
+  }
+}

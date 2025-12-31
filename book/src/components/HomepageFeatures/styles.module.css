@@ -1,6 +1,6 @@
 .featuresSection {
   padding: 6rem 1rem;
-  background-color: rgba(249, 250, 251, 0.5);
+  background-color: transparent;
 }
 
 [data-theme='dark'] .featuresSection {

@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 /* @import "tailwindcss"; */
 @import "tailwindcss/theme";
 @import "tailwindcss/utilities";
+=======
+@import "tailwindcss/theme.css" layer(theme);
+
+@layer base {
+  #tw-scope {
+    @import "tailwindcss/preflight.css" layer(base);
+  }
+}
+
+@import "tailwindcss/utilities.css" layer(utilities);
+>>>>>>> 001-urdu-ltr-layout
 
 @custom-variant dark (&:is([data-theme="dark"] *));
 
@@ -16,6 +28,10 @@
   /* Custom Animations */
   --animate-blob: blob 7s infinite;
   --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse: pulse 2s infinite;
+  --animate-fadeIn: fadeIn 0.3s ease-out;
+  --animate-scaleIn: scaleIn 0.3s ease-out forwards;
+  --animate-loading: loading 1.4s ease-in-out infinite both;
 
   @keyframes blob {
     0% { transform: translate(0px, 0px) scale(1); }
@@ -27,6 +43,26 @@
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { transform: scale(0.95); }
+    to { transform: scale(1); }
+  }
+
+  @keyframes loading {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.8; }
+    40% { transform: scale(1); opacity: 1; }
   }
 }
 
@@ -50,6 +86,10 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Explicitly define Infima shadow variables to prevent CSS minimizer warnings */
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --ifm-navbar-shadow: var(--ifm-global-shadow-lw);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -65,6 +105,22 @@
 }
 
 /* Custom CSS for Physical AI & Humanoid Robotics Book */
+
+/* Override for button text color in Hero section */
+a.button-text-override,
+a.button-text-override:hover,
+a.button-text-override:visited,
+.button-text-override {
+  color: #000000 !important;
+}
+
+html[data-theme='dark'] a.button-text-override,
+html[data-theme='dark'] a.button-text-override:hover,
+html[data-theme='dark'] a.button-text-override:visited,
+html[data-theme='dark'] .button-text-override {
+  color: #ffffff !important;
+}
+
 
 /* Code Runner Component Styles */
 .code-runner {
@@ -284,4 +340,26 @@
 
 }
 
+/* Urdu Font and LTR Layout Override */
+/* Urdu-specific font stack */
+.urdu-text,
+html[lang="ur"] {
+  font-family: 'Jameel Noori Nastaleeq Kasheeda', 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', serif;
+}
 
+/* Force LTR layout for Urdu content */
+html[lang="ur"] {
+  direction: ltr !important;
+}
+
+body[dir="rtl"] {
+  direction: ltr !important;
+}
+
+/* Ensure text alignment remains left for Urdu content */
+html[lang="ur"] body,
+html[lang="ur"] .container,
+html[lang="ur"] .main-wrapper {
+  direction: ltr !important;
+  text-align: left !important;
+}

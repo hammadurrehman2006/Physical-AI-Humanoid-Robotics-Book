@@ -1,0 +1,8 @@
+{
+  "label": "ROS 2 پیکجز تیار کرنا",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "module-1/building-ros2-packages/index"
+  }
+}

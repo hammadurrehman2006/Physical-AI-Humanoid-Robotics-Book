@@ -18,6 +18,15 @@
   - Weaviate: Good alternative but Qdrant has simpler setup for this use case
   - Custom vector storage: Would require significant development time
 
+### OpenAI Agents SDK Implementation
+- **Decision**: Use OpenAI Agents SDK for the agentic RAG functionality as specified in requirements
+- **Rationale**: The specification explicitly requires using OpenAI Agents SDK for the RAG system, which provides advanced reasoning capabilities for better query processing
+- **Alternatives considered**:
+  - LangChain with OpenAI: More complex setup but more flexible
+  - Custom RAG solution: More control but more development time
+  - Azure OpenAI Cognitive Search: Vendor lock-in concerns
+  - gemini API: Would conflict with specified requirement for OpenAI Agents SDK
+
 ### gemini API Integration
 - **Decision**: Use gemini API for text embeddings and chat completion
 - **Rationale**: Strong performance on technical content like robotics, good documentation, and appropriate for educational context
@@ -82,6 +91,15 @@
 - **Rationale**: Well-structured prompts improve response quality and consistency
 
 ## Frontend Integration Research
+
+### Frontend Directory Structure
+- **Decision**: Locate all frontend components within book/src/components/ as specified in requirements
+- **Approach**: Create dedicated Chatbot component directory within book/src/components/ rather than using a separate frontend directory
+- **Rationale**: The specification explicitly requires that all frontend components be located within the book/src/components/ directory with no other frontend directories existing
+- **Alternatives considered**:
+  - Standalone frontend directory: Would violate the specified requirement
+  - Direct integration in MDX files: Would be harder to maintain
+  - Separate package: Would add unnecessary complexity
 
 ### Docusaurus Component Integration
 - **Decision**: Create React component that integrates seamlessly with Docusaurus

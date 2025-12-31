@@ -1,0 +1,74 @@
+{
+  "title": {
+    "message": "فزیکل ای آئی اور امبدڈ انٹیلی جنس کی بنیادیں",
+    "description": "The title for the foundations of physical AI page"
+  },
+  "description": {
+    "message": "فزیکل ای آئی کے بنیادی تصورات اور اس کے ڈیجیٹل ای آئی سے کیسے مختلف ہونے کی سمجھ",
+    "description": "The description for the foundations of physical AI page"
+  },
+  "sidebar.label": {
+    "message": "فزیکل ای آئی اور امبدڈ انٹیلی جنس کی بنیادیں",
+    "description": "The label for the sidebar entry"
+  },
+  "frontMatter.title": {
+    "message": "فزیکل ای آئی اور امبدڈ انٹیلی جنس کی بنیادیں",
+    "description": "The front matter title for the page"
+  },
+  "content.title": {
+    "message": "فزیکل ای آئی اور امبدڈ انٹیلی جنس کی بنیادیں",
+    "description": "The main content title"
+  },
+  "content.h2.1": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Learning objectives heading"
+  },
+  "content.h2.2": {
+    "message": "فزیکل ای آئی کیا ہے؟",
+    "description": "What is Physical AI heading"
+  },
+  "content.h2.3": {
+    "message": "امبدڈ انٹیلی جنس کا کردار",
+    "description": "Role of embodied intelligence heading"
+  },
+  "content.h2.4": {
+    "message": "نظریاتی بنیاد: امبدڈ انٹیلی جنس کے تصورات",
+    "description": "Theoretical foundation of embodied intelligence concepts heading"
+  },
+  "content.h2.5": {
+    "message": "عام مسائل کا حل",
+    "description": "Common problems solutions heading"
+  },
+  "content.h2.6": {
+    "message": "مزید سیکھنے کے لیے وسائل",
+    "description": "Further learning resources heading"
+  },
+  "content.h2.7": {
+    "message": "خلاصہ",
+    "description": "Summary heading"
+  },
+  "content.h3.1": {
+    "message": "فزیکل ای آئی کی کلیدی خصوصیات",
+    "description": "Key characteristics of Physical AI heading"
+  },
+  "content.h3.2": {
+    "message": "امبدڈ انٹیلی جنس کے فوائد",
+    "description": "Benefits of embodied intelligence heading"
+  },
+  "content.h3.3": {
+    "message": "امبدڈ ایجنٹ تھیوری میں کلیدی تصورات",
+    "description": "Key concepts in embodied agent theory heading"
+  },
+  "content.h3.4": {
+    "message": "ایجنٹ آرکیٹیکچر کا جائزہ",
+    "description": "Agent architecture overview heading"
+  },
+  "content.h3.5": {
+    "message": "ماحولیاتی ماڈلنگ",
+    "description": "Environmental modeling heading"
+  },
+  "content.h3.6": {
+    "message": "امبدڈ سسٹم میں بیہیویئرل پیٹرنز",
+    "description": "Behavioral patterns in embedded systems heading"
+  }
+}

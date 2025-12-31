@@ -7,34 +7,39 @@
 
 ## Summary
 
-Implementation of an integrated chatbot that enables learners to ask questions about book content and receive accurate responses with source citations. The system uses a RAG (Retrieval Augmented Generation) approach with FastAPI backend, Neon Serverless Postgres for session management, Qdrant Cloud for vector storage of book content, and gemini API for embeddings and chat completion. The frontend component integrates seamlessly with the Docusaurus documentation framework.
+Implementation of an integrated RAG chatbot for the Physical AI & Humanoid Robotics book using OpenAI Agents SDK. The system will provide learners with immediate access to book content through a floating chat interface positioned in the bottom-left corner, with an additional modal popup option. The chatbot supports both full-book Q&A and selected-text Q&A modes, maintains conversation history, and provides proper source citations to specific lessons/chapters. The frontend components are integrated directly within the book/src/components/ directory as required, with authentication implemented using better-auth framework, and data stored in Neon Serverless Postgres and vector embeddings in Qdrant Cloud.
 
 ## Technical Context
 
-**Language/Version**: Python 3.10+ for backend services, JavaScript/TypeScript for frontend integration with Docusaurus
-**Primary Dependencies**: FastAPI for backend API, Neon Serverless Postgres for user/session data, Qdrant Cloud for vector storage, gemini API for embeddings and chat completion, React for Docusaurus integration
-**Storage**: Neon Serverless Postgres (user sessions, conversation history), Qdrant Cloud (book content embeddings)
-**Testing**: pytest for backend, Jest for frontend, integration tests for RAG pipeline
-**Target Platform**: Web application integrated with Docusaurus documentation framework
-**Project Type**: Web (backend API + frontend component for Docusaurus)
-**Performance Goals**: <3 second response time for queries, 99% uptime during peak hours, support 100+ concurrent users
-**Constraints**: <3 second p95 response time, rate limiting to prevent API abuse, secure API key management
-**Scale/Scope**: Support entire book content (~100+ lessons/chapters), handle 100+ concurrent users, maintain 90%+ accuracy for technical robotics queries
+**Language/Version**: Python 3.10+ for backend services, JavaScript/TypeScript (Node.js 18+) for frontend integration with Docusaurus
+**Primary Dependencies**: OpenAI Agents SDK for RAG functionality, Neon Serverless Postgres for user/session data, Qdrant Cloud for vector storage, better-auth for authentication, FastAPI for backend API, React for Docusaurus integration
+**Storage**: Neon Serverless Postgres for conversation history and user sessions, Qdrant Cloud for book content embeddings
+**Testing**: pytest for backend services, Jest/React Testing Library for frontend components, Playwright for end-to-end tests
+**Target Platform**: Web application integrated with Docusaurus documentation framework, responsive across desktop and mobile devices
+**Project Type**: Web application (frontend components in book/src/ + backend services)
+**Performance Goals**: <3 second response time for queries, 90% accuracy for book content retrieval, 99% uptime during peak usage
+**Constraints**: Must integrate seamlessly with Docusaurus 3.x, maintain accessibility compliance (95%), handle 100+ concurrent users, all frontend components must be located in book/src/components/
+**Scale/Scope**: Support all book content for RAG, handle multiple simultaneous user conversations, provide persistent user sessions
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-1. **Learning Philosophy: Hands-On Mastery** - PASS: The chatbot provides practical, implementable examples that readers can use directly for immediate feedback and learning support.
-2. **Content Quality Standards: Technical Accuracy and Accessibility** - PASS: The system handles technical robotics terminology accurately and provides accessible responses with source citations.
-3. **Project-Based Learning Approach** - PASS: The chatbot supports project-based learning by providing contextual help for hands-on projects and exercises.
-4. **Accessible and Practical Tone** - PASS: The chatbot maintains an accessible interface that connects with the book's practical approach to learning.
-5. **Progressive Complexity** - PASS: The system can maintain context and provide responses appropriate to the user's current learning level and progress.
-6. **Technical Constraints** - PASS: The system will run on standard web infrastructure with API-based access, compatible with the Docusaurus documentation framework.
-7. **Resource Constraints** - PASS: The solution uses cloud-based services (Neon, Qdrant) that are cost-effective and accessible.
-8. **Content Constraints** - PASS: The chatbot response time goals (<3 seconds) align with the project's performance expectations.
+### Compliance Check
 
-**Post-Design Review**: All constitutional requirements continue to be satisfied after detailed design. The data models, API contracts, and architecture support the core learning philosophy and technical constraints.
+- ✅ **Learning Philosophy: Hands-On Mastery**: The RAG chatbot provides practical, implementable examples that readers can interact with directly in the book content
+- ✅ **Content Quality Standards**: Technical accuracy maintained through OpenAI Agents SDK and proper source citations to specific book lessons/chapters
+- ✅ **Project-Based Learning Approach**: The chatbot serves as a practical tool that demonstrates AI integration concepts in the context of educational content
+- ✅ **Accessible and Practical Tone**: The floating UI and selected-text Q&A modes make the chatbot accessible and practical for learners
+- ✅ **Progressive Complexity**: The chatbot can provide explanations at different levels of complexity based on user queries
+- ✅ **Technical Constraints**: Solution uses standard web technologies compatible with Docusaurus and accessible to learners
+- ✅ **Resource Constraints**: Uses cloud services (Neon, Qdrant) that are accessible and cost-effective
+- ✅ **Content Constraints**: Integrates directly with book content without requiring additional resources from learners
+- ✅ **Docusaurus Integration**: All frontend components are located within book/src/components/ as required
+
+### Potential Violations and Justifications
+
+- **None identified**: All aspects of the RAG chatbot implementation align with the project constitution.
 
 ## Project Structure
 
@@ -57,49 +62,47 @@ backend/
 ├── src/
 │   ├── models/
 │   │   ├── user.py
-│   │   ├── session.py
 │   │   ├── conversation.py
-│   │   └── message.py
+│   │   ├── message.py
+│   │   └── content_index.py
 │   ├── services/
-│   │   ├── chat_service.py
-│   │   ├── embedding_service.py
-│   │   ├── content_index_service.py
-│   │   └── database_service.py
+│   │   ├── rag_service.py
+│   │   ├── auth_service.py
+│   │   ├── content_service.py
+│   │   └── embedding_service.py
 │   ├── api/
 │   │   ├── main.py
-│   │   ├── chat_routes.py
-│   │   ├── content_routes.py
-│   │   └── health_routes.py
-│   └── config/
+│   │   ├── routes/
+│   │   │   ├── chat.py
+│   │   │   ├── auth.py
+│   │   │   └── content.py
+│   │   └── middleware/
+│   │       └── auth.py
+│   └── core/
+│       ├── config.py
 │       ├── database.py
-│       ├── qdrant.py
-│       └── gemini.py
+│       └── vector_store.py
 └── tests/
-    ├── unit/
-    ├── integration/
-    └── contract/
 
-frontend/
+book/
 ├── src/
 │   ├── components/
-│   │   ├── ChatbotWidget/
-│   │   │   ├── ChatbotWidget.tsx
-│   │   │   ├── ChatWindow.tsx
-│   │   │   ├── Message.tsx
-│   │   │   └── InputArea.tsx
-│   │   └── TextSelectionHandler/
-│   │       └── TextSelectionHandler.tsx
+│   │   └── Chatbot/
+│   │       ├── ChatWindow.tsx
+│   │       ├── FloatingButton.tsx
+│   │       ├── ModalPopup.tsx
+│   │       └── MessageBubble.tsx
+│   ├── hooks/
+│   │   └── useChatbot.ts
 │   ├── services/
-│   │   ├── apiClient.ts
-│   │   └── chatbotService.ts
-│   └── styles/
-│       └── chatbot.css
+│   │   ├── api.ts
+│   │   └── chatbot.ts
+│   └── types/
+│       └── chatbot.ts
 └── tests/
-    ├── unit/
-    └── integration/
 ```
 
-**Structure Decision**: Web application with separate backend API service and frontend component for Docusaurus integration. The backend handles all RAG processing, user sessions, and API operations, while the frontend provides the chatbot UI component that integrates with the Docusaurus documentation framework.
+**Structure Decision**: Web application with separate backend services and frontend components integrated directly into the book directory. The backend uses FastAPI to provide API endpoints for the RAG functionality, while the frontend components are located within book/src/components/ as required by the specification. The floating chat button and modal popup will be implemented as React components that integrate seamlessly with the Docusaurus documentation framework.
 
 ## Complexity Tracking
 

@@ -2,6 +2,7 @@ module.exports = function tailwindPlugin(context, options) {
   return {
     name: "tailwind-plugin",
     configurePostCss(postcssOptions) {
+<<<<<<< HEAD
       // Add Tailwind
       postcssOptions.plugins.push(require("@tailwindcss/postcss"));
       // Add preset-env to transpile Tailwind's modern output
@@ -9,6 +10,9 @@ module.exports = function tailwindPlugin(context, options) {
         autoprefixer: { flexbox: 'no-2009' },
         stage: 3,
       }));
+=======
+      postcssOptions.plugins.push(require("@tailwindcss/postcss"));
+>>>>>>> 001-urdu-ltr-layout
       return postcssOptions;
     },
   };

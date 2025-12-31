@@ -1,0 +1,173 @@
+openapi: 3.0.0
+info:
+  title: Vision-Language-Action Voice Processing API
+  description: API for voice processing and speech recognition in the Vision-Language-Action module
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/vision-language-action
+    description: Local development server
+
+paths:
+  /voice/commands:
+    post:
+      summary: Submit a new voice command
+      description: Process audio input and convert to actionable command
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - audio
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                  description: Audio file in WAV or MP3 format
+                language:
+                  type: string
+                  description: Language code (e.g., en, es, fr)
+                  default: en
+                context:
+                  type: string
+                  description: Context for language model (optional)
+      responses:
+        '201':
+          description: Command successfully created and processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceCommandResponse'
+        '400':
+          description: Invalid audio format or processing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Audio quality too low or unrecognized speech
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /voice/commands/{id}:
+    get:
+      summary: Get command status and results
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the voice command
+      responses:
+        '200':
+          description: Command status and results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceCommandResponse'
+        '404':
+          description: Command not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /voice/commands:
+    get:
+      summary: List recent voice commands
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Maximum number of commands to return
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [received, processing, processed, action_planned, executed, completed, failed_processing]
+          description: Filter by command status
+      responses:
+        '200':
+          description: List of recent voice commands
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commands:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VoiceCommandSummary'
+                  total:
+                    type: integer
+
+components:
+  schemas:
+    VoiceCommandResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the command
+        transcript:
+          type: string
+          description: Transcribed text from the audio
+        confidence:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Confidence score for speech recognition
+        intent:
+          type: string
+          description: Parsed intent from natural language processing
+        parameters:
+          type: object
+          description: Extracted parameters from the command
+        status:
+          type: string
+          enum: [received, processing, processed, action_planned, executed, completed, failed_processing]
+          description: Current processing status
+        timestamp:
+          type: string
+          format: date-time
+          description: When the command was received
+        action_plan_id:
+          type: string
+          description: ID of the associated action plan (if generated)
+
+    VoiceCommandSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        transcript:
+          type: string
+        status:
+          type: string
+          enum: [received, processing, processed, action_planned, executed, completed, failed_processing]
+        timestamp:
+          type: string
+          format: date-time
+        confidence:
+          type: number
+          format: float
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+        details:
+          type: object
+          description: Additional error details

@@ -1,0 +1,106 @@
+{
+  "title": {
+    "message": "سینسر سسٹم کا جائزہ",
+    "description": "The title for the sensor systems overview page"
+  },
+  "description": {
+    "message": "فزیکل ای آئی اور ہیومنوڈ روبوٹکس میں استعمال ہونے والے مختلف سینسرز کو سمجھنا",
+    "description": "The description for the sensor systems overview page"
+  },
+  "sidebar.label": {
+    "message": "سینسر سسٹم کا جائزہ",
+    "description": "The label for the sidebar entry"
+  },
+  "frontMatter.title": {
+    "message": "سینسر سسٹم کا جائزہ",
+    "description": "The front matter title for the page"
+  },
+  "content.title": {
+    "message": "سینسر سسٹم کا جائزہ",
+    "description": "The main content title"
+  },
+  "content.h2.1": {
+    "message": "سیکھنے کے اہداف",
+    "description": "Learning objectives heading"
+  },
+  "content.h2.2": {
+    "message": "روبوٹکس سینسرز کا تعارف",
+    "description": "Introduction to robotics sensors heading"
+  },
+  "content.h2.3": {
+    "message": "پروپریو سیپٹو سینسرز",
+    "description": "Proprioceptive sensors heading"
+  },
+  "content.h2.4": {
+    "message": "ایکسٹرو سیپٹو سینسرز",
+    "description": "Exteroceptive sensors heading"
+  },
+  "content.h2.5": {
+    "message": "سینسر فیوژن",
+    "description": "Sensor fusion heading"
+  },
+  "content.h2.6": {
+    "message": "نظریاتی بنیاد: سینسر انٹیگریشن کے تصورات",
+    "description": "Theoretical foundation of sensor integration concepts heading"
+  },
+  "content.h2.7": {
+    "message": "عام سینسر مسائل کا حل",
+    "description": "Common sensor problems solutions heading"
+  },
+  "content.h2.8": {
+    "message": "مزید سیکھنے کے لیے وسائل",
+    "description": "Further learning resources heading"
+  },
+  "content.h2.9": {
+    "message": "خلاصہ",
+    "description": "Summary heading"
+  },
+  "content.h3.1": {
+    "message": "فزیکل ای آئی میں سینسر کیٹیگریز",
+    "description": "Sensor categories in Physical AI heading"
+  },
+  "content.h3.2": {
+    "message": "جوائنٹ اینکوڈرز",
+    "description": "Joint encoders heading"
+  },
+  "content.h3.3": {
+    "message": "انرٹیل میزورمینٹ یونٹس (آئی ایم یو)",
+    "description": "Inertial measurement units heading"
+  },
+  "content.h3.4": {
+    "message": "فورس/ٹورک سینسرز",
+    "description": "Force/torque sensors heading"
+  },
+  "content.h3.5": {
+    "message": "کیمرے",
+    "description": "Cameras heading"
+  },
+  "content.h3.6": {
+    "message": "لیڈار سینسرز",
+    "description": "LIDAR sensors heading"
+  },
+  "content.h3.7": {
+    "message": "ٹیکٹائل سینسرز",
+    "description": "Tactile sensors heading"
+  },
+  "content.h3.8": {
+    "message": "سینسر فیوژن کے اصول",
+    "description": "Principles of sensor fusion heading"
+  },
+  "content.h3.9": {
+    "message": "سینسر ڈیٹا سے ماحولیاتی ماڈلنگ",
+    "description": "Environmental modeling from sensor data heading"
+  },
+  "content.h3.10": {
+    "message": "متعدد سینسرز کا انٹیگریشن فوائد",
+    "description": "Integration benefits of multiple sensors heading"
+  },
+  "content.h3.11": {
+    "message": "1. سینسر نوائز اور کیلبریشن",
+    "description": "Sensor noise and calibration heading"
+  },
+  "content.h3.12": {
+    "message": "2. سینسر سینکرونائزیشن",
+    "description": "Sensor synchronization heading"
+  }
+}

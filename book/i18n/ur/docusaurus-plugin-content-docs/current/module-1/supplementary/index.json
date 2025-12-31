@@ -1,0 +1,34 @@
+{
+  "title": {
+    "message": "مکمل",
+    "description": "The title for Supplementary page"
+  },
+  "description": {
+    "message": "ماڈیول 1 کے لیے اضافی وسائل اور معلومات",
+    "description": "The description for Supplementary page"
+  },
+  "sidebar.label": {
+    "message": "مکمل",
+    "description": "The label for Supplementary in the sidebar"
+  },
+  "content.title": {
+    "message": "مکمل",
+    "description": "Main content title for Supplementary"
+  },
+  "content.heading.additional-resources": {
+    "message": "اضافی وسائل",
+    "description": "Heading for Additional Resources section"
+  },
+  "content.heading.references": {
+    "message": "حوالہ جات",
+    "description": "Heading for References section"
+  },
+  "content.heading.further-reading": {
+    "message": "مزید پڑھیں",
+    "description": "Heading for Further Reading section"
+  },
+  "content.heading.community-links": {
+    "message": "کمیونٹی لنکس",
+    "description": "Heading for Community Links section"
+  }
+}

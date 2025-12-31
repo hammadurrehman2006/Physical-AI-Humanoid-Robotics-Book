@@ -1,22 +1,25 @@
 # Data Model: Integrated Chatbot for Physical AI & Humanoid Robotics Book
 
-## Entity: User
+## Entity: User Authentication
 - **id**: string (UUID) - unique identifier for the user
-- **created_at**: datetime - timestamp when user record was created
-- **preferences**: JSON object - user preferences for the chatbot (e.g., response length, technical depth)
-- **last_active**: datetime - timestamp of last interaction
-- **Validation**: id must be valid UUID, created_at must be in past
+- **email**: string - user's email address
+- **name**: string (optional) - user's display name
+- **created_at**: datetime - timestamp when user account was created
+- **updated_at**: datetime - timestamp when user record was last updated
+- **last_login_at**: datetime (optional) - timestamp of last login
+- **is_verified**: boolean - whether email is verified
+- **Validation**: email must be valid format and unique, id must be valid UUID
 - **Relationships**: One-to-many with Session
 
 ## Entity: Session
 - **id**: string (UUID) - unique identifier for the session
-- **user_id**: string (UUID) - reference to User
+- **user_id**: string (UUID) - reference to User Authentication
 - **created_at**: datetime - timestamp when session started
 - **updated_at**: datetime - timestamp of last activity in session
 - **is_active**: boolean - whether session is currently active
 - **metadata**: JSON object - additional session information
-- **Validation**: user_id must reference existing User, created_at must be before updated_at
-- **Relationships**: Many-to-one with User, One-to-many with Conversation
+- **Validation**: user_id must reference existing User Authentication, created_at must be before updated_at
+- **Relationships**: Many-to-one with User Authentication, One-to-many with Conversation
 
 ## Entity: Conversation
 - **id**: string (UUID) - unique identifier for the conversation
@@ -83,10 +86,19 @@
    - Implemented through Session and Conversation entities with proper relationships
 
 2. **FR-011**: User session data must be stored persistently
-   - Implemented through User and Session entities with created_at/updated_at timestamps
+   - Implemented through User Authentication and Session entities with created_at/updated_at timestamps
 
 3. **FR-013**: Source attribution must be provided for answers
    - Implemented through Message.source_citations and SearchResult.source_metadata
 
 4. **FR-003**: Responses must include citations to specific lessons/chapters
    - Implemented through BookContentIndex.chapter, lesson fields and SearchResult.source_metadata
+
+5. **FR-021**: User authentication must be implemented using better-auth framework
+   - Implemented through User Authentication entity with email, verification status, and login tracking
+
+6. **FR-022**: All frontend components must be located within the book/src/components/ directory
+   - This is an architectural requirement reflected in the system design but not directly in the data model
+
+7. **FR-023**: Chatbot components must integrate with Docusaurus using dedicated React components
+   - This is an architectural requirement reflected in the system design but not directly in the data model
