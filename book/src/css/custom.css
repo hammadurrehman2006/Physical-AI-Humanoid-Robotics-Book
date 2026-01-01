@@ -1,4 +1,5 @@
 @import "tailwindcss/theme.css" layer(theme);
+@source "../**";
 
 @layer base {
   #tw-scope {
@@ -356,4 +357,14 @@ html[lang="ur"] .container,
 html[lang="ur"] .main-wrapper {
   direction: ltr !important;
   text-align: left !important;
+}
+
+/* Ensure the floating animation works in production */
+@keyframes float-vertical {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float-vertical 6s ease-in-out infinite;
 }

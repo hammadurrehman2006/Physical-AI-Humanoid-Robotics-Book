@@ -4,6 +4,8 @@ import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Marquee from "@site/src/components/Marquee";
 import Hero from "../components/Hero";
+import LearningJourney from "@site/src/components/LearningJourney";
+import CallToAction from "@site/src/components/CallToAction";
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -26,6 +28,8 @@ export default function Home(): ReactNode {
             <Marquee />
             <main>
               <HomepageFeatures />
+              <LearningJourney />
+              <CallToAction />
             </main>
           </div>
         </div>

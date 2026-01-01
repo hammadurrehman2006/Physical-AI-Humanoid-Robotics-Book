@@ -10,8 +10,6 @@ export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
-  const terminalRef = useRef<HTMLDivElement>(null);
-  const floatingIconsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -35,13 +33,7 @@ export default function Hero() {
       y: 20,
       opacity: 0,
       duration: 0.8,
-    }, '-=0.6')
-    .from(terminalRef.current, {
-      y: 40,
-      opacity: 0,
-      duration: 1,
-      ease: 'back.out(1.2)',
-    }, '-=0.4');
+    }, '-=0.6');
 
     // Continuous floating animation for background blobs (using CSS mostly, but we can enhance)
     
@@ -97,46 +89,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Decorative Terminal/Code Element */}
-          <div ref={terminalRef} className="relative max-w-4xl mx-auto w-full">
-            {/* Glassmorphism Container */}
-            <div className="relative rounded-xl overflow-hidden bg-slate-900/90 shadow-2xl ring-1 ring-white/10">
-              
-              {/* Window Controls */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-white/5 border-b border-white/5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                <div className="flex-1 text-center">
-                  <span className="text-xs font-mono text-slate-400">humanoid_brain.py</span>
-                </div>
-              </div>
-
-              {/* Code Content */}
-              <div className="p-10 text-left overflow-hidden">
-                <pre className="font-mono text-sm md:text-base leading-relaxed">
-                  <code className="block">
-                    <span className="text-purple-400">import</span> <span className="text-blue-400">rclpy</span>{'\n'}
-                    <span className="text-purple-400">from</span> <span className="text-blue-400">ai_models</span> <span className="text-purple-400">import</span> Brain{'\n'}
-                    {'\n'}
-                    <span className="text-yellow-400">class</span> <span className="text-blue-300">Robot</span>(Node):{'\n'}
-                    {'    '}<span className="text-purple-400">async def</span> <span className="text-blue-300">think</span>(self, obs):{'\n'}
-                    {'        '}action = <span className="text-purple-400">await</span> self.brain.infer(obs){'\n'}
-                    {'        '}self.move(action){'\n'}
-                  </code>
-                </pre>
-              </div>
-            </div>
-            
-            {/* Floating Icons behind */}
-            <div className="absolute -top-12 -left-12 p-4 bg-slate-800 rounded-2xl shadow-xl transform -rotate-12 animate-float hidden md:block border border-slate-700">
-              <Terminal className="w-8 h-8 text-cyan-400" />
-            </div>
-            <div className="absolute -bottom-8 -right-8 p-4 bg-slate-800 rounded-2xl shadow-xl transform rotate-6 animate-float animation-delay-2000 hidden md:block border border-slate-700">
-              <Cpu className="w-8 h-8 text-purple-400" />
-            </div>
-
-          </div>
+          <img src="/img/group1.png" alt="Group 1" className="relative max-w-lg mx-auto w-full animate-float" />
         </div>
       </div>
     </section>
