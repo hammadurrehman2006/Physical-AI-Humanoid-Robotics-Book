@@ -2,13 +2,13 @@
 sidebar_position: 2
 ---
 
-# Translate your site
+# اپنی سائٹ کا ترجمہ کریں
 
-Let's translate `docs/intro.md` to French.
+آئیے `docs/intro.md` کا فرانسیسی میں ترجمہ کریں۔
 
-## Configure i18n
+## i18n کنفیگر کریں
 
-Modify `docusaurus.config.js` to add support for the `fr` locale:
+`fr` لوکل کی سپورٹ شامل کرنے کے لیے `docusaurus.config.js` میں ترمیم کریں:
 
 ```js title="docusaurus.config.js"
 export default {
@@ -19,9 +19,9 @@ export default {
 };
 ```
 
-## Translate a doc
+## دستاویز کا ترجمہ کریں
 
-Copy the `docs/intro.md` file to the `i18n/fr` folder:
+`docs/intro.md` فائل کو `i18n/fr` فولڈر میں کاپی کریں:
 
 ```bash
 mkdir -p i18n/fr/docusaurus-plugin-content-docs/current/
@@ -29,29 +29,29 @@ mkdir -p i18n/fr/docusaurus-plugin-content-docs/current/
 cp docs/intro.md i18n/fr/docusaurus-plugin-content-docs/current/intro.md
 ```
 
-Translate `i18n/fr/docusaurus-plugin-content-docs/current/intro.md` in French.
+`i18n/fr/docusaurus-plugin-content-docs/current/intro.md` کا فرانسیسی میں ترجمہ کریں۔
 
-## Start your localized site
+## اپنی لوکلائزڈ سائٹ شروع کریں
 
-Start your site on the French locale:
+فرانسیسی لوکل پر اپنی سائٹ شروع کریں:
 
 ```bash
 npm run start -- --locale fr
 ```
 
-Your localized site is accessible at [http://localhost:3000/fr/](http://localhost:3000/fr/) and the `Getting Started` page is translated.
+آپ کی لوکلائزڈ سائٹ [http://localhost:3000/fr/](http://localhost:3000/fr/) پر قابل رسائی ہے اور `Getting Started` صفحہ ترجمہ شدہ ہے۔
 
 :::caution
 
-In development, you can only use one locale at a time.
+ڈویلپمنٹ میں، آپ ایک وقت میں صرف ایک لوکل استعمال کر سکتے ہیں۔
 
 :::
 
-## Add a Locale Dropdown
+## لوکل ڈراپ ڈاؤن شامل کریں
 
-To navigate seamlessly across languages, add a locale dropdown.
+زبانوں میں بغیر کسی رکاوٹ کے نیویگیٹ کرنے کے لیے، لوکل ڈراپ ڈاؤن شامل کریں۔
 
-Modify the `docusaurus.config.js` file:
+`docusaurus.config.js` فائل میں ترمیم کریں:
 
 ```js title="docusaurus.config.js"
 export default {
@@ -69,19 +69,19 @@ export default {
 };
 ```
 
-The locale dropdown now appears in your navbar:
+لوکل ڈراپ ڈاؤن اب آپ کے نیویگیشن بار میں ظاہر ہوتا ہے:
 
 ![Locale Dropdown](./img/localeDropdown.png)
 
-## Build your localized site
+## اپنی لوکلائزڈ سائٹ بنائیں
 
-Build your site for a specific locale:
+کسی مخصوص لوکل کے لیے اپنی سائٹ بنائیں:
 
 ```bash
 npm run build -- --locale fr
 ```
 
-Or build your site to include all the locales at once:
+یا تمام لوکلز کو ایک ساتھ شامل کرنے کے لیے اپنی سائٹ بنائیں:
 
 ```bash
 npm run build

@@ -1,32 +1,32 @@
-# Performance Optimization in Isaac Sim
+# Isaac Sim میں کارکردگی کی اصلاح (Performance Optimization)
 
-This section covers performance optimization techniques for Isaac Sim environments, particularly for reinforcement learning training and real-time simulation. Performance optimization is critical for achieving efficient training and realistic real-world deployment.
+یہ سیکشن Isaac Sim کے ماحول کے لیے کارکردگی کی اصلاح کی تکنیکوں کا احاطہ کرتا ہے، خاص طور پر ری انفورسمنٹ لرننگ کی تربیت اور ریئل ٹائم سمولیشن کے لیے۔ کارکردگی کی اصلاح موثر تربیت اور حقیقت پسندانہ حقیقی دنیا کی تعیناتی کے حصول کے لیے اہم ہے۔
 
-## Understanding Performance Bottlenecks
+## کارکردگی کی رکاوٹوں (Bottlenecks) کو سمجھنا
 
-### Common Performance Issues
+### کارکردگی کے عام مسائل
 
-Performance bottlenecks in Isaac Sim typically arise from:
+Isaac Sim میں کارکردگی کی رکاوٹیں عام طور پر اس سے پیدا ہوتی ہیں:
 
-1. **Physics Simulation**: Complex dynamics and collision detection
-2. **Rendering**: High-resolution graphics and realistic lighting
-3. **Sensor Simulation**: Real-time sensor data generation
-4. **Memory Management**: Large datasets and model loading
-5. **CPU/GPU Utilization**: Imbalanced computational load
+1. **طبیعیات کی سمولیشن**: پیچیدہ حرکیات اور ٹکراؤ کا پتہ لگانا۔
+2. **رینڈرنگ**: ہائی ریزولیوشن گرافکس اور حقیقت پسندانہ لائٹنگ۔
+3. **سینسر سمولیشن**: ریئل ٹائم سینسر ڈیٹا جنریشن۔
+4. **میموری کا انتظام**: بڑے ڈیٹاسیٹس اور ماڈل لوڈنگ۔
+5. **CPU/GPU کا استعمال**: غیر متوازن کمپیوٹیشنل بوجھ۔
 
-### Performance Metrics
+### کارکردگی کے میٹرکس
 
-Key performance metrics to monitor:
+نگرانی کے لیے کلیدی کارکردگی میٹرکس:
 
-- **Frames Per Second (FPS)**: Real-time simulation performance
-- **Physics Steps Per Second**: Physics simulation frequency
-- **GPU Utilization**: Graphics processing unit usage
-- **Memory Usage**: System and GPU memory consumption
-- **Simulation Time Ratio**: Real-time vs simulation time
+- **فریمز فی سیکنڈ (FPS)**: ریئل ٹائم سمولیشن کی کارکردگی۔
+- **فزکس اسٹیپس فی سیکنڈ**: فزکس سمولیشن کی فریکوئنسی۔
+- **GPU کا استعمال**: گرافکس پروسیسنگ یونٹ کا استعمال۔
+- **میموری کا استعمال**: سسٹم اور GPU میموری کی کھپت۔
+- **سمولیشن ٹائم کا تناسب**: ریئل ٹائم بمقابلہ سمولیشن ٹائم۔
 
-## Physics Optimization
+## فزکس کی اصلاح
 
-### Physics Parameter Tuning
+### فزکس پیرامیٹر ٹیوننگ
 
 ```python
 #!/usr/bin/env python3
@@ -151,7 +151,7 @@ if __name__ == "__main__":
     test_physics_optimization()
 ```
 
-### GPU Acceleration for Physics
+### فزکس کے لیے GPU ایکسلریشن
 
 ```python
 #!/usr/bin/env python3
@@ -215,9 +215,9 @@ def setup_gpu_optimized_world():
     return world
 ```
 
-## Rendering Optimization
+## رینڈرنگ کی اصلاح (Rendering Optimization)
 
-### Graphics Performance Tuning
+### گرافکس کارکردگی کی ٹیوننگ
 
 ```python
 #!/usr/bin/env python3
@@ -307,9 +307,9 @@ def create_rendering_optimized_world(quality="balanced"):
     return world
 ```
 
-## Memory Management
+## میموری کا انتظام
 
-### Efficient Memory Usage
+### موثر میموری کا استعمال
 
 ```python
 #!/usr/bin/env python3
@@ -395,9 +395,9 @@ def create_memory_optimized_world():
     return world
 ```
 
-## Parallel Processing Optimization
+## متوازی پروسیسنگ کی اصلاح (Parallel Processing Optimization)
 
-### Multi-Threading and Parallel Execution
+### ملٹی تھریڈنگ اور متوازی عملدرآمد
 
 ```python
 #!/usr/bin/env python3
@@ -467,9 +467,9 @@ def create_parallel_optimized_world():
     return world
 ```
 
-## RL-Specific Optimizations
+## RL-مخصوص اصلاحات
 
-### Reinforcement Learning Performance
+### ری انفورسمنٹ لرننگ کی کارکردگی
 
 ```python
 #!/usr/bin/env python3
@@ -554,9 +554,9 @@ def create_rl_optimized_world(num_envs=4096):
     return world
 ```
 
-## Real-Time Performance Monitoring
+## ریئل ٹائم کارکردگی کی نگرانی
 
-### Performance Tracking and Analysis
+### کارکردگی سے باخبر رہنا اور تجزیہ
 
 ```python
 #!/usr/bin/env python3
@@ -813,9 +813,9 @@ if __name__ == "__main__":
     monitor, analyzer = run_performance_analysis()
 ```
 
-## Hardware-Specific Optimizations
+## ہارڈ ویئر کے لیے مخصوص اصلاحات
 
-### Tailoring Performance to Hardware
+### ہارڈ ویئر کے مطابق کارکردگی کو تیار کرنا
 
 ```python
 #!/usr/bin/env python3
@@ -970,9 +970,9 @@ if __name__ == "__main__":
     hw_optimizer = optimize_for_current_hardware()
 ```
 
-## Profiling and Debugging
+## پروفائلنگ اور ڈیبگنگ (Profiling and Debugging)
 
-### Performance Profiling Tools
+### کارکردگی کی پروفائلنگ ٹولز
 
 ```python
 #!/usr/bin/env python3
@@ -1080,27 +1080,27 @@ if __name__ == "__main__":
     print(f"Result: {result}")
 ```
 
-## Best Practices for Performance
+## کارکردگی کے لیے بہترین طریقے
 
-### Guidelines for Optimal Performance
+### بہترین کارکردگی کے رہنما خطوط
 
-1. **Start Simple**: Begin with minimal complexity and gradually increase
-2. **Monitor Continuously**: Use performance monitoring throughout development
-3. **Profile Regularly**: Identify bottlenecks early and often
-4. **Optimize Iteratively**: Make small changes and measure impact
-5. **Balance Quality/Speed**: Find the right balance for your use case
-6. **Use Hardware Wisely**: Leverage available hardware capabilities
+1. **آسان شروع کریں**: کم سے کم پیچیدگی کے ساتھ شروع کریں اور آہستہ آہستہ اضافہ کریں۔
+2. **مسلسل نگرانی کریں**: ترقی کے دوران کارکردگی کی نگرانی کا استعمال کریں۔
+3. **باقاعدگی سے پروفائل کریں**: رکاوٹوں کی جلد اور اکثر شناخت کریں۔
+4. **تکراری طور پر بہتر بنائیں**: چھوٹی تبدیلیاں کریں اور اثر کی پیمائش کریں۔
+5. **معیار/رفتار میں توازن**: اپنے استعمال کے کیس کے لیے صحیح توازن تلاش کریں۔
+6. **ہارڈ ویئر کا دانشمندی سے استعمال کریں**: دستیاب ہارڈ ویئر کی صلاحیتوں کا فائدہ اٹھائیں۔
 
-### Humanoid-Specific Optimizations
+### ہیومنوائڈ کے لیے مخصوص اصلاحات
 
-1. **Control Frequency**: Match control frequency to physics simulation
-2. **Sensor Optimization**: Optimize sensor data processing for real-time control
-3. **Dynamics Simplification**: Simplify robot dynamics where accuracy allows
-4. **Contact Modeling**: Optimize ground contact models for stable walking
+1. **کنٹرول فریکوئنسی**: کنٹرول فریکوئنسی کو فزکس سمولیشن کے ساتھ ملائیں۔
+2. **سینسر آپٹیمائزیشن**: ریئل ٹائم کنٹرول کے لیے سینسر ڈیٹا پروسیسنگ کو بہتر بنائیں۔
+3. **ڈائنامکس کی سادگی**: روبوٹ ڈائنامکس کو آسان بنائیں جہاں درستگی اجازت دیتی ہے۔
+4. **رابطہ ماڈلنگ**: مستحکم چلنے کے لیے زمینی رابطے کے ماڈلز کو بہتر بنائیں۔
 
-## Benchmarking
+## بینچ مارکنگ
 
-### Performance Benchmarking
+### کارکردگی کی بینچ مارکنگ
 
 ```python
 #!/usr/bin/env python3
@@ -1271,15 +1271,15 @@ if __name__ == "__main__":
     benchmark = run_performance_benchmark()
 ```
 
-## Next Steps
+## اگلے اقدامات
 
-After optimizing performance:
+کارکردگی کو بہتر بنانے کے بعد:
 
-1. **Validate Results**: Ensure optimizations don't compromise accuracy
-2. **Monitor Continuously**: Implement ongoing performance monitoring
-3. **Iterate and Improve**: Continue optimizing based on usage patterns
-4. **Document Settings**: Keep track of optimal configurations
-5. **Scale Gradually**: Increase complexity while maintaining performance
-6. **Test on Target Hardware**: Validate performance on deployment hardware
+1. **نتائج کی توثیق کریں**: یقینی بنائیں کہ اصلاحات درستگی سے سمجھوتہ نہیں کرتی ہیں۔
+2. **مسلسل نگرانی کریں**: جاری کارکردگی کی نگرانی کو نافذ کریں۔
+3. **دہرائیں اور بہتر بنائیں**: استعمال کے نمونوں کی بنیاد پر اصلاح جاری رکھیں۔
+4. **ترتیبات کو دستاویزی شکل دیں**: بہترین کنفیگریشنز کا ٹریک رکھیں۔
+5. **آہستہ آہستہ پیمانہ بڑھائیں**: کارکردگی کو برقرار رکھتے ہوئے پیچیدگی میں اضافہ کریں۔
+6. **ٹارگٹ ہارڈویئر پر ٹیسٹ کریں**: تعیناتی ہارڈ ویئر پر کارکردگی کی توثیق کریں۔
 
-Performance optimization is an ongoing process that should be integrated throughout the development lifecycle to ensure Isaac Sim applications run efficiently and effectively.
+کارکردگی کی اصلاح ایک جاری عمل ہے جسے پورے ترقیاتی لائف سائیکل میں ضم کیا جانا چاہیے تاکہ یہ یقینی بنایا جا سکے کہ Isaac Sim ایپلی کیشنز موثر اور مؤثر طریقے سے چلیں۔

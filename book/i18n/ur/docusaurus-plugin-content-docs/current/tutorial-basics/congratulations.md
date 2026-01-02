@@ -2,22 +2,22 @@
 sidebar_position: 6
 ---
 
-# Congratulations!
+# مبارک ہو!
 
-You have just learned the **basics of Docusaurus** and made some changes to the **initial template**.
+آپ نے ابھی **Docusaurus کی بنیادی باتیں** سیکھی ہیں اور **ابتدائی ٹیمپلیٹ** میں کچھ تبدیلیاں کی ہیں۔
 
-Docusaurus has **much more to offer**!
+Docusaurus کے پاس **پیشکش کرنے کے لیے بہت کچھ** ہے!
 
-Have **5 more minutes**? Take a look at **[versioning](../tutorial-extras/manage-docs-versions.md)** and **[i18n](../tutorial-extras/translate-your-site.md)**.
+کیا آپ کے پاس **5 منٹ مزید** ہیں؟ **[ورژننگ](../tutorial-extras/manage-docs-versions.md)** اور **[i18n](../tutorial-extras/translate-your-site.md)** پر ایک نظر ڈالیں۔
 
-Anything **unclear** or **buggy** in this tutorial? [Please report it!](https://github.com/facebook/docusaurus/discussions/4610)
+اس ٹیوٹوریل میں کوئی چیز **غیر واضح** یا **بگی** ہے؟ [براہ کرم اس کی رپورٹ کریں!](https://github.com/facebook/docusaurus/discussions/4610)
 
-## What's next?
+## آگے کیا ہے؟
 
-- Read the [official documentation](https://docusaurus.io/)
-- Modify your site configuration with [`docusaurus.config.js`](https://docusaurus.io/docs/api/docusaurus-config)
-- Add navbar and footer items with [`themeConfig`](https://docusaurus.io/docs/api/themes/configuration)
-- Add a custom [Design and Layout](https://docusaurus.io/docs/styling-layout)
-- Add a [search bar](https://docusaurus.io/docs/search)
-- Find inspirations in the [Docusaurus showcase](https://docusaurus.io/showcase)
-- Get involved in the [Docusaurus Community](https://docusaurus.io/community/support)
+- [سرکاری دستاویزات](https://docusaurus.io/) پڑھیں
+- [`docusaurus.config.js`](https://docusaurus.io/docs/api/docusaurus-config) کے ساتھ اپنی سائٹ کی کنفیگریشن میں ترمیم کریں
+- [`themeConfig`](https://docusaurus.io/docs/api/themes/configuration) کے ساتھ نیویگیشن بار اور فوٹر آئٹمز شامل کریں
+- اپنی مرضی کے مطابق [ڈیزائن اور لے آؤٹ](https://docusaurus.io/docs/styling-layout) شامل کریں
+- [سرچ بار](https://docusaurus.io/docs/search) شامل کریں
+- [Docusaurus شوکیس](https://docusaurus.io/showcase) میں الہام تلاش کریں
+- [Docusaurus کمیونٹی](https://docusaurus.io/community/support) میں شامل ہوں

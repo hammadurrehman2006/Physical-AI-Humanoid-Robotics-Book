@@ -1,35 +1,35 @@
 ---
-title: Module 1 Supplementary Materials
-description: Additional resources, references, and advanced topics for Module 1
+title: ماڈیول 1 کا اضافی مواد
+description: ماڈیول 1 کے لیے اضافی وسائل، حوالہ جات، اور جدید موضوعات
 sidebar_position: 10
 ---
 
-# Module 1 Supplementary Materials
+# ماڈیول 1 کا اضافی مواد
 
-This section contains additional resources, advanced topics, and reference materials that complement the core Module 1 content on the ROS 2 robotic nervous system. Use these materials to deepen your understanding of ROS 2 concepts and troubleshoot common issues you may encounter.
+اس حصے میں اضافی وسائل، جدید موضوعات اور حوالہ جاتی مواد شامل ہے جو ROS 2 روبوٹک اعصابی نظام پر ماڈیول 1 کے بنیادی مواد کی تکمیل کرتا ہے۔ ان مواد کا استعمال ROS 2 کے تصورات کو گہرائی سے سمجھنے اور عام مسائل کو حل کرنے کے لیے کریں جن کا آپ سامنا کر سکتے ہیں۔
 
-## Additional Resources
+## اضافی وسائل
 
-### Official ROS 2 Documentation
+### سرکاری ROS 2 دستاویزات
 - [ROS 2 Humble Hawksbill Documentation](https://docs.ros.org/en/humble/)
 - [rclpy API Documentation](https://docs.ros.org/en/humble/p/rclpy/)
 - [ROS 2 Tutorials](https://docs.ros.org/en/humble/Tutorials.html)
 
-### Recommended Reading
+### تجویز کردہ مطالعہ
 - "Programming Robots with ROS" by Morgan Quigley, Brian Gerkey, and William Smart
 - "Effective Robotics Programming with ROS" by Anil Mahtani, Luis Sánchez Crespo, and Enrique Fernández Perdomo
 - "ROS Robotics Projects" by Ramon Sanchez
 
-### Online Resources
+### آن لائن وسائل
 - [ROS Discourse Forum](https://discourse.ros.org/)
 - [ROS Answers](https://answers.ros.org/questions/)
 - [ROS Wiki](http://wiki.ros.org/)
 
-## Advanced Topics
+## جدید موضوعات
 
-### Quality of Service (QoS) in Depth
+### کوالٹی آف سروس (QoS) کی تفصیل
 
-Quality of Service settings allow you to configure how messages are delivered between nodes. Here are the main QoS policies:
+کوالٹی آف سروس کی سیٹنگز آپ کو یہ ترتیب دینے کی اجازت دیتی ہیں کہ نوڈز کے درمیان پیغامات کیسے پہنچائے جاتے ہیں۔ یہاں اہم QoS پالیسیاں ہیں:
 
 ```python
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
@@ -49,9 +49,9 @@ status_qos = QoSProfile(
 )
 ```
 
-### Advanced Parameter Handling
+### ایڈوانسڈ پیرامیٹر ہینڈلنگ
 
-Parameters can be grouped and validated using parameter descriptors:
+پیرامیٹرز کو گروپ کیا جا سکتا ہے اور پیرامیٹر ڈسکرپٹرز کا استعمال کرتے ہوئے توثیق کی جا سکتی ہے:
 
 ```python
 from rclpy.parameter import ParameterType
@@ -68,9 +68,9 @@ descriptor = ParameterDescriptor(
 self.declare_parameter('max_linear_velocity', 0.5, descriptor)
 ```
 
-### Custom Message Types
+### حسب ضرورت میسج کی اقسام (Custom Message Types)
 
-Creating custom message types for specialized data:
+خصوصی ڈیٹا کے لیے اپنی مرضی کے مطابق پیغام کی اقسام بنانا:
 
 ```python
 # In your package's msg directory, create RobotStatus.msg:
@@ -81,58 +81,58 @@ Creating custom message types for specialized data:
 # time last_update
 ```
 
-## Troubleshooting Common Issues
+## عام مسائل کا حل (Troubleshooting)
 
-### Node Communication Issues
+### نوڈ کمیونیکیشن کے مسائل
 
-**Problem**: Nodes cannot communicate with each other.
-**Solutions**:
-1. Check that nodes are on the same ROS domain ID
-2. Verify that topic/service names match exactly
-3. Ensure QoS settings are compatible between publisher and subscriber
-4. Confirm that both nodes are running
+**مسئلہ**: نوڈز ایک دوسرے سے بات چیت نہیں کر سکتے۔
+**حل**:
+1. چیک کریں کہ نوڈز ایک ہی ROS ڈومین آئی ڈی پر ہیں۔
+2. تصدیق کریں کہ ٹاپک/سروس کے نام بالکل ایک جیسے ہیں۔
+3. یقینی بنائیں کہ پبلشر اور سبسکرائبر کے درمیان QoS سیٹنگز مطابقت رکھتی ہیں۔
+4. تصدیق کریں کہ دونوں نوڈز چل رہے ہیں۔
 
-### Parameter Configuration Issues
+### پیرامیٹر کنفیگریشن کے مسائل
 
-**Problem**: Parameters are not being loaded correctly.
-**Solutions**:
-1. Verify parameter names in launch files match those in the node
-2. Check that parameter files are in the correct location
-3. Ensure parameter file syntax is correct (YAML format)
-4. Confirm that nodes are started after parameters are loaded
+**مسئلہ**: پیرامیٹرز صحیح طریقے سے لوڈ نہیں ہو رہے ہیں۔
+**حل**:
+1. تصدیق کریں کہ لانچ فائلوں میں پیرامیٹر کے نام نوڈ میں موجود ناموں سے مماثل ہیں۔
+2. چیک کریں کہ پیرامیٹر فائلیں صحیح جگہ پر ہیں۔
+3. یقینی بنائیں کہ پیرامیٹر فائل کا سنٹیکس درست ہے (YAML فارمیٹ)۔
+4. تصدیق کریں کہ پیرامیٹرز لوڈ ہونے کے بعد نوڈز شروع ہوتے ہیں۔
 
-### Performance Issues
+### کارکردگی کے مسائل
 
-**Problem**: Robot system is running slowly or experiencing delays.
-**Solutions**:
-1. Reduce message frequency for high-bandwidth topics
-2. Optimize QoS settings (use BEST_EFFORT for non-critical data)
-3. Limit the number of callbacks running simultaneously
-4. Profile your code to identify bottlenecks
+**مسئلہ**: روبوٹ سسٹم آہستہ چل رہا ہے یا تاخیر کا سامنا کر رہا ہے۔
+**حل**:
+1. ہائی بینڈوڈتھ والے ٹاپکس کے لیے پیغام کی فریکوئنسی کم کریں۔
+2. QoS سیٹنگز کو بہتر بنائیں (غیر اہم ڈیٹا کے لیے BEST_EFFORT استعمال کریں)۔
+3. بیک وقت چلنے والے کال بیکس کی تعداد کو محدود کریں۔
+4. رکاوٹوں کی نشاندہی کرنے کے لیے اپنے کوڈ کی پروفائلنگ کریں۔
 
-## Best Practices
+## بہترین طریقے (Best Practices)
 
-### Code Organization
-- Use consistent naming conventions for topics, services, and parameters
-- Group related functionality into logical nodes
-- Separate business logic from ROS-specific code
-- Use composition over inheritance when creating nodes
+### کوڈ کی تنظیم
+- ٹاپکس، سروسز اور پیرامیٹرز کے لیے نام رکھنے کے مستقل اصول استعمال کریں۔
+- متعلقہ فعالیت کو منطقی نوڈز میں گروپ کریں۔
+- کاروباری منطق (business logic) کو ROS مخصوص کوڈ سے الگ کریں۔
+- نوڈز بناتے وقت وراثت (inheritance) پر ترکیب (composition) کو ترجیح دیں۔
 
-### Error Handling
-- Always implement proper error handling in callbacks
-- Use try-catch blocks for operations that may fail
-- Implement graceful degradation when components fail
-- Log errors with appropriate severity levels
+### ایرر ہینڈلنگ
+- کال بیکس میں ہمیشہ مناسب ایرر ہینڈلنگ نافذ کریں۔
+- ان آپریشنز کے لیے try-catch بلاکس استعمال کریں جو ناکام ہو سکتے ہیں۔
+- جب اجزاء ناکام ہو جائیں تو گریسی فل ڈیگریڈیشن (graceful degradation) نافذ کریں۔
+- مناسب شدت کی سطح کے ساتھ غلطیوں کو لاگ کریں۔
 
-### Testing
-- Write unit tests for individual functions
-- Create integration tests for node communication
-- Use simulation environments for testing
-- Implement continuous integration for automated testing
+### ٹیسٹنگ
+- انفرادی فنکشنز کے لیے یونٹ ٹیسٹ لکھیں۔
+- نوڈ مواصلات کے لیے انٹیگریشن ٹیسٹ بنائیں۔
+- ٹیسٹنگ کے لیے نقلی ماحول (simulation environments) کا استعمال کریں۔
+- خودکار ٹیسٹنگ کے لیے مسلسل انضمام (CI) نافذ کریں۔
 
-## Code Templates
+## کوڈ ٹیمپلیٹس
 
-### Basic Node Template
+### بنیادی نوڈ ٹیمپلیٹ
 
 ```python
 #!/usr/bin/env python3
@@ -166,7 +166,7 @@ if __name__ == '__main__':
     main()
 ```
 
-### Publisher-Subscriber Template
+### پبلشر-سبسکرائبر ٹیمپلیٹ
 
 ```python
 #!/usr/bin/env python3
@@ -222,9 +222,9 @@ if __name__ == '__main__':
     main()
 ```
 
-## Development Tools
+## ڈویلپمنٹ ٹولز
 
-### Essential ROS 2 Commands
+### ضروری ROS 2 کمانڈز
 
 ```bash
 # List all available topics
@@ -250,37 +250,37 @@ ros2 param list
 ros2 param get /node_name parameter_name
 ```
 
-### Debugging with rqt
+### rqt کے ساتھ ڈیبگنگ
 
-The rqt suite provides various debugging tools:
+rqt سویٹ مختلف ڈیبگنگ ٹولز فراہم کرتا ہے:
 
-- `rqt_graph`: Visualize the node graph
-- `rqt_plot`: Plot numeric values over time
-- `rqt_console`: Monitor log messages
-- `rqt_bag`: Record and replay data
-- `rqt_reconfigure`: Dynamically change parameters
+- `rqt_graph`: نوڈ گراف کو وژولائز کریں
+- `rqt_plot`: وقت کے ساتھ عددی اقدار (numeric values) کو پلاٹ کریں
+- `rqt_console`: لاگ پیغامات کی نگرانی کریں
+- `rqt_bag`: ڈیٹا کو ریکارڈ اور ری پلے کریں
+- `rqt_reconfigure`: متحرک طور پر پیرامیٹرز تبدیل کریں
 
-## Glossary
+## فرہنگ (Glossary)
 
-- **Node**: A process that performs computation in ROS
-- **Topic**: A named bus over which nodes exchange messages
-- **Message**: A data packet sent between nodes over a topic
-- **Publisher**: A node that sends messages to a topic
-- **Subscriber**: A node that receives messages from a topic
-- **Service**: A synchronous request/response communication pattern
-- **Action**: An asynchronous goal-based communication pattern
-- **Parameter**: Configuration value accessible to a node
-- **Launch File**: Configuration file that starts multiple nodes at once
-- **Package**: A container for ROS functionality
-- **QoS**: Quality of Service policies that define message delivery guarantees
+- **Node**: ایک عمل جو ROS میں کمپیوٹیشن کرتا ہے
+- **Topic**: ایک نامزد بس جس پر نوڈز پیغامات کا تبادلہ کرتے ہیں
+- **Message**: ایک ڈیٹا پیکٹ جو ایک ٹاپک پر نوڈز کے درمیان بھیجا جاتا ہے
+- **Publisher**: ایک نوڈ جو کسی ٹاپک پر پیغامات بھیجتا ہے
+- **Subscriber**: ایک نوڈ جو کسی ٹاپک سے پیغامات وصول کرتا ہے
+- **Service**: ایک ہم وقت (synchronous) درخواست/جواب مواصلاتی پیٹرن
+- **Action**: ایک غیر ہم وقت (asynchronous) مقصد پر مبنی مواصلاتی پیٹرن
+- **Parameter**: کنفیگریشن ویلیو جو کسی نوڈ کے لیے قابل رسائی ہو
+- **Launch File**: کنفیگریشن فائل جو ایک ساتھ متعدد نوڈز شروع کرتی ہے
+- **Package**: ROS فعالیت کے لیے ایک کنٹینر
+- **QoS**: کوالٹی آف سروس کی پالیسیاں جو پیغام کی ترسیل کی ضمانتوں کی وضاحت کرتی ہیں
 
-## Frequently Asked Questions
+## اکثر پوچھے گئے سوالات (FAQs)
 
-**Q: How do I handle multiple robots in the same ROS network?**
-A: Use different ROS_DOMAIN_ID values for each robot, or use namespaces to separate topics and services.
+**س: میں ایک ہی ROS نیٹ ورک میں متعدد روبوٹس کو کیسے ہینڈل کروں؟**
+ج: ہر روبوٹ کے لیے مختلف ROS_DOMAIN_ID اقدار استعمال کریں، یا ٹاپکس اور سروسز کو الگ کرنے کے لیے namespace استعمال کریں۔
 
-**Q: What's the difference between services and actions?**
-A: Services are synchronous and should complete quickly, while actions are asynchronous and can take longer to complete, with feedback during execution.
+**س: سروسز اور ایکشنز میں کیا فرق ہے؟**
+ج: سروسز synchronous ہوتی ہیں اور انہیں جلد مکمل ہونا چاہیے، جبکہ ایکشنز asynchronous ہوتے ہیں اور مکمل ہونے میں زیادہ وقت لے سکتے ہیں، اور عملدرآمد کے دوران فیڈ بیک فراہم کرتے ہیں۔
 
-**Q: How do I make my nodes more efficient?**
-A: Use appropriate QoS settings, limit message frequency for high-bandwidth data, and implement proper error handling to avoid unnecessary retries.
+**س: میں اپنے نوڈز کو زیادہ موثر کیسے بنا سکتا ہوں؟**
+ج: مناسب QoS سیٹنگز استعمال کریں، ہائی بینڈوڈتھ ڈیٹا کے لیے پیغام کی فریکوئنسی کو محدود کریں، اور غیر ضروری دوبارہ کوششوں سے بچنے کے لیے مناسب ایرر ہینڈلنگ نافذ کریں۔

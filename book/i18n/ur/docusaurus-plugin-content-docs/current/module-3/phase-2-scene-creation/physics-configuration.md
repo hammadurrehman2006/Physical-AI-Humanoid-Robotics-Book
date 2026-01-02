@@ -1,27 +1,27 @@
-# Physics Configuration in Isaac Sim
+# Isaac Sim میں طبیعیات کی کنفیگریشن
 
-This section covers configuring physics properties in Isaac Sim for realistic simulation of humanoid robots. Proper physics configuration is crucial for achieving accurate simulation results that can transfer to real-world robotics applications.
+یہ سیکشن ہیومنوائڈ روبوٹس کی حقیقت پسندانہ نقل (simulation) کے لیے Isaac Sim میں طبیعیات کی خصوصیات کو ترتیب دینے کا احاطہ کرتا ہے۔ درست سمولیشن کے نتائج حاصل کرنے کے لیے طبیعیات کی مناسب کنفیگریشن بہت اہم ہے جو حقیقی دنیا کی روبوٹکس ایپلی کیشنز میں منتقل ہو سکتے ہیں
 
-## Physics Engine Fundamentals
+## فزکس انجن کے بنیادی اصول
 
-### PhysX Integration
+### PhysX انضمام
 
-Isaac Sim uses NVIDIA's PhysX physics engine, which provides:
+Isaac Sim NVIDIA کے PhysX فزکس انجن کا استعمال کرتا ہے، جو فراہم کرتا ہے:
 
-- **Real-time simulation**: Capable of running at high frequencies for robotics applications
-- **Multi-body dynamics**: Accurate simulation of articulated robots with multiple links
-- **Contact and collision detection**: Realistic interaction between objects
-- **Constraint solving**: Support for complex joint constraints
-- **GPU acceleration**: Hardware-accelerated physics computation
+- **ریئل ٹائم سمولیشن**: روبوٹکس ایپلی کیشنز کے لیے اعلی تعدد پر چلنے کی صلاحیت
+- **ملٹی باڈی ڈائنامکس**: متعدد لنکس کے ساتھ واضح (articulated) روبوٹس کی درست سمولیشن
+- **رابطہ اور ٹکراؤ کا پتہ لگانا (Contact and Collision Detection)**: اشیاء کے درمیان حقیقت پسندانہ تعامل
+- **رکاوٹ حل کرنا (Constraint Solving)**: پیچیدہ جوائنٹ رکاوٹوں کے لیے سپورٹ
+- **GPU ایکسلریشن**: ہارڈ ویئر ایکسلریٹڈ فزکس کمپیوٹیشن
 
-### Physics Simulation Parameters
+### فزکس سمولیشن کے پیرامیٹرز
 
-The quality and performance of physics simulation depends on several key parameters:
+طبیعیات کی سمولیشن کا معیار اور کارکردگی کئی کلیدی پیرامیٹرز پر منحصر ہے:
 
-#### Time Step Configuration
-- **Physics Time Step**: Determines how frequently physics calculations are performed
-- **Rendering Time Step**: Determines how frequently the scene is rendered
-- **Substeps**: Number of physics steps per simulation step
+#### ٹائم اسٹیپ کنفیگریشن
+- **فزکس ٹائم اسٹیپ**: اس بات کا تعین کرتا ہے کہ طبیعیات کے حساب کتاب کتنی بار کیے جاتے ہیں
+- **رینڈرنگ ٹائم اسٹیپ**: اس بات کا تعین کرتا ہے کہ سین کو کتنی بار رینڈر کیا جاتا ہے
+- **سب اسٹیپس (Substeps)**: فی سمولیشن مرحلہ فزکس کے مراحل کی تعداد
 
 ```python
 #!/usr/bin/env python3
@@ -83,11 +83,11 @@ if __name__ == "__main__":
     world = configure_physics_settings()
 ```
 
-## Physics Configuration Parameters
+## فزکس کنفیگریشن پیرامیٹرز
 
-### Time Step Settings
+### ٹائم اسٹیپ سیٹنگز
 
-The time step configuration is critical for stable physics simulation:
+ٹائم اسٹیپ کنفیگریشن مستحکم طبیعیات کی سمولیشن کے لیے اہم ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -144,7 +144,7 @@ def configure_collision_settings(world):
     print("Collision settings configured")
 ```
 
-### Solver Configuration
+### سولور کنفیگریشن (Solver Configuration)
 
 ```python
 #!/usr/bin/env python3
@@ -185,11 +185,11 @@ def configure_ground_contact_settings(physics_scene):
     pass
 ```
 
-## Mass Properties and Inertia
+## بڑے پیمانے پر خصوصیات اور جڑواں (Mass Properties and Inertia)
 
-### Setting Realistic Mass Properties
+### حقیقت پسندانہ ماس پراپرٹیز سیٹ کرنا
 
-Proper mass properties are essential for realistic humanoid robot simulation:
+حقیقت پسندانہ ہیومنوائڈ روبوٹ سمولیشن کے لیے مناسب ماس پراپرٹیز ضروری ہیں:
 
 ```python
 #!/usr/bin/env python3
@@ -294,9 +294,9 @@ def set_custom_inertia(prim_path, mass, inertia_diagonal):
     set_attribute(prim, "diagonalInertia", Gf.Vec3f(*inertia_diagonal))
 ```
 
-## Joint Configuration and Constraints
+## جوائنٹ کنفیگریشن اور رکاوٹیں
 
-### Joint Properties for Humanoid Robots
+### ہیومنوائڈ روبوٹس کے لیے جوائنٹ پراپرٹیز
 
 ```python
 #!/usr/bin/env python3
@@ -387,9 +387,9 @@ def configure_joint_stiffness(robot):
     print(f"Set joint stiffness for {n_dof} joints")
 ```
 
-## Ground Contact and Friction
+## زمینی رابطہ اور رگڑ (Friction)
 
-### Contact Properties for Realistic Interaction
+### حقیقت پسندانہ تعامل کے لیے رابطہ کی خصوصیات
 
 ```python
 #!/usr/bin/env python3
@@ -443,9 +443,9 @@ def configure_foot_ground_interaction():
     pass
 ```
 
-## Advanced Physics Configuration
+## ایڈوانسڈ فزکس کنفیگریشن
 
-### GPU Physics Acceleration
+### GPU فزکس ایکسلریشن
 
 ```python
 #!/usr/bin/env python3
@@ -489,7 +489,7 @@ def configure_gpu_memory_settings(physics_context):
     print("GPU memory settings configured")
 ```
 
-### Multi-Body Dynamics Optimization
+### ملٹی باڈی ڈائنامکس آپٹیمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -534,9 +534,9 @@ def setup_humanoid_articulation(world):
     pass
 ```
 
-## Physics Validation and Testing
+## طبیعیات کی توثیق اور ٹیسٹنگ
 
-### Testing Physics Configuration
+### طبیعیات کی کنفیگریشن کی ٹیسٹنگ
 
 ```python
 #!/usr/bin/env python3
@@ -626,9 +626,9 @@ def mass_property_test():
     pass
 ```
 
-## Performance Optimization
+## کارکردگی کی اصلاح (Performance Optimization)
 
-### Balancing Accuracy and Performance
+### درستگی اور کارکردگی میں توازن
 
 ```python
 #!/usr/bin/env python3
@@ -703,9 +703,9 @@ def adaptive_physics_config(robot_complexity):
         }
 ```
 
-## Troubleshooting Physics Issues
+## طبیعیات کے مسائل کا حل (Troubleshooting)
 
-### Common Physics Problems and Solutions
+### عام طبیعیات کے مسائل اور حل
 
 ```python
 #!/usr/bin/env python3
@@ -783,31 +783,31 @@ if __name__ == "__main__":
     troubleshoot_physics_issues()
 ```
 
-## Best Practices for Physics Configuration
+## فزکس کنفیگریشن کے بہترین طریقے
 
-### Guidelines for Realistic Simulation
+### حقیقت پسندانہ سمولیشن کے لیے رہنما خطوط
 
-1. **Match Control Frequency**: Ensure your control algorithms run at the same frequency as physics simulation
-2. **Verify Mass Properties**: Use realistic mass and inertia values based on actual robot specifications
-3. **Start Conservative**: Begin with stable, conservative settings and gradually optimize
-4. **Validate with Reality**: Compare simulation behavior with real robot behavior when possible
-5. **Monitor Performance**: Keep an eye on simulation real-time factor (should stay close to 1.0)
+1. **کنٹرول فریکوئنسی کو ملائیں**: یقینی بنائیں کہ آپ کے کنٹرول الگورتھم اسی فریکوئنسی پر چلتے ہیں جس پر طبیعیات کی سمولیشن ہوتی ہے۔
+2. **ماس پراپرٹیز کی تصدیق کریں**: حقیقی روبوٹ کی تفصیلات پر مبنی حقیقت پسندانہ ماس اور جڑواں اقدار استعمال کریں۔
+3. **قدامت پسند شروع کریں**: مستحکم، قدامت پسند ترتیبات کے ساتھ شروع کریں اور آہستہ آہستہ بہتر بنائیں۔
+4. **حقیقت کے ساتھ توثیق کریں**: جب ممکن ہو تو سمولیشن رویے کا حقیقی روبوٹ رویے کے ساتھ موازنہ کریں۔
+5. **کارکردگی کی نگرانی کریں**: سمولیشن کے ریئل ٹائم فیکٹر پر نظر رکھیں (اسے 1.0 کے قریب رہنا چاہیے)
 
-### Humanoid-Specific Considerations
+### ہیومنوائڈ کے لیے مخصوص تحفظات
 
-1. **Balance Sensitivity**: Humanoid robots are particularly sensitive to physics parameters
-2. **Foot Contact**: Pay special attention to foot-ground contact properties
-3. **COM Tracking**: Ensure center of mass calculations are accurate
-4. **Actuator Dynamics**: Consider actuator dynamics in your physics model
+1. **توازن کی حساسیت**: ہیومنوائڈ روبوٹس طبیعیات کے پیرامیٹرز کے لیے خاص طور پر حساس ہوتے ہیں۔
+2. **پاؤں کا رابطہ**: پاؤں اور زمین کے رابطے کی خصوصیات پر خصوصی توجہ دیں۔
+3. **COM ٹریکنگ**: یقینی بنائیں کہ سینٹر آف ماس کے حساب کتاب درست ہیں۔
+4. **ایکچویٹر ڈائنامکس**: اپنے فزکس ماڈل میں ایکچویٹر ڈائنامکس پر غور کریں۔
 
-## Next Steps
+## اگلے اقدامات
 
-After configuring physics for your Isaac Sim environment:
+اپنے Isaac Sim ماحول کے لیے طبیعیات کو کنفیگر کرنے کے بعد:
 
-1. **Test Basic Motion**: Verify that simple movements work correctly
-2. **Validate Complex Behaviors**: Test walking, manipulation, or other complex behaviors
-3. **Optimize Performance**: Adjust settings for the best accuracy-performance balance
-4. **Integrate Sensors**: Add sensors and verify they work with the physics simulation
-5. **Develop Control Algorithms**: Create control systems that work with the configured physics
+1. **بنیادی حرکت کی جانچ کریں**: تصدیق کریں کہ سادہ حرکتیں صحیح طریقے سے کام کرتی ہیں۔
+2. **پیچیدہ رویوں کی توثیق کریں**: چلنے، ہیرا پھیری، یا دیگر پیچیدہ رویوں کی جانچ کریں۔
+3. **کارکردگی کو بہتر بنائیں**: بہترین درستگی-کارکردگی توازن کے لیے ترتیبات کو ایڈجسٹ کریں۔
+4. **سینسرز کو ضم کریں**: سینسرز شامل کریں اور تصدیق کریں کہ وہ طبیعیات کی سمولیشن کے ساتھ کام کرتے ہیں۔
+5. **کنٹرول الگورتھم تیار کریں**: کنٹرول سسٹم بنائیں جو کنفیگر شدہ طبیعیات کے ساتھ کام کریں۔
 
-The next section covers sensor simulation in Isaac Sim, which builds on the physics foundation we've established.
+اگلا سیکشن Isaac Sim میں سینسر سمولیشن کا احاطہ کرتا ہے، جو اس طبیعیات کی بنیاد پر استوار ہوتا ہے جو ہم نے قائم کی ہے۔

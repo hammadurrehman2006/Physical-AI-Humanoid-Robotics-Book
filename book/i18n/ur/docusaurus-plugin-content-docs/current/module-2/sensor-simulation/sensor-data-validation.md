@@ -2,39 +2,39 @@
 sidebar_position: 5
 ---
 
-# Sensor Data Validation and Testing Against Real-World Expectations
+# سینسر ڈیٹا کی توثیق اور حقیقی دنیا کی توقعات کے خلاف ٹیسٹنگ
 
-This tutorial covers how to validate sensor data in Gazebo simulations to ensure it matches real-world expectations and can be used reliably in robotics applications.
+یہ سبق Gazebo سمولیشنز میں سینسر ڈیٹا کی توثیق کرنے کا احاطہ کرتا ہے تاکہ یہ یقینی بنایا جا سکے کہ یہ حقیقی دنیا کی توقعات سے مطابقت رکھتا ہے اور روبوٹکس ایپلی کیشنز میں قابل اعتماد طریقے سے استعمال کیا جا سکتا ہے۔
 
-## Understanding Sensor Validation
+## سینسر کی توثیق کو سمجھنا
 
-### Why Validate Sensor Data?
+### سینسر ڈیٹا کی توثیق کیوں کریں؟
 
-Sensor data validation is crucial because:
-- Simulation sensors must behave similarly to real sensors
-- Perception algorithms depend on realistic sensor characteristics
-- Control systems rely on accurate sensor readings
-- Training data from simulation may be used for real robot deployment
+سینسر ڈیٹا کی توثیق بہت اہم ہے کیونکہ:
+- سمولیشن سینسرز کو حقیقی سینسرز کی طرح برتاؤ کرنا چاہیے
+- ادراک (perception) کے الگورتھم حقیقت پسندانہ سینسر خصوصیات پر انحصار کرتے ہیں
+- کنٹرول سسٹمز درست سینسر ریڈنگز پر انحصار کرتے ہیں
+- سمولیشن سے تربیتی ڈیٹا حقیقی روبوٹ کی تعیناتی کے لیے استعمال کیا جا سکتا ہے
 
-### Key Validation Goals
+### توثیق کے اہم اہداف
 
-1. **Range validation**: Sensor readings should be within expected ranges
-2. **Resolution validation**: Sensor data should have appropriate resolution
-3. **Noise characteristics**: Simulated noise should match real sensor properties
-4. **Timing validation**: Sensor update rates should be realistic
-5. **Geometric validation**: Sensor poses and mounting should be accurate
+1. **رینج کی توثیق**: سینسر ریڈنگز متوقع حدود میں ہونی چاہئیں
+2. **ریزولیوشن کی توثیق**: سینسر ڈیٹا میں مناسب ریزولیوشن ہونی چاہیے
+3. **شور کی خصوصیات**: نقلی شور کو حقیقی سینسر کی خصوصیات سے مطابقت رکھنی چاہیے
+4. **ٹائمنگ کی توثیق**: سینسر اپ ڈیٹ ریٹس حقیقت پسندانہ ہونے چاہئیں
+5. **جیومیٹرک توثیق**: سینسر کے پوز اور ماؤنٹنگ درست ہونی چاہیے
 
-## LiDAR Sensor Validation
+## LiDAR سینسر کی توثیق
 
-### Expected LiDAR Behavior
+### متوقع LiDAR رویہ
 
-A well-configured LiDAR should:
-- Detect objects within its range limits
-- Have realistic resolution based on angular resolution
-- Show expected noise characteristics
-- Properly handle different materials and surface properties
+ایک اچھی طرح سے کنفیگرڈ LiDAR کو:
+- اپنی رینج کی حدود میں اشیاء کا پتہ لگانا چاہیے
+- کونیی (angular) ریزولیوشن کی بنیاد پر حقیقت پسندانہ ریزولیوشن ہونی چاہیے
+- متوقع شور کی خصوصیات دکھانی چاہئیں
+- مختلف مواد اور سطح کی خصوصیات کو صحیح طریقے سے ہینڈل کرنا چاہیے
 
-### LiDAR Validation Example
+### LiDAR توثیق کی مثال
 
 ```xml
 <!-- LiDAR validation test.sdf -->
@@ -140,9 +140,9 @@ A well-configured LiDAR should:
 </sdf>
 ```
 
-### LiDAR Validation Code
+### LiDAR توثیق کا کوڈ
 
-Create a validation script to check LiDAR data:
+LiDAR ڈیٹا چیک کرنے کے لیے توثیقی اسکرپٹ بنائیں:
 
 ```python
 #!/usr/bin/env python3
@@ -229,17 +229,17 @@ if __name__ == '__main__':
     main()
 ```
 
-## Camera Sensor Validation
+## کیمرہ سینسر کی توثیق
 
-### Expected Camera Behavior
+### متوقع کیمرہ رویہ
 
-A well-configured camera should:
-- Produce images with appropriate resolution and field of view
-- Have realistic perspective distortion
-- Properly handle lighting conditions
-- Accurately represent depth in stereo/depth cameras
+ایک اچھی طرح سے کنفیگرڈ کیمرہ کو:
+- مناسب ریزولیوشن اور فیلڈ آف ویو کے ساتھ تصاویر بنانا چاہیے
+- حقیقت پسندانہ تناظر کا بگاڑ (perspective distortion) ہونا چاہیے
+- روشنی کے حالات کو صحیح طریقے سے ہینڈل کرنا چاہیے
+- سٹیریو/ڈیپتھ کیمروں میں گہرائی کی درست نمائندگی کرنی چاہیے
 
-### Camera Validation Example
+### کیمرہ توثیق کی مثال
 
 ```xml
 <!-- Camera validation test.sdf -->
@@ -344,7 +344,7 @@ A well-configured camera should:
 </sdf>
 ```
 
-### Camera Validation Code
+### کیمرہ توثیق کا کوڈ
 
 ```python
 #!/usr/bin/env python3
@@ -419,17 +419,17 @@ if __name__ == '__main__':
     main()
 ```
 
-## IMU Sensor Validation
+## IMU سینسر کی توثیق
 
-### Expected IMU Behavior
+### متوقع IMU رویہ
 
-A well-configured IMU should:
-- Report realistic acceleration due to gravity
-- Show proper orientation changes when the robot moves
-- Have appropriate noise characteristics
-- Accurately represent angular velocity when rotating
+ایک اچھی طرح سے کنفیگرڈ IMU کو:
+- کشش ثقل کی وجہ سے حقیقت پسندانہ ایکسلریشن کی اطلاع دینی چاہیے
+- روبوٹ کے حرکت کرنے پر واقفیت میں مناسب تبدیلیاں دکھانی چاہئیں
+- مناسب شور کی خصوصیات ہونی چاہئیں
+- گھومتے وقت کونیی (angular) رفتار کی درست نمائندگی کرنی چاہیے
 
-### IMU Validation Code
+### IMU توثیق کا کوڈ
 
 ```python
 #!/usr/bin/env python3
@@ -503,11 +503,11 @@ if __name__ == '__main__':
     main()
 ```
 
-## Multi-Sensor Validation
+## ملٹی سینسر کی توثیق
 
-### Sensor Fusion Validation
+### سینسر فیوژن کی توثیق
 
-Validate that multiple sensors work together correctly:
+توثیق کریں کہ متعدد سینسرز ایک ساتھ صحیح طریقے سے کام کرتے ہیں:
 
 ```python
 #!/usr/bin/env python3
@@ -598,9 +598,9 @@ if __name__ == '__main__':
     main()
 ```
 
-## Validation Tools and Techniques
+## توثیق کے ٹولز اور تکنیکیں
 
-### Using rviz2 for Visualization
+### وژولائزیشن کے لیے rviz2 کا استعمال
 
 ```bash
 # Launch rviz2 to visualize sensor data
@@ -613,7 +613,7 @@ ros2 run rviz2 rviz2
 # - PointCloud2 for 3D point clouds
 ```
 
-### Command Line Validation
+### کمانڈ لائن توثیق
 
 ```bash
 # Check if sensor topics are publishing
@@ -626,9 +626,9 @@ ros2 topic hz /camera/image_raw
 ros2 topic list | grep -E "(scan|camera|imu)"
 ```
 
-### Automated Testing with Launch Files
+### لانچ فائلوں کے ساتھ خودکار ٹیسٹنگ
 
-Create a launch file to automate sensor validation:
+سینسر کی توثیق کو خودکار کرنے کے لیے ایک لانچ فائل بنائیں:
 
 ```python
 # sensor_validation.launch.py
@@ -676,11 +676,11 @@ def generate_launch_description():
     ])
 ```
 
-## Performance Validation
+## کارکردگی کی توثیق
 
-### Sensor Update Rate Testing
+### سینسر اپ ڈیٹ ریٹ کی ٹیسٹنگ
 
-Validate that sensors publish at expected rates:
+توثیق کریں کہ سینسرز متوقع شرحوں پر پبلش ہو رہے ہیں:
 
 ```python
 # Rate validation script
@@ -721,48 +721,48 @@ class RateValidator(Node):
                 self.get_logger().warn(f'Rate validation FAILED: {actual_rate:.2f} Hz (target: {self.target_rate})')
 ```
 
-## Common Validation Issues and Solutions
+## عام توثیقی مسائل اور حل
 
-### Issue 1: No Sensor Data
-**Symptoms**: No messages on sensor topics
-**Solutions**:
-- Check that sensor is properly attached to a link
-- Verify `always_on` is set to `1`
-- Ensure the sensor plugin is loaded correctly
-- Check Gazebo is running with the correct world
+### مسئلہ 1: کوئی سینسر ڈیٹا نہیں
+**علامات**: سینسر ٹاپکس پر کوئی پیغامات نہیں
+**حل**:
+- چیک کریں کہ سینسر لنک کے ساتھ صحیح طریقے سے منسلک ہے
+- تصدیق کریں کہ `always_on` `1` پر سیٹ ہے
+- یقینی بنائیں کہ سینسر پلگ ان صحیح طریقے سے لوڈ ہوا ہے
+- چیک کریں کہ Gazebo صحیح دنیا (world) کے ساتھ چل رہا ہے
 
-### Issue 2: Invalid Range Readings
-**Symptoms**: LiDAR returns all zeros, inf, or NaN
-**Solutions**:
-- Check sensor range parameters in SDF
-- Verify there are objects in the sensor's field of view
-- Check that collision geometries are defined for objects
-- Validate that the sensor link is positioned correctly
+### مسئلہ 2: غلط رینج ریڈنگز
+**علامات**: LiDAR تمام صفر، inf، یا NaN واپس کرتا ہے
+**حل**:
+- SDF میں سینسر کی رینج کے پیرامیٹرز چیک کریں
+- تصدیق کریں کہ سینسر کے فیلڈ آف ویو میں اشیاء موجود ہیں
+- چیک کریں کہ اشیاء کے لیے ٹکراؤ کی جیومیٹریز (collision geometries) کی وضاحت کی گئی ہے
+- توثیق کریں کہ سینسر لنک صحیح پوزیشن پر ہے
 
-### Issue 3: Unrealistic Noise
-**Symptoms**: Sensor data too clean or too noisy
-**Solutions**:
-- Adjust noise parameters in SDF configuration
-- Add realistic noise models based on real sensor specifications
-- Consider environmental factors (e.g., lighting for cameras)
+### مسئلہ 3: غیر حقیقت پسندانہ شور
+**علامات**: سینسر ڈیٹا بہت صاف یا بہت زیادہ شور والا ہے
+**حل**:
+- SDF کنفیگریشن میں شور کے پیرامیٹرز کو ایڈجسٹ کریں
+- حقیقی سینسر کی تفصیلات کی بنیاد پر حقیقت پسندانہ شور کے ماڈلز شامل کریں
+- ماحولیاتی عوامل پر غور کریں (مثال کے طور پر، کیمروں کے لیے روشنی)
 
-## Validation Checklist
+## توثیقی چیک لسٹ
 
-Before considering sensor data validated:
+سینسر ڈیٹا کو درست ماننے سے پہلے:
 
-- [ ] LiDAR detects objects at expected ranges
-- [ ] Camera produces images with correct resolution and format
-- [ ] IMU reports realistic acceleration and orientation
-- [ ] Sensor data rates match configuration
-- [ ] Noise characteristics are realistic
-- [ ] Multiple sensors are synchronized (if required)
-- [ ] Data can be processed by perception algorithms
-- [ ] Timestamps are reasonable and consistent
+- [ ] LiDAR متوقع حدود میں اشیاء کا پتہ لگاتا ہے
+- [ ] کیمرہ درست ریزولیوشن اور فارمیٹ کے ساتھ تصاویر تیار کرتا ہے
+- [ ] IMU حقیقت پسندانہ ایکسلریشن اور واقفیت کی رپورٹ دیتا ہے
+- [ ] سینسر ڈیٹا کی شرح کنفیگریشن سے مطابقت رکھتی ہے
+- [ ] شور کی خصوصیات حقیقت پسندانہ ہیں
+- [ ] متعدد سینسرز ہم وقت ساز (synchronized) ہیں (اگر ضرورت ہو)
+- [ ] ڈیٹا کو ادراک (perception) کے الگورتھم کے ذریعے پروسیس کیا جا سکتا ہے
+- [ ] ٹائم اسٹیمپس معقول اور مستقل ہیں
 
-## Next Steps
+## اگلے اقدامات
 
-After validating your sensor simulation:
+اپنی سینسر سمولیشن کی توثیق کرنے کے بعد:
 
-1. Continue to [Sensor Fusion](./sensor-fusion.md) to learn how to combine multiple sensors
-2. Explore [Unity Integration](../unity-integration/unity-setup.md) for high-fidelity visualization
-3. Work on the [Assessment Project](../assessment-project/project-overview.md) to apply your knowledge
+1. [سینسر فیوژن](./sensor-fusion.md) پر جاری رکھیں تاکہ سیکھیں کہ متعدد سینسرز کو کیسے اکٹھا کیا جائے
+2. ہائی فیڈیلیٹی وژولائزیشن کے لیے [Unity انضمام](../unity-integration/unity-setup.md) دریافت کریں
+3. اپنے علم کا اطلاق کرنے کے لیے [اسیسمنٹ پروجیکٹ](../assessment-project/project-overview.md) پر کام کریں

@@ -2,30 +2,30 @@
 sidebar_position: 1
 ---
 
-# Manage Docs Versions
+# دستاویزات کے ورژنز کا انتظام کریں
 
-Docusaurus can manage multiple versions of your docs.
+Docusaurus آپ کی دستاویزات کے متعدد ورژنز کا انتظام کر سکتا ہے۔
 
-## Create a docs version
+## دستاویزات کا ورژن بنائیں
 
-Release a version 1.0 of your project:
+اپنے پروجیکٹ کا ورژن 1.0 جاری کریں:
 
 ```bash
 npm run docusaurus docs:version 1.0
 ```
 
-The `docs` folder is copied into `versioned_docs/version-1.0` and `versions.json` is created.
+`docs` فولڈر کو `versioned_docs/version-1.0` میں کاپی کیا جاتا ہے اور `versions.json` بنایا جاتا ہے۔
 
-Your docs now have 2 versions:
+آپ کی دستاویزات کے اب 2 ورژنز ہیں:
 
-- `1.0` at `http://localhost:3000/docs/` for the version 1.0 docs
-- `current` at `http://localhost:3000/docs/next/` for the **upcoming, unreleased docs**
+- `1.0` [http://localhost:3000/docs/](http://localhost:3000/docs/) پر ورژن 1.0 دستاویزات کے لیے
+- `current` [http://localhost:3000/docs/next/](http://localhost:3000/docs/next/) پر **آنے والی، غیر جاری شدہ دستاویزات** کے لیے
 
-## Add a Version Dropdown
+## ورژن ڈراپ ڈاؤن شامل کریں
 
-To navigate seamlessly across versions, add a version dropdown.
+ورژنز میں بغیر کسی رکاوٹ کے نیویگیٹ کرنے کے لیے، ورژن ڈراپ ڈاؤن شامل کریں۔
 
-Modify the `docusaurus.config.js` file:
+`docusaurus.config.js` فائل میں ترمیم کریں:
 
 ```js title="docusaurus.config.js"
 export default {
@@ -43,13 +43,13 @@ export default {
 };
 ```
 
-The docs version dropdown appears in your navbar:
+دستاویزات کا ورژن ڈراپ ڈاؤن آپ کے نیویگیشن بار میں ظاہر ہوتا ہے:
 
 ![Docs Version Dropdown](./img/docsVersionDropdown.png)
 
-## Update an existing version
+## موجودہ ورژن کو اپ ڈیٹ کریں
 
-It is possible to edit versioned docs in their respective folder:
+ورژن شدہ دستاویزات کو ان کے متعلقہ فولڈر میں ترمیم کرنا ممکن ہے:
 
-- `versioned_docs/version-1.0/hello.md` updates `http://localhost:3000/docs/hello`
-- `docs/hello.md` updates `http://localhost:3000/docs/next/hello`
+- `versioned_docs/version-1.0/hello.md` [http://localhost:3000/docs/hello](http://localhost:3000/docs/hello) کو اپ ڈیٹ کرتا ہے
+- `docs/hello.md` [http://localhost:3000/docs/next/hello](http://localhost:3000/docs/next/hello) کو اپ ڈیٹ کرتا ہے

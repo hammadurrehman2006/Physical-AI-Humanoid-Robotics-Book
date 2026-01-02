@@ -1,36 +1,36 @@
-# Data Generation in Isaac Sim
+# Isaac Sim میں ڈیٹا جنریشن
 
-This section covers synthetic data generation techniques using Isaac Sim for training perception models and developing AI systems for humanoid robotics. Synthetic data generation is a critical component of modern robotics development, enabling training of perception systems without requiring extensive real-world data collection.
+یہ سیکشن پرسیپشن ماڈلز کی تربیت اور ہیومنوائڈ روبوٹکس کے لیے AI سسٹمز تیار کرنے کے لیے Isaac Sim کا استعمال کرتے ہوئے مصنوعی ڈیٹا جنریشن کی تکنیکوں کا احاطہ کرتا ہے۔ مصنوعی ڈیٹا جنریشن جدید روبوٹکس ڈویلپمنٹ کا ایک اہم جزو ہے، جو وسیع حقیقی دنیا کے ڈیٹا اکٹھا کیے بغیر پرسیپشن سسٹمز کی تربیت کو قابل بناتا ہے۔
 
-## Overview of Synthetic Data Generation
+## مصنوعی ڈیٹا جنریشن کا جائزہ
 
-### Why Synthetic Data?
+### مصنوعی ڈیٹا کیوں؟
 
-Synthetic data generation in Isaac Sim provides several key advantages:
+Isaac Sim میں مصنوعی ڈیٹا جنریشن کئی اہم فوائد فراہم کرتا ہے:
 
-- **Safety**: Train perception models without risking real robots or environments
-- **Cost-effectiveness**: Generate large datasets without expensive data collection
-- **Control**: Create specific scenarios and edge cases on demand
-- **Variety**: Generate diverse environmental conditions quickly
-- **Annotation**: Automatically generate perfect ground truth labels
-- **Scalability**: Generate datasets of any size needed for training
+- **حفاظت**: حقیقی روبوٹس یا ماحول کو خطرے میں ڈالے بغیر پرسیپشن ماڈلز کو تربیت دیں
+- **لاگت میں تاثیر**: مہنگے ڈیٹا اکٹھا کیے بغیر بڑے ڈیٹاسیٹس تیار کریں
+- **کنٹرول**: مانگ پر مخصوص منظرنامے اور ایج کیسز بنائیں
+- **تنوع**: متنوع ماحولیاتی حالات تیزی سے پیدا کریں
+- **تشریح**: خودکار طور پر کامل گراؤنڈ ٹرتھ لیبلز تیار کریں
+- **اسکیل ایبلٹی**: تربیت کے لیے درکار کسی بھی سائز کے ڈیٹاسیٹس تیار کریں
 
-### Types of Synthetic Data
+### مصنوعی ڈیٹا کی اقسام
 
-Isaac Sim can generate various types of data:
+Isaac Sim مختلف قسم کا ڈیٹا تیار کر سکتا ہے:
 
-- **RGB Images**: Color images for visual perception
-- **Depth Maps**: Depth information for 3D understanding
-- **Point Clouds**: 3D point cloud data from LiDAR simulation
-- **Semantic Segmentation**: Pixel-level semantic labels
-- **Instance Segmentation**: Object instance labels
-- **Bounding Boxes**: 2D and 3D bounding box annotations
-- **Pose Data**: Object and robot pose information
-- **Sensor Fusion Data**: Combined data from multiple sensors
+- **RGB امیجز**: بصری ادراک کے لیے رنگین تصاویر
+- **ڈیپتھ میپس**: 3D سمجھ بوجھ کے لیے گہرائی کی معلومات
+- **پوائنٹ کلاؤڈز**: LiDAR سیمولیشن سے 3D پوائنٹ کلاؤڈ ڈیٹا
+- **سیمینٹک سیگمنٹیشن**: پکسل کی سطح کے سیمینٹک لیبلز
+- **مثال سیگمنٹیشن (Instance Segmentation)**: آبجیکٹ کی مثال کے لیبلز
+- **باؤنڈنگ باکسز**: 2D اور 3D باؤنڈنگ باکس تشریحات
+- **پوز ڈیٹا**: آبجیکٹ اور روبوٹ پوز کی معلومات
+- **سینسر فیوژن ڈیٹا**: متعدد سینسرز سے مشترکہ ڈیٹا
 
-## Setting Up Data Generation Pipeline
+## ڈیٹا جنریشن پائپ لائن قائم کرنا
 
-### Basic Data Generation Framework
+### بنیادی ڈیٹا جنریشن فریم ورک
 
 ```python
 #!/usr/bin/env python3
@@ -281,11 +281,11 @@ if __name__ == "__main__":
     generator = run_data_generation_example()
 ```
 
-## Domain Randomization
+## ڈومین رینڈمائزیشن (Domain Randomization)
 
-### Randomizing Scene Elements
+### منظر کے عناصر کو بے ترتیب بنانا
 
-Domain randomization is crucial for generating diverse synthetic data that can transfer to the real world:
+ڈومین رینڈمائزیشن متنوع مصنوعی ڈیٹا تیار کرنے کے لیے اہم ہے جو حقیقی دنیا میں منتقل ہو سکتا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -430,7 +430,7 @@ class DomainRandomizer:
         print("Domain randomization applied successfully")
 ```
 
-### Advanced Domain Randomization
+### جدید ڈومین رینڈمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -530,9 +530,9 @@ class AdvancedDomainRandomizer(DomainRandomizer):
         print("Advanced domain randomization applied successfully")
 ```
 
-## Semantic Segmentation Data Generation
+## سیمینٹک سیگمنٹیشن ڈیٹا جنریشن
 
-### Generating Semantic Segmentation Labels
+### سیمینٹک سیگمنٹیشن لیبلز تیار کرنا
 
 ```python
 #!/usr/bin/env python3
@@ -661,9 +661,9 @@ class SemanticSegmentationGenerator:
         print(f"Semantic dataset generation completed!")
 ```
 
-## Instance Segmentation Data Generation
+## مثال سیگمنٹیشن (Instance Segmentation) ڈیٹا جنریشن
 
-### Generating Instance Segmentation Labels
+### مثال سیگمنٹیشن لیبلز تیار کرنا
 
 ```python
 #!/usr/bin/env python3
@@ -799,9 +799,9 @@ class InstanceSegmentationGenerator:
         print(f"Instance dataset generation completed!")
 ```
 
-## 3D Object Detection Data Generation
+## 3D آبجیکٹ ڈیٹیکشن ڈیٹا جنریشن
 
-### Generating 3D Detection Labels
+### 3D ڈیٹیکشن لیبلز تیار کرنا
 
 ```python
 #!/usr/bin/env python3
@@ -952,9 +952,9 @@ class Detection3DGenerator:
         print(f"3D detection dataset generation completed!")
 ```
 
-## Data Quality and Validation
+## ڈیٹا کا معیار اور توثیق
 
-### Validating Synthetic Data Quality
+### مصنوعی ڈیٹا کے معیار کی توثیق
 
 ```python
 #!/usr/bin/env python3
@@ -1105,9 +1105,9 @@ class DataQualityValidator:
         print("Dataset validation completed!")
 ```
 
-## Performance Optimization
+## کارکردگی کی اصلاح
 
-### Optimizing Data Generation Speed
+### ڈیٹا جنریشن کی رفتار کو بہتر بنانا
 
 ```python
 #!/usr/bin/env python3
@@ -1286,32 +1286,32 @@ if __name__ == "__main__":
     print(f"Optimization config: {opt_gen.optimization_config}")
 ```
 
-## Best Practices for Data Generation
+## ڈیٹا جنریشن کے لیے بہترین طریقے
 
-### Guidelines for High-Quality Synthetic Data
+### اعلی معیار کے مصنوعی ڈیٹا کے لیے رہنما خطوط
 
-1. **Realistic Domain Randomization**: Apply domain randomization that reflects real-world variation
-2. **Proper Annotation**: Ensure all generated data has accurate ground truth labels
-3. **Validation**: Regularly validate synthetic data quality against real data
-4. **Diversity**: Generate diverse scenarios to improve model generalization
-5. **Consistency**: Maintain consistency between different sensor modalities
-6. **Performance**: Optimize for generation speed without sacrificing quality
+1. **حقیقی ڈومین رینڈمائزیشن**: ڈومین رینڈمائزیشن کا اطلاق کریں جو حقیقی دنیا کی تبدیلیوں کی عکاسی کرے
+2. **مناسب تشریح**: یقینی بنائیں کہ تمام تیار کردہ ڈیٹا میں درست گراؤنڈ ٹرتھ لیبلز ہیں
+3. **توثیق**: مصنوعی ڈیٹا کے معیار کو حقیقی ڈیٹا کے مقابلے میں باقاعدگی سے توثیق کریں
+4. **تنوع**: ماڈل کی عمومیت کو بہتر بنانے کے لیے متنوع منظرنامے تیار کریں
+5. **مطابقت**: مختلف سینسر ماڈلٹیز کے درمیان مطابقت برقرار رکھیں
+6. **کارکردگی**: معیار کو قربان کیے بغیر جنریشن کی رفتار کو بہتر بنائیں
 
-### Humanoid-Specific Considerations
+### ہیومنوائڈ کے لیے مخصوص تحفظات
 
-1. **Human-like Environments**: Generate data in environments humans typically encounter
-2. **Social Scenarios**: Include scenarios with human interaction
-3. **Dynamic Objects**: Include moving objects that humanoid robots might encounter
-4. **Balance Scenarios**: Generate data relevant to humanoid balance and locomotion
+1. **انسان جیسے ماحول**: ایسے ماحول میں ڈیٹا تیار کریں جہاں انسانوں کا سامنا ہوتا ہے
+2. **سماجی منظرنامے**: ایسے منظرنامے شامل کریں جن میں انسانی تعامل ہو
+3. **متحرک آبجیکٹ**: ایسے متحرک آبجیکٹ شامل کریں جن کا ہیومنوائڈ روبوٹس کو سامنا ہو سکتا ہے
+4. **متوازن منظرنامے**: ہیومنوائڈ توازن اور لوکوموشن سے متعلق ڈیٹا تیار کریں
 
-## Next Steps
+## اگلے اقدامات
 
-After implementing synthetic data generation:
+مصنوعی ڈیٹا جنریشن کو نافذ کرنے کے بعد:
 
-1. **Train Perception Models**: Use generated data to train computer vision models
-2. **Validate Performance**: Test trained models on real-world data
-3. **Iterate and Improve**: Refine data generation based on model performance
-4. **Scale Generation**: Generate larger datasets for more complex models
-5. **Quality Assurance**: Implement automated quality checks for generated data
+1. **پرسیپشن ماڈلز کو تربیت دیں**: کمپیوٹر وژن ماڈلز کو تربیت دینے کے لیے تیار کردہ ڈیٹا کا استعمال کریں
+2. **کارکردگی کی توثیق کریں**: حقیقی دنیا کے ڈیٹا پر تربیت یافتہ ماڈلز کی جانچ کریں
+3. **دہرائیں اور بہتر بنائیں**: ماڈل کی کارکردگی کی بنیاد پر ڈیٹا جنریشن کو بہتر بنائیں
+4. **اسکیل جنریشن**: مزید پیچیدہ ماڈلز کے لیے بڑے ڈیٹاسیٹس تیار کریں
+5. **کوالٹی ایشورنس**: تیار کردہ ڈیٹا کے لیے خودکار کوالٹی چیکس کو نافذ کریں
 
-The next section covers domain randomization techniques in more detail.
+اگلا سیکشن ڈومین رینڈمائزیشن کی تکنیکوں کو مزید تفصیل سے احاطہ کرتا ہے۔

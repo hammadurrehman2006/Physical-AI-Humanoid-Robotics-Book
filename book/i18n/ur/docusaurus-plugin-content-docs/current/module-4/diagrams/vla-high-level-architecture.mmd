@@ -1,0 +1,38 @@
+```mermaid
+graph TB
+    subgraph "User Environment"
+        VoiceInput["🎤 Voice Command"]
+    end
+
+    subgraph "VLA System"
+        A["🗣️ Voice Processing Module"]
+        B["🧠 Language Understanding Module"]
+        C["👁️ Computer Vision Module"]
+        D["⚙️ Action Execution Module"]
+        E["🤖 Robot Hardware"]
+    end
+
+    subgraph "External Systems"
+        F["🧠 AI Models & APIs"]
+        G["💾 Knowledge Base"]
+    end
+
+    VoiceInput --> A
+    A --> B
+    B --> C
+    B --> G
+    C --> B
+    C --> D
+    B --> D
+    D --> E
+    F --> A
+    F --> B
+    F --> C
+    G --> B
+    G --> C
+
+    style VoiceInput fill:#e1f5fe
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
+    style G fill:#fff3e0
+```

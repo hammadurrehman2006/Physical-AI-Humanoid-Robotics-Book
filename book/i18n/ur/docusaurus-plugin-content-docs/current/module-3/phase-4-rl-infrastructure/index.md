@@ -1,22 +1,22 @@
-# Phase 4: Reinforcement Learning Infrastructure
+# فیز 4: ری انفورسمنٹ لرننگ انفراسٹرکچر
 
-Welcome to Phase 4 of the Isaac Sim module. This phase covers reinforcement learning infrastructure setup and configuration for robotics applications.
+Isaac Sim ماڈیول کے فیز 4 میں خوش آمدید۔ یہ فیز روبوٹکس ایپلی کیشنز کے لیے ری انفورسمنٹ لرننگ انفراسٹرکچر کے سیٹ اپ اور کنفیگریشن کا احاطہ کرتا ہے۔
 
-## Overview
+## جائزہ
 
-In this phase, you will learn to:
+اس فیز میں، آپ سیکھیں گے:
 
-- Set up RL training environments in Isaac Sim
-- Configure training infrastructure
-- Optimize performance for RL applications
-- Implement humanoid robot control algorithms
+- Isaac Sim میں RL ٹریننگ کے ماحول کو ترتیب دینا
+- ٹریننگ انفراسٹرکچر کو کنفیگر کرنا
+- RL ایپلی کیشنز کے لیے کارکردگی کو بہتر بنانا
+- ہیومنوائڈ روبوٹ کنٹرول الگورتھم کو نافذ کرنا
 
-## Topics Covered
+## شامل موضوعات
 
-- [RL Setup](./rl-setup.md)
-- [Training Environments](./training-environments.md)
-- [Performance Optimization](./performance-optimization.md)
+- [RL سیٹ اپ](./rl-setup.md)
+- [ٹریننگ ماحول](./training-environments.md)
+- [کارکردگی کی اصلاح](./performance-optimization.md)
 
-## Getting Started
+## شروع کریں
 
-Begin with the [RL Setup](./rl-setup.md) guide to learn how to configure reinforcement learning environments in Isaac Sim, then proceed to learn about training environments and performance optimization techniques.
+Isaac Sim میں ری انفورسمنٹ لرننگ کے ماحول کو کنفیگر کرنے کا طریقہ سیکھنے کے لیے [RL سیٹ اپ](./rl-setup.md) گائیڈ کے ساتھ شروعات کریں، پھر ٹریننگ کے ماحول اور کارکردگی کی اصلاح کی تکنیکوں کے بارے میں سیکھنے کے لیے آگے بڑھیں۔

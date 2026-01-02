@@ -1,0 +1,8 @@
+{
+  "label": "Scene Creation and Environment Setup",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to create photorealistic scenes and environments for humanoid robotics simulation in Isaac Sim."
+  }
+}

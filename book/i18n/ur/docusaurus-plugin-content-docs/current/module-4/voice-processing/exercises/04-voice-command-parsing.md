@@ -1,18 +1,18 @@
-# Exercise 1.4: Voice Command Parsing and Natural Language Understanding
+# مشق 1.4: صوتی کمانڈ پارسنگ اور قدرتی زبان کا ادراک (Voice Command Parsing and NLU)
 
-## Objective
-Implement voice command parsing to extract actionable intents and entities from transcribed speech for the Vision-Language-Action system.
+## مقصد
+Vision-Language-Action سسٹم کے لیے نقل شدہ تقریر (transcribed speech) سے قابل عمل ارادوں اور اداروں کو نکالنے کے لیے صوتی کمانڈ پارسنگ کو نافذ کریں۔
 
-## Prerequisites
-- Completion of Exercises 1.1-1.3
+## شرائط
+- مشقیں 1.1-1.3 کی تکمیل
 - Python 3.10+
-- Required libraries: regex, spacy (optional), nltk (optional)
-- Transcribed text from speech recognition
+- مطلوبہ لائبریریاں: regex, spacy (اختیاری), nltk (اختیاری)
+- اسپیچ ریکگنیشن سے نقل شدہ متن
 
-## Exercise Steps
+## مشق کے مراحل
 
-### Step 1: Set Up Command Parsing Environment
-Create a new file `command_parser.py`:
+### مرحلہ 1: کمانڈ پارسنگ ماحول سیٹ کریں
+ایک نئی فائل `command_parser.py` بنائیں:
 
 ```python
 #!/usr/bin/env python3
@@ -324,3 +324,4 @@ class AdvancedCommandParser(VoiceCommandParser):
                     temporal_info[key] = match.group(0)
 
         return temporal_info
+```

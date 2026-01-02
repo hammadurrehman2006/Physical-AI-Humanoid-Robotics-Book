@@ -2,42 +2,42 @@
 sidebar_position: 3
 ---
 
-# Evaluation Criteria
+# جانچ کا معیار (Evaluation Criteria)
 
-This document defines the grading standards and evaluation criteria for the Module 2 assessment project.
+یہ دستاویز ماڈیول 2 کے اسیسمنٹ پروجیکٹ کے لیے گریڈنگ کے معیارات اور جانچ کے پیمانوں کی وضاحت کرتی ہے۔
 
-## Grading Rubric
+## گریڈنگ روبک (Grading Rubric)
 
-### Robot Model Implementation (25 points)
-- **Excellent (22-25 points)**: Complete robot model with proper URDF/SDF, all properties correctly defined, realistic appearance and physics
-- **Good (18-21 points)**: Robot model with most properties defined, minor issues with physics or appearance
-- **Satisfactory (13-17 points)**: Basic robot model with some properties missing or incorrectly configured
-- **Needs Improvement (0-12 points)**: Incomplete or incorrect robot model
+### روبوٹ ماڈل کا نفاذ (25 پوائنٹس)
+- **بہترین (22-25 پوائنٹس)**: مناسب URDF/SDF کے ساتھ مکمل روبوٹ ماڈل، تمام خصوصیات کی صحیح تعریف، حقیقت پسندانہ ظاہری شکل اور طبیعیات (physics)
+- **اچھا (18-21 پوائنٹس)**: زیادہ تر خصوصیات کے ساتھ روبوٹ ماڈل، طبیعیات یا ظاہری شکل کے ساتھ معمولی مسائل
+- **تسلی بخش (13-17 پوائنٹس)**: بنیادی روبوٹ ماڈل جس میں کچھ خصوصیات غائب یا غلط کنفیگرڈ ہیں
+- **بہتری کی ضرورت ہے (0-12 پوائنٹس)**: نامکمل یا غلط روبوٹ ماڈل
 
-### Gazebo Environment Setup (25 points)
-- **Excellent (22-25 points)**: Complex environment with realistic physics, proper world configuration, advanced features
-- **Good (18-21 points)**: Good environment setup with basic physics, minor configuration issues
-- **Satisfactory (13-17 points)**: Basic environment with simple physics, some configuration issues
-- **Needs Improvement (0-12 points)**: Incomplete environment setup
+### Gazebo ماحول کا سیٹ اپ (25 پوائنٹس)
+- **بہترین (22-25 پوائنٹس)**: حقیقت پسندانہ طبیعیات کے ساتھ پیچیدہ ماحول، مناسب دنیا کی کنفیگریشن، جدید خصوصیات
+- **اچھا (18-21 پوائنٹس)**: بنیادی طبیعیات کے ساتھ اچھا ماحولیاتی سیٹ اپ، معمولی کنفیگریشن مسائل
+- **تسلی بخش (13-17 پوائنٹس)**: سادہ طبیعیات کے ساتھ بنیادی ماحول، کچھ کنفیگریشن مسائل
+- **بہتری کی ضرورت ہے (0-12 پوائنٹس)**: نامکمل ماحولیاتی سیٹ اپ
 
-### Sensor Integration (25 points)
-- **Excellent (22-25 points)**: All required sensors properly integrated, realistic data output, advanced configuration
-- **Good (18-21 points)**: Most sensors integrated with good configuration, minor data issues
-- **Satisfactory (13-17 points)**: Basic sensor integration with acceptable data output
-- **Needs Improvement (0-12 points)**: Incomplete or incorrect sensor integration
+### سینسر انضمام (25 پوائنٹس)
+- **بہترین (22-25 پوائنٹس)**: تمام مطلوبہ سینسرز مناسب طریقے سے مربوط، حقیقت پسندانہ ڈیٹا آؤٹ پٹ، جدید کنفیگریشن
+- **اچھا (18-21 پوائنٹس)**: اچھی کنفیگریشن کے ساتھ زیادہ تر سینسرز مربوط، معمولی ڈیٹا مسائل
+- **تسلی بخش (13-17 پوائنٹس)**: قابل قبول ڈیٹا آؤٹ پٹ کے ساتھ بنیادی سینسر انضمام
+- **بہتری کی ضرورت ہے (0-12 پوائنٹس)**: نامکمل یا غلط سینسر انضمام
 
-### Navigation Implementation (25 points)
-- **Excellent (22-25 points)**: Advanced navigation with obstacle avoidance, smooth movement, complex behaviors
-- **Good (18-21 points)**: Good navigation with basic obstacle avoidance, mostly smooth movement
-- **Satisfactory (13-17 points)**: Basic navigation with some movement capabilities
-- **Needs Improvement (0-12 points)**: Incomplete or non-functional navigation
+### نیویگیشن کا نفاذ (25 پوائنٹس)
+- **بہترین (22-25 پوائنٹس)**: رکاوٹوں سے بچنے کے ساتھ جدید نیویگیشن، ہموار حرکت، پیچیدہ رویے
+- **اچھا (18-21 پوائنٹس)**: بنیادی رکاوٹوں سے بچنے کے ساتھ اچھی نیویگیشن، زیادہ تر ہموار حرکت
+- **تسلی بخش (13-17 پوائنٹس)**: کچھ حرکت کی صلاحیتوں کے ساتھ بنیادی نیویگیشن
+- **بہتری کی ضرورت ہے (0-12 پوائنٹس)**: نامکمل یا غیر فعال نیویگیشن
 
-## Bonus Points (up to 20 points)
-- Unity integration: up to 10 points
-- Advanced sensor fusion: up to 5 points
-- Complex multi-robot scenarios: up to 5 points
+## بونس پوائنٹس (20 پوائنٹس تک)
+- Unity انضمام: 10 پوائنٹس تک
+- ایڈوانسڈ سینسر فیوژن: 5 پوائنٹس تک
+- پیچیدہ ملٹی روبوٹ منظرنامے: 5 پوائنٹس تک
 
-## Documentation (pass/fail)
-- Project must include clear documentation of setup, implementation, and results
-- Code must be properly commented and organized
-- Issues with documentation may result in grade reduction
+## دستاویزات (پاس/فیل)
+- پروجیکٹ میں سیٹ اپ، نفاذ اور نتائج کی واضح دستاویزات شامل ہونی چاہئیں
+- کوڈ پر مناسب تبصرے اور ترتیب ہونی چاہیے
+- دستاویزات کے مسائل گریڈ میں کمی کا باعث بن سکتے ہیں

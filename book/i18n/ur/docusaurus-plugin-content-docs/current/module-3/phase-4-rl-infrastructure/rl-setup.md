@@ -1,35 +1,35 @@
-# Reinforcement Learning Infrastructure Setup in Isaac Sim
+# Isaac Sim میں ری انفورسمنٹ لرننگ انفراسٹرکچر کا سیٹ اپ
 
-This section covers setting up reinforcement learning infrastructure in Isaac Sim for training humanoid robot control policies. Isaac Sim provides powerful tools for RL training, including high-fidelity physics simulation, GPU-accelerated computation, and integration with popular RL frameworks.
+یہ سیکشن ہیومنوائڈ روبوٹ کنٹرول پالیسیوں کی تربیت کے لیے Isaac Sim میں ری انفورسمنٹ لرننگ انفراسٹرکچر قائم کرنے کا احاطہ کرتا ہے۔ Isaac Sim RL ٹریننگ کے لیے طاقتور ٹولز فراہم کرتا ہے، بشمول ہائی فائیڈلٹی فزکس سیمولیشن، GPU-ایکسلریٹڈ کمپیوٹیشن، اور مقبول RL فریم ورکس کے ساتھ انضمام۔
 
-## Overview of RL in Isaac Sim
+## Isaac Sim میں RL کا جائزہ
 
-### Isaac Sim for Reinforcement Learning
+### ری انفورسمنٹ لرننگ کے لیے Isaac Sim
 
-Isaac Sim provides a comprehensive environment for reinforcement learning research and development:
+Isaac Sim ری انفورسمنٹ لرننگ ریسرچ اور ڈویلپمنٹ کے لیے ایک جامع ماحول فراہم کرتا ہے:
 
-- **High-Fidelity Physics**: Accurate simulation of robot dynamics and interactions
-- **GPU Acceleration**: Leverage GPU compute for fast simulation and training
-- **Flexible Scene Creation**: Create diverse training environments
-- **Sensor Integration**: Realistic sensor simulation for perception-based tasks
-- **Robot Models**: Access to various robot models for different tasks
-- **ROS Integration**: Seamless integration with ROS for real-world deployment
+- **ہائی فائیڈلٹی فزکس**: روبوٹ ڈائنامکس اور تعاملات کی درست سیمولیشن
+- **GPU ایکسلریشن**: تیز سیمولیشن اور تربیت کے لیے GPU کمپیوٹ کا فائدہ اٹھائیں
+- **لچکدار منظر کی تخلیق**: متنوع ٹریننگ کے ماحول بنائیں
+- **سینسر انضمام**: پرسیپشن پر مبنی کاموں کے لیے حقیقت پسندانہ سینسر سیمولیشن
+- **روبوٹ ماڈلز**: مختلف کاموں کے لیے مختلف روبوٹ ماڈلز تک رسائی
+- **ROS انضمام**: حقیقی دنیا کی تعیناتی کے لیے ROS کے ساتھ ہموار انضمام
 
-### RL Framework Support
+### RL فریم ورک سپورٹ
 
-Isaac Sim supports multiple RL frameworks:
+Isaac Sim متعدد RL فریم ورکس کو سپورٹ کرتا ہے:
 
-- **Isaac Gym**: NVIDIA's GPU-accelerated RL environment
-- **RSL-RL**: Robotic System Learning RL framework
-- **Stable Baselines3**: Popular Python RL library
-- **Ray RLlib**: Scalable RL library
-- **Custom Frameworks**: Integration with custom RL implementations
+- **Isaac Gym**: NVIDIA کا GPU-ایکسلریٹڈ RL ماحول
+- **RSL-RL**: روبوٹک سسٹم لرننگ RL فریم ورک
+- **Stable Baselines3**: مقبول Python RL لائبریری
+- **Ray RLlib**: اسکیل ایبل RL لائبریری
+- **کسٹم فریم ورکس**: کسٹم RL نفاذ کے ساتھ انضمام
 
-## Isaac Gym Setup
+## Isaac Gym سیٹ اپ
 
-### Isaac Gym Fundamentals
+### Isaac Gym کے بنیادی اصول
 
-Isaac Gym is NVIDIA's GPU-accelerated RL environment that enables parallel training of multiple agents:
+Isaac Gym NVIDIA کا GPU-ایکسلریٹڈ RL ماحول ہے جو متعدد ایجنٹس کی متوازی تربیت کو قابل بناتا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -269,11 +269,11 @@ if __name__ == "__main__":
     run_isaac_gym_example()
 ```
 
-## RSL-RL Integration
+## RSL-RL انضمام
 
-### Setting up RSL-RL with Isaac Sim
+### Isaac Sim کے ساتھ RSL-RL سیٹ اپ
 
-RSL-RL (Robotic System Learning RL) is a framework specifically designed for robotic control tasks:
+RSL-RL (روبوٹک سسٹم لرننگ RL) ایک فریم ورک ہے جو خاص طور پر روبوٹک کنٹرول کے کاموں کے لیے ڈیزائن کیا گیا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -448,9 +448,9 @@ if __name__ == "__main__":
     wrapper = setup_rsl_rl_integration()
 ```
 
-## Custom RL Environment Implementation
+## کسٹم RL ماحول کا نفاذ
 
-### Creating Custom RL Environments
+### کسٹم RL ماحول بنانا
 
 ```python
 #!/usr/bin/env python3
@@ -697,9 +697,9 @@ if __name__ == "__main__":
     print("Environment test completed")
 ```
 
-## Stable Baselines3 Integration
+## Stable Baselines3 انضمام
 
-### Integrating Stable Baselines3 with Isaac Sim
+### Isaac Sim کے ساتھ Stable Baselines3 کا انضمام
 
 ```python
 #!/usr/bin/env python3
@@ -854,9 +854,9 @@ if __name__ == "__main__":
     model = run_sb3_training_example()
 ```
 
-## GPU-Accelerated Training Setup
+## GPU-ایکسلریٹڈ ٹریننگ سیٹ اپ
 
-### Optimizing for GPU Acceleration
+### GPU ایکسلریشن کے لیے اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -1081,9 +1081,9 @@ if __name__ == "__main__":
     gpu_setup, config = run_gpu_acceleration_example()
 ```
 
-## Performance Optimization and Monitoring
+## کارکردگی کی اصلاح اور نگرانی
 
-### RL Training Optimization
+### RL ٹریننگ کی اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -1312,33 +1312,33 @@ if __name__ == "__main__":
     monitor, optimizer = optimize_rl_training()
 ```
 
-## Best Practices for RL Infrastructure
+## RL انفراسٹرکچر کے لیے بہترین طریقے
 
-### Guidelines for Effective RL Training
+### موثر RL ٹریننگ کے لیے رہنما خطوط
 
-1. **Environment Design**: Create diverse and challenging training environments
-2. **Reward Shaping**: Design reward functions that guide learning effectively
-3. **Hyperparameter Tuning**: Systematically tune learning rates and other parameters
-4. **Monitoring**: Continuously monitor training progress and system resources
-5. **Validation**: Regularly validate policies in simulation and real-world settings
-6. **Scalability**: Design systems that can scale with available computational resources
+1. **ماحول کا ڈیزائن**: متنوع اور چیلنجنگ ٹریننگ ماحول بنائیں۔
+2. **ریوارڈ شیپنگ (Reward Shaping)**: ایسے ریوارڈ فنکشنز ڈیزائن کریں جو سیکھنے میں مؤثر طریقے سے رہنمائی کریں۔
+3. **ہائپرپیرامیٹر ٹیوننگ**: سیکھنے کی شرح اور دیگر پیرامیٹرز کو منظم طریقے سے ٹیون کریں۔
+4. **نگرانی**: ٹریننگ کی پیش رفت اور سسٹم کے وسائل کی مسلسل نگرانی کریں۔
+5. **توثیق**: سیمولیشن اور حقیقی دنیا کی ترتیبات میں پالیسیوں کی باقاعدگی سے توثیق کریں۔
+6. **اسکیل ایبلٹی**: ایسے سسٹمز ڈیزائن کریں جو دستیاب کمپیوٹیشنل وسائل کے ساتھ اسکیل ہو سکیں۔
 
-### Humanoid-Specific Considerations
+### ہیومنوائڈ کے لیے مخصوص تحفظات
 
-1. **Balance Tasks**: Focus on balance and locomotion as fundamental skills
-2. **Safety Constraints**: Implement safety constraints to prevent dangerous movements
-3. **Multi-Task Learning**: Train policies that can handle multiple tasks simultaneously
-4. **Transfer Learning**: Design policies that can transfer between different humanoid robots
+1. **توازن کے کام**: بنیادی مہارتوں کے طور پر توازن اور لوکوموشن پر توجہ دیں۔
+2. **حفاظتی رکاوٹیں**: خطرناک حرکات کو روکنے کے لیے حفاظتی رکاوٹوں کو نافذ کریں۔
+3. **ملٹی ٹاسک لرننگ**: ایسی پالیسیوں کو تربیت دیں جو ایک ساتھ متعدد کاموں کو سنبھال سکیں۔
+4. **ٹرانسفر لرننگ**: ایسی پالیسیاں ڈیزائن کریں جو مختلف ہیومنوائڈ روبوٹس کے درمیان منتقل ہو سکیں۔
 
-## Next Steps
+## اگلے اقدامات
 
-After setting up the RL infrastructure:
+RL انفراسٹرکچر قائم کرنے کے بعد:
 
-1. **Define Training Tasks**: Specify the specific control tasks for your humanoid robot
-2. **Design Reward Functions**: Create reward functions that promote desired behaviors
-3. **Start Training**: Begin with simple tasks and gradually increase complexity
-4. **Monitor Progress**: Continuously monitor training progress and adjust parameters
-5. **Validate Policies**: Test trained policies in simulation and real-world settings
-6. **Iterate and Improve**: Refine the training process based on results
+1. **ٹریننگ ٹاسک کی وضاحت کریں**: اپنے ہیومنوائڈ روبوٹ کے لیے مخصوص کنٹرول ٹاسک کی وضاحت کریں۔
+2. **ریوارڈ فنکشنز ڈیزائن کریں**: ایسے ریوارڈ فنکشنز بنائیں جو مطلوبہ رویوں کو فروغ دیں۔
+3. **ٹریننگ شروع کریں**: سادہ کاموں کے ساتھ شروع کریں اور بتدریج پیچیدگی میں اضافہ کریں۔
+4. **پیش رفت کی نگرانی کریں**: ٹریننگ کی پیش رفت کی مسلسل نگرانی کریں اور پیرامیٹرز کو ایڈجسٹ کریں۔
+5. **پالیسیوں کی توثیق کریں**: سیمولیشن اور حقیقی دنیا کی ترتیبات میں تربیت یافتہ پالیسیوں کی جانچ کریں۔
+6. **دہرائیں اور بہتر بنائیں**: نتائج کی بنیاد پر ٹریننگ کے عمل کو بہتر بنائیں۔
 
-The next section covers training environments and scenarios for humanoid robots.
+اگلا سیکشن ہیومنوائڈ روبوٹس کے لیے ٹریننگ کے ماحول اور منظرناموں کا احاطہ کرتا ہے۔

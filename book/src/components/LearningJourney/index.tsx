@@ -1,11 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
 import { Calendar, Layers, BookOpen } from 'lucide-react';
+import Translate from '@docusaurus/Translate';
 
 const stats = [
   {
     value: '14-16',
-    label: 'Weeks',
+    label: <Translate id="learningJourney.weeks" description="Label for Weeks">Weeks</Translate>,
     icon: Calendar,
     color: 'text-cyan-500',
     bg: 'bg-cyan-500/10',
@@ -13,7 +14,7 @@ const stats = [
   },
   {
     value: '4',
-    label: 'Phases',
+    label: <Translate id="learningJourney.phases" description="Label for Phases">Phases</Translate>,
     icon: Layers,
     color: 'text-purple-500',
     bg: 'bg-purple-500/10',
@@ -21,7 +22,7 @@ const stats = [
   },
   {
     value: '20+',
-    label: 'Core Topics',
+    label: <Translate id="learningJourney.coreTopics" description="Label for Core Topics">Core Topics</Translate>,
     icon: BookOpen,
     color: 'text-blue-500',
     bg: 'bg-blue-500/10',
@@ -35,10 +36,15 @@ export default function LearningJourney() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center mb-10">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white leading-tight">
-            Complete <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-600">Learning Journey</span>
+            <Translate id="learningJourney.title.complete" description="First part of Learning Journey title">Complete</Translate>{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-600">
+              <Translate id="learningJourney.title.learningJourney" description="Highlighted part of Learning Journey title">Learning Journey</Translate>
+            </span>
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto">
-            From Foundational Concepts to Cutting-Edge Embodied AI and Humanoid Robotics.
+            <Translate id="learningJourney.subtitle" description="Subtitle for Learning Journey section">
+              From Foundational Concepts to Cutting-Edge Embodied AI and Humanoid Robotics.
+            </Translate>
           </p>
         </div>
 

@@ -1,0 +1,58 @@
+```mermaid
+graph LR
+    subgraph "Input Layer"
+        A["🎤 Voice Input"]
+        B["📷 Visual Input"]
+    end
+
+    subgraph "Processing Layer"
+        C["Voice Processing"]
+        D["Language Understanding"]
+        E["Computer Vision"]
+        F["Action Planning"]
+    end
+
+    subgraph "Data Stores"
+        G["Context/Knowledge DB"]
+        H["Visual Memory"]
+        I["Action History"]
+    end
+
+    subgraph "Output Layer"
+        J["Motor Commands"]
+        K["System Feedback"]
+    end
+
+    A --> C
+    B --> E
+    C --> D
+    E --> D
+    D --> F
+    E --> H
+    D --> G
+    F --> J
+    F --> K
+    G --> D
+    H --> E
+    I --> F
+    J --> F
+    K --> D
+
+    %% Data flow annotations
+    C -.->|"Speech-to-Text\nTranscription"| D
+    E -.->|"Object Detection\nSpatial Data"| D
+    D -.->|"Intent & Context\nAction Request"| F
+    D -.->|"Knowledge Query"| G
+    E -.->|"Visual Features\nScene Data"| H
+    F -.->|"Motor Plans\nControl Signals"| J
+    J -.->|"Execution Status"| F
+    D -.->|"System Response"| K
+
+    style A fill:#e1f5fe
+    style B fill:#e1f5fe
+    style J fill:#f3e5f5
+    style K fill:#f3e5f5
+    style G fill:#fff3e0
+    style H fill:#fff3e0
+    style I fill:#fff3e0
+```

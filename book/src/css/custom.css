@@ -85,6 +85,9 @@
   --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --ifm-global-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --ifm-navbar-shadow: var(--ifm-global-shadow-lw);
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-background-color: #ffffff;
+  --ifm-footer-background-color: #ffffff;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -97,6 +100,9 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-navbar-background-color: #0F0F13;
+  --ifm-background-color: #0F0F13;
+  --ifm-footer-background-color: #0F0F13;
 }
 
 /* Custom CSS for Physical AI & Humanoid Robotics Book */

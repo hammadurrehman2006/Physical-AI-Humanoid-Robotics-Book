@@ -1,48 +1,48 @@
 ---
-title: Module 1 Assessment
-description: Comprehensive assessment covering all ROS 2 fundamentals learned in Module 1
+title: ماڈیول 1 کا جائزہ
+description: ماڈیول 1 میں سیکھے گئے ROS 2 کے تمام بنیادی اصولوں کا جامع جائزہ
 sidebar_position: 9
 ---
 
-# Module 1 Assessment: ROS 2 Fundamentals Assessment
+# ماڈیول 1 کا جائزہ: ROS 2 کے بنیادی اصولوں کا امتحان
 
-Congratulations on completing all the lessons in Module 1! This assessment will test your understanding of the ROS 2 concepts you've learned, including the robotic nervous system architecture, node communication, and Python integration with ROS 2.
+ماڈیول 1 کے تمام اسباق مکمل کرنے پر مبارکباد! یہ جائزہ آپ کے سیکھے گئے ROS 2 کے تصورات کی جانچ کرے گا، بشمول روبوٹک اعصابی نظام کا آرکیٹیکچر، نوڈ مواصلات، اور ROS 2 کے ساتھ Python کا انضمام۔
 
-## Learning Objectives
-- Implement a complete robotic system using ROS 2 concepts
-- Demonstrate understanding of nodes, topics, services, and actions
-- Create a functional robot controller with sensor integration
-- Build and test a complete ROS 2 package
-- Validate knowledge of launch files and parameters
+## سیکھنے کے مقاصد
+- ROS 2 کے تصورات کا استعمال کرتے ہوئے ایک مکمل روبوٹک سسٹم نافذ کریں
+- نوڈز، ٹاپکس، سروسز اور ایکشنز کی سمجھ کا مظاہرہ کریں
+- سینسر انضمام کے ساتھ ایک فعال روبوٹ کنٹرولر بنائیں
+- ایک مکمل ROS 2 پیکیج بنائیں اور ٹیسٹ کریں
+- لانچ فائلوں اور پیرامیٹرز کے علم کی توثیق کریں
 
-## Assessment Overview
+## جائزے کا جائزہ
 
-The Module 1 Assessment requires you to build a complete robotic system that demonstrates all the concepts covered in Module 1. You will create a simulated robot that can navigate a simple environment while avoiding obstacles, using the ROS 2 architecture you've learned.
+ماڈیول 1 کے جائزے کے لیے آپ کو ایک مکمل روبوٹک سسٹم بنانے کی ضرورت ہے جو ماڈیول 1 میں شامل تمام تصورات کا مظاہرہ کرے۔ آپ ایک نقلی (simulated) روبوٹ بنائیں گے جو ROS 2 آرکیٹیکچر کا استعمال کرتے ہوئے رکاوٹوں سے بچتے ہوئے ایک سادہ ماحول میں نیویگیٹ کر سکے۔
 
-### Assessment Requirements
+### جائزے کی ضروریات
 
-Your robot system must include:
-1. A main controller node that orchestrates robot behavior
-2. Sensor processing nodes for laser data
-3. A navigation system using actions
-4. Parameter management for configuration
-5. Launch files to start the complete system
-6. Proper URDF model for visualization
+آپ کے روبوٹ سسٹم میں شامل ہونا چاہیے:
+1. ایک مین کنٹرولر نوڈ جو روبوٹ کے رویے کو ترتیب دے
+2. لیزر ڈیٹا کے لیے سینسر پروسیسنگ نوڈز
+3. ایکشنز کا استعمال کرتے ہوئے نیویگیشن سسٹم
+4. کنفیگریشن کے لیے پیرامیٹر مینجمنٹ
+5. مکمل سسٹم شروع کرنے کے لیے لانچ فائلیں
+6. وژولائزیشن کے لیے مناسب URDF ماڈل
 
-## Assessment Implementation
+## جائزے کا نفاذ
 
-### 1. Robot Package Structure
+### 1. روبوٹ پیکیج کا ڈھانچہ
 
-First, create a new ROS 2 package for your assessment project:
+سب سے پہلے، اپنے اسیسمنٹ پروجیکٹ کے لیے ایک نیا ROS 2 پیکیج بنائیں:
 
 ```bash
 cd ~/ros2_ws/src
 ros2 pkg create --build-type ament_python --dependencies rclpy std_msgs geometry_msgs sensor_msgs nav_msgs tf2_ros module_1_assessment
 ```
 
-### 2. URDF Model
+### 2. URDF ماڈل
 
-Create a simple robot model in `urdf/robot.urdf`:
+`urdf/robot.urdf` میں ایک سادہ روبوٹ ماڈل بنائیں:
 
 ```xml
 <?xml version="1.0"?>
@@ -125,9 +125,9 @@ Create a simple robot model in `urdf/robot.urdf`:
 </robot>
 ```
 
-### 3. Main Robot Controller Node
+### 3. مین روبوٹ کنٹرولر نوڈ
 
-Create the main controller in `module_1_assessment/robot_controller.py`:
+`module_1_assessment/robot_controller.py` میں مین کنٹرولر بنائیں:
 
 ```python
 #!/usr/bin/env python3
@@ -407,26 +407,26 @@ if __name__ == '__main__':
     main()
 ```
 
-### 4. Assessment Rubric
+### 4. جائزہ کا روبک (Rubric)
 
-Use the following rubric to evaluate your submission:
+اپنی جمع کرائی گئی اسائنمنٹ کا جائزہ لینے کے لیے درج ذیل روبک کا استعمال کریں:
 
-| Component | Points | Evaluation Criteria |
+| جزو | پوائنٹس | تشخیص کا معیار |
 |-----------|--------|-------------------|
-| **Code Quality** | 20 | Well-structured, properly commented, following ROS 2 conventions |
-| **Node Implementation** | 20 | Proper node structure, parameter declarations, lifecycle management |
-| **Communication Patterns** | 25 | Correct use of topics, services, and actions with appropriate QoS settings |
-| **System Integration** | 20 | All components work together seamlessly, proper error handling |
-| **Documentation** | 15 | Clear README, inline comments, and setup instructions |
+| **کوڈ کا معیار** | 20 | اچھی ساخت، مناسب تبصرے، ROS 2 کے کنونشنز کی پیروی |
+| **نوڈ کا نفاذ** | 20 | مناسب نوڈ ڈھانچہ، پیرامیٹر ڈیکلریشن، لائف سائیکل مینجمنٹ |
+| **مواصلاتی پیٹرنز** | 25 | ٹاپکس، سروسز، اور ایکشنز کا درست استعمال مناسب QoS سیٹنگز کے ساتھ |
+| **سسٹم انضمام** | 20 | تمام اجزاء بغیر کسی رکاوٹ کے ایک ساتھ کام کرتے ہیں، مناسب غلطی کی ہینڈلنگ |
+| **دستاویزات** | 15 | واضح README، ان لائن تبصرے، اور سیٹ اپ ہدایات |
 
-## Assessment Submission
+## جائزے کی جمع آوری
 
-To complete this assessment, you must submit:
+اس جائزے کو مکمل کرنے کے لیے، آپ کو جمع کرانا ہوگا:
 
-1. All source code files (nodes, launch files, configuration)
-2. URDF model file
-3. Package configuration files
-4. A brief report explaining your implementation approach
-5. Evidence of successful testing (screenshots, logs, or video)
+1. تمام سورس کوڈ فائلیں (نوڈز، لانچ فائلیں، کنفیگریشن)
+2. URDF ماڈل فائل
+3. پیکیج کنفیگریشن فائلیں
+4. آپ کے نفاذ کے طریقہ کار کی وضاحت کرنے والی ایک مختصر رپورٹ
+5. کامیاب ٹیسٹنگ کا ثبوت (اسکرین شاٹس، لاگز، یا ویڈیو)
 
-Your assessment project demonstrates your comprehensive understanding of ROS 2 fundamentals by implementing a complete robotic system with navigation, sensing, and control capabilities.
+آپ کا اسیسمنٹ پروجیکٹ نیویگیشن، سینسنگ، اور کنٹرول کی صلاحیتوں کے ساتھ ایک مکمل روبوٹک سسٹم نافذ کرکے ROS 2 کے بنیادی اصولوں کی آپ کی جامع سمجھ کا مظاہرہ کرتا ہے۔

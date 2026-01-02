@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ArrowRight, Github, Terminal, Cpu, Zap, BookOpen } from 'lucide-react';
+import Translate from '@docusaurus/Translate';
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -52,20 +53,40 @@ export default function Hero() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
               </span>
               <span className="text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">
-                Open Source Guide
+                <Translate id="hero.badge" description="Badge text on Hero section">Open Source Guide</Translate>
               </span>
             </div>
 
             {/* Headline */}
             <h1 ref={titleRef} className="hero-title-large font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white">
-              Build the <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500">Physical AI</span><br />
-              Future.
+              <Translate
+                id="hero.title"
+                description="Main title on Hero section"
+                values={{
+                  physicalAI: (
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500">
+                      <Translate id="hero.title.physicalAI" description="Physical AI text">Physical AI</Translate>
+                    </span>
+                  ),
+                  br: <br />,
+                }}
+              >
+                {'Build the {physicalAI}{br}Future.'}
+              </Translate>
             </h1>
 
             {/* Subtitle */}
             <p ref={subtitleRef} className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-10 leading-relaxed mx-auto lg:mx-0">
-              From <span className="font-semibold text-slate-900 dark:text-slate-200">ROS 2</span> fundamentals to <span className="font-semibold text-slate-900 dark:text-slate-200">Vision-Language-Action</span> models. 
-              A comprehensive engineering handbook for the next generation of humanoid robotics.
+              <Translate
+                id="hero.subtitle"
+                description="Subtitle on Hero section"
+                values={{
+                  ros2: <span className="font-semibold text-slate-900 dark:text-slate-200">ROS 2</span>,
+                  vla: <span className="font-semibold text-slate-900 dark:text-slate-200">Vision-Language-Action</span>,
+                }}
+              >
+                {'From {ros2} fundamentals to {vla} models. A comprehensive engineering handbook for the next generation of humanoid robotics.'}
+              </Translate>
             </p>
 
             {/* Buttons */}
@@ -75,7 +96,7 @@ export default function Hero() {
                 className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold !text-white dark:!text-black button-text-override transition-all duration-200 bg-slate-900 dark:bg-white rounded-full hover:ring-4 hover:ring-slate-900/20 dark:hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
-                Start Reading
+                <Translate id="hero.button.startReading" description="Start Reading button text">Start Reading</Translate>
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
               
@@ -84,7 +105,7 @@ export default function Hero() {
                 className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold !text-black dark:!text-white button-text-override transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white"
               >
                 <Github className="w-5 h-5 mr-2" />
-                View on GitHub
+                <Translate id="hero.button.viewOnGithub" description="View on GitHub button text">View on GitHub</Translate>
               </Link>
             </div>
           </div>

@@ -2,55 +2,55 @@
 sidebar_position: 2
 ---
 
-# ROS 2 to Unity Bridge
+# ROS 2 سے Unity برج
 
-This tutorial covers implementing the bridge between ROS 2 and Unity for real-time data synchronization. You'll learn how to connect your ROS 2 system to Unity visualization.
+یہ ٹیوٹوریل ROS 2 اور Unity کے درمیان حقیقی وقت کے ڈیٹا کی مطابقت پذیری کے لیے برج کو نافذ کرنے کا احاطہ کرتا ہے۔ آپ اپنے ROS 2 سسٹم کو Unity وژولائزیشن سے جوڑنا سیکھیں گے۔
 
-## Bridge Architecture
+## برج آرکیٹیکچر
 
-Understanding the ROS 2 to Unity bridge components:
+ROS 2 سے Unity برج کے اجزاء کو سمجھنا:
 
-### Communication Layers
+### مواصلاتی تہیں (Communication Layers)
 
-The bridge typically consists of:
-- **Network Layer**: Handles communication between ROS 2 and Unity
-- **Message Translation**: Converts ROS 2 messages to Unity data structures
-- **Synchronization**: Ensures Unity visualization matches ROS 2 state
-- **Performance Management**: Optimizes data transfer rates
+برج عام طور پر مندرجہ ذیل پر مشتمل ہوتا ہے:
+- **نیٹ ورک لیئر**: ROS 2 اور Unity کے درمیان مواصلات کو سنبھالتی ہے
+- **پیغام کا ترجمہ**: ROS 2 پیغامات کو Unity ڈیٹا اسٹرکچرز میں تبدیل کرتا ہے
+- **مطابقت پذیری (Synchronization)**: یقینی بناتی ہے کہ Unity وژولائزیشن ROS 2 اسٹیٹ سے میل کھاتی ہے
+- **کارکردگی کا انتظام**: ڈیٹا کی منتقلی کی شرح کو بہتر بناتا ہے
 
-### Common Bridge Solutions
+### عام برج کے حل
 
-1. **Unity ROS TCP Connector**: A popular open-source solution
-2. **ROS#**: C# implementation of ROS client for Unity
-3. **Custom WebSocket bridges**: For web-based deployments
-4. **DDS-based direct integration**: More advanced but efficient
+1. **Unity ROS TCP Connector**: ایک مقبول اوپن سورس حل
+2. **ROS#**: Unity کے لیے ROS کلائنٹ کا C# نفاذ
+3. **کسٹم WebSocket برجز**: ویب پر مبنی تعیناتیوں کے لیے
+4. **DDS پر مبنی براہ راست انضمام**: زیادہ جدید لیکن موثر
 
-## Implementation Steps
+## نفاذ کے اقدامات
 
-### Step 1: Set up the Communication Layer
+### مرحلہ 1: مواصلاتی تہہ کو ترتیب دیں
 
-For the Unity ROS TCP Connector approach:
+Unity ROS TCP کنیکٹر اپروچ کے لیے:
 
-1. **Install the Unity ROS TCP Connector package**:
-   - Download from the Unity Asset Store or GitHub
-   - Import into your Unity project
-   - Configure network settings
+1. **Unity ROS TCP کنیکٹر پیکیج انسٹال کریں**:
+   - Unity Asset Store یا GitHub سے ڈاؤن لوڈ کریں
+   - اپنے Unity پروجیکٹ میں درآمد کریں
+   - نیٹ ورک کی ترتیبات کو کنفیگر کریں
 
-2. **Configure ROS 2 side**:
+2. **ROS 2 سائیڈ کو کنفیگر کریں**:
    ```bash
    # Install required ROS 2 packages
    sudo apt install ros-humble-rosbridge-suite
    ```
 
-3. **Network Configuration**:
+3. **نیٹ ورک کنفیگریشن**:
    ```bash
    # Launch the ROS bridge server
    ros2 launch rosbridge_server rosbridge_websocket_launch.xml
    ```
 
-### Step 2: Define Message Types
+### مرحلہ 2: پیغام کی اقسام کی وضاحت کریں
 
-Common ROS 2 message types used in robotics:
+روبوٹکس میں استعمال ہونے والی عام ROS 2 پیغام کی اقسام:
 
 ```csharp
 // Example of handling geometry_msgs/Twist in Unity
@@ -80,7 +80,7 @@ public class RobotController : MonoBehaviour
 }
 ```
 
-### Step 3: Implement Data Publishers/Subscribers
+### مرحلہ 3: ڈیٹا پبلشرز/سبسکرائبرز کا نفاذ
 
 ```csharp
 // Subscriber example for sensor data
@@ -112,7 +112,7 @@ public class SensorVisualizer : MonoBehaviour
 }
 ```
 
-### Step 4: Testing the Connection
+### مرحلہ 4: کنکشن کی جانچ
 
 ```csharp
 // Connection testing script
@@ -152,21 +152,21 @@ public class BridgeTester : MonoBehaviour
 }
 ```
 
-## Performance Optimization
+## کارکردگی کی اصلاح
 
-### Data Rate Management
+### ڈیٹا ریٹ کا انتظام
 
-1. **Throttle high-frequency messages**:
-   - LiDAR scans: 10-30 Hz is typically sufficient
-   - Camera images: 5-15 Hz depending on application
-   - Joint states: 50-100 Hz for precise control
+1. **اعلی تعدد والے پیغامات کو تھروٹل کریں**:
+   - LiDAR اسکینز: 10-30 Hz عام طور پر کافی ہے
+   - کیمرہ امیجز: ایپلی کیشن کے لحاظ سے 5-15 Hz
+   - جوائنٹ اسٹیٹس: درست کنٹرول کے لیے 50-100 Hz
 
-2. **Implement data compression**:
-   - Compress large data like point clouds
-   - Use appropriate data types (avoid unnecessary precision)
-   - Consider subsampling for visualization
+2. **ڈیٹا کمپریشن نافذ کریں**:
+   - پوائنٹ کلاؤڈز جیسے بڑے ڈیٹا کو کمپریس کریں
+   - مناسب ڈیٹا ٹائپس استعمال کریں (غیر ضروری درستگی سے گریز کریں)
+   - وژولائزیشن کے لیے سب سیمپلنگ پر غور کریں
 
-### Network Optimization
+### نیٹ ورک کی اصلاح
 
 ```csharp
 // Example of rate-limited publisher
@@ -192,44 +192,44 @@ public class RateLimitedPublisher : MonoBehaviour
 }
 ```
 
-## Security Considerations
+## حفاظتی تحفظات
 
-### Network Security
+### نیٹ ورک سیکیورٹی
 
-1. **Use secure connections**: Consider TLS/SSL for production deployments
-2. **Network segmentation**: Isolate robotics networks when possible
-3. **Authentication**: Implement proper authentication mechanisms
-4. **Firewall rules**: Configure appropriate firewall rules for ROS 2 ports
+1. **محفوظ کنکشن استعمال کریں**: پروڈکشن تعیناتیوں کے لیے TLS/SSL پر غور کریں
+2. **نیٹ ورک سیگمنٹیشن**: جب ممکن ہو روبوٹکس نیٹ ورکس کو الگ کریں
+3. **تصدیق (Authentication)**: مناسب تصدیقی میکانزم نافذ کریں
+4. **فائر وال رولز**: ROS 2 پورٹس کے لیے مناسب فائر وال رولز کنفیگر کریں
 
-## Troubleshooting Common Issues
+## عام مسائل کا حل
 
-### Connection Problems
+### کنکشن کے مسائل
 
-**Issue**: Unity cannot connect to ROS 2
-**Solutions**:
-- Verify IP addresses and port numbers
-- Check firewall settings
-- Ensure ROS bridge server is running
-- Verify ROS_DOMAIN_ID matches on both sides
+**مسئلہ**: Unity ROS 2 سے منسلک نہیں ہو سکتا
+**حل**:
+- IP ایڈریسز اور پورٹ نمبرز کی تصدیق کریں
+- فائر وال کی ترتیبات چیک کریں
+- یقینی بنائیں کہ ROS برج سرور چل رہا ہے
+- تصدیق کریں کہ ROS_DOMAIN_ID دونوں طرف مماثل ہے
 
-**Issue**: High latency in communication
-**Solutions**:
-- Check network bandwidth
-- Optimize message sizes
-- Use local network when possible
-- Reduce message frequency
+**مسئلہ**: مواصلات میں زیادہ تاخیر (Latency)
+**حل**:
+- نیٹ ورک بینڈوتھ چیک کریں
+- پیغام کے سائز کو بہتر بنائیں
+- جب ممکن ہو لوکل نیٹ ورک استعمال کریں
+- پیغام کی تعدد کو کم کریں
 
-### Data Synchronization
+### ڈیٹا کی مطابقت پذیری
 
-**Issue**: Unity visualization lags behind ROS 2 simulation
-**Solutions**:
-- Implement proper time synchronization
-- Use interpolation for smooth visualization
-- Consider prediction algorithms for fast-moving robots
+**مسئلہ**: Unity وژولائزیشن ROS 2 سیمولیشن سے پیچھے رہ جاتی ہے
+**حل**:
+- مناسب ٹائم سنکرونائزیشن نافذ کریں
+- ہموار وژولائزیشن کے لیے انٹرپولیشن کا استعمال کریں
+- تیزی سے چلنے والے روبوٹس کے لیے پیشین گوئی الگورتھم پر غور کریں
 
-## Integration Examples
+## انضمام کی مثالیں
 
-### Basic Robot State Visualization
+### بنیادی روبوٹ اسٹیٹ وژولائزیشن
 
 ```csharp
 // Synchronize robot joint states
@@ -272,10 +272,10 @@ public class JointStateVisualizer : MonoBehaviour
 }
 ```
 
-## Next Steps
+## اگلے اقدامات
 
-After implementing the ROS 2 to Unity bridge:
+ROS 2 سے Unity برج کو نافذ کرنے کے بعد:
 
-1. Continue to [Visualization Techniques](./visualization-techniques.md) for advanced rendering
-2. Learn about [Unity Troubleshooting](./unity-troubleshooting.md) for common bridge issues
-3. Test your complete Unity-ROS 2 integration
+1. جدید رینڈرنگ کے لیے [وژولائزیشن تکنیک](./visualization-techniques.md) جاری رکھیں
+2. عام برج کے مسائل کے لیے [Unity ٹربل شوٹنگ](./unity-troubleshooting.md) کے بارے میں جانیں
+3. اپنے مکمل Unity-ROS 2 انضمام کی جانچ کریں

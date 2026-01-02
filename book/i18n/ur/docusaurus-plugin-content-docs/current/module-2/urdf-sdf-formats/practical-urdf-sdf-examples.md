@@ -2,15 +2,15 @@
 sidebar_position: 5
 ---
 
-# Practical URDF/SDF Examples and Loading in Gazebo
+# عملی URDF/SDF مثالیں اور Gazebo میں لوڈنگ
 
-This tutorial provides practical examples of both URDF and SDF formats and demonstrates how to load them in Gazebo with real-world scenarios.
+یہ ٹیوٹوریل URDF اور SDF دونوں فارمیٹس کی عملی مثالیں فراہم کرتا ہے اور یہ ظاہر کرتا ہے کہ انہیں حقیقی دنیا کے منظرناموں کے ساتھ Gazebo میں کیسے لوڈ کیا جائے۔
 
-## Complete Differential Drive Robot Example
+## مکمل ڈیفرینشل ڈرائیو روبوٹ کی مثال
 
-Let's create a complete differential drive robot that can be loaded in Gazebo, demonstrating both formats.
+آئیے ایک مکمل ڈیفرینشل ڈرائیو روبوٹ بنائیں جسے Gazebo میں لوڈ کیا جا سکے، جو دونوں فارمیٹس کا مظاہرہ کرے۔
 
-### URDF Version (differential_drive_robot.urdf)
+### URDF ورژن (differential_drive_robot.urdf)
 
 ```xml
 <?xml version="1.0"?>
@@ -159,7 +159,7 @@ Let's create a complete differential drive robot that can be loaded in Gazebo, d
 </robot>
 ```
 
-### SDF Version (differential_drive_robot.sdf)
+### SDF ورژن (differential_drive_robot.sdf)
 
 ```xml
 <?xml version="1.0" ?>
@@ -354,9 +354,9 @@ Let's create a complete differential drive robot that can be loaded in Gazebo, d
 </sdf>
 ```
 
-## Loading Examples in Gazebo
+## Gazebo میں مثالیں لوڈ کرنا
 
-### Method 1: Direct SDF Loading
+### طریقہ 1: براہ راست SDF لوڈنگ
 
 ```bash
 # Load the SDF file directly
@@ -366,7 +366,7 @@ gz sim -r differential_drive_robot.sdf
 gz sim -r robot_world.sdf
 ```
 
-### Method 2: URDF to SDF Conversion and Loading
+### طریقہ 2: URDF سے SDF کی تبدیلی اور لوڈنگ
 
 ```bash
 # Convert URDF to SDF
@@ -376,14 +376,14 @@ gz sdf -p differential_drive_robot.urdf > robot_as_sdf.sdf
 gz sim -r robot_as_sdf.sdf
 ```
 
-### Method 3: Using Gazebo Model Database
+### طریقہ 3: Gazebo ماڈل ڈیٹا بیس کا استعمال
 
-1. Create a model directory:
+1. ایک ماڈل ڈائرکٹری بنائیں:
 ```bash
 mkdir -p ~/.gazebo/models/differential_drive_robot
 ```
 
-2. Create the model.config file:
+2. model.config فائل بنائیں:
 ```xml
 <?xml version="1.0"?>
 <model>
@@ -398,27 +398,27 @@ mkdir -p ~/.gazebo/models/differential_drive_robot
 </model>
 ```
 
-3. Place your SDF file as `model.sdf` in the directory
+3. اپنی SDF فائل کو ڈائرکٹری میں `model.sdf` کے طور پر رکھیں
 
-4. Launch Gazebo and use the Insert tab to add your robot
+4. Gazebo لانچ کریں اور اپنے روبوٹ کو شامل کرنے کے لیے Insert ٹیب کا استعمال کریں
 
-## Testing Robot Models
+## روبوٹ ماڈلز کی جانچ
 
-### Verification Steps
+### تصدیق کے مراحل
 
-1. **Load the model**:
+1. **ماڈل لوڈ کریں**:
    ```bash
    gz sim -r your_robot.sdf
    ```
 
-2. **Check for errors** in the terminal output
+2. **ٹرمینل آؤٹ پٹ میں غلطیوں کی جانچ کریں**
 
-3. **Verify physics**:
-   - Does the robot rest on the ground properly?
-   - Do wheels rotate when commanded?
-   - Are collisions detected correctly?
+3. **طبیعیات کی تصدیق کریں**:
+   - کیا روبوٹ زمین پر صحیح طریقے سے ٹکا ہوا ہے؟
+   - کیا پہیے حکم ملنے پر گھومتے ہیں؟
+   - کیا ٹکراؤ کا پتہ صحیح طریقے سے لگایا جا رہا ہے؟
 
-4. **Check ROS 2 integration** (if applicable):
+4. **ROS 2 انضمام کی جانچ کریں** (اگر لاگو ہو):
    ```bash
    # List topics
    ros2 topic list | grep robot
@@ -427,7 +427,7 @@ mkdir -p ~/.gazebo/models/differential_drive_robot
    ros2 topic echo /joint_states
    ```
 
-### Common Validation Commands
+### عام توثیقی کمانڈز
 
 ```bash
 # Validate URDF
@@ -443,13 +443,13 @@ gz sdf -p your_robot.urdf
 urdf_to_graphiz your_robot.urdf
 ```
 
-## Advanced Examples
+## اعلی درجے کی مثالیں
 
-### Robot with Sensors
+### سینسرز کے ساتھ روبوٹ
 
-Here's an example of a robot with a LiDAR sensor:
+یہاں LiDAR سینسر کے ساتھ روبوٹ کی ایک مثال ہے:
 
-#### URDF with LiDAR (robot_with_lidar.urdf)
+#### LiDAR کے ساتھ URDF (robot_with_lidar.urdf)
 ```xml
 <?xml version="1.0"?>
 <robot name="robot_with_lidar">
@@ -532,32 +532,32 @@ Here's an example of a robot with a LiDAR sensor:
 </robot>
 ```
 
-## Best Practices for Model Creation
+## ماڈل بنانے کے بہترین طریقے
 
-### URDF Best Practices
-- Use consistent units (meters for length)
-- Define proper inertial properties for all links
-- Keep collision geometries simple for performance
-- Use xacro for parameterized models
-- Validate your URDF before simulation
+### URDF بہترین طریقے
+- مستقل اکائیاں استعمال کریں (لمبائی کے لیے میٹر)
+- تمام لنکس کے لیے مناسب جڑواں خصوصیات (inertial properties) کی وضاحت کریں
+- کارکردگی کے لیے ٹکراؤ کی جیومیٹریز (collision geometries) کو آسان رکھیں
+- پیرامیٹرائزڈ ماڈلز کے لیے xacro کا استعمال کریں
+- سمولیشن سے پہلے اپنے URDF کی توثیق کریں
 
-### SDF Best Practices
-- Use appropriate physics parameters
-- Define proper material properties for visualization
-- Organize complex models in separate files
-- Use plugins for advanced functionality
-- Validate SDF files before use
+### SDF بہترین طریقے
+- مناسب طبیعیات کے پیرامیٹرز استعمال کریں
+- وژولائزیشن کے لیے مناسب میٹریل خصوصیات کی وضاحت کریں
+- پیچیدہ ماڈلز کو الگ الگ فائلوں میں منظم کریں
+- جدید فعالیت کے لیے پلگ ان استعمال کریں
+- استعمال سے پہلے SDF فائلوں کی توثیق کریں
 
-## Troubleshooting Model Loading
+## ماڈل لوڈنگ کے مسائل کا حل (Troubleshooting)
 
-### Common Issues
+### عام مسائل
 
-1. **Model doesn't appear**: Check file paths and SDF syntax
-2. **Physics issues**: Verify inertial properties
-3. **Plugin errors**: Ensure plugins are installed and configured correctly
-4. **Performance problems**: Simplify collision geometries
+1. **ماڈل ظاہر نہیں ہوتا**: فائل پاتھ اور SDF سنٹیکس چیک کریں
+2. **طبیعیات کے مسائل**: جڑواں خصوصیات کی تصدیق کریں
+3. **پلگ ان کی غلطیاں**: یقینی بنائیں کہ پلگ ان انسٹال ہیں اور صحیح طریقے سے کنفیگر ہیں
+4. **کارکردگی کے مسائل**: ٹکراؤ کی جیومیٹریز کو آسان بنائیں
 
-### Debugging Commands
+### ڈیبگنگ کمانڈز
 
 ```bash
 # List loaded models
@@ -570,10 +570,10 @@ gz model -m your_model_name -i
 gz topic -l
 ```
 
-## Next Steps
+## اگلے اقدامات
 
-Now that you understand how to create and load robot models:
+اب جب کہ آپ سمجھ گئے ہیں کہ روبوٹ ماڈل کیسے بنائیں اور لوڈ کریں:
 
-1. Continue to [Physics Simulation](../physics-simulation/gravity-and-collisions.md) to learn about realistic physics
-2. Explore [Sensor Simulation](../sensor-simulation/lidar-simulation.md) to add perception capabilities
-3. Learn about [Unity Integration](../unity-integration/unity-setup.md) for high-fidelity visualization
+1. حقیقت پسندانہ طبیعیات کے بارے میں جاننے کے لیے [طبیعیات سمولیشن](../physics-simulation/gravity-and-collisions.md) پر جاری رکھیں
+2. ادراک کی صلاحیتیں شامل کرنے کے لیے [سینسر سمولیشن](../sensor-simulation/lidar-simulation.md) دریافت کریں
+3. ہائی فیڈیلیٹی وژولائزیشن کے لیے [Unity انضمام](../unity-integration/unity-setup.md) کے بارے میں جانیں

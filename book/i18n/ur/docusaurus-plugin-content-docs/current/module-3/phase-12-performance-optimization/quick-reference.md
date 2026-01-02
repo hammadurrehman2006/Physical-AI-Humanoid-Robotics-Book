@@ -1,67 +1,67 @@
-# Isaac Sim Performance Optimization - Quick Reference Guide
+# Isaac Sim کارکردگی کی اصلاح - فوری حوالہ گائیڈ (Quick Reference Guide)
 
-This quick reference guide provides essential performance optimization tips and techniques for Isaac Sim.
+یہ فوری حوالہ گائیڈ Isaac Sim کے لیے کارکردگی کی اصلاح کے ضروری نکات اور تکنیک فراہم کرتی ہے۔
 
-## Performance Optimization Checklist
+## کارکردگی کی اصلاح کی چیک لسٹ
 
-### Before Starting Optimization
-- [ ] Define performance requirements (target FPS, physics frequency, etc.)
-- [ ] Set up performance monitoring tools
-- [ ] Establish baseline performance metrics
-- [ ] Identify critical performance bottlenecks
+### اصلاح شروع کرنے سے پہلے
+- [ ] کارکردگی کی ضروریات کی وضاحت کریں (ہدف FPS، طبیعیات کی تعدد، وغیرہ)
+- [ ] کارکردگی کی نگرانی کے ٹولز ترتیب دیں
+- [ ] بنیادی کارکردگی کے میٹرکس قائم کریں
+- [ ] کارکردگی کی اہم رکاوٹوں کی شناخت کریں
 
-### Rendering Optimization
-- [ ] Reduce viewport resolution for training
-- [ ] Use lower anti-aliasing settings (1-2x instead of 4-8x)
-- [ ] Limit dynamic light count (3-5 max)
-- [ ] Use baked lighting for static elements
-- [ ] Reduce texture resolution for non-critical elements
-- [ ] Disable post-processing effects during training
-- [ ] Use Level of Detail (LOD) systems
+### رینڈرنگ کی اصلاح
+- [ ] تربیت کے لیے ویوپورٹ ریزولیوشن کم کریں
+- [ ] کم اینٹی ایلائزنگ سیٹنگز استعمال کریں (4-8x کے بجائے 1-2x)
+- [ ] ڈائنامک لائٹ کی تعداد کو محدود کریں (3-5 زیادہ سے زیادہ)
+- [ ] جامد عناصر کے لیے بیکڈ لائٹنگ (baked lighting) کا استعمال کریں
+- [ ] غیر اہم عناصر کے لیے ٹیکسچر ریزولیوشن کم کریں
+- [ ] تربیت کے دوران پوسٹ پروسیسنگ اثرات کو غیر فعال کریں
+- [ ] لیول آف ڈیٹیل (LOD) سسٹمز کا استعمال کریں
 
-### Physics Optimization
-- [ ] Reduce solver iterations (4-8 instead of 16-32)
-- [ ] Use GPU physics acceleration when available
-- [ ] Set appropriate broadphase type (MBP for large scenes)
-- [ ] Adjust contact offsets (0.002 for contact, 0.001 for rest)
-- [ ] Enable stabilization for many objects
-- [ ] Use simplified collision geometries
-- [ ] Match physics frequency to control loop requirements
+### فزکس کی اصلاح
+- [ ] سولور کی تکرار (iterations) کو کم کریں (16-32 کے بجائے 4-8)
+- [ ] دستیاب ہونے پر GPU فزکس ایکسلریشن کا استعمال کریں
+- [ ] مناسب براڈ فیز ٹائپ سیٹ کریں (بڑے مناظر کے لیے MBP)
+- [ ] رابطہ آفسیٹس کو ایڈجسٹ کریں (رابطے کے لیے 0.002، آرام کے لیے 0.001)
+- [ ] بہت سی اشیاء کے لیے استحکام (stabilization) کو فعال کریں
+- [ ] آسان ٹکراؤ جیومیٹریز استعمال کریں
+- [ ] کنٹرول لوپ کی ضروریات کے ساتھ طبیعیات کی تعدد (frequency) کو ملائیں
 
-### Sensor Optimization
-- [ ] Reduce sensor update frequency when possible
-- [ ] Use lower resolution for camera sensors
-- [ ] Limit LiDAR point density
-- [ ] Use asynchronous sensor reading
-- [ ] Batch sensor data processing
-- [ ] Process only required sensor data
+### سینسر کی اصلاح
+- [ ] جب ممکن ہو سینسر اپ ڈیٹ کی تعدد کو کم کریں
+- [ ] کیمرہ سینسرز کے لیے کم ریزولیوشن استعمال کریں
+- [ ] LiDAR پوائنٹ کثافت (density) کو محدود کریں
+- [ ] غیر ہم وقت (asynchronous) سینسر ریڈنگ کا استعمال کریں
+- [ ] بیچ سینسر ڈیٹا پروسیسنگ
+- [ ] صرف مطلوبہ سینسر ڈیٹا پروسیس کریں
 
-### Memory Optimization
-- [ ] Use appropriate tensor data types (float32 vs float64)
-- [ ] Implement asset streaming
-- [ ] Use object pooling for frequently created/destroyed objects
-- [ ] Clear GPU cache periodically
-- [ ] Use memory-efficient operations
-- [ ] Monitor memory usage continuously
+### میموری کی اصلاح
+- [ ] مناسب ٹینسر ڈیٹا کی اقسام استعمال کریں (float32 بمقابلہ float64)
+- [ ] اثاثہ اسٹریمنگ نافذ کریں
+- [ ] اکثر بنائے گئے/تباہ ہونے والے اشیاء کے لیے آبجیکٹ پولنگ کا استعمال کریں
+- [ ] وقتاً فوقتاً GPU کیش صاف کریں
+- [ ] میموری کے موثر آپریشنز استعمال کریں
+- [ ] میموری کے استعمال کی مسلسل نگرانی کریں
 
-### Parallel Processing
-- [ ] Use multiple parallel environments
-- [ ] Implement thread pools for sensor processing
-- [ ] Batch operations where possible
-- [ ] Use vectorized operations
-- [ ] Parallelize data collection
-- [ ] Implement pipeline parallelism
+### متوازی پروسیسنگ
+- [ ] متعدد متوازی ماحول استعمال کریں
+- [ ] سینسر پروسیسنگ کے لیے تھریڈ پولز نافذ کریں
+- [ ] جہاں ممکن ہو بیچ آپریشنز کریں
+- [ ] ویکٹرائزڈ آپریشنز استعمال کریں
+- [ ] ڈیٹا اکٹھا کرنے کو متوازی بنائیں
+- [ ] پائپ لائن ہم آہنگی (parallelism) نافذ کریں
 
-## Performance Metrics to Monitor
+## نگرانی کے لیے کارکردگی کے میٹرکس
 
-### Essential Metrics
-- **FPS (Frames Per Second)**: Target 30+ for real-time, 60+ for smooth interaction
-- **Physics Steps/sec**: Match to control frequency requirements
-- **GPU Utilization**: Aim for 70-85% for optimal performance
-- **CPU Utilization**: Monitor for bottlenecks (avoid 95%+ sustained)
-- **Memory Usage**: Keep below 80% to avoid swapping
+### ضروری میٹرکس
+- **FPS (فریمز فی سیکنڈ)**: ریئل ٹائم کے لیے 30+، ہموار تعامل کے لیے 60+ کا ہدف
+- **فزکس اسٹیپس/سیکنڈ**: کنٹرول فریکوئنسی کی ضروریات سے ملائیں
+- **GPU کا استعمال**: بہترین کارکردگی کے لیے 70-85% کا مقصد رکھیں
+- **CPU کا استعمال**: رکاوٹوں کی نگرانی کریں (95%+ برقرار رکھنے سے گریز کریں)
+- **میموری کا استعمال**: swapping سے بچنے کے لیے 80% سے نیچے رکھیں
 
-### Monitoring Commands
+### نگرانی کے کمانڈز
 ```python
 # Basic performance monitoring
 import time
@@ -81,112 +81,112 @@ def monitor_performance():
         print(f"CPU: {cpu_percent}%, Memory: {memory_percent}%")
 ```
 
-## Hardware-Specific Recommendations
+## ہارڈ ویئر کے لیے مخصوص سفارشات
 
-### High-End Hardware (32GB+ RAM, RTX 3080+)
-- Enable high-resolution rendering
-- Use maximum physics quality settings
-- Run many parallel environments
-- Enable GPU physics acceleration
-- Use high-resolution textures
+### ہائی اینڈ ہارڈ ویئر (32GB+ RAM, RTX 3080+)
+- ہائی ریزولیوشن رینڈرنگ کو فعال کریں
+- زیادہ سے زیادہ فزکس کوالٹی سیٹنگز استعمال کریں
+- بہت سے متوازی ماحول چلائیں
+- GPU فزکس ایکسلریشن کو فعال کریں
+- ہائی ریزولیوشن ٹیکسچرز استعمال کریں
 
-### Mid-Range Hardware (16GB RAM, RTX 2070-3070)
-- Use balanced rendering settings
-- Moderate parallel environment count
-- Enable GPU physics acceleration
-- Use medium-resolution textures
-- Optimize collision detection settings
+### مڈ رینج ہارڈ ویئر (16GB RAM, RTX 2070-3070)
+- متوازن رینڈرنگ سیٹنگز استعمال کریں
+- اعتدال پسند متوازی ماحول کی گنتی
+- GPU فزکس ایکسلریشن کو فعال کریں
+- درمیانے ریزولیوشن ٹیکسچرز استعمال کریں
+- ٹکراؤ کا پتہ لگانے کی ترتیبات کو بہتر بنائیں
 
-### Low-End Hardware (8GB RAM, GTX 1660-RTX 2060)
-- Use performance-focused rendering
-- Reduce parallel environment count
-- Consider CPU-based physics
-- Use low-resolution textures
-- Simplify collision meshes
+### لو اینڈ ہارڈ ویئر (8GB RAM, GTX 1660-RTX 2060)
+- کارکردگی پر مرکوز رینڈرنگ استعمال کریں
+- متوازی ماحول کی گنتی کو کم کریں
+- CPU پر مبنی طبیعیات پر غور کریں
+- کم ریزولیوشن ٹیکسچرز استعمال کریں
+- ٹکراؤ میشز کو آسان بنائیں
 
-## Common Performance Issues and Solutions
+## عام کارکردگی کے مسائل اور حل
 
-### Issue: Low FPS
-**Solutions:**
-- Reduce rendering resolution
-- Lower texture quality
-- Reduce dynamic light count
-- Disable post-processing effects
-- Use lower polygon models
+### مسئلہ: کم FPS
+**حل:**
+- رینڈرنگ ریزولیوشن کم کریں
+- ٹیکسچر کوالٹی کم کریں
+- ڈائنامک لائٹ کی تعداد کم کریں
+- پوسٹ پروسیسنگ اثرات کو غیر فعال کریں
+- کم پولیگون ماڈلز استعمال کریں
 
-### Issue: Physics Instability
-**Solutions:**
-- Increase solver iterations (carefully)
-- Adjust contact offsets
-- Use appropriate physics frequency
-- Check for interpenetrating objects
-- Validate mass and inertia properties
+### مسئلہ: فزکس کی عدم استحکام (Instability)
+**حل:**
+- سولور کی تکرار (iterations) میں اضافہ کریں (احتیاط سے)
+- رابطہ آفسیٹس کو ایڈجسٹ کریں
+- مناسب طبیعیات کی فریکوئنسی استعمال کریں
+- باہم متصل (interpenetrating) اشیاء کی جانچ کریں
+- ماس اور جڑواں خصوصیات کی توثیق کریں
 
-### Issue: High Memory Usage
-**Solutions:**
-- Implement asset streaming
-- Reduce texture sizes
-- Use object pooling
-- Clear unused assets
-- Monitor tensor memory usage
+### مسئلہ: ہائی میموری کا استعمال
+**حل:**
+- اثاثہ اسٹریمنگ نافذ کریں
+- ٹیکسچر سائز کم کریں
+- آبجیکٹ پولنگ کا استعمال کریں
+- غیر استعمال شدہ اثاثوں کو صاف کریں
+- ٹینسر میموری کے استعمال کی نگرانی کریں
 
-### Issue: GPU Bottleneck
-**Solutions:**
-- Reduce rendering quality
-- Lower texture resolution
-- Use texture compression
-- Optimize shader complexity
-- Consider CPU rendering for some elements
+### مسئلہ: GPU رکاوٹ (Bottleneck)
+**حل:**
+- رینڈرنگ کوالٹی کم کریں
+- کم ٹیکسچر ریزولیوشن
+- ٹیکسچر کمپریشن استعمال کریں
+- شیڈر کی پیچیدگی کو بہتر بنائیں
+- کچھ عناصر کے لیے CPU رینڈرنگ پر غور کریں
 
-## Performance Validation Steps
+## کارکردگی کی توثیق کے مراحل
 
-### Before Deployment
-1. Run comprehensive benchmarks
-2. Test on target hardware
-3. Validate accuracy requirements
-4. Check memory stability over time
-5. Verify real-time performance requirements
+### تعیناتی سے پہلے
+1. جامع بینچ مارک چلائیں
+2. ٹارگٹ ہارڈویئر پر ٹیسٹ کریں
+3. درستگی کی ضروریات کی توثیق کریں
+4. وقت کے ساتھ میموری کے استحکام کی جانچ کریں
+5. ریئل ٹائم کارکردگی کی ضروریات کی تصدیق کریں
 
-### Continuous Monitoring
-- Implement performance alerts
-- Log performance metrics
-- Monitor for degradation over time
-- Track resource utilization
-- Validate optimization effectiveness
+### مسلسل نگرانی
+- کارکردگی کے انتباہات نافذ کریں
+- کارکردگی کے میٹرکس کو لاگ کریں
+- وقت کے ساتھ انحطاط (degradation) کی نگرانی کریں
+- وسائل کے استعمال کو ٹریک کریں
+- اصلاح کی تاثیر کی توثیق کریں
 
-## Optimization Best Practices
+## اصلاح کے بہترین طریقے
 
-### General Best Practices
-1. **Start Simple**: Begin with minimal complexity and add features gradually
-2. **Measure First**: Always measure performance before optimizing
-3. **Optimize Iteratively**: Make small changes and measure impact
-4. **Balance Quality/Speed**: Find the right balance for your use case
-5. **Test Thoroughly**: Ensure optimizations don't break functionality
+### عمومی بہترین طریقے
+1. **آسان شروع کریں**: کم سے کم پیچیدگی کے ساتھ شروع کریں اور آہستہ آہستہ خصوصیات شامل کریں۔
+2. **پہلے پیمائش کریں**: اصلاح کرنے سے پہلے ہمیشہ کارکردگی کی پیمائش کریں۔
+3. **تکراری طور پر بہتر بنائیں**: چھوٹی تبدیلیاں کریں اور اثر کی پیمائش کریں۔
+4. **کوالٹی/سپیڈ بیلنس**: اپنے استعمال کے کیس کے لیے صحیح توازن تلاش کریں۔
+5. **اچھی طرح ٹیسٹ کریں**: یقینی بنائیں کہ اصلاح فعالیت کو نہیں توڑتی ہے۔
 
-### Robotics-Specific Best Practices
-1. **Match Control Frequency**: Align physics frequency with control loop
-2. **Sensor Timing**: Synchronize sensor updates with control frequency
-3. **Stability First**: Prioritize simulation stability over speed
-4. **Validation Critical**: Verify robot behavior remains accurate after optimization
+### روبوٹکس کے لیے مخصوص بہترین طریقے
+1. **کنٹرول فریکوئنسی کو ملائیں**: کنٹرول لوپ کے ساتھ فزکس فریکوئنسی کو ہم آہنگ کریں۔
+2. **سینسر ٹائمنگ**: کنٹرول فریکوئنسی کے ساتھ سینسر اپ ڈیٹس کو سنکرونائز کریں۔
+3. **پہلے استحکام**: رفتار پر سمولیشن کے استحکام کو ترجیح دیں۔
+4. **توثیق اہم ہے**: تصدیق کریں کہ روبوٹ کا رویہ اصلاح کے بعد درست رہتا ہے۔
 
-## Quick Performance Wins
+## فوری کارکردگی کی فتوحات (Quick Performance Wins)
 
-### Immediate Improvements
-1. Reduce rendering resolution from 1080p to 720p → ~2x performance boost
-2. Lower physics solver iterations from 16 to 4 → ~30% performance improvement
-3. Reduce parallel environment count by half → ~50% memory reduction
-4. Use CPU-based rendering for training → Free up GPU for physics/compute
-5. Disable post-processing effects → 10-20% performance improvement
+### فوری بہتری
+1. رینڈرنگ ریزولیوشن کو 1080p سے 720p تک کم کریں -> ~2x کارکردگی میں اضافہ
+2. فزکس سولور کی تکرار کو 16 سے 4 تک کم کریں -> ~30% کارکردگی میں بہتری
+3. متوازی ماحول کی تعداد کو نصف تک کم کریں -> ~50% میموری میں کمی
+4. تربیت کے لیے CPU پر مبنی رینڈرنگ کا استعمال کریں -> فزکس/کمپیوٹ کے لیے GPU کو آزاد کریں
+5. پوسٹ پروسیسنگ اثرات کو غیر فعال کریں -> 10-20% کارکردگی میں بہتری
 
-### When to Apply Each Technique
-- **Early Development**: Focus on rendering and basic physics optimization
-- **Training Phase**: Prioritize parallel environments and memory management
-- **Deployment**: Optimize for target hardware specifications
-- **Production**: Implement continuous monitoring and alerting
+### ہر تکنیک کو کب لاگو کرنا ہے
+- **ابتدائی ترقی**: رینڈرنگ اور بنیادی طبیعیات کی اصلاح پر توجہ دیں۔
+- **تربیتی مرحلہ**: متوازی ماحول اور میموری کے انتظام کو ترجیح دیں۔
+- **تعیناتی**: ٹارگٹ ہارڈویئر کی تفصیلات کے لیے بہتر بنائیں۔
+- **پیداوار**: مسلسل نگرانی اور الرٹنگ نافذ کریں۔
 
-## Troubleshooting Performance Issues
+## کارکردگی کے مسائل کا حل (Troubleshooting)
 
-### Performance Profiling
+### کارکردگی کی پروفائلنگ
 ```python
 import cProfile
 import pstats
@@ -205,7 +205,7 @@ def profile_performance(func, *args, **kwargs):
     return result
 ```
 
-### Memory Debugging
+### میموری ڈیبگنگ
 ```python
 import torch
 import gc
@@ -219,4 +219,4 @@ def debug_memory():
     torch.cuda.empty_cache()
 ```
 
-This quick reference should be your go-to guide for immediate performance optimization decisions in Isaac Sim.
+یہ فوری حوالہ Isaac Sim میں فوری کارکردگی کی اصلاح کے فیصلوں کے لیے آپ کی رہنما ہونی چاہیے۔

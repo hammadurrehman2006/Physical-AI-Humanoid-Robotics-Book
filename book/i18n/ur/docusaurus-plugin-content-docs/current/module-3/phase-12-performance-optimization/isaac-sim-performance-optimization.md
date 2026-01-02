@@ -1,54 +1,54 @@
-# Isaac Sim Performance Optimization Guide
+# Isaac Sim کارکردگی کی اصلاح کی گائیڈ
 
-## Table of Contents
-1. [Introduction to Isaac Sim Performance Optimization](#introduction)
-2. [Rendering Optimization Techniques](#rendering-optimization)
-3. [Physics Simulation Optimization](#physics-optimization)
-4. [Sensor Simulation Performance](#sensor-optimization)
-5. [Multi-Threading and Parallel Processing](#parallel-processing)
-6. [GPU Optimization Techniques](#gpu-optimization)
-7. [Memory Management Optimization](#memory-optimization)
-8. [Scene Complexity Optimization](#scene-optimization)
-9. [Real-Time Performance Requirements](#real-time-requirements)
-10. [Performance Validation and Benchmarking](#performance-benchmarking)
+## فہرست مضامین
+1. [Isaac Sim کارکردگی کی اصلاح کا تعارف](#introduction)
+2. [رینڈرنگ کی اصلاح کی تکنیکیں](#rendering-optimization)
+3. [فزکس سیمولیشن کی اصلاح](#physics-optimization)
+4. [سینسر سیمولیشن کی کارکردگی](#sensor-optimization)
+5. [ملٹی تھریڈنگ اور متوازی پروسیسنگ](#parallel-processing)
+6. [GPU کی اصلاح کی تکنیکیں](#gpu-optimization)
+7. [میموری مینجمنٹ کی اصلاح](#memory-optimization)
+8. [منظر کی پیچیدگی کی اصلاح](#scene-optimization)
+9. [حقیقی وقت کی کارکردگی کی ضروریات](#real-time-requirements)
+10. [کارکردگی کی توثیق اور بینچ مارکنگ](#performance-benchmarking)
 
-## Introduction to Isaac Sim Performance Optimization {#introduction}
+## Isaac Sim کارکردگی کی اصلاح کا تعارف {#introduction}
 
-Performance optimization in Isaac Sim is critical for achieving realistic simulations that run efficiently. Whether you're training reinforcement learning agents, testing control algorithms, or simulating complex robotic systems, understanding performance optimization techniques is essential for creating effective simulations.
+Isaac Sim میں کارکردگی کی اصلاح حقیقت پسندانہ سیمولیشنز کے حصول کے لیے اہم ہے جو مؤثر طریقے سے چلتی ہیں۔ چاہے آپ ری انفورسمنٹ لرننگ ایجنٹس کو تربیت دے رہے ہوں، کنٹرول الگورتھم کی جانچ کر رہے ہوں، یا پیچیدہ روبوٹک سسٹمز کی سیمولیشن کر رہے ہوں، موثر سیمولیشنز بنانے کے لیے کارکردگی کی اصلاح کی تکنیکوں کو سمجھنا ضروری ہے۔
 
-### Key Performance Considerations
+### کارکردگی کے اہم تحفظات
 
-Isaac Sim performance is influenced by several factors:
+Isaac Sim کی کارکردگی کئی عوامل سے متاثر ہوتی ہے:
 
-1. **Rendering Quality**: High-resolution graphics and realistic lighting
-2. **Physics Simulation**: Complex dynamics and collision detection
-3. **Sensor Simulation**: Real-time sensor data generation
-4. **Memory Management**: Large datasets and model loading
-5. **CPU/GPU Utilization**: Balanced computational load
+1. **رینڈرنگ کوالٹی**: ہائی ریزولوشن گرافکس اور حقیقت پسندانہ لائٹنگ
+2. **فزکس سیمولیشن**: پیچیدہ ڈائنامکس اور تصادم کا پتہ لگانا (collision detection)
+3. **سینسر سیمولیشن**: حقیقی وقت میں سینسر ڈیٹا جنریشن
+4. **میموری مینجمنٹ**: بڑے ڈیٹاسیٹس اور ماڈل لوڈنگ
+5. **CPU/GPU کا استعمال**: متوازن کمپیوٹیشنل لوڈ
 
-### Performance Metrics to Monitor
+### مانیٹر کرنے کے لیے کارکردگی کے میٹرکس
 
-- **Frames Per Second (FPS)**: Real-time simulation performance
-- **Physics Steps Per Second**: Physics simulation frequency
-- **GPU Utilization**: Graphics processing unit usage
-- **Memory Usage**: System and GPU memory consumption
-- **Simulation Time Ratio**: Real-time vs simulation time
+- **فریمز فی سیکنڈ (FPS)**: حقیقی وقت کی سیمولیشن کارکردگی
+- **فزکس سٹیپس فی سیکنڈ**: فزکس سیمولیشن کی فریکوئنسی
+- **GPU کا استعمال**: گرافکس پروسیسنگ یونٹ کا استعمال
+- **میموری کا استعمال**: سسٹم اور GPU میموری کی کھپت
+- **سیمولیشن ٹائم ریشو**: حقیقی وقت بمقابلہ سیمولیشن کا وقت
 
-### Understanding Performance Bottlenecks
+### کارکردگی کی رکاوٹوں (Bottlenecks) کو سمجھنا
 
-Performance bottlenecks typically arise from:
+کارکردگی کی رکاوٹیں عام طور پر ان سے پیدا ہوتی ہیں:
 
-- **Physics Simulation**: Complex dynamics and collision detection
-- **Rendering**: High-resolution graphics and realistic lighting
-- **Sensor Simulation**: Real-time sensor data generation
-- **Memory Management**: Large datasets and model loading
-- **CPU/GPU Utilization**: Imbalanced computational load
+- **فزکس سیمولیشن**: پیچیدہ ڈائنامکس اور تصادم کا پتہ لگانا
+- **رینڈرنگ**: ہائی ریزولوشن گرافکس اور حقیقت پسندانہ لائٹنگ
+- **سینسر سیمولیشن**: حقیقی وقت میں سینسر ڈیٹا جنریشن
+- **میموری مینجمنٹ**: بڑے ڈیٹاسیٹس اور ماڈل لوڈنگ
+- **CPU/GPU کا استعمال**: غیر متوازن کمپیوٹیشنل لوڈ
 
-## Rendering Optimization Techniques {#rendering-optimization}
+## رینڈرنگ کی اصلاح کی تکنیکیں {#rendering-optimization}
 
-Rendering optimization is crucial for maintaining high frame rates while preserving visual quality. The key is to find the right balance between visual fidelity and performance.
+بصری معیار کو برقرار رکھتے ہوئے اعلی فریم ریٹ کو برقرار رکھنے کے لیے رینڈرنگ کی اصلاح بہت ضروری ہے۔ کلید بصری وفاداری اور کارکردگی کے درمیان صحیح توازن تلاش کرنا ہے۔
 
-### Graphics Quality Settings
+### گرافکس کوالٹی کی ترتیبات
 
 ```python
 #!/usr/bin/env python3
@@ -196,7 +196,7 @@ def exercise_texture_optimization():
     print("4. Measure performance improvement")
 ```
 
-### Lighting Optimization
+### لائٹنگ کی اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -247,11 +247,11 @@ class LightingOptimizer:
         print("Lighting optimizations applied")
 ```
 
-## Physics Simulation Optimization {#physics-optimization}
+## فزکس سیمولیشن کی اصلاح {#physics-optimization}
 
-Physics simulation is often the most computationally expensive aspect of Isaac Sim. Optimizing physics parameters can significantly improve performance while maintaining accuracy.
+فزکس سیمولیشن اکثر Isaac Sim کا سب سے زیادہ کمپیوٹیشنل مہنگا پہلو ہوتا ہے۔ فزکس پیرامیٹرز کو بہتر بنانا درستگی کو برقرار رکھتے ہوئے کارکردگی کو نمایاں طور پر بہتر بنا سکتا ہے۔
 
-### Physics Solver Optimization
+### فزکس سولور کی اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -376,7 +376,7 @@ def exercise_collision_optimization():
     return world
 ```
 
-### GPU Physics Acceleration
+### GPU فزکس ایکسلریشن
 
 ```python
 #!/usr/bin/env python3
@@ -456,11 +456,11 @@ def exercise_gpu_physics_optimization():
     return world
 ```
 
-## Sensor Simulation Performance {#sensor-optimization}
+## سینسر سیمولیشن کی کارکردگی {#sensor-optimization}
 
-Sensor simulation can be a significant performance bottleneck, especially when simulating multiple sensors with high-frequency data generation.
+سینسر سیمولیشن ایک اہم کارکردگی کی رکاوٹ ہو سکتی ہے، خاص طور پر جب اعلی تعدد والے ڈیٹا جنریشن کے ساتھ متعدد سینسرز کی سیمولیشن کی جائے۔
 
-### Sensor Data Optimization
+### سینسر ڈیٹا کی اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -552,11 +552,11 @@ def exercise_sensor_optimization():
     return world
 ```
 
-## Multi-Threading and Parallel Processing {#parallel-processing}
+## ملٹی تھریڈنگ اور متوازی پروسیسنگ {#parallel-processing}
 
-Parallel processing is essential for maximizing performance in Isaac Sim, especially when running multiple environments or processing sensor data.
+Isaac Sim میں کارکردگی کو زیادہ سے زیادہ کرنے کے لیے متوازی پروسیسنگ ضروری ہے، خاص طور پر جب متعدد ماحول چلا رہے ہوں یا سینسر ڈیٹا پروسیس کر رہے ہوں۔
 
-### Parallel Environment Optimization
+### متوازی ماحول کی اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -649,11 +649,11 @@ def exercise_parallel_processing():
     return world
 ```
 
-## GPU Optimization Techniques {#gpu-optimization}
+## GPU کی اصلاح کی تکنیکیں {#gpu-optimization}
 
-GPU optimization is crucial for rendering and physics simulation in Isaac Sim. Proper GPU utilization can significantly improve performance.
+Isaac Sim میں رینڈرنگ اور فزکس سیمولیشن کے لیے GPU کی اصلاح بہت ضروری ہے۔ مناسب GPU استعمال کارکردگی کو نمایاں طور پر بہتر بنا سکتا ہے۔
 
-### GPU Rendering Optimization
+### GPU رینڈرنگ کی اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -743,11 +743,11 @@ def exercise_gpu_optimization():
     return gpu_optimizer
 ```
 
-## Memory Management Optimization {#memory-optimization}
+## میموری مینجمنٹ کی اصلاح {#memory-optimization}
 
-Efficient memory management is crucial for running large-scale simulations without running into memory limitations.
+بڑے پیمانے پر سیمولیشنز کو میموری کی حدود میں آئے بغیر چلانے کے لیے موثر میموری مینجمنٹ بہت ضروری ہے۔
 
-### Memory Optimization Strategies
+### میموری کی اصلاح کی حکمت عملی
 
 ```python
 #!/usr/bin/env python3
@@ -855,11 +855,11 @@ def exercise_memory_management():
     return world
 ```
 
-## Scene Complexity Optimization {#scene-optimization}
+## منظر کی پیچیدگی کی اصلاح {#scene-optimization}
 
-Managing scene complexity is essential for maintaining performance as scenes become more detailed and complex.
+جیسے جیسے مناظر زیادہ تفصیلی اور پیچیدہ ہوتے جاتے ہیں کارکردگی کو برقرار رکھنے کے لیے منظر کی پیچیدگی کا انتظام ضروری ہے۔
 
-### Scene Complexity Management
+### منظر کی پیچیدگی کا انتظام
 
 ```python
 #!/usr/bin/env python3
@@ -966,11 +966,11 @@ def exercise_scene_complexity_optimization():
     return world
 ```
 
-## Real-Time Performance Requirements {#real-time-requirements}
+## حقیقی وقت کی کارکردگی کی ضروریات {#real-time-requirements}
 
-Maintaining real-time performance is crucial for applications like robot control and human-in-the-loop simulation.
+روبوٹ کنٹرول اور ہیومن-ان-دی-لوپ سیمولیشن جیسی ایپلی کیشنز کے لیے حقیقی وقت کی کارکردگی کو برقرار رکھنا بہت ضروری ہے۔
 
-### Real-Time Performance Optimization
+### حقیقی وقت کی کارکردگی کی اصلاح
 
 ```python
 #!/usr/bin/env python3
@@ -1064,11 +1064,11 @@ def exercise_real_time_performance():
     return world
 ```
 
-## Performance Validation and Benchmarking {#performance-benchmarking}
+## کارکردگی کی توثیق اور بینچ مارکنگ {#performance-benchmarking}
 
-Proper validation and benchmarking are essential to ensure that optimizations actually improve performance and don't introduce new issues.
+مناسب توثیق اور بینچ مارکنگ اس بات کو یقینی بنانے کے لیے ضروری ہے کہ اصلاحات واقعی کارکردگی کو بہتر بنائیں اور نئے مسائل متعارف نہ کرائیں۔
 
-### Performance Monitoring and Analysis
+### کارکردگی کی نگرانی اور تجزیہ
 
 ```python
 #!/usr/bin/env python3
@@ -1496,7 +1496,7 @@ if __name__ == "__main__":
     benchmark, benchmark_monitor = exercise_performance_benchmarking()
 ```
 
-### Hardware-Specific Optimizations
+### ہارڈ ویئر کے لیے مخصوص اصلاحات
 
 ```python
 #!/usr/bin/env python3
@@ -1651,35 +1651,35 @@ def exercise_hardware_specific_optimization():
     return hw_optimizer
 ```
 
-## Best Practices Summary
+## بہترین طریقوں کا خلاصہ
 
-### Key Performance Optimization Guidelines
+### کارکردگی کی اصلاح کے اہم رہنما خطوط
 
-1. **Start Simple**: Begin with minimal complexity and gradually increase
-2. **Monitor Continuously**: Use performance monitoring throughout development
-3. **Profile Regularly**: Identify bottlenecks early and often
-4. **Optimize Iteratively**: Make small changes and measure impact
-5. **Balance Quality/Speed**: Find the right balance for your use case
-6. **Use Hardware Wisely**: Leverage available hardware capabilities
+1. **آسان شروع کریں**: کم سے کم پیچیدگی کے ساتھ شروع کریں اور بتدریج اضافہ کریں۔
+2. **مسلسل نگرانی کریں**: ترقی کے دوران کارکردگی کی نگرانی کا استعمال کریں۔
+3. **باقاعدگی سے پروفائل کریں**: رکاوٹوں کی جلد اور اکثر شناخت کریں۔
+4. **تکراری طور پر بہتر بنائیں**: چھوٹی تبدیلیاں کریں اور اثر کی پیمائش کریں۔
+5. **معیار/رفتار میں توازن**: اپنے استعمال کے کیس کے لیے صحیح توازن تلاش کریں۔
+6. **ہارڈ ویئر کو دانشمندی سے استعمال کریں**: دستیاب ہارڈ ویئر کی صلاحیتوں کا فائدہ اٹھائیں۔
 
-### Humanoid-Specific Optimizations
+### ہیومنوائڈ کے لیے مخصوص اصلاحات
 
-1. **Control Frequency**: Match control frequency to physics simulation
-2. **Sensor Optimization**: Optimize sensor data processing for real-time control
-3. **Dynamics Simplification**: Simplify robot dynamics where accuracy allows
-4. **Contact Modeling**: Optimize ground contact models for stable walking
+1. **کنٹرول فریکوئنسی**: کنٹرول فریکوئنسی کو فزکس سیمولیشن سے ملائیں۔
+2. **سینسر کی اصلاح**: حقیقی وقت کے کنٹرول کے لیے سینسر ڈیٹا پروسیسنگ کو بہتر بنائیں۔
+3. **ڈائنامکس کی سادگی**: جہاں درستگی اجازت دیتی ہو وہاں روبوٹ ڈائنامکس کو آسان بنائیں۔
+4. **رابطہ ماڈلنگ**: مستحکم چلنے کے لیے زمینی رابطے کے ماڈلز کو بہتر بنائیں۔
 
-### Performance Validation Checklist
+### کارکردگی کی توثیق چیک لسٹ
 
-- [ ] FPS meets real-time requirements
-- [ ] Physics simulation is stable
-- [ ] Memory usage stays within limits
-- [ ] GPU/CPU utilization is balanced
-- [ ] Sensor data is processed in real-time
-- [ ] No performance degradation over time
+- [ ] FPS حقیقی وقت کی ضروریات کو پورا کرتا ہے
+- [ ] فزکس سیمولیشن مستحکم ہے
+- [ ] میموری کا استعمال حدود میں رہتا ہے
+- [ ] GPU/CPU کا استعمال متوازن ہے
+- [ ] سینسر ڈیٹا پروسیسنگ حقیقی وقت میں ہوتی ہے
+- [ ] وقت کے ساتھ کارکردگی میں کوئی کمی نہیں
 
-## Conclusion
+## نتیجہ
 
-Performance optimization in Isaac Sim is an ongoing process that requires careful attention to multiple aspects of the simulation pipeline. By understanding and implementing the techniques covered in this guide, you can create efficient and effective robotic simulations that meet your performance requirements while maintaining the accuracy needed for your specific applications.
+Isaac Sim میں کارکردگی کی اصلاح ایک جاری عمل ہے جس میں سیمولیشن پائپ لائن کے متعدد پہلوؤں پر محتاط توجہ کی ضرورت ہوتی ہے۔ اس گائیڈ میں شامل تکنیکوں کو سمجھ کر اور نافذ کر کے، آپ موثر اور مؤثر روبوٹک سیمولیشنز بنا سکتے ہیں جو آپ کی کارکردگی کی ضروریات کو پورا کرتے ہوئے آپ کی مخصوص ایپلی کیشنز کے لیے درکار درستگی کو برقرار رکھتے ہیں۔
 
-Remember that optimization is often a trade-off between performance and accuracy. Always validate that your optimizations don't compromise the quality of your simulation results. Regular benchmarking and monitoring will help you maintain optimal performance as your simulations become more complex.
+یاد رکھیں کہ اصلاح اکثر کارکردگی اور درستگی کے درمیان ایک تجارت ہوتی ہے۔ ہمیشہ توثیق کریں کہ آپ کی اصلاحات آپ کے سیمولیشن کے نتائج کے معیار پر سمجھوتہ نہیں کرتی ہیں۔ باقاعدہ بینچ مارکنگ اور مانیٹرنگ آپ کو بہترین کارکردگی برقرار رکھنے میں مدد کرے گی جیسے جیسے آپ کی سیمولیشنز زیادہ پیچیدہ ہوتی جائیں گی۔

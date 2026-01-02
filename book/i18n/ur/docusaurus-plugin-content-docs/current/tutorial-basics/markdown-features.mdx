@@ -2,13 +2,13 @@
 sidebar_position: 4
 ---
 
-# Markdown Features
+# مارک ڈاؤن خصوصیات
 
-Docusaurus supports **[Markdown](https://daringfireball.net/projects/markdown/syntax)** and a few **additional features**.
+Docusaurus **[مارک ڈاؤن](https://daringfireball.net/projects/markdown/syntax)** اور چند **اضافی خصوصیات** کو سپورٹ کرتا ہے۔
 
-## Front Matter
+## فرنٹ میٹر (Front Matter)
 
-Markdown documents have metadata at the top called [Front Matter](https://jekyllrb.com/docs/front-matter/):
+مارک ڈاؤن دستاویزات کے اوپر میٹا ڈیٹا ہوتا ہے جسے [فرنٹ میٹر](https://jekyllrb.com/docs/front-matter/) کہا جاتا ہے:
 
 ```text title="my-doc.md"
 // highlight-start
@@ -25,9 +25,9 @@ slug: /my-custom-url
 Markdown text with [links](./hello.md)
 ```
 
-## Links
+## لنکس
 
-Regular Markdown links are supported, using url paths or relative file paths.
+باقاعدہ مارک ڈاؤن لنکس کو سپورٹ کیا جاتا ہے، یو آر ایل پاتھ یا متعلقہ فائل پاتھ کا استعمال کرتے ہوئے۔
 
 ```md
 Let's see how to [Create a page](/create-a-page).
@@ -37,13 +37,13 @@ Let's see how to [Create a page](/create-a-page).
 Let's see how to [Create a page](./create-a-page.md).
 ```
 
-**Result:** Let's see how to [Create a page](./create-a-page.md).
+**نتیجہ:** آئیے دیکھتے ہیں کہ [صفحہ کیسے بنایا جائے](./create-a-page.md)۔
 
-## Images
+## تصاویر
 
-Regular Markdown images are supported.
+باقاعدہ مارک ڈاؤن تصاویر کو سپورٹ کیا جاتا ہے۔
 
-You can use absolute paths to reference images in the static directory (`static/img/docusaurus.png`):
+آپ اسٹیٹک ڈائرکٹری (`static/img/docusaurus.png`) میں تصاویر کا حوالہ دینے کے لیے مطلق راستے استعمال کر سکتے ہیں:
 
 ```md
 ![Docusaurus logo](/img/docusaurus.png)
@@ -51,15 +51,15 @@ You can use absolute paths to reference images in the static directory (`static/
 
 ![Docusaurus logo](/img/docusaurus.png)
 
-You can reference images relative to the current file as well. This is particularly useful to colocate images close to the Markdown files using them:
+آپ موجودہ فائل سے متعلقہ تصاویر کا حوالہ بھی دے سکتے ہیں۔ یہ خاص طور پر ان تصاویر کو مارک ڈاؤن فائلوں کے قریب رکھنے کے لیے مفید ہے جو انہیں استعمال کر رہی ہیں:
 
 ```md
 ![Docusaurus logo](./img/docusaurus.png)
 ```
 
-## Code Blocks
+## کوڈ بلاکس
 
-Markdown code blocks are supported with Syntax highlighting.
+مارک ڈاؤن کوڈ بلاکس کو سنٹیکس ہائی لائٹنگ کے ساتھ سپورٹ کیا جاتا ہے۔
 
 ````md
 ```jsx title="src/components/HelloDocusaurus.js"
@@ -75,9 +75,9 @@ function HelloDocusaurus() {
 }
 ```
 
-## Admonitions
+## تنبیہات (Admonitions)
 
-Docusaurus has a special syntax to create admonitions and callouts:
+Docusaurus میں تنبیہات اور کال آؤٹس بنانے کے لیے ایک خاص سنٹیکس ہے:
 
 ```md
 :::tip My tip
@@ -105,9 +105,9 @@ This action is dangerous
 
 :::
 
-## MDX and React Components
+## MDX اور React اجزاء
 
-[MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:
+[MDX](https://mdxjs.com/) آپ کی دستاویزات کو مزید **انٹرایکٹو** بنا سکتا ہے اور **مارک ڈاؤن کے اندر کسی بھی React اجزاء** کو استعمال کرنے کی اجازت دیتا ہے:
 
 ```jsx
 export const Highlight = ({children, color}) => (

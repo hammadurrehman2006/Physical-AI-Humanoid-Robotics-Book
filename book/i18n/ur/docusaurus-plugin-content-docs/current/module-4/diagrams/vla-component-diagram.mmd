@@ -1,0 +1,77 @@
+```mermaid
+componentDiagram
+    component "Voice Processing Module" as VP {
+        interface "I" as VPInput
+        interface "I" as VPOutput
+    }
+
+    component "Language Understanding Module" as LU {
+        interface "I" as LUInput
+        interface "I" as LUOutput
+    }
+
+    component "Computer Vision Module" as CV {
+        interface "I" as CVInput
+        interface "I" as CVOutput
+    }
+
+    component "Action Execution Module" as AE {
+        interface "I" as AEInput
+        interface "I" as AEOutput
+    }
+
+    component "AI Models & APIs" as AI {
+        interface "I" as AIInput
+        interface "I" as AIOutput
+    }
+
+    component "Knowledge Base" as KB {
+        interface "I" as KBInput
+        interface "I" as KBOutput
+    }
+
+    component "Robot Hardware" as RH {
+        interface "I" as RHInput
+        interface "I" as RHOutput
+    }
+
+    VPInput --> VP : "Voice Input"
+    VP --> VPOutput : "Transcribed Text"
+    VPOutput --> LUInput : "Text"
+    LUOutput --> CVInput : "Context Query"
+    LUOutput --> AEInput : "Action Plan"
+    CVOutput --> LUInput : "Visual Data"
+    KBOutput --> LUInput : "Knowledge"
+    KBOutput --> CVInput : "Reference Data"
+    AEOutput --> RHInput : "Motor Commands"
+    AIOutput --> VPInput : "Model Updates"
+    AIOutput --> LUInput : "Model Updates"
+    AIOutput --> CVInput : "Model Updates"
+
+    note right of VP
+        Speech Recognition
+        Noise Filtering
+        Voice Activity Detection
+    end note
+
+    note right of LU
+        NLP Processing
+        Intent Recognition
+        Semantic Analysis
+        Context Understanding
+    end note
+
+    note right of CV
+        Object Detection
+        Scene Understanding
+        Visual Recognition
+        Spatial Mapping
+    end note
+
+    note right of AE
+        Motion Planning
+        Motor Control
+        Feedback Processing
+        Safety Checks
+    end note
+```

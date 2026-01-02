@@ -1,34 +1,34 @@
-# Domain Randomization in Isaac Sim
+# Isaac Sim میں ڈومین رینڈمائزیشن
 
-This section covers domain randomization techniques in Isaac Sim for improving the sim-to-real transfer of perception and control systems. Domain randomization is a crucial technique for making synthetic data more robust and transferable to real-world applications.
+یہ سیکشن Isaac Sim میں ڈومین رینڈمائزیشن کی تکنیکوں کا احاطہ کرتا ہے تاکہ ادراک (perception) اور کنٹرول سسٹمز کی sim-to-real منتقلی کو بہتر بنایا جا سکے۔ ڈومین رینڈمائزیشن مصنوعی ڈیٹا کو زیادہ مضبوط اور حقیقی دنیا کی ایپلی کیشنز میں منتقل کرنے کے قابل بنانے کے لیے ایک اہم تکنیک ہے۔
 
-## Understanding Domain Randomization
+## ڈومین رینڈمائزیشن کو سمجھنا
 
-### What is Domain Randomization?
+### ڈومین رینڈمائزیشن کیا ہے؟
 
-Domain randomization is a technique used in synthetic data generation to improve the transferability of models trained on simulated data to real-world applications. The core idea is to randomize various aspects of the simulation environment during training, making the trained model robust to the differences between simulation and reality.
+ڈومین رینڈمائزیشن ایک تکنیک ہے جو مصنوعی ڈیٹا جنریشن میں استعمال ہوتی ہے تاکہ نقلی ڈیٹا پر تربیت یافتہ ماڈلز کی حقیقی دنیا کی ایپلی کیشنز میں منتقلی کو بہتر بنایا جا سکے۔ بنیادی خیال یہ ہے کہ تربیت کے دوران سمولیشن ماحول کے مختلف پہلوؤں کو بے ترتیب (randomize) بنایا جائے، جس سے تربیت یافتہ ماڈل سمولیشن اور حقیقت کے درمیان فرق کے لیے مضبوط ہو
 
-### Why Domain Randomization Matters
+### ڈومین رینڈمائزیشن کیوں اہم ہے؟
 
-In robotics, especially for humanoid robots, there's often a significant gap between simulation and reality. Domain randomization helps bridge this gap by:
+روبوٹکس میں، خاص طور پر ہیومنوائڈ روبوٹس کے لیے، اکثر سمولیشن اور حقیقت کے درمیان نمایاں فرق ہوتا ہے۔ ڈومین رینڈمائزیشن اس فرق کو ختم کرنے میں مدد کرتا ہے:
 
-- **Improving Robustness**: Models become more robust to environmental variations
-- **Reducing Overfitting**: Prevents models from overfitting to specific simulation conditions
-- **Enhancing Transfer**: Improves the transfer of trained models from simulation to reality
-- **Increasing Generalization**: Models learn to focus on essential features rather than environmental artifacts
+- **مضبوطی کو بہتر بنانا**: ماڈلز ماحولیاتی تغیرات کے لیے زیادہ مضبوط ہو جاتے ہیں۔
+- **اوور فٹنگ کو کم کرنا**: ماڈلز کو مخصوص سمولیشن حالات میں اوور فٹ ہونے سے روکتا ہے۔
+- **منتقلی کو بڑھانا**: تربیت یافتہ ماڈلز کی سمولیشن سے حقیقت میں منتقلی کو بہتر بناتا ہے۔
+- **عمومیت (Generalization) میں اضافہ**: ماڈلز ماحولیاتی نمونوں کے بجائے ضروری خصوصیات پر توجہ مرکوز کرنا سیکھتے ہیں۔
 
-### Key Concepts in Domain Randomization
+### ڈومین رینڈمائزیشن میں کلیدی تصورات
 
-1. **Visual Domain Randomization**: Randomizing appearance properties (colors, textures, lighting)
-2. **Geometric Domain Randomization**: Randomizing shapes, sizes, and spatial arrangements
-3. **Physical Domain Randomization**: Randomizing physical properties (friction, mass, dynamics)
-4. **Temporal Domain Randomization**: Randomizing timing and motion patterns
+1. **بصری ڈومین رینڈمائزیشن**: ظاہری خصوصیات (رنگ، ٹیکسچر، لائٹنگ) کو بے ترتیب کرنا۔
+2. **جیومیٹرک ڈومین رینڈمائزیشن**: شکلیں، سائز، اور مقامی ترتیب کو بے ترتیب کرنا۔
+3. **طبعی ڈومین رینڈمائزیشن**: طبعی خصوصیات (رگڑ، ماس، ڈائنامکس) کو بے ترتیب کرنا۔
+4. **ٹیمپورل ڈومین رینڈمائزیشن**: وقت اور حرکت کے پیٹرن کو بے ترتیب کرنا۔
 
-## Visual Domain Randomization
+## بصری ڈومین رینڈمائزیشن
 
-### Lighting Randomization
+### لائٹنگ رینڈمائزیشن
 
-Lighting randomization is one of the most important aspects of visual domain randomization:
+لائٹنگ رینڈمائزیشن بصری ڈومین رینڈمائزیشن کے سب سے اہم پہلوؤں میں سے ایک ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -266,7 +266,7 @@ class LightingRandomizer:
         carb.log_info("Lighting domain randomization applied successfully")
 ```
 
-### Material and Texture Randomization
+### میٹریل اور ٹیکسچر رینڈمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -453,9 +453,9 @@ class MaterialRandomizer:
         carb.log_info("Material domain randomization applied successfully")
 ```
 
-## Geometric Domain Randomization
+## جیومیٹرک ڈومین رینڈمائزیشن
 
-### Object Position and Orientation Randomization
+### آبجیکٹ کی پوزیشن اور اورینٹیشن رینڈمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -675,9 +675,9 @@ class GeometricRandomizer:
         carb.log_info("Geometric domain randomization applied successfully")
 ```
 
-## Physical Domain Randomization
+## طبعی ڈومین رینڈمائزیشن
 
-### Physics Property Randomization
+### فزکس پراپرٹی رینڈمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -829,9 +829,9 @@ class PhysicsRandomizer:
         carb.log_info("Physics domain randomization applied successfully")
 ```
 
-## Temporal Domain Randomization
+## ٹیمپورل ڈومین رینڈمائزیشن
 
-### Motion and Timing Randomization
+### حرکت اور ٹائمنگ رینڈمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -954,9 +954,9 @@ class TemporalRandomizer:
         carb.log_info("Temporal domain randomization applied successfully")
 ```
 
-## Advanced Domain Randomization Techniques
+## ایڈوانسڈ ڈومین رینڈمائزیشن تکنیک
 
-### Correlated Randomization
+### باہمی تعلق والی رینڈمائزیشن (Correlated Randomization)
 
 ```python
 #!/usr/bin/env python3
@@ -1076,9 +1076,9 @@ class CorrelatedRandomizer:
         carb.log_info("Correlated domain randomization applied successfully")
 ```
 
-## Adaptive Domain Randomization
+## انکولی ڈومین رینڈمائزیشن (Adaptive Domain Randomization)
 
-### Learning-Based Randomization
+### سیکھنے پر مبنی رینڈمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -1168,9 +1168,9 @@ class AdaptiveRandomizer:
         carb.log_info("Adaptive randomization applied with current bounds")
 ```
 
-## Validation and Quality Assessment
+## توثیق اور معیار کا اندازہ
 
-### Domain Randomization Validation
+### ڈومین رینڈمائزیشن کی توثیق
 
 ```python
 #!/usr/bin/env python3
@@ -1274,27 +1274,27 @@ class RandomizationValidator:
         return overall_score
 ```
 
-## Best Practices for Domain Randomization
+## ڈومین رینڈمائزیشن کے لیے بہترین طریقے
 
-### Guidelines for Effective Domain Randomization
+### موثر ڈومین رینڈمائزیشن کے رہنما خطوط
 
-1. **Start Simple**: Begin with basic randomization and gradually increase complexity
-2. **Monitor Stability**: Ensure physics randomization doesn't break simulation stability
-3. **Validate Transfer**: Regularly test model performance on real data
-4. **Balance Diversity**: Don't randomize so much that objects become unrecognizable
-5. **Correlate Properties**: Randomize related properties together (e.g., indoor lighting with warm colors)
-6. **Use Real Data**: When possible, use real-world data statistics to guide randomization ranges
+1. **آسان شروع کریں**: بنیادی رینڈمائزیشن کے ساتھ شروع کریں اور آہستہ آہستہ پیچیدگی بڑھائیں۔
+2. **استحکام کی نگرانی کریں**: یقینی بنائیں کہ طبیعیات کی رینڈمائزیشن سمولیشن کے استحکام کو نہیں توڑتی۔
+3. **منتقلی کی توثیق کریں**: باقاعدگی سے حقیقی ڈیٹا پر ماڈل کی کارکردگی کی جانچ کریں۔
+4. **تنوع کا توازن**: اتنا رینڈمائز نہ کریں کہ اشیاء ناقابل شناخت ہو جائیں۔
+5. **خصوصیات کا باہمی تعلق**: متعلقہ خصوصیات کو ایک ساتھ رینڈمائز کریں (مثال کے طور پر، گرم رنگوں کے ساتھ انڈور لائٹنگ)۔
+6. **حقیقی ڈیٹا استعمال کریں**: جب ممکن ہو، حقیقی دنیا کے ڈیٹا کے اعدادوشمار کا استعمال رینڈمائزیشن کی حدود کی رہنمائی کے لیے کریں۔
 
-### Humanoid-Specific Considerations
+### ہیومنوائڈ کے لیے مخصوص تحفظات
 
-1. **Human-like Environments**: Focus on randomization that reflects human environments
-2. **Social Context**: Include randomization that reflects social interaction scenarios
-3. **Dynamic Elements**: Include moving objects that humanoid robots typically encounter
-4. **Furniture Context**: Randomize indoor scenes with appropriate furniture arrangements
+1. **انسان جیسے ماحول**: ایسی رینڈمائزیشن پر توجہ مرکوز کریں جو انسانی ماحول کی عکاسی کرتی ہو۔
+2. **سماجی سیاق و سباق**: ایسی رینڈمائزیشن شامل کریں جو سماجی تعامل کے منظرناموں کی عکاسی کرتی ہو۔
+3. **متحرک عناصر**: حرکت کرنے والی اشیاء شامل کریں جن کا ہیومنوائڈ روبوٹس کو عام طور پر سامنا کرنا پڑتا ہے۔
+4. **فرنیچر کا سیاق و سباق**: فرنیچر کے مناسب انتظامات کے ساتھ انڈور سینز کو بے ترتیب بنائیں۔
 
-## Implementation Example
+## نفاذ کی مثال
 
-### Complete Domain Randomization Pipeline
+### مکمل ڈومین رینڈمائزیشن پائپ لائن
 
 ```python
 #!/usr/bin/env python3
@@ -1399,9 +1399,9 @@ if __name__ == "__main__":
     pipeline = run_domain_randomization_example()
 ```
 
-## Performance Optimization
+## کارکردگی کی اصلاح (Performance Optimization)
 
-### Efficient Randomization Techniques
+### موثر رینڈمائزیشن تکنیکیں
 
 ```python
 #!/usr/bin/env python3
@@ -1529,14 +1529,15 @@ if __name__ == "__main__":
     benchmark_randomization_performance(opt_randomizer, num_iterations=50)
 ```
 
-## Next Steps
+## अगले कदम
 
-After implementing domain randomization techniques:
+ڈومین رینڈمائزیشن تکنیکوں کو نافذ کرنے کے بعد:
 
-1. **Validate Transfer**: Test models trained with randomized data on real-world data
-2. **Optimize Parameters**: Fine-tune randomization ranges based on transfer performance
-3. **Scale Generation**: Use domain randomization for large-scale synthetic data generation
-4. **Monitor Performance**: Continuously monitor real-world performance and adjust randomization
-5. **Document Results**: Keep track of which randomization techniques work best for your use case
+1. **منتقلی کی توثیق کریں**: حقیقی دنیا کے ڈیٹا پر رینڈمائزڈ ڈیٹا کے ساتھ تربیت یافتہ ماڈلز کی جانچ کریں۔
+2. **پیرامیٹرز کو بہتر بنائیں**: منتقلی کی کارکردگی کی بنیاد پر رینڈمائزیشن کی حدود کو ٹھیک کریں۔
+3. **جنریشن کو بڑھائیں**: بڑے پیمانے پر مصنوعی ڈیٹا جنریشن کے لیے ڈومین رینڈمائزیشن کا استعمال کریں۔
+4. **کارکردگی کی نگرانی کریں**: حقیقی دنیا کی کارکردگی کی مسلسل نگرانی کریں اور رینڈمائزیشن کو ایڈجسٹ کریں۔
+5. **نتائج کو دستاویزی شکل دیں**: ٹریک کریں کہ کون سی رینڈمائزیشن تکنیک آپ کے استعمال کے کیس کے لیے بہترین کام کرتی ہے۔
 
-The next section covers reinforcement learning infrastructure setup in Isaac Sim.
+اگلا سیکشن Isaac Sim میں ری انفورسمنٹ لرننگ انفراسٹرکچر سیٹ اپ کا احاطہ کرتا ہے۔
+```

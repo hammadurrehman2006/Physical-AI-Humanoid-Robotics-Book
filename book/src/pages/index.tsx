@@ -6,13 +6,22 @@ import Marquee from "@site/src/components/Marquee";
 import Hero from "../components/Hero";
 import LearningJourney from "@site/src/components/LearningJourney";
 import CallToAction from "@site/src/components/CallToAction";
+import Translate, { translate } from "@docusaurus/Translate";
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={translate({
+        id: "homepage.title",
+        message: `Hello from ${siteConfig.title}`,
+        description: "The homepage title",
+      })}
+      description={translate({
+        id: "homepage.description",
+        message: "Description will go into a meta tag in <head />",
+        description: "The homepage description",
+      })}
     >
       <div id="tw-scope">
         <div className="relative overflow-hidden bg-white dark:bg-[#0F0F13]">
@@ -25,7 +34,13 @@ export default function Home(): ReactNode {
 
           <div className="relative z-10">
             <Hero />
-            <Marquee />
+            <Marquee
+              text={translate({
+                id: "homepage.marquee",
+                message: "Physical AI & Humanoid Robotics",
+                description: "Text scrolling in the marquee",
+              })}
+            />
             <main>
               <HomepageFeatures />
               <LearningJourney />

@@ -2,33 +2,33 @@
 sidebar_position: 1
 ---
 
-# Module 2 Assessment Project Scaffolding
+# ماڈیول 2 اسیسمنٹ پروجیکٹ سکیفولڈنگ (Scaffolding)
 
-This document provides the complete scaffolding and structure for the Module 2 assessment project. Follow this guide to set up your project environment and understand the expected deliverables.
+یہ دستاویز ماڈیول 2 اسیسمنٹ پروجیکٹ کے لیے مکمل سکیفولڈنگ اور ڈھانچہ فراہم کرتی ہے۔ اپنے پروجیکٹ کے ماحول کو ترتیب دینے اور متوقع ڈیلیوریبلز کو سمجھنے کے لیے اس گائیڈ پر عمل کریں۔
 
-## Project Overview
+## پروجیکٹ کا جائزہ
 
-The Module 2 assessment project requires you to create a complete simulation environment that demonstrates your understanding of Gazebo simulation, robot modeling, physics simulation, sensor integration, and Unity visualization.
+ماڈیول 2 اسیسمنٹ پروجیکٹ کے لیے آپ کو ایک مکمل سمولیشن ماحول بنانے کی ضرورت ہے جو Gazebo سمولیشن، روبوٹ ماڈلنگ، فزکس سمولیشن، سینسر انضمام، اور Unity وژولائزیشن کی آپ کی سمجھ کو ظاہر کرے۔
 
-### Project Goals
+### پروجیکٹ کے اہداف
 
-1. Create a robot model with proper URDF/SDF description
-2. Implement a Gazebo simulation environment with physics properties
-3. Integrate multiple sensor types on your robot
-4. Demonstrate basic navigation in the simulated environment
-5. (Optional) Implement Unity visualization for high-fidelity rendering
+1. مناسب URDF/SDF تفصیل کے ساتھ ایک روبوٹ ماڈل بنائیں
+2. فزکس کی خصوصیات کے ساتھ Gazebo سمولیشن ماحول نافذ کریں
+3. اپنے روبوٹ پر متعدد سینسر کی اقسام ضم کریں
+4. نقلی ماحول میں بنیادی نیویگیشن کا مظاہرہ کریں
+5. (اختیاری) ہائی فیڈیلیٹی رینڈرنگ کے لیے Unity وژولائزیشن نافذ کریں
 
-### Project Timeline
+### پروجیکٹ ٹائم لائن
 
-- **Week 1**: Robot model design and URDF creation
-- **Week 2**: Gazebo environment setup and physics configuration
-- **Week 3**: Sensor integration and validation
-- **Week 4**: Navigation implementation and testing
-- **Week 5**: Unity integration (optional) and final testing
+- **ہفتہ 1**: روبوٹ ماڈل ڈیزائن اور URDF تخلیق
+- **ہفتہ 2**: Gazebo ماحول سیٹ اپ اور فزکس کنفیگریشن
+- **ہفتہ 3**: سینسر انضمام اور توثیق
+- **ہفتہ 4**: نیویگیشن کا نفاذ اور جانچ
+- **ہفتہ 5**: Unity انضمام (اختیاری) اور حتمی جانچ
 
-## Project Structure
+## پروجیکٹ کا ڈھانچہ
 
-Create the following directory structure for your project:
+اپنے پروجیکٹ کے لیے درج ذیل ڈائرکٹری ڈھانچہ بنائیں:
 
 ```
 module-2-assessment/
@@ -107,15 +107,15 @@ module-2-assessment/
 └── CMakeLists.txt
 ```
 
-## Initial Setup Steps
+## ابتدائی سیٹ اپ کے مراحل
 
-### 1. Create Project Directory
+### 1. پروجیکٹ ڈائرکٹری بنائیں
 
 ```bash
 mkdir -p module-2-assessment/{robot_description,robot_description/{urdf,meshes,launch,config},gazebo_worlds,gazebo_worlds/{worlds,models,launch},sensors,sensors/{lidar,camera,imu},navigation,navigation/{config,launch,scripts},tests,tests/{unit_tests,integration_tests,validation_scripts},docs}
 ```
 
-### 2. Create Basic Package Files
+### 2. بنیادی پیکیج فائلیں بنائیں
 
 #### package.xml
 ```xml
@@ -216,7 +216,7 @@ endif()
 ament_package()
 ```
 
-### 3. Create Basic Robot URDF
+### 3. بنیادی روبوٹ URDF بنائیں
 
 #### robot_description/urdf/robot_model.urdf
 ```xml
@@ -506,7 +506,7 @@ ament_package()
 </robot>
 ```
 
-### 4. Create Basic World File
+### 4. بنیادی دنیا (World) فائل بنائیں
 
 #### gazebo_worlds/worlds/navigation_course.world
 ```xml
@@ -664,7 +664,7 @@ ament_package()
 </sdf>
 ```
 
-### 5. Create Basic Launch Files
+### 5. بنیادی لانچ فائلیں بنائیں
 
 #### robot_description/launch/spawn_robot.launch.py
 ```python
@@ -722,16 +722,16 @@ def generate_launch_description():
     ])
 ```
 
-## Project Implementation Steps
+## پروجیکٹ کے نفاذ کے مراحل
 
-### Phase 1: Robot Model Development (Week 1)
+### مرحلہ 1: روبوٹ ماڈل ڈویلپمنٹ (ہفتہ 1)
 
-1. **Design your robot**:
-   - Define physical dimensions and mass properties
-   - Create URDF with proper inertial properties
-   - Add visual and collision geometries
+1. **اپنا روبوٹ ڈیزائن کریں**:
+   - جسمانی طول و عرض اور ماس کی خصوصیات کی وضاحت کریں۔
+   - مناسب جڑواں خصوصیات (inertial properties) کے ساتھ URDF بنائیں۔
+   - بصری اور ٹکراؤ جیومیٹریز شامل کریں۔
 
-2. **Validate your robot model**:
+2. **اپنے روبوٹ ماڈل کی توثیق کریں**:
    ```bash
    # Check URDF syntax
    check_urdf robot_description/urdf/robot_model.urdf
@@ -740,32 +740,32 @@ def generate_launch_description():
    gz sdf -p robot_description/urdf/robot_model.urdf
    ```
 
-3. **Test in Gazebo**:
+3. **Gazebo میں ٹیسٹ کریں**:
    ```bash
    # Launch Gazebo with your robot
    gz sim -r robot_description/urdf/robot_model.urdf
    ```
 
-### Phase 2: Environment Setup (Week 2)
+### مرحلہ 2: ماحولیاتی سیٹ اپ (ہفتہ 2)
 
-1. **Create your world**:
-   - Design a navigation course with obstacles
-   - Add targets and landmarks
-   - Configure physics properties
+1. **اپنی دنیا (world) بنائیں**:
+   - رکاوٹوں کے ساتھ ایک نیویگیشن کورس ڈیزائن کریں۔
+   - اہداف اور نشانات شامل کریں۔
+   - فزکس کی خصوصیات کو کنفیگر کریں۔
 
-2. **Test physics simulation**:
-   - Verify gravity and collision detection
-   - Check robot stability and movement
-   - Validate contact forces
+2. **فزکس سمولیشن کی جانچ کریں**:
+   - کشش ثقل اور ٹکراؤ کا پتہ لگانے کی تصدیق کریں۔
+   - روبوٹ کے استحکام اور حرکت کی جانچ کریں۔
+   - رابطہ قوتوں (contact forces) کی توثیق کریں۔
 
-### Phase 3: Sensor Integration (Week 3)
+### مرحلہ 3: سینسر انضمام (ہفتہ 3)
 
-1. **Integrate sensors**:
-   - Add LiDAR, camera, and IMU to your robot
-   - Configure sensor parameters appropriately
-   - Validate sensor data quality
+1. **سینسرز ضم کریں**:
+   - اپنے روبوٹ میں LiDAR، کیمرہ، اور IMU شامل کریں۔
+   - سینسر کے پیرامیٹرز کو مناسب طریقے سے کنفیگر کریں۔
+   - سینسر ڈیٹا کے معیار کی توثیق کریں۔
 
-2. **Test sensor functionality**:
+2. **سینسر کی فعالیت کی جانچ کریں**:
    ```bash
    # Check if sensor topics are publishing
    ros2 topic list | grep -E "(scan|image|imu)"
@@ -775,59 +775,59 @@ def generate_launch_description():
    ros2 topic echo /robot/imu
    ```
 
-### Phase 4: Navigation Implementation (Week 4)
+### مرحلہ 4: نیویگیشن نفاذ (ہفتہ 4)
 
-1. **Implement navigation stack**:
-   - Set up costmap configuration
-   - Implement path planning
-   - Add obstacle avoidance
+1. **نیویگیشن اسٹیک نافذ کریں**:
+   - کوسٹ میپ کنفیگریشن سیٹ کریں۔
+   - پاتھ پلاننگ نافذ کریں۔
+   - رکاوٹوں سے بچنا (obstacle avoidance) شامل کریں۔
 
-2. **Test navigation**:
-   - Navigate from start to target
-   - Avoid obstacles successfully
-   - Handle dynamic situations
+2. **نیویگیشن کی جانچ کریں**:
+   - شروع سے ہدف تک نیویگیٹ کریں۔
+   - کامیابی سے رکاوٹوں سے بچیں۔
+   - متحرک حالات کو ہینڈل کریں۔
 
-### Phase 5: Unity Integration (Week 5, Optional)
+### مرحلہ 5: Unity انضمام (ہفتہ 5، اختیاری)
 
-1. **Set up Unity project**:
-   - Install ROS 2 Unity bridge
-   - Configure network communication
-   - Import robot models
+1. **Unity پروجیکٹ سیٹ اپ کریں**:
+   - ROS 2 Unity برج انسٹال کریں۔
+   - نیٹ ورک مواصلات کو کنفیگر کریں۔
+   - روبوٹ ماڈلز درآمد کریں۔
 
-2. **Test Unity visualization**:
-   - Verify real-time synchronization
-   - Check visualization quality
-   - Validate performance
+2. **Unity وژولائزیشن کی جانچ کریں**:
+   - ریئل ٹائم ہم وقت سازی (synchronization) کی تصدیق کریں۔
+   - وژولائزیشن کے معیار کی جانچ کریں۔
+   - کارکردگی کی توثیق کریں۔
 
-## Testing and Validation
+## ٹیسٹنگ اور توثیق
 
-### Unit Tests
-- Robot model validation
-- Sensor data validation
-- Navigation algorithm testing
+### یونٹ ٹیسٹ
+- روبوٹ ماڈل کی توثیق
+- سینسر ڈیٹا کی توثیق
+- نیویگیشن الگورتھم کی جانچ
 
-### Integration Tests
-- Full simulation pipeline
-- ROS 2 communication
-- Cross-platform compatibility
+### انٹیگریشن ٹیسٹ
+- مکمل سمولیشن پائپ لائن
+- ROS 2 مواصلات
+- کراس پلیٹ فارم مطابقت
 
-### Performance Tests
-- Simulation real-time factor
-- Sensor update rates
-- Unity frame rates
+### کارکردگی کے ٹیسٹ
+- سمولیشن ریئل ٹائم فیکٹر
+- سینسر اپ ڈیٹ ریٹس
+- Unity فریم ریٹس
 
-## Documentation Requirements
+## دستاویزات کی ضروریات
 
-Document your project with:
-- Implementation notes for each component
-- Configuration parameters and rationale
-- Testing results and validation data
-- Performance metrics and optimization notes
+اپنے پروجیکٹ کو دستاویز کریں:
+- ہر جزو کے لیے نفاذ کے نوٹس
+- کنفیگریشن پیرامیٹرز اور دلیل (rationale)
+- ٹیسٹنگ کے نتائج اور توثیقی ڈیٹا
+- کارکردگی میٹرکس اور اصلاحی نوٹس
 
-## Next Steps
+## اگلے اقدامات
 
-After setting up the project scaffolding:
+پروجیکٹ سکیفولڈنگ ترتیب دینے کے بعد:
 
-1. Continue to [Step-by-Step Instructions](./step-by-step-instructions.md) for detailed implementation guidance
-2. Review [Solution Examples](./solution-examples.md) for reference implementations
-3. Test your complete project against [Evaluation Criteria](../../module-2/assessment-project/evaluation-criteria.md)
+1. تفصیلی نفاذ کی رہنمائی کے لیے [مرحلہ وار ہدایات](./step-by-step-instructions.md) پر جاری رکھیں
+2. حوالہ جاتی نفاذ کے لیے [حل کی مثالیں](./solution-examples.md) کا جائزہ لیں
+3. اپنے مکمل پروجیکٹ کو [تشخیص کے معیار](../../module-2/assessment-project/evaluation-criteria.md) کے خلاف ٹیسٹ کریں

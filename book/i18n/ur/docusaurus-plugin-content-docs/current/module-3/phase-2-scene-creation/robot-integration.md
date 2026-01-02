@@ -1,33 +1,33 @@
-# Robot Integration in Isaac Sim
+# Isaac Sim میں روبوٹ انضمام
 
-This section covers integrating robot models into Isaac Sim environments, with a focus on humanoid robots. We'll explore how to import, configure, and control robots within photorealistic simulation environments.
+یہ سیکشن روبوٹ ماڈلز کو Isaac Sim ماحول میں ضم کرنے کا احاطہ کرتا ہے، جس میں ہیومنوائڈ روبوٹس پر توجہ دی گئی ہے۔ ہم دریافت کریں گے کہ فوٹو ریلسٹک سمولیشن ماحول میں روبوٹس کو کیسے درآمد، کنفیگر اور کنٹرول کیا جائے۔
 
-## Robot Model Formats in Isaac Sim
+## Isaac Sim میں روبوٹ ماڈل فارمیٹس
 
-Isaac Sim supports several robot model formats:
+Isaac Sim کئی روبوٹ ماڈل فارمیٹس کو سپورٹ کرتا ہے:
 
-### USD (Universal Scene Description)
-- Native format for Isaac Sim
-- Supports complex articulated structures
-- Includes materials, textures, and animations
-- Best performance and feature support
+### USD (یونیورسل سین ڈیسکرپشن)
+- Isaac Sim کے لیے مقامی فارمیٹ
+- پیچیدہ واضح (articulated) ڈھانچوں کو سپورٹ کرتا ہے
+- اس میں میٹریلز، ٹیکسچرز اور اینیمیشنز شامل ہیں
+- بہترین کارکردگی اور فیچر سپورٹ
 
-### URDF (Unified Robot Description Format)
-- Standard ROS format
-- Can be imported into Isaac Sim
-- Requires conversion to USD for simulation
-- Good for importing existing ROS robots
+### URDF (یونیفائیڈ روبوٹ ڈیسکرپشن فارمیٹ)
+- معیاری ROS فارمیٹ
+- Isaac Sim میں درآمد کیا جا سکتا ہے
+- سمولیشن کے لیے USD میں تبدیلی کی ضرورت ہوتی ہے
+- موجودہ ROS روبوٹس کو درآمد کرنے کے لیے اچھا ہے
 
 ### MJCF (MuJoCo XML)
-- Physics simulation format
-- Supports complex joints and actuators
-- Can be imported for specialized robots
+- فزکس سمولیشن فارمیٹ
+- پیچیدہ جوائنٹس اور ایکچویٹرز کو سپورٹ کرتا ہے
+- خصوصی روبوٹس کے لیے درآمد کیا جا سکتا ہے
 
-## Importing Robot Models
+## روبوٹ ماڈلز درآمد کرنا
 
-### Importing from Isaac Sim Asset Library
+### Isaac Sim اثاثہ لائبریری سے درآمد کرنا
 
-Isaac Sim comes with a library of pre-built robot models:
+Isaac Sim پہلے سے تیار کردہ روبوٹ ماڈلز کی لائبریری کے ساتھ آتا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -82,9 +82,9 @@ if __name__ == "__main__":
     world, franka, a1, carter = import_robot_from_library()
 ```
 
-### Importing Custom Robot Models
+### کسٹم روبوٹ ماڈلز درآمد کرنا
 
-To import your own robot models:
+اپنے روبوٹ ماڈلز درآمد کرنے کے لیے:
 
 ```python
 #!/usr/bin/env python3
@@ -138,9 +138,9 @@ def import_urdf_robot(urdf_path, prim_path="/World/Robot"):
     pass
 ```
 
-## Configuring Robot Properties
+## روبوٹ کی خصوصیات کو کنفیگر کرنا
 
-### Robot Control Configuration
+### روبوٹ کنٹرول کنفیگریشن
 
 ```python
 #!/usr/bin/env python3
@@ -194,7 +194,7 @@ def configure_robot_control():
     return None, None
 ```
 
-### Joint Configuration and Control Modes
+### جوائنٹ کنفیگریشن اور کنٹرول موڈز
 
 ```python
 #!/usr/bin/env python3
@@ -253,11 +253,11 @@ def configure_joint_control_modes():
     return None, None
 ```
 
-## Humanoid Robot Integration
+## ہیومنوائڈ روبوٹ انضمام
 
-### Creating Humanoid Robot Models
+### ہیومنوائڈ روبوٹ ماڈلز بنانا
 
-Humanoid robots require special consideration due to their complex kinematic structure:
+ہیومنوائڈ روبوٹس کو ان کے پیچیدہ کائینیٹک ڈھانچے کی وجہ سے خصوصی توجہ کی ضرورت ہوتی ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -388,9 +388,9 @@ def setup_humanoid_configurations():
     pass
 ```
 
-### Importing Real Humanoid Robots
+### حقیقی ہیومنوائڈ روبوٹس درآمد کرنا
 
-For real humanoid robots, you can import models from various sources:
+حقیقی ہیومنوائڈ روبوٹس کے لیے، آپ مختلف ذرائع سے ماڈلز درآمد کر سکتے ہیں:
 
 ```python
 #!/usr/bin/env python3
@@ -422,9 +422,9 @@ def setup_balance_control():
     pass
 ```
 
-## Sensor Integration with Robots
+## روبوٹس کے ساتھ سینسر انضمام
 
-### Adding Sensors to Robots
+### روبوٹس میں سینسرز شامل کرنا
 
 ```python
 #!/usr/bin/env python3
@@ -499,9 +499,9 @@ def add_imu_to_robot(robot):
     pass
 ```
 
-## Robot Control Systems
+## روبوٹ کنٹرول سسٹمز
 
-### High-Level Control Interfaces
+### ہائی لیول کنٹرول انٹرفیسز
 
 ```python
 #!/usr/bin/env python3
@@ -609,9 +609,9 @@ def demonstrate_robot_control():
     return None, None
 ```
 
-## Integration with ROS 2
+## ROS 2 کے ساتھ انضمام
 
-### ROS 2 Bridge for Robot Control
+### روبوٹ کنٹرول کے لیے ROS 2 برج
 
 ```python
 #!/usr/bin/env python3
@@ -649,30 +649,30 @@ def ros2_control_example():
     pass
 ```
 
-## Best Practices for Robot Integration
+## روبوٹ انضمام کے لیے بہترین طریقے
 
-### Performance Optimization
+### کارکردگی کی اصلاح
 
-1. **Simplify Collision Geometry**: Use simpler collision meshes than visual meshes
-2. **Optimize Joint Limits**: Set appropriate joint limits to prevent simulation errors
-3. **Control Update Rate**: Match control frequency to simulation physics frequency
-4. **Mass Properties**: Set realistic mass and inertia properties
+1. **ٹکراؤ کی جیومیٹری کو آسان بنائیں**: بصری میشز کے مقابلے میں آسان ٹکراؤ میشز استعمال کریں۔
+2. **جوائنٹ کی حدود کو بہتر بنائیں**: سمولیشن کی غلطیوں کو روکنے کے لیے مناسب جوائنٹ کی حدود مقرر کریں۔
+3. **کنٹرول اپ ڈیٹ ریٹ**: کنٹرول فریکوئنسی کو سمولیشن فزکس فریکوئنسی کے ساتھ ملائیں۔
+4. **ماس پراپرٹیز**: حقیقت پسندانہ ماس اور جڑواں خصوصیات مقرر کریں۔
 
-### Safety Considerations
+### حفاظتی تحفظات
 
-1. **Joint Limits**: Always enforce joint limits to prevent damage
-2. **Velocity Limits**: Limit joint velocities to prevent excessive forces
-3. **Collision Avoidance**: Implement collision avoidance in control systems
-4. **Emergency Stops**: Include emergency stop functionality
+1. **جوائنٹ کی حدود**: نقصان سے بچنے کے لیے ہمیشہ جوائنٹ کی حدود نافذ کریں۔
+2. **رفتار کی حدود**: ضرورت سے زیادہ قوتوں سے بچنے کے لیے جوائنٹ کی رفتار کو محدود کریں۔
+3. **ٹکراؤ سے بچاؤ**: کنٹرول سسٹمز میں ٹکراؤ سے بچنے کا نفاذ کریں۔
+4. **ایمرجنسی اسٹاپس**: ایمرجنسی اسٹاپ کی فعالیت شامل کریں۔
 
-## Next Steps
+## اگلے اقدامات
 
-After integrating robots into your Isaac Sim environment:
+اپنے Isaac Sim ماحول میں روبوٹس کو ضم کرنے کے بعد:
 
-1. **Configure Control Systems**: Set up position, velocity, or effort control
-2. **Add Sensors**: Integrate cameras, LiDAR, and other sensors with the robot
-3. **Test Physics**: Verify that the robot behaves realistically in simulation
-4. **Implement Control Algorithms**: Develop control algorithms for your specific tasks
-5. **Validate with Real Robots**: Compare simulation behavior with real robot behavior
+1. **کنٹرول سسٹمز کو کنفیگر کریں**: پوزیشن، رفتار، یا کوشش کا کنٹرول ترتیب دیں۔
+2. **سینسرز شامل کریں**: کیمرے، LiDAR، اور دیگر سینسرز کو روبوٹ کے ساتھ مربوط کریں۔
+3. **طبیعیات کی جانچ کریں**: تصدیق کریں کہ روبوٹ سمولیشن میں حقیقت پسندانہ برتاؤ کرتا ہے۔
+4. **کنٹرول الگورتھم نافذ کریں**: اپنے مخصوص کاموں کے لیے کنٹرول الگورتھم تیار کریں۔
+5. **حقیقی روبوٹس کے ساتھ توثیق کریں**: سمولیشن رویے کا حقیقی روبوٹ رویے کے ساتھ موازنہ کریں۔
 
-The next section covers physics configuration for realistic simulation of humanoid robots.
+اگلا سیکشن ہیومنوائڈ روبوٹس کی حقیقت پسندانہ سمولیشن کے لیے طبیعیات کی کنفیگریشن کا احاطہ کرتا ہے۔

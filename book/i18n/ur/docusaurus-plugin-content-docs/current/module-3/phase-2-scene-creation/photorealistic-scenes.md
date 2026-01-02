@@ -1,36 +1,36 @@
-# Creating Photorealistic Scenes in Isaac Sim
+# Isaac Sim میں فوٹو ریلسٹک سینز بنانا
 
-This section covers the creation of photorealistic scenes in Isaac Sim for humanoid robotics applications. We'll explore how to build realistic environments that provide the visual fidelity necessary for perception training and sim-to-real transfer.
+یہ سیکشن ہیومنوائڈ روبوٹکس ایپلی کیشنز کے لیے Isaac Sim میں فوٹو ریلسٹک سینز بنانے کا احاطہ کرتا ہے۔ ہم دریافت کریں گے کہ حقیقت پسندانہ ماحول کیسے بنایا جائے جو ادراک (perception) کی تربیت اور sim-to-real منتقلی کے لیے ضروری بصری مخلصی (visual fidelity) فراہم کرے۔
 
-## Understanding Photorealistic Rendering in Isaac Sim
+## Isaac Sim میں فوٹو ریلسٹک رینڈرنگ کو سمجھنا
 
-Isaac Sim leverages NVIDIA's Omniverse platform to provide state-of-the-art photorealistic rendering capabilities. This is essential for:
+Isaac Sim جدید ترین فوٹو ریلسٹک رینڈرنگ کی صلاحیتیں فراہم کرنے کے لیے NVIDIA کے Omniverse پلیٹ فارم کا فائدہ اٹھاتا ہے۔ یہ اس کے لیے ضروری ہے:
 
-- **Perception Training**: Generating synthetic data that closely matches real-world conditions
-- **Sim-to-Real Transfer**: Ensuring that algorithms developed in simulation work in the real world
-- **Humanoid Interaction**: Creating realistic environments for social robotics applications
+- **ادراک کی تربیت (Perception Training)**: مصنوعی ڈیٹا تیار کرنا جو حقیقی دنیا کے حالات سے قریب سے میل کھاتا ہو۔
+- **Sim-to-Real منتقلی**: اس بات کو یقینی بنانا کہ نقالی (simulation) میں تیار کردہ الگورتھم حقیقی دنیا میں کام کرتے ہیں۔
+- **ہیومنوائڈ تعامل**: سماجی روبوٹکس ایپلی کیشنز کے لیے حقیقت پسندانہ ماحول بنانا۔
 
-### Key Rendering Technologies
+### رینڈرنگ کی کلیدی ٹیکنالوجیز
 
-1. **RTX Ray Tracing**: Real-time ray tracing for accurate lighting and reflections
-2. **Physically-Based Materials**: PBR materials for realistic surface properties
-3. **Advanced Lighting**: Multiple light sources with realistic falloff and shadows
-4. **Volumetric Effects**: Atmospheric effects like fog and volumetric lighting
+1. **RTX Ray Tracing**: درست لائٹنگ اور عکاسی (reflections) کے لیے ریئل ٹائم رے ٹریسنگ۔
+2. **Physically-Based Materials**: حقیقت پسندانہ سطح کی خصوصیات کے لیے PBR میٹریلز۔
+3. **ایڈوانسڈ لائٹنگ**: حقیقت پسندانہ فال آف اور سائے کے ساتھ متعدد روشنی کے ذرائع۔
+4. **Volumetric Effects**: ماحولیاتی اثرات جیسے دھند اور والیومیٹرک لائٹنگ۔
 
-## Scene Architecture in Isaac Sim
+## Isaac Sim میں سین آرکیٹیکچر
 
-### USD (Universal Scene Description) Format
+### USD (یونیورسل سین ڈیسکرپشن) فارمیٹ
 
-Isaac Sim uses USD as its native scene format. USD provides:
+Isaac Sim اپنے مقامی سین فارمیٹ کے طور پر USD کا استعمال کرتا ہے۔ USD فراہم کرتا ہے:
 
-- **Scalability**: Handle complex scenes with millions of polygons
-- **Modularity**: Combine different assets and components seamlessly
-- **Animation**: Support for complex character animations
-- **Simulation**: Integration with physics simulation data
+- **توسیع پذیری (Scalability)**: لاکھوں پولی گونز کے ساتھ پیچیدہ سینز کو ہینڈل کرنا۔
+- **ماڈیولریٹی**: مختلف اثاثوں اور اجزاء کو بغیر کسی رکاوٹ کے جوڑنا۔
+- **اینیمیشن**: پیچیدہ کردار کی اینیمیشنز کے لیے سپورٹ۔
+- **سمولیشن**: طبیعیات کے سمولیشن ڈیٹا کے ساتھ انضمام۔
 
-### Scene Hierarchy
+### سین کا درجہ بندی (Hierarchy)
 
-A typical Isaac Sim scene follows this structure:
+ایک عام Isaac Sim سین اس ڈھانچے کی پیروی کرتا ہے:
 
 ```
 /World
@@ -51,11 +51,11 @@ A typical Isaac Sim scene follows this structure:
     └── /World/Physics/Materials
 ```
 
-## Creating Your First Photorealistic Scene
+## اپنا پہلا فوٹو ریلسٹک سین بنانا
 
-### Basic Scene Setup
+### بنیادی سین سیٹ اپ
 
-Let's create a simple indoor environment with photorealistic elements:
+آئیے فوٹو ریلسٹک عناصر کے ساتھ ایک سادہ انڈور ماحول بنائیں:
 
 ```python
 #!/usr/bin/env python3
@@ -241,11 +241,11 @@ if __name__ == "__main__":
     run_scene_creation_example()
 ```
 
-## Advanced Scene Creation Techniques
+## اعلی درجے کی سین تخلیق کی تکنیکیں
 
-### Using Assets from Isaac Sim Library
+### Isaac Sim لائبریری سے اثاثوں کا استعمال
 
-Isaac Sim comes with a rich library of assets. Here's how to use them:
+Isaac Sim اثاثوں کی ایک بھرپور لائبریری کے ساتھ آتا ہے۔ انہیں استعمال کرنے کا طریقہ یہاں ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -309,11 +309,11 @@ def create_office_environment(assets_root_path):
     )
 ```
 
-## Material and Texture Systems
+## میٹریل اور ٹیکسچر سسٹمز
 
-### Physically-Based Rendering (PBR) Materials
+### فزیکلی بیسڈ رینڈرنگ (PBR) میٹریلز
 
-Isaac Sim supports full PBR material workflows:
+Isaac Sim مکمل PBR میٹریل ورک فلو کو سپورٹ کرتا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -371,9 +371,9 @@ def create_realistic_materials():
     return wood_material, metal_material, fabric_material
 ```
 
-## Lighting Techniques for Photorealism
+## فوٹو ریلزم کے لیے لائٹنگ تکنیک
 
-### Advanced Lighting Setup
+### ایڈوانسڈ لائٹنگ سیٹ اپ
 
 ```python
 #!/usr/bin/env python3
@@ -415,11 +415,11 @@ def setup_advanced_lighting():
     # Configure volumetric lighting effects
 ```
 
-## Domain Randomization for Synthetic Data
+## مصنوعی ڈیٹا کے لیے ڈومین رینڈمائزیشن
 
-### Randomizing Scene Elements
+### سین کے عناصر کو رینڈمائز کرنا
 
-For synthetic data generation, domain randomization is crucial:
+مصنوعی ڈیٹا جنریشن کے لیے، ڈومین رینڈمائزیشن بہت اہم ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -508,11 +508,11 @@ def randomize_camera_parameters():
     pass
 ```
 
-## Scene Optimization for Performance
+## کارکردگی کے لیے سین کی اصلاح (Optimization)
 
-### Balancing Quality and Performance
+### معیار اور کارکردگی میں توازن
 
-Creating photorealistic scenes requires balancing visual quality with performance:
+فوٹو ریلسٹک سینز بنانے کے لیے بصری معیار اور کارکردگی میں توازن کی ضرورت ہوتی ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -557,31 +557,31 @@ def optimize_geometry():
     pass
 ```
 
-## Best Practices for Photorealistic Scenes
+## فوٹو ریلسٹک سینز کے لیے بہترین طریقے
 
-### Design Principles
+### ڈیزائن کے اصول
 
-1. **Reference Real-World Photos**: Use real photographs as references for lighting and materials
-2. **Consistent Scale**: Maintain proper real-world scale for all objects
-3. **Physically Accurate Materials**: Use materials with realistic properties
-4. **Proper Lighting Setup**: Use multiple light sources that mimic real-world lighting
-5. **Texture Quality**: Use high-resolution textures with proper PBR properties
+1. **حقیقی دنیا کی تصاویر کا حوالہ دیں**: لائٹنگ اور میٹریلز کے حوالے کے طور پر حقیقی تصاویر کا استعمال کریں۔
+2. **مستقل اسکیل (Scale)**: تمام اشیاء کے لیے مناسب حقیقی دنیا کے اسکیل کو برقرار رکھیں۔
+3. **طبیعی طور پر درست میٹریلز**: حقیقت پسندانہ خصوصیات کے ساتھ میٹریلز کا استعمال کریں۔
+4. **مناسب لائٹنگ سیٹ اپ**: ایک سے زیادہ روشنی کے ذرائع استعمال کریں جو حقیقی دنیا کی لائٹنگ کی نقل کریں۔
+5. **ٹیکسچر کا معیار**: مناسب PBR خصوصیات کے ساتھ ہائی ریزولیوشن ٹیکسچرز استعمال کریں۔
 
-### Performance Guidelines
+### کارکردگی کے رہنما خطوط
 
-1. **Monitor Frame Rate**: Keep rendering at 30+ FPS for interactive development
-2. **Optimize Complex Scenes**: Use instancing for repeated objects
-3. **Manage Memory Usage**: Monitor GPU and system memory during simulation
-4. **Use Appropriate Resolutions**: Balance texture resolution with performance needs
+1. **فریم ریٹ کی نگرانی کریں**: انٹرایکٹو ڈویلپمنٹ کے لیے رینڈرنگ کو 30+ FPS پر رکھیں۔
+2. **پیچیدہ سینز کو بہتر بنائیں**: دہرائی جانے والی اشیاء کے لیے instancing کا استعمال کریں۔
+3. **میموری کے استعمال کا نظم کریں**: سمولیشن کے دوران GPU اور سسٹم میموری کی نگرانی کریں۔
+4. **مناسب ریزولیوشنز استعمال کریں**: ٹیکسچر ریزولیوشن اور کارکردگی کی ضروریات میں توازن رکھیں۔
 
-## Next Steps
+## اگلے اقدامات
 
-After creating your photorealistic scenes:
+اپنے فوٹو ریلسٹک سینز بنانے کے بعد:
 
-1. **Integrate Robot Models**: Add humanoid robots to your scenes
-2. **Configure Sensors**: Set up cameras, LiDAR, and other sensors in the scene
-3. **Test Physics Simulation**: Verify that objects interact realistically
-4. **Validate Perception Systems**: Test that synthetic data matches real-world expectations
-5. **Optimize for Training**: Prepare scenes for synthetic data generation
+1. **روبوٹ ماڈلز کو ضم کریں**: اپنے سینز میں ہیومنوائڈ روبوٹس شامل کریں۔
+2. **سینسرز کنفیگر کریں**: سین میں کیمرے، LiDAR، اور دیگر سینسرز ترتیب دیں۔
+3. **طبیعیات کی جانچ کریں**: تصدیق کریں کہ اشیاء حقیقت پسندانہ طور پر تعامل کرتی ہیں۔
+4. **ادراک کے نظام کی توثیق کریں**: ٹیسٹ کریں کہ مصنوعی ڈیٹا حقیقی دنیا کی توقعات سے میل کھاتا ہے۔
+5. **تربیت کے لیے بہتر بنائیں**: مصنوعی ڈیٹا جنریشن کے لیے سینز تیار کریں۔
 
-The next section covers integrating robot models into your photorealistic scenes.
+اگلا سیکشن آپ کے فوٹو ریلسٹک سینز میں روبوٹ ماڈلز کو ضم کرنے کا احاطہ کرتا ہے۔

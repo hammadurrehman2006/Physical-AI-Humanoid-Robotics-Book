@@ -1,19 +1,19 @@
-# Exercise 1.3: Speech Recognition Integration
+# مشق 1.3: سپیچ ریکگنیشن انضمام
 
-## Objective
-Integrate speech recognition capabilities using both cloud-based (OpenAI Whisper) and local (Vosk) approaches to convert audio to text for the Vision-Language-Action system.
+## مقصد
+وژن-لینگویج-ایکشن سسٹم کے لیے آڈیو کو ٹیکسٹ میں تبدیل کرنے کے لیے کلاؤڈ بیسڈ (OpenAI Whisper) اور مقامی (Vosk) دونوں طریقوں کا استعمال کرتے ہوئے سپیچ ریکگنیشن (تقریر کی شناخت) کی صلاحیتوں کو ضم کریں۔
 
-## Prerequisites
-- Completion of Exercises 1.1 and 1.2
+## شرائط
+- مشق 1.1 اور 1.2 کی تکمیل
 - Python 3.10+
-- Required libraries: openai, vosk, pydub, librosa
-- OpenAI API key (for cloud recognition)
-- Vosk model files (for local recognition)
+- درکار لائبریریاں: openai, vosk, pydub, librosa
+- OpenAI API کلید (کلاؤڈ ریکگنیشن کے لیے)
+- Vosk ماڈل فائلیں (مقامی ریکگنیشن کے لیے)
 
-## Exercise Steps
+## مشق کے مراحل
 
-### Step 1: Set Up Speech Recognition Environment
-Create a new file `speech_recognizer.py`:
+### مرحلہ 1: سپیچ ریکگنیشن ماحول قائم کریں
+ایک نئی فائل `speech_recognizer.py` بنائیں:
 
 ```python
 #!/usr/bin/env python3
@@ -250,8 +250,8 @@ class SpeechRecognitionNode:
             return None
 ```
 
-### Step 2: Create Speech Recognition Test Script
-Create a test file `test_speech_recognition.py`:
+### مرحلہ 2: سپیچ ریکگنیشن ٹیسٹ اسکرپٹ بنائیں
+ایک ٹیسٹ فائل `test_speech_recognition.py` بنائیں:
 
 ```python
 #!/usr/bin/env python3
@@ -359,8 +359,8 @@ if __name__ == "__main__":
         test_multi_modal_recognizer(whisper_api_key, vosk_model_path)
 ```
 
-### Step 3: Create Installation Script
-Create an installation script `install_speech_models.sh`:
+### مرحلہ 3: انسٹالیشن اسکرپٹ بنائیں
+ایک انسٹالیشن اسکرپٹ `install_speech_models.sh` بنائیں:
 
 ```bash
 #!/bin/bash
@@ -387,22 +387,22 @@ echo "export VOSK_MODEL_PATH=$(pwd)/models/vosk-model-en-us-0.22"
 echo "export OPENAI_API_KEY=your_openai_api_key_here"
 ```
 
-## Expected Outcomes
-- Successfully implement both cloud and local speech recognition
-- Create a multi-modal recognizer that can fallback between methods
-- Test the recognizers with sample audio data
-- Understand the trade-offs between cloud and local recognition
+## متوقع نتائج
+- کامیابی سے کلاؤڈ اور مقامی سپیچ ریکگنیشن دونوں کو نافذ کریں
+- ایک ملٹی ماڈل ریکگنائزر بنائیں جو طریقوں کے درمیان فال بیک کر سکے
+- نمونہ آڈیو ڈیٹا کے ساتھ ریکگنائزرز کی جانچ کریں
+- کلاؤڈ اور مقامی ریکگنیشن کے درمیان تجارت کو سمجھیں
 
-## Verification Steps
-1. Verify Whisper API key is properly configured
-2. Confirm Vosk model is downloaded and accessible
-3. Test that both recognition methods work independently
-4. Validate the multi-modal approach with fallback behavior
+## تصدیق کے اقدامات
+1. تصدیق کریں کہ Whisper API کلید مناسب طریقے سے ترتیب دی گئی ہے
+2. تصدیق کریں کہ Vosk ماڈل ڈاؤن لوڈ اور قابل رسائی ہے
+3. جانچ کریں کہ دونوں ریکگنیشن کے طریقے آزادانہ طور پر کام کرتے ہیں
+4. فال بیک برتاؤ کے ساتھ ملٹی ماڈل اپروچ کی توثیق کریں
 
-## Troubleshooting
-- If Whisper fails, check API key and internet connectivity
-- If Vosk fails, verify model path and format compatibility
-- For audio format issues, ensure 16kHz sample rate for Vosk
+## مسائل کا حل
+- اگر Whisper ناکام ہو جاتا ہے، تو API کلید اور انٹرنیٹ کنیکٹیوٹی چیک کریں
+- اگر Vosk ناکام ہو جاتا ہے، تو ماڈل پاتھ اور فارمیٹ کی مطابقت کی تصدیق کریں
+- آڈیو فارمیٹ کے مسائل کے لیے، Vosk کے لیے 16kHz سیمپل ریٹ یقینی بنائیں
 
-## Next Exercise
-Continue to Exercise 1.4: Voice Command Parsing and Natural Language Understanding
+## اگلی مشق
+مشق 1.4: وائس کمانڈ پارسنگ اور قدرتی زبان کی سمجھ کی طرف بڑھیں

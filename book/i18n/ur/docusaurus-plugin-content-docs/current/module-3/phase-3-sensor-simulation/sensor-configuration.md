@@ -1,38 +1,38 @@
-# Sensor Configuration in Isaac Sim
+# Isaac Sim میں سینسر کنفیگریشن
 
-This section covers configuring various sensors in Isaac Sim for humanoid robotics applications. Proper sensor configuration is crucial for perception systems, sim-to-real transfer, and realistic data generation.
+یہ سیکشن ہیومنوائڈ روبوٹکس ایپلی کیشنز کے لیے Isaac Sim میں مختلف سینسرز کو کنفیگر کرنے کا احاطہ کرتا ہے۔ ادراک (perception) کے سسٹمز، sim-to-real منتقلی، اور حقیقت پسندانہ ڈیٹا جنریشن کے لیے سینسر کی مناسب کنفیگریشن بہت اہم ہے۔
 
-## Sensor Types in Isaac Sim
+## Isaac Sim میں سینسر کی اقسام
 
-Isaac Sim provides a comprehensive suite of sensor models that simulate real-world sensors with realistic noise characteristics and performance parameters:
+Isaac Sim سینسر ماڈلز کا ایک جامع سوٹ فراہم کرتا ہے جو حقیقت پسندانہ شور کی خصوصیات اور کارکردگی کے پیرامیٹرز کے ساتھ حقیقی دنیا کے سینسرز کی نقل کرتا ہے:
 
-### Camera Sensors
-- **RGB Cameras**: Standard color cameras for visual perception
-- **Depth Cameras**: Depth information for 3D reconstruction
-- **Stereo Cameras**: Binocular vision for depth perception
-- **Fisheye Cameras**: Wide-angle cameras for panoramic views
-- **Event Cameras**: Neuromorphic cameras for high-speed motion
+### کیمرہ سینسرز
+- **RGB کیمرے**: بصری ادراک کے لیے معیاری رنگین کیمرے۔
+- **ڈیپتھ کیمرے**: 3D تعمیر نو کے لیے گہرائی کی معلومات۔
+- **سٹیریو کیمرے**: گہرائی کے ادراک کے لیے بائنوکولر ویژن۔
+- **فش آئی کیمرے**: پینورامک نظاروں کے لیے وائڈ اینگل کیمرے۔
+- **ایونٹ کیمرے**: تیز رفتار حرکت کے لیے نیورومورفک کیمرے۔
 
-### LiDAR Sensors
-- **3D LiDAR**: Multi-beam LiDAR for 3D mapping
-- **2D LiDAR**: Single-plane LiDAR for navigation
-- **Solid-state LiDAR**: MEMS and flash LiDAR simulation
-- **Mechanical LiDAR**: Rotating multi-line LiDAR simulation
+### LiDAR سینسرز
+- **3D LiDAR**: 3D میپنگ کے لیے ملٹی بیم LiDAR۔
+- **2D LiDAR**: نیویگیشن کے لیے سنگل پلین LiDAR۔
+- **سولڈ اسٹیٹ LiDAR**: MEMS اور فلیش LiDAR سمولیشن۔
+- **مکینیکل LiDAR**: گھومنے والا ملٹی لائن LiDAR سمولیشن۔
 
-### Inertial Sensors
-- **IMU**: Inertial measurement units for orientation and acceleration
-- **Gyroscopes**: Angular rate measurement
-- **Accelerometers**: Linear acceleration measurement
-- **Magnetometers**: Magnetic field measurement
+### انرشیل سینسرز
+- **IMU**: واقفیت اور ایکسلریشن کے لیے انرشیل پیمائش یونٹس۔
+- **گائیروسکوپس**: کونیی (angular) شرح کی پیمائش۔
+- **ایکسلیرومیٹرز**: لکیری ایکسلریشن کی پیمائش۔
+- **میگنیٹومیٹرز**: مقناطیسی میدان کی پیمائش۔
 
-### Force and Torque Sensors
-- **Force/Torque Sensors**: Joint force and torque measurement
-- **Contact Sensors**: Contact detection and force measurement
-- **Pressure Sensors**: Surface pressure distribution
+### قوت اور ٹارک سینسرز
+- **فورس/ٹارک سینسرز**: جوائنٹ فورس اور ٹارک کی پیمائش۔
+- **رابطہ سینسرز**: رابطے کا پتہ لگانا اور قوت کی پیمائش۔
+- **پریشر سینسرز**: سطح کے دباؤ کی تقسیم۔
 
-## Camera Sensor Configuration
+## کیمرہ سینسر کنفیگریشن
 
-### Basic RGB Camera Setup
+### بنیادی RGB کیمرہ سیٹ اپ
 
 ```python
 #!/usr/bin/env python3
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     world, camera = setup_basic_camera()
 ```
 
-### Advanced Camera Configuration
+### ایڈوانسڈ کیمرہ کنفیگریشن
 
 ```python
 #!/usr/bin/env python3
@@ -210,7 +210,7 @@ def setup_stereo_camera(robot_prim_path="/World/Robot"):
     return left_camera, right_camera
 ```
 
-### Depth Camera Configuration
+### ڈیپتھ کیمرہ کنفیگریشن
 
 ```python
 #!/usr/bin/env python3
@@ -286,9 +286,9 @@ def capture_depth_data(world, depth_camera):
     return depth_image
 ```
 
-## LiDAR Sensor Configuration
+## LiDAR سینسر کنفیگریشن
 
-### 3D LiDAR Setup
+### 3D LiDAR سیٹ اپ
 
 ```python
 #!/usr/bin/env python3
@@ -370,7 +370,7 @@ def capture_lidar_data(world, lidar_sensor):
         return None
 ```
 
-### 2D LiDAR Configuration
+### 2D LiDAR کنفیگریشن
 
 ```python
 #!/usr/bin/env python3
@@ -419,9 +419,9 @@ def setup_2d_lidar_parameters():
     return lidar_config
 ```
 
-## Inertial Sensor Configuration
+## انرشیل سینسر کنفیگریشن
 
-### IMU Configuration
+### IMU کنفیگریشن
 
 ```python
 #!/usr/bin/env python3
@@ -504,9 +504,9 @@ def read_imu_data(world, imu_sensor):
         return None
 ```
 
-## Force and Torque Sensors
+## قوت اور ٹارک سینسرز
 
-### Force/Torque Sensor Configuration
+### فورس/ٹارک سینسر کنفیگریشن
 
 ```python
 #!/usr/bin/env python3
@@ -609,9 +609,9 @@ def read_contact_data(world, contact_sensor):
         return None
 ```
 
-## Sensor Fusion Configuration
+## سینسر فیوژن کنفیگریشن
 
-### Multi-Sensor Integration
+### ملٹی سینسر انضمام
 
 ```python
 #!/usr/bin/env python3
@@ -715,9 +715,9 @@ def demonstrate_sensor_fusion():
     return world, fusion_system
 ```
 
-## Sensor Calibration and Validation
+## سینسر کیلیبریشن اور توثیق
 
-### Sensor Validation Procedures
+### سینسر توثیقی طریقہ کار
 
 ```python
 #!/usr/bin/env python3
@@ -856,12 +856,13 @@ def timing_validation():
     print("Timing validation completed")
 
 if __name__ == "__main__":
+    # Run validation tests
     validate_sensor_configuration()
 ```
 
-## Performance Optimization
+## کارکردگی کی اصلاح (Performance Optimization)
 
-### Sensor Performance Tuning
+### سینسر کارکردگی کی ٹیوننگ
 
 ```python
 #!/usr/bin/env python3
@@ -930,9 +931,9 @@ def adaptive_sensor_config(robot_task):
         }
 ```
 
-## Troubleshooting Sensor Issues
+## سینسر کے مسائل کا حل (Troubleshooting)
 
-### Common Sensor Problems and Solutions
+### عام سینسر کے مسائل اور حل
 
 ```python
 #!/usr/bin/env python3
@@ -1016,31 +1017,31 @@ if __name__ == "__main__":
     troubleshoot_sensor_issues()
 ```
 
-## Best Practices for Sensor Configuration
+## سینسر کنفیگریشن کے بہترین طریقے
 
-### Guidelines for Realistic Sensor Simulation
+### حقیقت پسندانہ سینسر سمولیشن کے لیے رہنما خطوط
 
-1. **Match Real Sensors**: Configure sensors to match the specifications of real sensors you plan to use
-2. **Add Realistic Noise**: Include appropriate noise models to make simulation more realistic
-3. **Validate Performance**: Test sensors in various scenarios to ensure they work as expected
-4. **Optimize for Task**: Configure sensors appropriately for your specific robotics task
-5. **Consider Computational Cost**: Balance sensor fidelity with simulation performance
+1. **حقیقی سینسرز سے مماثلت**: سینسرز کو حقیقی سینسرز کی خصوصیات سے ملانے کے لیے کنفیگر کریں جنہیں آپ استعمال کرنے کا ارادہ رکھتے ہیں۔
+2. **حقیقت پسندانہ شور شامل کریں**: سمولیشن کو زیادہ حقیقت پسندانہ بنانے کے لیے مناسب شور کے ماڈلز شامل کریں۔
+3. **کارکردگی کی توثیق کریں**: مختلف منظرناموں میں سینسرز کی جانچ کریں تاکہ یہ یقینی بنایا جا سکے کہ وہ توقع کے مطابق کام کرتے ہیں۔
+4. **کام کے لیے بہتر بنائیں**: اپنے مخصوص روبوٹکس ٹاسک کے لیے سینسرز کو مناسب طریقے سے کنفیگر کریں۔
+5. **کمپیوٹیشنل لاگت پر غور کریں**: سمولیشن کی کارکردگی کے ساتھ سینسر کی مخلصی (fidelity) میں توازن رکھیں۔
 
-### Humanoid-Specific Sensor Considerations
+### ہیومنوائڈ کے لیے مخصوص سینسر تحفظات
 
-1. **Balance Sensors**: IMU placement is critical for humanoid balance control
-2. **Foot Contact Sensors**: Essential for detecting ground contact during walking
-3. **Head-Mounted Sensors**: Cameras and LiDAR on head for environment perception
-4. **Manipulation Sensors**: Force/torque sensors for safe manipulation
+1. **توازن سینسرز**: ہیومنوائڈ توازن کنٹرول کے لیے IMU کی جگہ بہت اہم ہے۔
+2. **پاؤں کے رابطے کے سینسرز**: چلنے کے دوران زمین کے رابطے کا پتہ لگانے کے لیے ضروری ہیں۔
+3. **سر پر لگے سینسرز**: ماحولیاتی ادراک کے لیے سر پر کیمرے اور LiDAR۔
+4. **ہیرا پھیری (Manipulation) سینسرز**: محفوظ ہیرا پھیری کے لیے فورس/ٹارک سینسرز۔
 
-## Next Steps
+## اگلے اقدامات
 
-After configuring sensors in your Isaac Sim environment:
+اپنے Isaac Sim ماحول میں سینسرز کو کنفیگر کرنے کے بعد:
 
-1. **Test Individual Sensors**: Validate each sensor type independently
-2. **Test Sensor Fusion**: Combine data from multiple sensors
-3. **Validate with Real Data**: Compare simulation sensor data with real sensor data when possible
-4. **Optimize Performance**: Adjust sensor configurations for best performance
-5. **Develop Perception Algorithms**: Create perception systems that work with your configured sensors
+1. **انفرادی سینسرز کی جانچ کریں**: ہر سینسر کی قسم کی آزادانہ طور پر توثیق کریں۔
+2. **سینسر فیوژن کی جانچ کریں**: متعدد سینسرز سے ڈیٹا کو اکٹھا کریں۔
+3. **حقیقی ڈیٹا کے ساتھ توثیق کریں**: جب ممکن ہو تو سمولیشن سینسر ڈیٹا کا حقیقی سینسر ڈیٹا کے ساتھ موازنہ کریں۔
+4. **کارکردگی کو بہتر بنائیں**: بہترین کارکردگی کے لیے سینسر کنفیگریشنز کو ایڈجسٹ کریں۔
+5. **ادراک کے الگورتھم تیار کریں**: ادراک کے نظام بنائیں جو آپ کے کنفیگر کردہ سینسرز کے ساتھ کام کریں۔
 
-The next section covers data generation techniques using the configured sensors.
+اگلا سیکشن کنفیگر کردہ سینسرز کا استعمال کرتے ہوئے ڈیٹا جنریشن تکنیک کا احاطہ کرتا ہے۔

@@ -103,21 +103,21 @@ import time
 
 class AudioInputNode(Node):
     def __init__(self):
-        super().__init__('audio_input_node')
+        super().__init__(\'audio_input_node\'
 
         # Audio configuration parameters
-        self.declare_parameter('sample_rate', 44100)
-        self.declare_parameter('channels', 1)
-        self.declare_parameter('chunk_size', 1024)
-        self.declare_parameter('format', 16)  # 16-bit
+        self.declare_parameter(\'sample_rate\', 44100)
+        self.declare_parameter(\'channels\', 1)
+        self.declare_parameter(\'chunk_size\', 1024)
+        self.declare_parameter(\'format\', 16)  # 16-bit
 
-        self.sample_rate = self.get_parameter('sample_rate').value
-        self.channels = self.get_parameter('channels').value
-        self.chunk_size = self.get_parameter('chunk_size').value
+        self.sample_rate = self.get_parameter(\'sample_rate\').value
+        self.channels = self.get_parameter(\'channels\').value
+        self.chunk_size = self.get_parameter(\'chunk_size\').value
         self.audio_format = pyaudio.paInt16
 
         # Publisher for audio data
-        self.audio_publisher = self.create_publisher(AudioData, 'audio_stream', 10)
+        self.audio_publisher = self.create_publisher(AudioData, \'audio_stream\', 10)
 
         # Initialize PyAudio
         self.audio = pyaudio.PyAudio()
@@ -126,7 +126,7 @@ class AudioInputNode(Node):
         self.stream = None
         self.is_recording = False
 
-        self.get_logger().info(f'Audio input node initialized with sample_rate: {self.sample_rate}, channels: {self.channels}')
+        self.get_logger().info(f\'Audio input node initialized with sample_rate: {self.sample_rate}, channels: {self.channels}\')
 
     def start_audio_capture(self):
         """Start audio capture from microphone"""
@@ -681,7 +681,7 @@ class VoiceCommandParser:
 
         # Entity extraction patterns
         self.entity_patterns = {
-            'number': r'\d+\.?\d*',
+            'number': r'\d+\.?\d*', 
             'distance': r'(\d+\.?\d*)\s*(meters|meter|m|cm|centimeters|steps)',
             'object': r'(red|blue|green|yellow|small|large|big|medium)\s+(\w+)',
             'location': r'(kitchen|living room|bedroom|office|bathroom|hallway|garage|garden|dining room)'
@@ -949,12 +949,12 @@ from command_parser import VoiceCommandParser
 
 class VoiceProcessingNode(Node):
     def __init__(self):
-        super().__init__('voice_processing_node')
+        super().__init__(\'voice_processing_node\')
 
         # Publishers and subscribers
-        self.voice_command_pub = self.create_publisher(String, 'voice_commands', 10)
+        self.voice_command_pub = self.create_publisher(String, \'voice_commands\', 10)
         self.audio_sub = self.create_subscription(
-            AudioData, 'audio_stream', self.audio_callback, 10
+            AudioData, \'audio_stream\', self.audio_callback, 10
         )
 
         # Initialize components
@@ -963,14 +963,14 @@ class VoiceProcessingNode(Node):
         self.command_parser = VoiceCommandParser()
 
         # Get API key from parameter or environment
-        self.declare_parameter('openai_api_key', '')
-        self.declare_parameter('vosk_model_path', '')
+        self.declare_parameter(\'openai_api_key\', \'\'
+        self.declare_parameter(\'vosk_model_path\', \'\'
 
-        whisper_api_key = self.get_parameter('openai_api_key').value
+        whisper_api_key = self.get_parameter(\'openai_api_key\').value
         if not whisper_api_key:
             whisper_api_key = os.getenv('OPENAI_API_KEY', '')
 
-        vosk_model_path = self.get_parameter('vosk_model_path').value
+        vosk_model_path = self.get_parameter(\'vosk_model_path\').value
         if not vosk_model_path:
             vosk_model_path = os.getenv('VOSK_MODEL_PATH', '')
 

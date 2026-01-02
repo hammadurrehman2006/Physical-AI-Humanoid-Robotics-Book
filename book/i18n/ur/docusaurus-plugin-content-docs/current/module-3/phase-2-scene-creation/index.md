@@ -1,28 +1,28 @@
-# Scene Creation and Environment Setup
+# منظر کی تخلیق اور ماحول کا سیٹ اپ
 
-This phase covers creating photorealistic scenes and environments for humanoid robotics simulation in Isaac Sim. You'll learn to build complex environments, configure physics properties, and set up complete simulation scenarios.
+یہ مرحلہ Isaac Sim میں ہیومنوائڈ روبوٹکس سیمولیشن کے لیے فوٹو ریئلسٹک مناظر اور ماحول بنانے کا احاطہ کرتا ہے۔ آپ پیچیدہ ماحول بنانا، فزکس کی خصوصیات کو ترتیب دینا، اور مکمل سیمولیشن کے منظرنامے مرتب کرنا سیکھیں گے۔
 
-## Topics Covered
+## شامل موضوعات
 
-- [Photorealistic Scene Creation](./photorealistic-scenes.md)
-- [Robot Integration and Setup](./robot-integration.md)
-- [Physics Configuration and Optimization](./physics-configuration.md)
-- [Visualization and Debugging Tools](../phase-11-visualization-debugging-tools/visualization-and-debugging-tools.md)
+- [فوٹو ریئلسٹک منظر کی تخلیق](./photorealistic-scenes.md)
+- [روبوٹ کا انضمام اور سیٹ اپ](./robot-integration.md)
+- [فزکس کنفیگریشن اور اصلاح](./physics-configuration.md)
+- [وژولائزیشن اور ڈیبگنگ ٹولز](../phase-11-visualization-debugging-tools/visualization-and-debugging-tools.md)
 
-## Learning Objectives
+## سیکھنے کے اہداف
 
-By the end of this phase, you will be able to:
+اس مرحلے کے اختتام تک، آپ اس قابل ہو جائیں گے کہ:
 
-1. Create complex 3D environments with realistic lighting and materials
-2. Integrate robot models into simulation scenes
-3. Configure physics properties for realistic simulation
-4. Use visualization and debugging tools effectively
-5. Optimize scenes for performance while maintaining visual quality
+1. حقیقت پسندانہ لائٹنگ اور مٹیریلز کے ساتھ پیچیدہ 3D ماحول بنائیں
+2. روبوٹ ماڈلز کو سیمولیشن مناظر میں ضم کریں
+3. حقیقت پسندانہ سیمولیشن کے لیے فزکس کی خصوصیات کو ترتیب دیں
+4. وژولائزیشن اور ڈیبگنگ ٹولز کا مؤثر استعمال کریں
+5. بصری معیار کو برقرار رکھتے ہوئے کارکردگی کے لیے مناظر کو بہتر بنائیں
 
-## Prerequisites
+## شرائط لازمہ
 
-- Basic understanding of 3D modeling concepts
-- Familiarity with Isaac Sim interface
-- Completion of Phase 1 (Installation and Setup)
+- 3D ماڈلنگ کے تصورات کی بنیادی سمجھ
+- Isaac Sim انٹرفیس سے واقفیت
+- فیز 1 (انسٹالیشن اور سیٹ اپ) کی تکمیل
 
-Let's begin by exploring how to create photorealistic scenes for your humanoid robotics applications.
+آئیے اپنی ہیومنوائڈ روبوٹکس ایپلی کیشنز کے لیے فوٹو ریئلسٹک مناظر بنانا سیکھیں۔

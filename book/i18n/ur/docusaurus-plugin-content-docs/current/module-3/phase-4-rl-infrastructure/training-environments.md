@@ -1,31 +1,31 @@
-# Training Environments in Isaac Sim
+# Isaac Sim میں تربیتی ماحول (Training Environments)
 
-This section covers creating and configuring training environments for reinforcement learning in Isaac Sim, specifically for humanoid robot control. Training environments are crucial for developing robust policies that can transfer from simulation to reality.
+یہ سیکشن Isaac Sim میں ری انفورسمنٹ لرننگ کے لیے تربیتی ماحول بنانے اور ترتیب دینے کا احاطہ کرتا ہے، خاص طور پر ہیومنوائڈ روبوٹ کنٹرول کے لیے۔ تربیتی ماحول مضبوط پالیسیاں تیار کرنے کے لیے اہم ہیں جو سمولیشن سے حقیقت میں منتقل ہو سکتی ہیں۔
 
-## Environment Design Principles
+## ماحولیاتی ڈیزائن کے اصول
 
-### Creating Effective Training Environments
+### موثر تربیتی ماحول بنانا
 
-A well-designed training environment should balance several key principles:
+ایک اچھی طرح سے ڈیزائن کردہ تربیتی ماحول کو کئی کلیدی اصولوں میں توازن رکھنا چاہیے:
 
-1. **Diversity**: Include varied scenarios to improve policy generalization
-2. **Progression**: Start simple and gradually increase complexity
-3. **Realism**: Include realistic physics and sensor models
-4. **Safety**: Ensure safe exploration during training
-5. **Efficiency**: Optimize for fast training without sacrificing quality
+1. **تنوع**: پالیسی کی عمومیت (generalization) کو بہتر بنانے کے لیے مختلف منظرنامے شامل کریں۔
+2. **پیشرفت**: سادہ شروع کریں اور آہستہ آہستہ پیچیدگی بڑھائیں۔
+3. **حقیقت پسندی**: حقیقت پسندانہ طبیعیات اور سینسر ماڈلز شامل کریں۔
+4. **حفاظت**: تربیت کے دوران محفوظ تلاش (exploration) کو یقینی بنائیں۔
+5. **کارکردگی**: معیار کو قربان کیے بغیر تیز تربیت کے لیے بہتر بنائیں۔
 
-### Environment Categories
+### ماحولیاتی زمرے
 
-Training environments can be categorized into:
+تربیتی ماحول کو درج ذیل میں درجہ بندی کیا جا سکتا ہے:
 
-- **Basic Skills Environments**: Focus on fundamental skills like balance
-- **Task-Specific Environments**: Target specific tasks like walking or manipulation
-- **Challenge Environments**: Include complex obstacles and scenarios
-- **Transfer Environments**: Designed to test sim-to-real transfer
+- **بنیادی مہارتوں کے ماحول**: توازن جیسی بنیادی مہارتوں پر توجہ مرکوز کریں۔
+- **ٹاسک مخصوص ماحول**: مخصوص کاموں جیسے چلنے یا ہیرا پھیری کو ہدف بنائیں۔
+- **چیلنج ماحول**: پیچیدہ رکاوٹیں اور منظرنامے شامل کریں۔
+- **منتقلی کے ماحول**: sim-to-real منتقلی کو جانچنے کے لیے ڈیزائن کیا گیا ہے۔
 
-## Basic Balance Training Environment
+## بنیادی توازن کی تربیت کا ماحول
 
-### Stationary Balance Environment
+### اسٹیشنری بیلنس ماحول
 
 ```python
 #!/usr/bin/env python3
@@ -350,9 +350,9 @@ if __name__ == "__main__":
     print("Balance environment test completed")
 ```
 
-## Walking Training Environment
+## چلنے کی تربیت کا ماحول
 
-### Locomotion Training Environment
+### نقل و حرکت (Locomotion) کی تربیت کا ماحول
 
 ```python
 #!/usr/bin/env python3
@@ -517,9 +517,9 @@ if __name__ == "__main__":
     print("Locomotion environment test completed")
 ```
 
-## Obstacle Navigation Environment
+## رکاوٹ نیویگیشن ماحول
 
-### Navigation with Obstacles
+### رکاوٹوں کے ساتھ نیویگیشن
 
 ```python
 #!/usr/bin/env python3
@@ -731,9 +731,9 @@ if __name__ == "__main__":
     print("Navigation environment test completed")
 ```
 
-## Complex Terrain Environment
+## پیچیدہ خطوں کا ماحول (Complex Terrain Environment)
 
-### Rough Terrain Navigation
+### کچے خطوں پر نیویگیشن
 
 ```python
 #!/usr/bin/env python3
@@ -974,9 +974,9 @@ if __name__ == "__main__":
     print("Complex terrain environment test completed")
 ```
 
-## Curriculum Learning Setup
+## نصاب سیکھنے کا سیٹ اپ (Curriculum Learning Setup)
 
-### Progressive Difficulty Training
+### ترقی پسند مشکل کی تربیت (Progressive Difficulty Training)
 
 ```python
 #!/usr/bin/env python3
@@ -1121,9 +1121,9 @@ if __name__ == "__main__":
     print("Curriculum environment test completed")
 ```
 
-## Environment Randomization
+## ماحولیاتی رینڈمائزیشن (Environment Randomization)
 
-### Domain Randomization in Training Environments
+### تربیتی ماحول میں ڈومین رینڈمائزیشن
 
 ```python
 #!/usr/bin/env python3
@@ -1274,9 +1274,9 @@ if __name__ == "__main__":
     print("Randomized environment test completed")
 ```
 
-## Performance Optimization
+## کارکردگی کی اصلاح (Performance Optimization)
 
-### Efficient Environment Implementation
+### موثر ماحولیاتی نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -1477,34 +1477,34 @@ if __name__ == "__main__":
     benchmark_environment_performance(OptimizedTrainingEnv, num_envs_list=[128, 256, 512])
 ```
 
-## Best Practices for Training Environments
+## تربیتی ماحول کے لیے بہترین طریقے
 
-### Guidelines for Effective Training
+### موثر تربیت کے لیے رہنما خطوط
 
-1. **Environment Design**: Start simple and gradually increase complexity
-2. **Reward Shaping**: Design rewards that guide the agent toward desired behaviors
-3. **Safety Constraints**: Ensure safe exploration during training
-4. **Diversity**: Include various scenarios to improve generalization
-5. **Validation**: Regularly test policies in diverse environments
-6. **Monitoring**: Track training progress and environment statistics
+1. **ماحولیاتی ڈیزائن**: آسان شروع کریں اور آہستہ آہستہ پیچیدگی میں اضافہ کریں۔
+2. **انعام کی تشکیل (Reward Shaping)**: ایسے انعامات ڈیزائن کریں جو ایجنٹ کو مطلوبہ رویوں کی طرف رہنمائی کریں۔
+3. **حفاظتی رکاوٹیں**: تربیت کے دوران محفوظ تلاش (exploration) کو یقینی بنائیں۔
+4. **تنوع**: عمومیت (generalization) کو بہتر بنانے کے لیے مختلف منظرنامے شامل کریں۔
+5. **توثیق**: باقاعدگی سے پالیسیوں کو متنوع ماحول میں ٹیسٹ کریں۔
+6. **نگرانی**: تربیتی پیشرفت اور ماحولیاتی اعدادوشمار کو ٹریک کریں۔
 
-### Humanoid-Specific Considerations
+### ہیومنوائڈ کے لیے مخصوص تحفظات
 
-1. **Balance First**: Master basic balance before locomotion
-2. **Physics Accuracy**: Ensure accurate physics simulation for stable control
-3. **Contact Handling**: Properly simulate ground contacts for walking
-4. **Sensory Feedback**: Include realistic sensor simulation
-5. **Actuator Dynamics**: Model actuator limitations and delays
+1. **پہلے توازن**: لوکوموشن سے پہلے بنیادی توازن میں مہارت حاصل کریں۔
+2. **طبیعیات کی درستگی**: مستحکم کنٹرول کے لیے درست طبیعیات کی سمولیشن کو یقینی بنائیں۔
+3. **رابطہ ہینڈلنگ**: چلنے کے لیے زمینی رابطوں کی مناسب نقل کریں۔
+4. **حسی فیڈ بیک**: حقیقت پسندانہ سینسر سمولیشن شامل کریں۔
+5. **ایکچویٹر ڈائنامکس**: ماڈل ایکچویٹر کی حدود اور تاخیر۔
 
-## Next Steps
+## اگلے اقدامات
 
-After creating training environments:
+تربیتی ماحول بنانے کے بعد:
 
-1. **Define Tasks**: Specify the exact control tasks for your humanoid robot
-2. **Implement Reward Functions**: Create reward functions that promote desired behaviors
-3. **Start Training**: Begin with simple environments and gradually increase complexity
-4. **Monitor Progress**: Track learning progress and adjust hyperparameters
-5. **Validate Policies**: Test trained policies in simulation and real-world settings
-6. **Iterate and Improve**: Refine environments and training based on results
+1. **ٹاسک کی وضاحت کریں**: اپنے ہیومنوائڈ روبوٹ کے لیے کنٹرول کے عین مطابق کاموں کی وضاحت کریں۔
+2. **انعام کے فنکشنز نافذ کریں**: انعامی فنکشنز بنائیں جو مطلوبہ رویوں کو فروغ دیں۔
+3. **تربیت شروع کریں**: آسان ماحول کے ساتھ شروع کریں اور آہستہ آہستہ پیچیدگی میں اضافہ کریں۔
+4. **پیشرفت کی نگرانی کریں**: سیکھنے کی پیشرفت کو ٹریک کریں اور ہائپر پیرامیٹرز کو ایڈجسٹ کریں۔
+5. **پالیسیوں کی توثیق کریں**: سمولیشن اور حقیقی دنیا کی ترتیبات میں تربیت یافتہ پالیسیوں کی جانچ کریں۔
+6. **دہرائیں اور بہتر بنائیں**: نتائج کی بنیاد پر ماحول اور تربیت کو بہتر بنائیں۔
 
-The next section covers performance optimization and advanced techniques.
+اگلا سیکشن کارکردگی کی اصلاح اور جدید تکنیکوں کا احاطہ کرتا ہے۔

@@ -2,17 +2,17 @@
 sidebar_position: 1
 ---
 
-# Create a Page
+# صفحہ بنائیں
 
-Add **Markdown or React** files to `src/pages` to create a **standalone page**:
+ایک **اسٹینڈ لون صفحہ** بنانے کے لیے `src/pages` میں **مارک ڈاؤن یا React** فائلیں شامل کریں:
 
 - `src/pages/index.js` → `localhost:3000/`
 - `src/pages/foo.md` → `localhost:3000/foo`
 - `src/pages/foo/bar.js` → `localhost:3000/foo/bar`
 
-## Create your first React Page
+## اپنا پہلا React صفحہ بنائیں
 
-Create a file at `src/pages/my-react-page.js`:
+`src/pages/my-react-page.js` پر ایک فائل بنائیں:
 
 ```jsx title="src/pages/my-react-page.js"
 import React from 'react';
@@ -28,11 +28,11 @@ export default function MyReactPage() {
 }
 ```
 
-A new page is now available at [http://localhost:3000/my-react-page](http://localhost:3000/my-react-page).
+ایک نیا صفحہ اب [http://localhost:3000/my-react-page](http://localhost:3000/my-react-page) پر دستیاب ہے۔
 
-## Create your first Markdown Page
+## اپنا پہلا مارک ڈاؤن صفحہ بنائیں
 
-Create a file at `src/pages/my-markdown-page.md`:
+`src/pages/my-markdown-page.md` پر ایک فائل بنائیں:
 
 ```mdx title="src/pages/my-markdown-page.md"
 # My Markdown page
@@ -40,4 +40,4 @@ Create a file at `src/pages/my-markdown-page.md`:
 This is a Markdown page
 ```
 
-A new page is now available at [http://localhost:3000/my-markdown-page](http://localhost:3000/my-markdown-page).
+ایک نیا صفحہ اب [http://localhost:3000/my-markdown-page](http://localhost:3000/my-markdown-page) پر دستیاب ہے۔

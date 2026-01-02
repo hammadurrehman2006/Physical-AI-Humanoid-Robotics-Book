@@ -2,46 +2,46 @@
 sidebar_position: 2
 ---
 
-# Assessment Project Requirements
+# اسیسمنٹ پروجیکٹ کی ضروریات
 
-This document outlines the specific requirements for the Module 2 assessment project. Your project must meet all mandatory requirements to pass the assessment.
+یہ دستاویز ماڈیول 2 کے اسیسمنٹ پروجیکٹ کے لیے مخصوص ضروریات کا خاکہ پیش کرتی ہے۔ امتحان پاس کرنے کے لیے آپ کے پروجیکٹ کو تمام لازمی ضروریات کو پورا کرنا ہوگا۔
 
-## Mandatory Requirements
+## لازمی ضروریات
 
-### Robot Model (25 points)
-- Create a robot model using URDF or SDF format
-- Include at least 3 links and 2 joints
-- Define proper visual, collision, and inertial properties
-- Include appropriate materials and textures
+### روبوٹ ماڈل (25 پوائنٹس)
+- URDF یا SDF فارمیٹ کا استعمال کرتے ہوئے ایک روبوٹ ماڈل بنائیں
+- کم از کم 3 لنکس اور 2 جوائنٹس شامل کریں
+- مناسب بصری (visual)، ٹکراؤ (collision)، اور جڑواں (inertial) خصوصیات کی وضاحت کریں
+- مناسب میٹریلز اور ٹیکسچرز شامل کریں
 
-### Gazebo Environment (25 points)
-- Create a custom world file with obstacles
-- Configure physics properties (gravity, friction, etc.)
-- Include static and dynamic objects in the environment
-- Demonstrate proper collision detection
+### Gazebo ماحول (25 پوائنٹس)
+- رکاوٹوں کے ساتھ ایک حسب ضرورت دنیا (world) فائل بنائیں
+- طبیعیات کی خصوصیات (کشش ثقل، رگڑ، وغیرہ) کو کنفیگر کریں
+- ماحول میں جامد (static) اور متحرک (dynamic) اشیاء شامل کریں
+- مناسب ٹکراؤ کی نشاندہی (collision detection) کا مظاہرہ کریں
 
-### Sensor Integration (25 points)
-- Integrate at least 3 different sensor types:
-  - LiDAR sensor
-  - Camera sensor
-  - IMU sensor
-- Configure appropriate sensor parameters
-- Validate sensor output data
+### سینسر انضمام (25 پوائنٹس)
+- کم از کم 3 مختلف قسم کے سینسرز ضم کریں:
+  - LiDAR سینسر
+  - کیمرہ سینسر
+  - IMU سینسر
+- مناسب سینسر پیرامیٹرز کنفیگر کریں
+- سینسر آؤٹ پٹ ڈیٹا کی توثیق کریں
 
-### Navigation (25 points)
-- Implement basic navigation in the simulation
-- Demonstrate robot movement and obstacle avoidance
-- Show interaction between robot and environment
+### نیویگیشن (25 پوائنٹس)
+- سمولیشن میں بنیادی نیویگیشن نافذ کریں
+- روبوٹ کی حرکت اور رکاوٹوں سے بچنے کا مظاہرہ کریں
+- روبوٹ اور ماحول کے درمیان تعامل دکھائیں
 
-## Optional Requirements (Bonus: up to 20 points)
-- Unity integration for high-fidelity visualization
-- Advanced sensor fusion techniques
-- Complex environment with multiple robots
+## اختیاری ضروریات (بونس: 20 پوائنٹس تک)
+- ہائی فیڈیلیٹی (high-fidelity) وژولائزیشن کے لیے Unity انضمام
+- ایڈوانسڈ سینسر فیوژن تکنیکیں
+- متعدد روبوٹس کے ساتھ پیچیدہ ماحول
 
-## Evaluation Criteria
+## تشخیص کا معیار
 
-Projects will be evaluated based on:
-- Completeness of implementation
-- Correctness of simulation behavior
-- Quality of documentation
-- Code organization and structure
+پروجیکٹس کی جانچ ان بنیادوں پر کی جائے گی:
+- نفاذ کی تکمیل
+- سمولیشن رویے کی درستگی
+- دستاویزات کا معیار
+- کوڈ کی تنظیم اور ساخت

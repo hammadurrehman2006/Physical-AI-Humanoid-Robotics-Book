@@ -1,19 +1,19 @@
-# Isaac Sim Performance Optimization - Practical Exercises
+# Isaac Sim کارکردگی کی اصلاح - عملی مشقیں
 
-This document contains practical exercises to help you apply the performance optimization techniques covered in the main guide.
+اس دستاویز میں عملی مشقیں شامل ہیں جو آپ کو مرکزی گائیڈ میں شامل کارکردگی کی اصلاح کی تکنیکوں کو لاگو کرنے میں مدد کریں گی۔
 
-## Exercise 1: Rendering Quality Comparison
+## مشق 1: رینڈرنگ کوالٹی کا موازنہ
 
-### Objective
-Compare different rendering quality settings and measure their impact on performance.
+### مقصد
+مختلف رینڈرنگ کوالٹی کی ترتیبات کا موازنہ کریں اور کارکردگی پر ان کے اثرات کی پیمائش کریں۔
 
-### Steps
-1. Create a world with high-quality rendering settings
-2. Create a world with performance-focused rendering settings
-3. Compare frame rates and visual quality
-4. Determine optimal settings for your use case
+### اقدامات
+1. اعلی معیار کی رینڈرنگ کی ترتیبات کے ساتھ ایک دنیا بنائیں
+2. کارکردگی پر مبنی رینڈرنگ کی ترتیبات کے ساتھ ایک دنیا بنائیں
+3. فریم ریٹ اور بصری معیار کا موازنہ کریں
+4. اپنے استعمال کے کیس کے لیے بہترین ترتیبات کا تعین کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -102,18 +102,18 @@ if __name__ == "__main__":
     print(f"\nResults: {results}")
 ```
 
-## Exercise 2: Physics Parameter Tuning
+## مشق 2: فزکس پیرامیٹر ٹیوننگ
 
-### Objective
-Tune physics parameters to find the optimal balance between accuracy and performance.
+### مقصد
+درستگی اور کارکردگی کے درمیان بہترین توازن تلاش کرنے کے لیے فزکس پیرامیٹرز کو ٹیون کریں۔
 
-### Steps
-1. Start with default physics settings
-2. Adjust solver iterations and measure performance
-3. Test different collision detection methods
-4. Find optimal balance between accuracy and speed
+### اقدامات
+1. ڈیفالٹ فزکس کی ترتیبات کے ساتھ شروع کریں
+2. سولور کی تکرار (solver iterations) کو ایڈجسٹ کریں اور کارکردگی کی پیمائش کریں
+3. تصادم کا پتہ لگانے (collision detection) کے مختلف طریقوں کی جانچ کریں
+4. درستگی اور رفتار کے درمیان بہترین توازن تلاش کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -224,18 +224,18 @@ if __name__ == "__main__":
     iter_results, col_results = run_physics_tuning_exercise()
 ```
 
-## Exercise 3: Sensor Optimization
+## مشق 3: سینسر کی اصلاح
 
-### Objective
-Optimize sensor simulation for real-time performance.
+### مقصد
+حقیقی وقت کی کارکردگی کے لیے سینسر سیمولیشن کو بہتر بنائیں۔
 
-### Steps
-1. Create a robot with multiple sensors
-2. Test default sensor performance
-3. Apply sensor optimization techniques
-4. Compare performance before and after optimization
+### اقدامات
+1. متعدد سینسرز کے ساتھ ایک روبوٹ بنائیں
+2. ڈیفالٹ سینسر کی کارکردگی کی جانچ کریں
+3. سینسر کی اصلاح کی تکنیکوں کا اطلاق کریں
+4. اصلاح سے پہلے اور بعد میں کارکردگی کا موازنہ کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -327,18 +327,18 @@ if __name__ == "__main__":
     fps, sensor_time = run_sensor_optimization_exercise()
 ```
 
-## Exercise 4: Parallel Processing
+## مشق 4: متوازی پروسیسنگ (Parallel Processing)
 
-### Objective
-Implement and measure the benefits of parallel processing in Isaac Sim.
+### مقصد
+Isaac Sim میں متوازی پروسیسنگ کے فوائد کو نافذ کریں اور ان کی پیمائش کریں۔
 
-### Steps
-1. Create multiple simulation environments
-2. Test sequential processing performance
-3. Implement parallel processing techniques
-4. Compare performance improvement
+### اقدامات
+1. متعدد سیمولیشن ماحول بنائیں
+2. ترتیب وار (sequential) پروسیسنگ کی کارکردگی کی جانچ کریں
+3. متوازی پروسیسنگ کی تکنیکوں کا اطلاق کریں
+4. کارکردگی میں بہتری کا موازنہ کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -434,18 +434,18 @@ if __name__ == "__main__":
     seq_time, par_time, speedup = run_parallel_processing_exercise()
 ```
 
-## Exercise 5: Memory Management
+## مشق 5: میموری مینجمنٹ
 
-### Objective
-Optimize memory usage in Isaac Sim simulations.
+### مقصد
+Isaac Sim سیمولیشنز میں میموری کے استعمال کو بہتر بنائیں۔
 
-### Steps
-1. Monitor memory usage during simulation
-2. Identify memory bottlenecks
-3. Apply memory optimization techniques
-4. Measure memory usage improvement
+### اقدامات
+1. سیمولیشن کے دوران میموری کے استعمال کی نگرانی کریں
+2. میموری کی رکاوٹوں کی شناخت کریں
+3. میموری کی اصلاح کی تکنیکوں کا اطلاق کریں
+4. میموری کے استعمال میں بہتری کی پیمائش کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -542,19 +542,19 @@ if __name__ == "__main__":
     before, after = run_memory_management_exercise()
 ```
 
-## Exercise 6: Complete Performance Optimization
+## مشق 6: مکمل کارکردگی کی اصلاح
 
-### Objective
-Apply all optimization techniques in a comprehensive simulation.
+### مقصد
+ایک جامع سیمولیشن میں تمام اصلاحی تکنیکوں کا اطلاق کریں۔
 
-### Steps
-1. Set up performance monitoring
-2. Run baseline performance tests
-3. Apply all optimization techniques
-4. Run post-optimization tests
-5. Compare results and validate improvements
+### اقدامات
+1. کارکردگی کی نگرانی قائم کریں
+2. بنیادی کارکردگی کے ٹیسٹ چلائیں
+3. تمام اصلاحی تکنیکوں کا اطلاق کریں
+4. پوسٹ-اصلاح ٹیسٹ چلائیں
+5. نتائج کا موازنہ کریں اور بہتری کی توثیق کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -708,18 +708,18 @@ if __name__ == "__main__":
     baseline, optimized = run_complete_optimization_exercise()
 ```
 
-## Exercise 7: Hardware-Specific Optimization
+## مشق 7: ہارڈ ویئر کے لیے مخصوص اصلاح
 
-### Objective
-Optimize Isaac Sim based on detected hardware capabilities.
+### مقصد
+پتہ لگائی گئی ہارڈ ویئر کی صلاحیتوں کی بنیاد پر Isaac Sim کو بہتر بنائیں۔
 
-### Steps
-1. Detect current hardware specifications
-2. Apply hardware-appropriate optimizations
-3. Test performance with hardware-specific settings
-4. Compare with generic optimization approaches
+### اقدامات
+1. موجودہ ہارڈ ویئر کی خصوصیات کا پتہ لگائیں
+2. ہارڈ ویئر کے لیے مناسب اصلاحات کا اطلاق کریں
+3. ہارڈ ویئر کے لیے مخصوص ترتیبات کے ساتھ کارکردگی کی جانچ کریں
+4. عام اصلاحی طریقوں کے ساتھ موازنہ کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -852,18 +852,18 @@ if __name__ == "__main__":
     hw_optimizer = run_hardware_optimization_exercise()
 ```
 
-## Exercise 8: Performance Benchmarking Suite
+## مشق 8: کارکردگی بینچ مارکنگ سویٹ
 
-### Objective
-Create a comprehensive benchmarking suite to validate all optimizations.
+### مقصد
+تمام اصلاحات کی توثیق کے لیے ایک جامع بینچ مارکنگ سویٹ بنائیں۔
 
-### Steps
-1. Create a complete benchmarking framework
-2. Test all performance aspects systematically
-3. Generate performance reports
-4. Validate optimization effectiveness
+### اقدامات
+1. ایک مکمل بینچ مارکنگ فریم ورک بنائیں
+2. کارکردگی کے تمام پہلوؤں کو منظم طریقے سے جانچیں
+3. کارکردگی کی رپورٹس تیار کریں
+4. اصلاح کی تاثیر کی توثیق کریں
 
-### Implementation
+### نفاذ
 
 ```python
 #!/usr/bin/env python3
@@ -1133,23 +1133,23 @@ if __name__ == "__main__":
     results = run_benchmark_suite()
 ```
 
-## Summary
+## خلاصہ
 
-These practical exercises provide hands-on experience with Isaac Sim performance optimization techniques. Each exercise focuses on a specific aspect of performance and includes:
+یہ عملی مشقیں Isaac Sim کارکردگی کی اصلاح کی تکنیکوں کے ساتھ عملی تجربہ فراہم کرتی ہیں۔ ہر مشق کارکردگی کے ایک مخصوص پہلو پر مرکوز ہے اور اس میں شامل ہیں:
 
-1. Clear objectives
-2. Step-by-step instructions
-3. Practical implementation code
-4. Performance measurement techniques
-5. Comparison of before/after results
+1. واضح مقاصد
+2. مرحلہ وار ہدایات
+3. عملی نفاذ کا کوڈ
+4. کارکردگی کی پیمائش کی تکنیکیں
+5. پہلے/بعد کے نتائج کا موازنہ
 
-By completing these exercises, you'll gain practical experience in:
-- Rendering optimization
-- Physics parameter tuning
-- Sensor optimization
-- Parallel processing
-- Memory management
-- Hardware-specific optimization
-- Comprehensive benchmarking
+ان مشقوں کو مکمل کرنے سے، آپ ان چیزوں میں عملی تجربہ حاصل کریں گے:
+- رینڈرنگ کی اصلاح
+- فزکس پیرامیٹر ٹیوننگ
+- سینسر کی اصلاح
+- متوازی پروسیسنگ
+- میموری مینجمنٹ
+- ہارڈ ویئر کے لیے مخصوص اصلاح
+- جامع بینچ مارکنگ
 
-The exercises build upon each other, allowing you to apply multiple optimization techniques in combination for maximum performance gains.
+یہ مشقیں ایک دوسرے پر استوار ہوتی ہیں، جس سے آپ زیادہ سے زیادہ کارکردگی کے حصول کے لیے متعدد اصلاحی تکنیکوں کو ایک ساتھ لاگو کر سکتے ہیں۔

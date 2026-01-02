@@ -1,22 +1,22 @@
-# Phase 3: Sensor Simulation
+# فیز 3: سینسر سیمولیشن
 
-Welcome to Phase 3 of the Isaac Sim module. This phase covers sensor simulation techniques and configuration for robotics applications.
+Isaac Sim ماڈیول کے فیز 3 میں خوش آمدید۔ یہ فیز روبوٹکس ایپلی کیشنز کے لیے سینسر سیمولیشن تکنیکوں اور کنفیگریشن کا احاطہ کرتا ہے۔
 
-## Overview
+## جائزہ
 
-In this phase, you will learn to:
+اس فیز میں، آپ سیکھیں گے:
 
-- Configure various sensor types in Isaac Sim
-- Generate synthetic data for AI training
-- Apply domain randomization techniques
-- Implement sensor fusion approaches
+- Isaac Sim میں مختلف سینسر کی اقسام کو ترتیب دینا
+- AI تربیت کے لیے مصنوعی ڈیٹا تیار کرنا
+- ڈومین رینڈمائزیشن تکنیکوں کا اطلاق کرنا
+- سینسر فیوژن اپروچز کو نافذ کرنا
 
-## Topics Covered
+## شامل موضوعات
 
-- [Sensor Configuration](./sensor-configuration.md)
-- [Data Generation](./data-generation.md)
-- [Domain Randomization](./domain-randomization.md)
+- [سینسر کنفیگریشن](./sensor-configuration.md)
+- [ڈیٹا جنریشن](./data-generation.md)
+- [ڈومین رینڈمائزیشن](./domain-randomization.md)
 
-## Getting Started
+## شروع کریں
 
-Begin with the [Sensor Configuration](./sensor-configuration.md) guide to learn how to set up various sensor types in Isaac Sim, then proceed to learn about data generation and domain randomization techniques.
+Isaac Sim میں مختلف سینسر کی اقسام کو ترتیب دینے کا طریقہ سیکھنے کے لیے [سینسر کنفیگریشن](./sensor-configuration.md) گائیڈ کے ساتھ شروعات کریں، پھر ڈیٹا جنریشن اور ڈومین رینڈمائزیشن تکنیکوں کے بارے میں سیکھنے کے لیے آگے بڑھیں۔

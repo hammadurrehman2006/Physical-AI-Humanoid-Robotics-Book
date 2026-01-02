@@ -1,22 +1,22 @@
-# Isaac Sim Visualization and Debugging Tools
+# Isaac Sim وژولائزیشن اور ڈیبگنگ ٹولز
 
-This comprehensive guide covers the visualization and debugging tools available in NVIDIA Isaac Sim. These tools are essential for developing, testing, and validating humanoid robotics applications in simulation.
+یہ جامع گائیڈ NVIDIA Isaac Sim میں دستیاب وژولائزیشن اور ڈیبگنگ ٹولز کا احاطہ کرتی ہے۔ یہ ٹولز سمولیشن میں ہیومنوائڈ روبوٹکس ایپلی کیشنز کی ترقی، جانچ اور توثیق کے لیے ضروری ہیں۔
 
-## 1. Isaac Sim Visualization Tools Concepts
+## 1. Isaac Sim وژولائزیشن ٹولز کے تصورات
 
-### Overview of Visualization Tools
+### وژولائزیشن ٹولز کا جائزہ
 
-Isaac Sim provides a rich set of visualization tools that enable developers to observe, analyze, and debug their simulation environments. These tools include:
+Isaac Sim وژولائزیشن ٹولز کا ایک بھرپور سیٹ فراہم کرتا ہے جو ڈویلپرز کو اپنے سمولیشن ماحول کا مشاہدہ، تجزیہ اور ڈیبگ کرنے کے قابل بناتا ہے۔ ان ٹولز میں شامل ہیں:
 
-- **Viewport Visualization**: Real-time rendering of the simulation environment
-- **Physics Debug Visualization**: Visual representation of physics properties and interactions
-- **Sensor Data Visualization**: Real-time display of sensor outputs
-- **Robot State Visualization**: Visual indicators for robot joint states and control
-- **Collision Visualization**: Visual feedback for collision detection and response
+- **ویوپورٹ وژولائزیشن**: سمولیشن ماحول کی ریئل ٹائم رینڈرنگ۔
+- **فزکس ڈیبگ وژولائزیشن**: طبیعیات کی خصوصیات اور تعاملات کی بصری نمائندگی۔
+- **سینسر ڈیٹا وژولائزیشن**: سینسر آؤٹ پٹس کا ریئل ٹائم ڈسپلے۔
+- **روبوٹ اسٹیٹ وژولائزیشن**: روبوٹ جوائنٹ اسٹیٹس اور کنٹرول کے لیے بصری اشارے۔
+- **ٹکراؤ وژولائزیشن**: ٹکراؤ کا پتہ لگانے اور ردعمل کے لیے بصری فیڈ بیک۔
 
-### Viewport and Camera Controls
+### ویوپورٹ اور کیمرہ کنٹرولز
 
-The main viewport in Isaac Sim provides several visualization modes and controls:
+Isaac Sim میں مین ویوپورٹ کئی وژولائزیشن موڈز اور کنٹرولز فراہم کرتا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -82,7 +82,7 @@ class ViewportVisualization:
         # Access the viewport API
         viewport_window = omni.ui.Workspace.get_window("Viewport")
 
-        # Note: Actual implementation would depend on Isaac Sim's viewport API
+        # Note: Actual implementation would depend on Isaac Sim\'s viewport API
         print("Visualization modes available:")
         print("- Shaded mode: Standard rendering with materials")
         print("- Wireframe mode: Shows mesh structure")
@@ -118,9 +118,9 @@ if __name__ == "__main__":
     demonstrate_viewport_visualization()
 ```
 
-### Physics Debug Visualization
+### فزکس ڈیبگ وژولائزیشن
 
-Physics debug visualization is crucial for understanding how physics simulations behave:
+فزکس ڈیبگ وژولائزیشن یہ سمجھنے کے لیے بہت اہم ہے کہ فزکس سمولیشنز کیسا برتاؤ کرتی ہیں:
 
 ```python
 #!/usr/bin/env python3
@@ -251,19 +251,19 @@ if __name__ == "__main__":
     demonstrate_physics_debug()
 ```
 
-## 2. Debugging Tools and Techniques for Isaac Sim
+## 2. Isaac Sim کے لیے ڈیبگنگ ٹولز اور تکنیکیں
 
-### General Debugging Approaches
+### عمومی ڈیبگنگ نقطہ نظر
 
-Isaac Sim provides several debugging tools and techniques:
+Isaac Sim کئی ڈیبگنگ ٹولز اور تکنیکیں فراہم کرتا ہے:
 
-1. **Console Logging**: Real-time logging of simulation events
-2. **Physics Debugging**: Visualization of physics interactions
-3. **Sensor Debugging**: Monitoring sensor data and performance
-4. **Performance Profiling**: Analysis of simulation performance
-5. **Scene Debugging**: Inspection of scene hierarchy and properties
+1. **کنسول لاگنگ**: سمولیشن ایونٹس کی ریئل ٹائم لاگنگ۔
+2. **فزکس ڈیبگنگ**: فزکس تعاملات کی وژولائزیشن۔
+3. **سینسر ڈیبگنگ**: سینسر ڈیٹا اور کارکردگی کی نگرانی۔
+4. **کارکردگی پروفائلنگ**: سمولیشن کارکردگی کا تجزیہ۔
+5. **سین ڈیبگنگ**: سین کے درجہ بندی اور خصوصیات کا معائنہ۔
 
-### Console and Logging Debugging
+### کنسول اور لاگنگ ڈیبگنگ
 
 ```python
 #!/usr/bin/env python3
@@ -391,7 +391,7 @@ if __name__ == "__main__":
     demonstrate_console_debugging()
 ```
 
-### Scene Hierarchy Debugging
+### سین ہیرارکی ڈیبگنگ
 
 ```python
 #!/usr/bin/env python3
@@ -557,20 +557,20 @@ if __name__ == "__main__":
     demonstrate_scene_debugging()
 ```
 
-## 3. Isaac Sim UI and Workflow Concepts
+## 3. Isaac Sim UI اور ورک فلو کے تصورات
 
-### Isaac Sim Interface Overview
+### Isaac Sim انٹرفیس کا جائزہ
 
-Isaac Sim's user interface is built on the Omniverse platform and includes several key components:
+Isaac Sim کا یوزر انٹرفیس Omniverse پلیٹ فارم پر بنایا گیا ہے اور اس میں کئی کلیدی اجزاء شامل ہیں:
 
-- **Viewport**: The main 3D visualization window
-- **Stage View**: Hierarchical view of the scene
-- **Property Panel**: Properties of selected objects
-- **Timeline**: Animation and simulation control
-- **Layer Panel**: USD layer management
-- **Outliner**: Scene object management
+- **ویوپورٹ**: مرکزی 3D وژولائزیشن ونڈو۔
+- **اسٹیج ویو**: سین کا درجہ بندی والا نظارہ۔
+- **پراپرٹی پینل**: منتخب اشیاء کی خصوصیات۔
+- **ٹائم لائن**: اینیمیشن اور سمولیشن کنٹرول۔
+- **لیئر پینل**: USD لیئر مینجمنٹ۔
+- **آؤٹ لائنر**: سین آبجیکٹ مینجمنٹ۔
 
-### UI Workflow for Debugging
+### ڈیبگنگ کے لیے UI ورک فلو
 
 ```python
 #!/usr/bin/env python3
@@ -696,11 +696,11 @@ if __name__ == "__main__":
     demonstrate_ui_workflow()
 ```
 
-## 4. Performance Profiling Tools for Isaac Sim
+## 4. Isaac Sim کے لیے کارکردگی پروفائلنگ ٹولز
 
-### Profiling and Performance Analysis
+### پروفائلنگ اور کارکردگی کا تجزیہ
 
-Isaac Sim provides several tools for performance profiling and analysis:
+Isaac Sim کارکردگی کی پروفائلنگ اور تجزیہ کے لیے کئی ٹولز فراہم کرتا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -1035,11 +1035,11 @@ if __name__ == "__main__":
     demonstrate_performance_profiling()
 ```
 
-## 5. Isaac Sim Logs and Diagnostics
+## 5. Isaac Sim لاگز اور تشخیصات
 
-### Logging and Diagnostic Systems
+### لاگنگ اور تشخیصی نظام
 
-Isaac Sim provides comprehensive logging and diagnostic capabilities:
+Isaac Sim جامع لاگنگ اور تشخیصی صلاحیتیں فراہم کرتا ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -1315,11 +1315,11 @@ if __name__ == "__main__":
     demonstrate_diagnostics()
 ```
 
-## 6. Scene Debugging Techniques
+## 6. سین ڈیبگنگ تکنیکیں
 
-### Scene Debugging Methods
+### سین ڈیبگنگ کے طریقے
 
-Scene debugging involves identifying and resolving issues in the simulation environment:
+سین ڈیبگنگ میں سمولیشن ماحول میں مسائل کی نشاندہی اور حل شامل ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -1602,11 +1602,11 @@ if __name__ == "__main__":
     demonstrate_scene_debugging()
 ```
 
-## 7. Sensor Data Visualization
+## 7. سینسر ڈیٹا وژولائزیشن
 
-### Sensor Data Visualization Techniques
+### سینسر ڈیٹا وژولائزیشن تکنیکیں
 
-Visualizing sensor data is crucial for understanding robot perception in simulation:
+سمولیشن میں روبوٹ کے ادراک کو سمجھنے کے لیے سینسر ڈیٹا کو وژولائز کرنا بہت ضروری ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -1904,11 +1904,11 @@ if __name__ == "__main__":
     demonstrate_sensor_visualization()
 ```
 
-## 8. Physics Simulation Debugging Methods
+## 8. فزکس سمولیشن ڈیبگنگ کے طریقے
 
-### Physics Debugging Techniques
+### فزکس ڈیبگنگ کی تکنیکیں
 
-Debugging physics simulation is critical for ensuring realistic robot behavior:
+حقیقت پسندانہ روبوٹ رویے کو یقینی بنانے کے لیے طبیعیات کی سمولیشن کو ڈیبگ کرنا بہت ضروری ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -2063,8 +2063,10 @@ class PhysicsDebugger:
         contacts_found = 0
         for i, obj_name1 in enumerate(objects):
             for obj_name2 in objects[i+1:]:
-                if (self.world.scene.has_object(obj_name1) and
-                    self.world.scene.has_object(obj_name2)):
+                if (
+                    self.world.scene.has_object(obj_name1) and
+                    self.world.scene.has_object(obj_name2)
+                ):
 
                     obj1 = self.world.scene.get_object(obj_name1)
                     obj2 = self.world.scene.get_object(obj_name2)
@@ -2255,11 +2257,11 @@ if __name__ == "__main__":
     demonstrate_physics_debugging()
 ```
 
-## 9. RL Training Visualization Tools
+## 9. RL ٹریننگ وژولائزیشن ٹولز
 
-### Reinforcement Learning Visualization
+### ری انفورسمنٹ لرننگ وژولائزیشن
 
-Visualizing RL training progress is essential for developing humanoid robots:
+ہیومنوائڈ روبوٹس کی نشوونما کے لیے RL تربیت کی پیشرفت کو وژولائز کرنا ضروری ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -2571,11 +2573,11 @@ if __name__ == "__main__":
     demonstrate_rl_visualization()
 ```
 
-## 10. Hands-on Exercise: Visualization and Debugging Tools in Isaac Sim
+## 10. عملی مشق: Isaac Sim میں وژولائزیشن اور ڈیبگنگ ٹولز
 
-### Practical Exercise
+### عملی مشق
 
-Now let's create a comprehensive hands-on exercise that combines all the visualization and debugging concepts:
+اب ایک جامع عملی مشق بناتے ہیں جو تمام وژولائزیشن اور ڈیبگنگ کے تصورات کو یکجا کرتی ہے:
 
 ```python
 #!/usr/bin/env python3
@@ -3081,5 +3083,3 @@ def run_isaac_sim_visualization_debugging_exercise():
 if __name__ == "__main__":
     run_isaac_sim_visualization_debugging_exercise()
 ```
-
-Now I'll update the todo list to mark the tasks as completed:

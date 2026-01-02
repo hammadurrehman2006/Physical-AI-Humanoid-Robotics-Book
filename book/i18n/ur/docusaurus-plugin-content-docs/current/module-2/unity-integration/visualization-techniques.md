@@ -2,27 +2,27 @@
 sidebar_position: 3
 ---
 
-# Visualization Techniques in Unity
+# Unity میں وژولائزیشن تکنیک
 
-This tutorial covers advanced visualization techniques in Unity for robotics applications. You'll learn how to create high-fidelity visualizations of robots and environments that accurately represent real-world physics and sensor data.
+یہ ٹیوٹوریل روبوٹکس ایپلی کیشنز کے لیے Unity میں جدید وژولائزیشن تکنیکوں کا احاطہ کرتا ہے۔ آپ سیکھیں گے کہ روبوٹس اور ماحول کی ہائی فیڈیلیٹی وژولائزیشن کیسے بنائی جائے جو حقیقی دنیا کی طبیعیات اور سینسر ڈیٹا کی درست نمائندگی کرے۔
 
-## Core Visualization Concepts
+## بنیادی وژولائزیشن تصورات
 
-### Realistic Lighting and Shadows
+### حقیقت پسندانہ لائٹنگ اور سائے (Shadows)
 
-Creating realistic lighting that matches the physical environment:
+ایسی لائٹنگ بنانا جو طبعی ماحول سے مطابقت رکھتی ہو:
 
-#### Lighting Setup for Robotics
+#### روبوٹکس کے لیے لائٹنگ سیٹ اپ
 
-1. **Directional Light for Sun Simulation**:
-   - Use a single directional light to simulate sunlight
-   - Set appropriate color temperature (typically 6500K for daylight)
-   - Configure shadows for realistic robot-environment interaction
+1. **سورج کی نقل کے لیے ڈائریکشنل لائٹ**:
+   - سورج کی روشنی کی نقل کرنے کے لیے ایک ہی ڈائریکشنل لائٹ استعمال کریں
+   - مناسب رنگ کا درجہ حرارت سیٹ کریں (عام طور پر دن کی روشنی کے لیے 6500K)
+   - حقیقت پسندانہ روبوٹ-ماحول تعامل کے لیے سائے کنفیگر کریں
 
-2. **Environment Lighting**:
-   - Use reflection probes for accurate environment reflections
-   - Configure ambient lighting to match real-world conditions
-   - Implement image-based lighting (IBL) for complex lighting scenarios
+2. **ماحولیاتی لائٹنگ**:
+   - درست ماحول کے عکس (reflections) کے لیے ریفلیکشن پروبز استعمال کریں
+   - حقیقی دنیا کے حالات سے مطابقت رکھنے کے لیے محیطی روشنی (ambient lighting) کنفیگر کریں
+   - پیچیدہ لائٹنگ منظرناموں کے لیے امیج بیسڈ لائٹنگ (IBL) نافذ کریں
 
 ```csharp
 // Dynamic lighting configuration based on time of day
@@ -66,21 +66,21 @@ public class RobotEnvironmentLighting : MonoBehaviour
 }
 ```
 
-### Material Properties and Textures
+### میٹریل خصوصیات اور ٹیکسچرز
 
-Creating realistic materials for robot components:
+روبوٹ کے اجزاء کے لیے حقیقت پسندانہ میٹریل بنانا:
 
-#### Robot Material Setup
+#### روبوٹ میٹریل سیٹ اپ
 
-1. **Metallic Materials for Robot Parts**:
-   - Use high metallic values for metal components
-   - Configure appropriate smoothness for different metal types
-   - Add normal maps for surface details
+1. **روبوٹ کے حصوں کے لیے دھاتی میٹریل**:
+   - دھاتی اجزاء کے لیے اعلی دھاتی اقدار (high metallic values) استعمال کریں
+   - دھات کی مختلف اقسام کے لیے مناسب ہمواری (smoothness) کنفیگر کریں
+   - سطح کی تفصیلات کے لیے نارمل میپس شامل کریں
 
-2. **Plastic Materials for Casings**:
-   - Lower metallic values (0-0.2)
-   - Appropriate smoothness for different plastic types
-   - Color variations to match real robot appearance
+2. **کیسنگز کے لیے پلاسٹک میٹریل**:
+   - کم دھاتی اقدار (0-0.2)
+   - پلاسٹک کی مختلف اقسام کے لیے مناسب ہمواری
+   - حقیقی روبوٹ کی ظاہری شکل سے مطابقت رکھنے کے لیے رنگوں کے تغیرات
 
 ```csharp
 // Dynamic material switching based on robot state
@@ -115,11 +115,11 @@ public class RobotMaterialController : MonoBehaviour
 public enum RobotState { Normal, Warning, Error }
 ```
 
-## Animation and Kinematic Visualization
+## اینیمیشن اور کائینیٹک وژولائزیشن
 
-### Joint Visualization
+### جوائنٹ وژولائزیشن
 
-Visualizing robot joint movements accurately:
+روبوٹ جوائنٹ کی نقل و حرکت کو درست طریقے سے وژولائز کرنا:
 
 ```csharp
 // Joint angle visualization
@@ -155,9 +155,9 @@ public class JointVisualizer : MonoBehaviour
 }
 ```
 
-### Path and Trajectory Visualization
+### پاتھ اور ٹریجیکٹری وژولائزیشن
 
-Visualizing robot movement paths and planned trajectories:
+روبوٹ کی نقل و حرکت کے راستوں اور منصوبہ بند ٹریجیکٹریز کو وژولائز کرنا:
 
 ```csharp
 // Trajectory visualization
@@ -205,11 +205,11 @@ public class TrajectoryVisualizer : MonoBehaviour
 }
 ```
 
-## Sensor Visualization
+## سینسر وژولائزیشن
 
-### LiDAR Data Visualization
+### LiDAR ڈیٹا وژولائزیشن
 
-Visualizing LiDAR scan data in Unity:
+Unity میں LiDAR اسکین ڈیٹا کو وژولائز کرنا:
 
 ```csharp
 // LiDAR scan visualization
@@ -257,9 +257,9 @@ public class LidarVisualizer : MonoBehaviour
 }
 ```
 
-### Camera Feed Integration
+### کیمرہ فیڈ انضمام
 
-Integrating camera feeds for visualization:
+وژولائزیشن کے لیے کیمرہ فیڈز کو ضم کرنا:
 
 ```csharp
 // Camera feed visualization
@@ -300,11 +300,11 @@ public class CameraFeedVisualizer : MonoBehaviour
 }
 ```
 
-## Performance Optimization
+## کارکردگی کی اصلاح (Performance Optimization)
 
-### Level of Detail (LOD) for Robotics
+### روبوٹکس کے لیے لیول آف ڈیٹیل (LOD)
 
-Implementing LOD for complex robot models:
+پیچیدہ روبوٹ ماڈلز کے لیے LOD نافذ کرنا:
 
 ```csharp
 // LOD system for robot models
@@ -345,19 +345,19 @@ public class RobotLODController : MonoBehaviour
 }
 ```
 
-### Occlusion Culling for Environments
+### ماحول کے لیے Occlusion Culling
 
-Using Unity's occlusion culling for large environments:
+بڑے ماحول کے لیے Unity کی occlusion culling کا استعمال:
 
-1. **Mark Static Objects**: Mark environment objects as "Static" in Unity
-2. **Bake Occlusion Culling**: Window → Rendering → Lighting → Occlusion Culling → Bake
-3. **Optimize Portals**: Create occlusion portals for buildings and rooms
+1. **جامد اشیاء کو نشان زد کریں**: Unity میں ماحول کی اشیاء کو "Static" کے طور پر نشان زد کریں
+2. **Occlusion Culling بیک کریں**: Window → Rendering → Lighting → Occlusion Culling → Bake
+3. **پورٹلز کو بہتر بنائیں**: عمارتوں اور کمروں کے لیے occlusion portals بنائیں
 
-## Advanced Visualization Features
+## جدید وژولائزیشن خصوصیات
 
-### Point Cloud Visualization
+### پوائنٹ کلاؤڈ وژولائزیشن
 
-For 3D sensor data like depth cameras or 3D LiDAR:
+3D سینسر ڈیٹا جیسے ڈیپتھ کیمروں یا 3D LiDAR کے لیے:
 
 ```csharp
 // Point cloud visualization
@@ -400,9 +400,9 @@ public class PointCloudVisualizer : MonoBehaviour
 }
 ```
 
-### Sensor Fusion Visualization
+### سینسر فیوژن وژولائزیشن
 
-Combining multiple sensor visualizations:
+متعدد سینسر وژولائزیشنز کو اکٹھا کرنا:
 
 ```csharp
 // Sensor fusion visualization controller
@@ -441,39 +441,39 @@ public class SensorFusionVisualizer : MonoBehaviour
 }
 ```
 
-## Best Practices
+## بہترین طریقے
 
-### Visualization Guidelines
+### وژولائزیشن کے رہنما خطوط
 
-1. **Color Coding**: Use consistent colors for different robot states
-2. **Scale Accuracy**: Maintain real-world scale for accurate perception
-3. **Frame Consistency**: Ensure coordinate frame consistency with ROS
-4. **Performance Monitoring**: Monitor frame rates and optimize accordingly
+1. **رنگ کوڈنگ**: روبوٹ کی مختلف حالتوں کے لیے مستقل رنگ استعمال کریں
+2. **اسکیل کی درستگی**: درست ادراک کے لیے حقیقی دنیا کے اسکیل کو برقرار رکھیں
+3. **فریم کی مستقل مزاجی**: ROS کے ساتھ کوآرڈینیٹ فریم کی مستقل مزاجی کو یقینی بنائیں
+4. **کارکردگی کی نگرانی**: فریم ریٹس کی نگرانی کریں اور اس کے مطابق اصلاح کریں
 
-### Accessibility Considerations
+### رسائی کے تحفظات (Accessibility Considerations)
 
-1. **Color Blindness**: Use patterns and textures in addition to colors
-2. **Text Size**: Ensure text is readable at various distances
-3. **Contrast**: Maintain high contrast for visibility
-4. **Alternative Views**: Provide multiple visualization modes
+1. **کلر بلائنڈنس**: رنگوں کے علاوہ پیٹرنز اور ٹیکسچرز کا استعمال کریں
+2. **ٹیکسٹ سائز**: یقینی بنائیں کہ ٹیکسٹ مختلف فاصلوں پر پڑھنے کے قابل ہے
+3. **تضاد (Contrast)**: مرئیت کے لیے ہائی کنٹراسٹ برقرار رکھیں
+4. **متبادل نظارے**: متعدد وژولائزیشن موڈز فراہم کریں
 
-## Testing Visualization Quality
+## وژولائزیشن کوالٹی کی جانچ
 
-### Quality Assurance Checklist
+### کوالٹی اشورنس چیک لسٹ
 
-- [ ] Robot models maintain correct scale relative to environment
-- [ ] Joint movements are accurately represented
-- [ ] Sensor data visualization is clear and informative
-- [ ] Lighting and shadows appear realistic
-- [ ] Frame rate remains stable during visualization
-- [ ] Coordinate systems align with ROS conventions
-- [ ] Materials and textures are appropriate for robotics
+- [ ] روبوٹ ماڈلز ماحول کے مقابلے میں درست اسکیل برقرار رکھتے ہیں
+- [ ] جوائنٹ کی نقل و حرکت کی درست نمائندگی کی گئی ہے
+- [ ] سینسر ڈیٹا کی وژولائزیشن واضح اور معلوماتی ہے
+- [ ] لائٹنگ اور سائے حقیقت پسندانہ دکھائی دیتے ہیں
+- [ ] وژولائزیشن کے دوران فریم ریٹ مستحکم رہتا ہے
+- [ ] کوآرڈینیٹ سسٹمز ROS کنونشنز کے ساتھ ہم آہنگ ہیں
+- [ ] میٹریلز اور ٹیکسچرز روبوٹکس کے لیے موزوں ہیں
 
-## Next Steps
+## اگلے اقدامات
 
-After implementing these visualization techniques:
+ان وژولائزیشن تکنیکوں کو نافذ کرنے کے بعد:
 
-1. Review [Unity Troubleshooting](./unity-troubleshooting.md) for common issues
-2. Test your complete Unity integration with real robot data
-3. Optimize visualization performance for your target hardware
-4. Consider advanced topics like AR/VR integration for immersive robotics visualization
+1. عام مسائل کے لیے [Unity ٹربل شوٹنگ](./unity-troubleshooting.md) کا جائزہ لیں
+2. حقیقی روبوٹ ڈیٹا کے ساتھ اپنے مکمل Unity انضمام کو ٹیسٹ کریں
+3. اپنے ٹارگٹ ہارڈویئر کے لیے وژولائزیشن کی کارکردگی کو بہتر بنائیں
+4. عمیق روبوٹکس وژولائزیشن کے لیے AR/VR انضمام جیسے جدید موضوعات پر غور کریں

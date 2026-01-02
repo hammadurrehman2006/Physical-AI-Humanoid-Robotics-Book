@@ -275,8 +275,7 @@
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.noResultsText": {
-    "message": "کوئی نتیجہ نہیں",
-    "description": "The paragraph for empty search result"
+    "message": "کوئی نتیجہ نہیں"
   },
   "theme.SearchBar.seeAllOutsideContext": {
     "message": "\"{context}\" کے باہر تمام نتائج دیکھیں"
@@ -361,5 +360,121 @@
   "theme.tags.tagsPageTitle": {
     "message": "ٹیگز",
     "description": "The title of the tag list page"
+  },
+  "homepage.description": {
+    "message": "Description will go into a meta tag in <head />",
+    "description": "The homepage description"
+  },
+  "homepage.marquee": {
+    "message": "Physical AI & Humanoid Robotics",
+    "description": "Text scrolling in the marquee"
+  },
+  "cta.badge": {
+    "message": "Join the Revolution",
+    "description": "Badge text in Call to Action"
+  },
+  "cta.title": {
+    "message": "Ready to Start Your Journey?",
+    "description": "Main title in Call to Action"
+  },
+  "cta.description": {
+    "message": "Join thousands of developers building the future of embodied AI and humanoid robotics.",
+    "description": "Description text in Call to Action"
+  },
+  "cta.button": {
+    "message": "Begin Learning Now",
+    "description": "Button text in Call to Action"
+  },
+  "hero.badge": {
+    "message": "Open Source Guide",
+    "description": "Badge text on Hero section"
+  },
+  "hero.title": {
+    "message": "Build the {physicalAI}{br}Future.",
+    "description": "Main title on Hero section"
+  },
+  "hero.title.physicalAI": {
+    "message": "Physical AI",
+    "description": "Physical AI text"
+  },
+  "hero.subtitle": {
+    "message": "From {ros2} fundamentals to {vla} models. A comprehensive engineering handbook for the next generation of humanoid robotics.",
+    "description": "Subtitle on Hero section"
+  },
+  "hero.button.startReading": {
+    "message": "Start Reading",
+    "description": "Start Reading button text"
+  },
+  "hero.button.viewOnGithub": {
+    "message": "View on GitHub",
+    "description": "View on GitHub button text"
+  },
+  "homepage.features.module1.title": {
+    "message": "Module 1: The Robotic Nervous System (ROS 2)",
+    "description": "Title for Module 1"
+  },
+  "homepage.features.module1.description": {
+    "message": "Master the fundamental communication framework that powers modern robots. Learn nodes, topics, and real-time control.",
+    "description": "Description for Module 1"
+  },
+  "homepage.features.module2.title": {
+    "message": "Module 2: The Digital Twin (Gazebo & Unity)",
+    "description": "Title for Module 2"
+  },
+  "homepage.features.module2.description": {
+    "message": "Simulate physics and environments before deployment. Build high-fidelity virtual replicas for safe training.",
+    "description": "Description for Module 2"
+  },
+  "homepage.features.module3.title": {
+    "message": "Module 3: The AI-Robot Brain (NVIDIA Isaac™)",
+    "description": "Title for Module 3"
+  },
+  "homepage.features.module3.description": {
+    "message": "Leverage GPU-accelerated simulation and reinforcement learning to train intelligent agents.",
+    "description": "Description for Module 3"
+  },
+  "homepage.features.module4.title": {
+    "message": "Module 4: Vision-Language-Action (VLA)",
+    "description": "Title for Module 4"
+  },
+  "homepage.features.module4.description": {
+    "message": "Integrate Multimodal LLMs for embodied intelligence. Enable robots to see, understand, and act.",
+    "description": "Description for Module 4"
+  },
+  "homepage.features.exploreModule": {
+    "message": "Explore Module"
+  },
+  "homepage.features.course": {
+    "message": "Course"
+  },
+  "homepage.features.curriculum": {
+    "message": "Curriculum"
+  },
+  "homepage.features.subtitle": {
+    "message": "A structured journey from foundational control systems to cutting-edge embodied AI."
+  },
+  "learningJourney.weeks": {
+    "message": "Weeks",
+    "description": "Label for Weeks"
+  },
+  "learningJourney.phases": {
+    "message": "Phases",
+    "description": "Label for Phases"
+  },
+  "learningJourney.coreTopics": {
+    "message": "Core Topics",
+    "description": "Label for Core Topics"
+  },
+  "learningJourney.title.complete": {
+    "message": "Complete",
+    "description": "First part of Learning Journey title"
+  },
+  "learningJourney.title.learningJourney": {
+    "message": "Learning Journey",
+    "description": "Highlighted part of Learning Journey title"
+  },
+  "learningJourney.subtitle": {
+    "message": "From Foundational Concepts to Cutting-Edge Embodied AI and Humanoid Robotics.",
+    "description": "Subtitle for Learning Journey section"
   }
 }

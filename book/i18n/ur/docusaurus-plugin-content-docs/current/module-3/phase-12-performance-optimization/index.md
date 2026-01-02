@@ -1,48 +1,48 @@
-# Phase 5: Performance Optimization
+# فیز 6: کارکردگی کی اصلاح
 
-Welcome to the Performance Optimization phase of Isaac Sim. This section covers essential techniques for optimizing Isaac Sim simulations to achieve maximum performance while maintaining the accuracy required for robotic applications.
+Isaac Sim کے کارکردگی کی اصلاح کے فیز میں خوش آمدید۔ یہ حصہ Isaac Sim سیمولیشنز کو بہتر بنانے کے لیے ضروری تکنیکوں کا احاطہ کرتا ہے تاکہ روبوٹک ایپلی کیشنز کے لیے درکار درستگی کو برقرار رکھتے ہوئے زیادہ سے زیادہ کارکردگی حاصل کی جا سکے۔
 
-## Overview
+## جائزہ
 
-Performance optimization is critical for creating efficient and effective robotic simulations. Whether you're training reinforcement learning agents, testing control algorithms, or simulating complex robotic systems, understanding performance optimization techniques is essential for success.
+موثر اور مؤثر روبوٹک سیمولیشنز بنانے کے لیے کارکردگی کی اصلاح بہت ضروری ہے۔ چاہے آپ ری انفورسمنٹ لرننگ ایجنٹس کو تربیت دے رہے ہوں، کنٹرول الگورتھم کی جانچ کر رہے ہوں، یا پیچیدہ روبوٹک سسٹمز کی سیمولیشن کر رہے ہوں، کامیابی کے لیے کارکردگی کی اصلاح کی تکنیکوں کو سمجھنا ضروری ہے۔
 
-## Learning Objectives
+## سیکھنے کے اہداف
 
-In this phase, you will learn to:
+اس فیز میں، آپ سیکھیں گے:
 
-- Optimize rendering performance for real-time applications
-- Tune physics simulation parameters for efficiency
-- Optimize sensor simulation for real-time data processing
-- Implement multi-threading and parallel processing
-- Leverage GPU acceleration for performance gains
-- Optimize memory management for large-scale simulations
-- Manage scene complexity for optimal performance
-- Meet real-time performance requirements
-- Validate and benchmark performance improvements
+- حقیقی وقت (Real-time) کی ایپلی کیشنز کے لیے رینڈرنگ کی کارکردگی کو بہتر بنانا
+- کارکردگی کے لیے فزکس سیمولیشن پیرامیٹرز کو ٹیون کرنا
+- حقیقی وقت کے ڈیٹا پروسیسنگ کے لیے سینسر سیمولیشن کو بہتر بنانا
+- ملٹی تھریڈنگ اور متوازی پروسیسنگ (Parallel Processing) کا نفاذ کرنا
+- کارکردگی میں اضافے کے لیے GPU ایکسلریشن کا فائدہ اٹھانا
+- بڑے پیمانے پر سیمولیشنز کے لیے میموری مینجمنٹ کو بہتر بنانا
+- بہترین کارکردگی کے لیے منظر (Scene) کی پیچیدگی کا انتظام کرنا
+- حقیقی وقت کی کارکردگی کی ضروریات کو پورا کرنا
+- کارکردگی میں بہتری کی توثیق اور بینچ مارکنگ کرنا
 
-## Prerequisites
+## شرائط لازمہ
 
-Before starting this phase, you should have:
+اس فیز کو شروع کرنے سے پہلے، آپ کے پاس ہونا چاہیے:
 
-- Completed the previous phases of the Isaac Sim module
-- Basic understanding of Python programming
-- Familiarity with Isaac Sim concepts and API
-- Understanding of robotics simulation concepts
+- Isaac Sim ماڈیول کے پچھلے فیزز مکمل کر لیے ہوں
+- Python پروگرامنگ کی بنیادی سمجھ
+- Isaac Sim تصورات اور API سے واقفیت
+- روبوٹکس سیمولیشن کے تصورات کی سمجھ
 
-## Topics Covered
+## شامل موضوعات
 
-This phase includes comprehensive coverage of:
+اس فیز میں ان کا جامع احاطہ شامل ہے:
 
-- [Rendering Optimization Techniques](./isaac-sim-performance-optimization.md#rendering-optimization)
-- [Physics Simulation Optimization](./isaac-sim-performance-optimization.md#physics-optimization)
-- [Sensor Simulation Performance](./isaac-sim-performance-optimization.md#sensor-optimization)
-- [Multi-Threading and Parallel Processing](./isaac-sim-performance-optimization.md#parallel-processing)
-- [GPU Optimization Techniques](./isaac-sim-performance-optimization.md#gpu-optimization)
-- [Memory Management Optimization](./isaac-sim-performance-optimization.md#memory-optimization)
-- [Scene Complexity Optimization](./isaac-sim-performance-optimization.md#scene-optimization)
-- [Real-Time Performance Requirements](./isaac-sim-performance-optimization.md#real-time-requirements)
-- [Performance Validation and Benchmarking](./isaac-sim-performance-optimization.md#performance-benchmarking)
+- [رینڈرنگ کی اصلاح کی تکنیکیں](./isaac-sim-performance-optimization.md#rendering-optimization)
+- [فزکس سیمولیشن کی اصلاح](./isaac-sim-performance-optimization.md#physics-optimization)
+- [سینسر سیمولیشن کی کارکردگی](./isaac-sim-performance-optimization.md#sensor-optimization)
+- [ملٹی تھریڈنگ اور متوازی پروسیسنگ](./isaac-sim-performance-optimization.md#parallel-processing)
+- [GPU کی اصلاح کی تکنیکیں](./isaac-sim-performance-optimization.md#gpu-optimization)
+- [میموری مینجمنٹ کی اصلاح](./isaac-sim-performance-optimization.md#memory-optimization)
+- [منظر کی پیچیدگی کی اصلاح](./isaac-sim-performance-optimization.md#scene-optimization)
+- [حقیقی وقت کی کارکردگی کی ضروریات](./isaac-sim-performance-optimization.md#real-time-requirements)
+- [کارکردگی کی توثیق اور بینچ مارکنگ](./isaac-sim-performance-optimization.md#performance-benchmarking)
 
-## Getting Started
+## شروع کریں
 
-Begin with the [Isaac Sim Performance Optimization Guide](./isaac-sim-performance-optimization.md) to learn about comprehensive optimization techniques with code examples, practical exercises, and clear explanations.
+کوڈ کی مثالوں، عملی مشقوں، اور واضح وضاحتوں کے ساتھ جامع اصلاحی تکنیکوں کے بارے میں جاننے کے لیے [Isaac Sim کارکردگی کی اصلاح کی گائیڈ](./isaac-sim-performance-optimization.md) کے ساتھ شروعات کریں۔

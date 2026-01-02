@@ -2,29 +2,29 @@
 sidebar_position: 1
 ---
 
-# Module 2 Assessment Project Overview
+# ماڈیول 2 اسیسمنٹ پروجیکٹ کا جائزہ
 
-This document provides an overview of the Module 2 assessment project. In this project, you'll create a complete simulation environment that demonstrates your understanding of Gazebo simulation, robot modeling, physics simulation, sensor integration, and Unity visualization.
+یہ دستاویز ماڈیول 2 کے اسیسمنٹ پروجیکٹ کا جائزہ فراہم کرتی ہے۔ اس پروجیکٹ میں، آپ ایک مکمل نقلی ماحول (simulation environment) بنائیں گے جو Gazebo سمولیشن، روبوٹ ماڈلنگ، طبیعیات سمولیشن، سینسر انضمام، اور Unity وژولائزیشن کی آپ کی سمجھ کو ظاہر کرتا ہے۔
 
-## Project Objectives
+## پروجیکٹ کے مقاصد
 
-The Module 2 assessment project requires you to:
+ماڈیول 2 اسیسمنٹ پروجیکٹ کے لیے آپ کو یہ کرنا ہوگا:
 
-1. Create a robot model using URDF/SDF
-2. Set up a Gazebo simulation environment with physics properties
-3. Integrate multiple sensors (LiDAR, camera, IMU) on your robot
-4. Implement basic navigation in the simulated environment
-5. Optionally integrate with Unity for high-fidelity visualization
+1. URDF/SDF کا استعمال کرتے ہوئے ایک روبوٹ ماڈل بنائیں
+2. طبیعیات کی خصوصیات کے ساتھ Gazebo سمولیشن ماحول ترتیب دیں
+3. اپنے روبوٹ پر متعدد سینسرز (LiDAR، کیمرہ، IMU) ضم کریں
+4. نقلی ماحول میں بنیادی نیویگیشن نافذ کریں
+5. اختیاری طور پر ہائی فیڈیلیٹی (high-fidelity) وژولائزیشن کے لیے Unity کے ساتھ ضم کریں
 
-## Project Requirements
+## پروجیکٹ کی ضروریات
 
-Your project must include:
+آپ کے پروجیکٹ میں شامل ہونا چاہیے:
 
-- A complete robot model with appropriate URDF/SDF description
-- A Gazebo world with obstacles and navigation challenges
-- At least 3 different sensor types integrated on the robot
-- Documentation of your simulation setup and configuration
+- مناسب URDF/SDF تفصیل کے ساتھ ایک مکمل روبوٹ ماڈل
+- رکاوٹوں اور نیویگیشن چیلنجز کے ساتھ ایک Gazebo دنیا (world)
+- روبوٹ پر کم از کم 3 مختلف قسم کے سینسرز مربوط ہوں
+- آپ کے سمولیشن سیٹ اپ اور کنفیگریشن کی دستاویزات
 
-## Submission Guidelines
+## جمع کرانے کے رہنما خطوط
 
-Detailed instructions for project submission and evaluation criteria.
+پروجیکٹ جمع کرانے اور تشخیص کے معیار کے لیے تفصیلی ہدایات۔

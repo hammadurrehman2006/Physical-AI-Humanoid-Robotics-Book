@@ -2,13 +2,13 @@
 sidebar_position: 3
 ---
 
-# Create a Blog Post
+# بلاگ پوسٹ بنائیں
 
-Docusaurus creates a **page for each blog post**, but also a **blog index page**, a **tag system**, an **RSS** feed...
+Docusaurus **ہر بلاگ پوسٹ کے لیے ایک صفحہ** بناتا ہے، لیکن ایک **بلاگ انڈیکس پیج**، ایک **ٹیگ سسٹم**، ایک **RSS** فیڈ بھی...
 
-## Create your first Post
+## اپنی پہلی پوسٹ بنائیں
 
-Create a file at `blog/2021-02-28-greetings.md`:
+`blog/2021-02-28-greetings.md` پر ایک فائل بنائیں:
 
 ```md title="blog/2021-02-28-greetings.md"
 ---
@@ -31,4 +31,4 @@ Congratulations, you have made your first post!
 Feel free to play around and edit this post as much as you like.
 ```
 
-A new blog post is now available at [http://localhost:3000/blog/greetings](http://localhost:3000/blog/greetings).
+ایک نئی بلاگ پوسٹ اب [http://localhost:3000/blog/greetings](http://localhost:3000/blog/greetings) پر دستیاب ہے۔

@@ -2,109 +2,109 @@
 sidebar_position: 1
 ---
 
-# Unity Setup for Robotics Simulation
+# روبوٹکس سمولیشن کے لیے Unity سیٹ اپ
 
-This tutorial covers setting up Unity for robotics simulation and visualization. You'll learn how to configure Unity for high-fidelity rendering and connect it to ROS 2 systems.
+یہ ٹیوٹوریل روبوٹکس سمولیشن اور وژولائزیشن کے لیے Unity سیٹ اپ کرنے کا احاطہ کرتا ہے۔ آپ سیکھیں گے کہ ہائی فیڈیلیٹی رینڈرنگ کے لیے Unity کو کیسے کنفیگر کیا جائے اور اسے ROS 2 سسٹمز کے ساتھ کیسے جوڑا جائے۔
 
-## Unity Installation
+## Unity کی تنصیب
 
-Installing Unity Hub and Unity LTS version for robotics applications.
+روبوٹکس ایپلی کیشنز کے لیے Unity Hub اور Unity LTS ورژن انسٹال کرنا۔
 
-### 1. Install Unity Hub
+### 1. Unity Hub انسٹال کریں
 
-Unity Hub is the recommended way to manage Unity installations:
+Unity Hub تنصیبات کے انتظام کے لیے تجویز کردہ طریقہ ہے:
 
-1. Download Unity Hub from the [Unity website](https://unity.com/download)
-2. Install Unity Hub following the platform-specific instructions
-3. Create a Unity ID if you don't already have one
+1. [Unity کی ویب سائٹ](https://unity.com/download) سے Unity Hub ڈاؤن لوڈ کریں
+2. پلیٹ فارم کے لیے مخصوص ہدایات پر عمل کرتے ہوئے Unity Hub انسٹال کریں
+3. اگر آپ کے پاس پہلے سے نہیں ہے تو Unity ID بنائیں
 
-### 2. Install Unity LTS
+### 2. Unity LTS انسٹال کریں
 
-1. Open Unity Hub
-2. Go to the "Installs" tab
-3. Click "Add" to install a new Unity version
-4. Select the LTS (Long Term Support) version (2022.3.x or later recommended)
-5. Select the following modules during installation:
-   - Android Build Support (if targeting mobile)
-   - iOS Build Support (if targeting iOS)
-   - Windows Build Support (for Windows builds)
-   - Linux Build Support (for Linux builds)
+1. Unity Hub کھولیں
+2. "Installs" ٹیب پر جائیں
+3. نیا Unity ورژن انسٹال کرنے کے لیے "Add" پر کلک کریں
+4. LTS (طویل مدتی سپورٹ) ورژن منتخب کریں (2022.3.x یا اس سے جدید تجویز کردہ)
+5. تنصیب کے دوران درج ذیل ماڈیولز منتخب کریں:
+   - Android Build Support (اگر موبائل کو ہدف بنا رہے ہیں)
+   - iOS Build Support (اگر iOS کو ہدف بنا رہے ہیں)
+   - Windows Build Support (ونڈوز بلڈز کے لیے)
+   - Linux Build Support (لینکس بلڈز کے لیے)
 
-### 3. Create Unity Project
+### 3. Unity پروجیکٹ بنائیں
 
-1. In Unity Hub, click "New Project"
-2. Select the "3D (Built-in Render Pipeline)" template
-3. Name your project (e.g., "RoboticsSimulation")
-4. Choose a location to save the project
-5. Click "Create Project"
+1. Unity Hub میں، "New Project" پر کلک کریں
+2. "3D (Built-in Render Pipeline)" ٹیمپلیٹ منتخب کریں
+3. اپنے پروجیکٹ کا نام رکھیں (مثال کے طور پر، "RoboticsSimulation")
+4. پروجیکٹ محفوظ کرنے کے لیے جگہ کا انتخاب کریں
+5. "Create Project" پر کلک کریں
 
-## Project Configuration
+## پروجیکٹ کنفیگریشن
 
-Setting up a Unity project for robotics visualization:
+روبوٹکس وژولائزیشن کے لیے Unity پروجیکٹ ترتیب دینا:
 
-### Unity Settings for Robotics
+### روبوٹکس کے لیے Unity سیٹنگز
 
-1. **Project Settings**:
-   - Go to Edit → Project Settings
-   - In Player Settings, set the company name and product name
-   - In XR Settings, disable VR support unless specifically needed
-   - In Quality Settings, adjust for your target hardware
+1. **پروجیکٹ سیٹنگز**:
+   - Edit → Project Settings پر جائیں
+   - پلیئر سیٹنگز میں، کمپنی کا نام اور پروڈکٹ کا نام سیٹ کریں
+   - XR سیٹنگز میں، VR سپورٹ کو غیر فعال کریں جب تک کہ خاص طور پر ضرورت نہ ہو
+   - کوالٹی سیٹنگز میں، اپنے ٹارگٹ ہارڈویئر کے لیے ایڈجسٹ کریں
 
-2. **Importing Necessary Packages**:
-   - Navigate to Window → Package Manager
-   - Install essential packages:
-     - ProBuilder (for quick prototyping)
-     - ProGrids (for precise placement)
-     - Timeline (for animation sequences)
-     - Post Processing (for visual effects)
+2. **ضروری پیکیجز درآمد کرنا**:
+   - Window → Package Manager پر جائیں
+   - ضروری پیکیجز انسٹال کریں:
+     - ProBuilder (فوری پروٹو ٹائپنگ کے لیے)
+     - ProGrids (درست جگہ کا تعین کرنے کے لیے)
+     - Timeline (اینیمیشن سیکوینسز کے لیے)
+     - Post Processing (بصری اثرات کے لیے)
 
-3. **Scene Structure**:
-   - Create a main scene for your robot visualization
-   - Set up lighting appropriate for robotics (avoid overly artistic effects)
-   - Configure the main camera for both visualization and potential recording
+3. **سین کا ڈھانچہ**:
+   - اپنی روبوٹ وژولائزیشن کے لیے ایک مین سین بنائیں
+   - روبوٹکس کے لیے مناسب لائٹنگ ترتیب دیں (بہت زیادہ آرٹسٹک اثرات سے گریز کریں)
+   - وژولائزیشن اور ممکنہ ریکارڈنگ دونوں کے لیے مین کیمرہ کنفیگر کریں
 
-## Performance Considerations
+## کارکردگی کے تحفظات (Performance Considerations)
 
-Optimizing Unity projects for real-time robotics visualization:
+ریئل ٹائم روبوٹکس وژولائزیشن کے لیے Unity پروجیکٹس کو بہتر بنانا:
 
-### Rendering Optimization
+### رینڈرنگ آپٹیمائزیشن
 
-1. **LOD (Level of Detail) System**: Implement LOD for complex robot models
-2. **Occlusion Culling**: Enable occlusion culling for complex environments
-3. **Light Baking**: Bake lighting for static elements to reduce runtime cost
-4. **Texture Compression**: Use appropriate texture compression formats
+1. **LOD (لیول آف ڈیٹیل) سسٹم**: پیچیدہ روبوٹ ماڈلز کے لیے LOD نافذ کریں
+2. **Occlusion Culling**: پیچیدہ ماحول کے لیے occlusion culling کو فعال کریں
+3. **Light Baking**: رن ٹائم لاگت کو کم کرنے کے لیے جامد عناصر کے لیے لائٹنگ بیک کریں
+4. **ٹیکسچر کمپریشن**: مناسب ٹیکسچر کمپریشن فارمیٹس استعمال کریں
 
-### Physics Considerations
+### طبیعیات کے تحفظات
 
-If using Unity's physics engine alongside Gazebo:
-- Disable Unity's physics for robot models that are controlled by external simulation
-- Use kinematic rigidbodies for visualization-only physics
-- Consider using simplified collision meshes for performance
+اگر Gazebo کے ساتھ Unity کا فزکس انجن استعمال کر رہے ہیں:
+- بیرونی سمولیشن کے ذریعے کنٹرول کیے جانے والے روبوٹ ماڈلز کے لیے Unity کی طبیعیات کو غیر فعال کریں
+- صرف وژولائزیشن فزکس کے لیے kinematic rigidbodies استعمال کریں
+- کارکردگی کے لیے آسان ٹکراؤ میشز استعمال کرنے پر غور کریں
 
-## Testing Unity Setup
+## Unity سیٹ اپ کی جانچ
 
-Verify your Unity installation is working:
+تصدیق کریں کہ آپ کی Unity انسٹالیشن کام کر رہی ہے:
 
-1. Create a simple test scene with basic shapes
-2. Test the Unity editor play mode
-3. Build a simple executable to test the build process
-4. Verify that your target hardware can run the basic scene
+1. بنیادی اشکال کے ساتھ ایک سادہ ٹیسٹ سین بنائیں
+2. Unity ایڈیٹر پلے موڈ ٹیسٹ کریں
+3. بلڈ کے عمل کو ٹیسٹ کرنے کے لیے ایک سادہ ایگزیکیوٹیبل بنائیں
+4. تصدیق کریں کہ آپ کا ٹارگٹ ہارڈویئر بنیادی سین چلا سکتا ہے
 
-## Troubleshooting Common Issues
+## عام مسائل کا حل (Troubleshooting)
 
-### Installation Issues
-- **Missing Visual C++ Redistributables**: Install Microsoft Visual C++ Redistributables
-- **Insufficient disk space**: Ensure at least 20GB free for Unity installation
-- **Graphics driver issues**: Update to latest graphics drivers
+### تنصیب کے مسائل
+- **Visual C++ Redistributables غائب ہیں**: Microsoft Visual C++ Redistributables انسٹال کریں
+- **ناکافی ڈسک اسپیس**: Unity انسٹالیشن کے لیے کم از کم 20GB خالی جگہ یقینی بنائیں
+- **گرافکس ڈرائیور کے مسائل**: جدید ترین گرافکس ڈرائیورز پر اپ ڈیٹ کریں
 
-### Performance Issues
-- **Slow editor**: Close other applications, increase Unity's cache size
-- **High CPU/GPU usage**: Reduce scene complexity, optimize materials
+### کارکردگی کے مسائل
+- **سست ایڈیٹر**: دیگر ایپلیکیشنز بند کریں، Unity کا کیش سائز بڑھائیں
+- **زیادہ CPU/GPU استعمال**: سین کی پیچیدگی کم کریں، میٹریلز کو بہتر بنائیں
 
-## Next Steps
+## اگلے اقدامات
 
-Once you've successfully set up Unity:
+ایک بار جب آپ کامیابی سے Unity سیٹ اپ کر لیں:
 
-1. Continue to [ROS 2 Unity Bridge](./ros2-unity-bridge.md) to learn how to connect Unity with ROS 2
-2. Explore [Visualization Techniques](./visualization-techniques.md) for advanced rendering
-3. Learn about [Unity Troubleshooting](./unity-troubleshooting.md) for common bridge issues
+1. Unity کو ROS 2 کے ساتھ جوڑنے کا طریقہ سیکھنے کے لیے [ROS 2 Unity Bridge](./ros2-unity-bridge.md) پر جاری رکھیں
+2. جدید رینڈرنگ کے لیے [وژولائزیشن تکنیک](./visualization-techniques.md) دریافت کریں
+3. عام پل کے مسائل کے لیے [Unity ٹربل شوٹنگ](./unity-troubleshooting.md) کے بارے میں جانیں
