@@ -227,6 +227,8 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - Markdown files for content storage, N/A for real-time robotics system (ephemeral state) (001-isaac-ai-brain-spec)
 - Python 3.10+ (for ROS 2 Humble Hawksbill compatibility), JavaScript/TypeScript (Node.js 18+) for Docusaurus documentation framework + ROS 2 Humble Hawksbill, OpenAI Whisper, GPT models, Computer Vision libraries (OpenCV, PyTorch), Docusaurus 3.x, rclpy (Python ROS 2 client library), React for documentation UI (001-vision-language-action)
 - JavaScript/TypeScript (Node.js 18+), Docusaurus 3.x, React + Docusaurus i18n plugin, React, CSS (001-urdu-ltr-layout)
+- TypeScript/JavaScript for React components, CSS for styling + React, Docusaurus, Tailwind CSS, React Icons (001-floating-chatbot-ui)
+- N/A (UI component only) (001-floating-chatbot-ui)
 
 ## Recent Changes
 - 001-update-book-spec: Added JavaScript/TypeScript, Node.js 18+ for Docusaurus, Python 3.8+ for ROS 2 integration examples + Docusaurus 3.x, React, Node.js, Context7, Docfork, Playwright MCP, ROS 2 (Humble Hawksbill or Iron Irwini), Gazebo, Unity (LTS), NVIDIA Isaac ROS
