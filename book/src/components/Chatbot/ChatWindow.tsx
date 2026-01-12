@@ -3,10 +3,12 @@ import { Message, ChatWindowProps } from './types';
 import ChatMessage from './ChatMessage';
 import InputArea from './InputArea';
 import styles from './styles.module.css';
+import { useAuth } from '../../auth/hooks/useAuth';
 
 const CHAT_MESSAGES_STORAGE_KEY = 'docusaurus.chat.messages';
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
+  const { isAuthenticated, isLoading } = useAuth();
   const [messages, setMessages] = useState<Message[]>(() => {
     // Initialize with welcome message or load from storage
     if (typeof window !== 'undefined') {
@@ -26,7 +28,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
     }
 
     // Default welcome message if no stored messages
-    return [
+    const welcomeMessages: Message[] = [
       {
         id: '1',
         content: 'Hello! How can I help you with the Physical AI & Humanoid Robotics content today?',
@@ -34,6 +36,18 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
         timestamp: new Date(),
       }
     ];
+
+    // Add authentication reminder if user is not authenticated
+    if (!isAuthenticated && !isLoading) {
+      welcomeMessages.push({
+        id: '2',
+        content: 'Please sign in to access the full chatbot functionality. This feature is available to registered users only.',
+        sender: 'bot',
+        timestamp: new Date(),
+      });
+    }
+
+    return welcomeMessages;
   });
 
   const [inputValue, setInputValue] = useState('');
@@ -58,6 +72,19 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
 
   const handleSend = (message: string) => {
     if (message.trim() === '') return;
+
+    // Check if user is authenticated
+    if (!isAuthenticated && !isLoading) {
+      // Add a message prompting the user to sign in
+      const authPromptMessage: Message = {
+        id: Date.now().toString(),
+        content: 'Please sign in to continue using the chatbot. This feature is available to registered users only.',
+        sender: 'bot',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, authPromptMessage]);
+      return;
+    }
 
     // Add user message
     const userMessage: Message = {
@@ -110,6 +137,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
         value={inputValue}
         onChange={setInputValue}
         onSend={handleSend}
+        isAuthenticated={isAuthenticated}
       />
     </div>
   );

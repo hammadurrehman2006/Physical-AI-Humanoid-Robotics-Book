@@ -213,6 +213,17 @@
     cursor: not-allowed;
 }
 
+.disabledInput {
+    background-color: var(--ifm-color-emphasis-100, #f0f0f0);
+    color: var(--ifm-color-emphasis-600, #a0a0a0);
+    cursor: not-allowed;
+}
+
+.disabledButton {
+    background-color: var(--ifm-color-emphasis-200, #ebedf0);
+    cursor: not-allowed;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .chatWindow {

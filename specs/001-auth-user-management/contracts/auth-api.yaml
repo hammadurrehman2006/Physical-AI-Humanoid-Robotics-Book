@@ -1,0 +1,431 @@
+openapi: 3.1.0
+info:
+  title: Authentication API
+  version: 1.0.0
+  description: |
+    RESTful API for user authentication and session management using better-auth.
+
+    ## Authentication Flow
+    1. User signs up via POST /api/auth/signup
+    2. Session token is set as HTTP-only cookie
+    3. User can access protected features (Urdu translation)
+    4. Session is validated on each request via GET /api/auth/session
+    5. User signs out via POST /api/auth/signout
+
+    ## Security
+    - All requests must be over HTTPS in production
+    - CSRF protection enabled via double-submit cookie pattern
+    - Rate limiting: 5 attempts per 15 minutes per IP
+    - Session tokens stored as HTTP-only, Secure, SameSite cookies
+
+servers:
+  - url: http://localhost:3000/api/auth
+    description: Development server
+  - url: https://your-domain.com/api/auth
+    description: Production server
+
+paths:
+  /signup:
+    post:
+      summary: Create new user account
+      description: |
+        Register a new user with email, password, and optional background information.
+        On success, automatically signs in the user and sets session cookie.
+      operationId: signup
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequest'
+      responses:
+        '201':
+          description: User created and signed in successfully
+          headers:
+            Set-Cookie:
+              description: Session token as HTTP-only cookie
+              schema:
+                type: string
+                example: better-auth.session=<token>; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+        '400':
+          description: Validation error or duplicate email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                duplicate_email:
+                  value:
+                    code: 'AUTH002'
+                    message: 'An account with this email already exists'
+                weak_password:
+                  value:
+                    code: 'AUTH003'
+                    message: 'Password does not meet requirements'
+                    field: 'password'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 'AUTH005'
+                message: 'Too many attempts. Please try again in 15 minutes.'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /signin:
+    post:
+      summary: Sign in existing user
+      description: |
+        Authenticate user with email and password.
+        On success, creates session and sets session cookie.
+      operationId: signin
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigninRequest'
+      responses:
+        '200':
+          description: User signed in successfully
+          headers:
+            Set-Cookie:
+              description: Session token as HTTP-only cookie
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 'AUTH001'
+                message: 'Invalid email or password'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /signout:
+    post:
+      summary: Sign out current user
+      description: |
+        Invalidate current session and clear session cookie.
+        Requires valid session cookie.
+      operationId: signout
+      tags:
+        - Authentication
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: User signed out successfully
+          headers:
+            Set-Cookie:
+              description: Clears session cookie
+              schema:
+                type: string
+                example: better-auth.session=; HttpOnly; Secure; SameSite=Lax; Max-Age=0
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 'AUTH004'
+                message: 'Your session has expired. Please sign in again.'
+
+  /session:
+    get:
+      summary: Get current session
+      description: |
+        Validate session cookie and return current user information.
+        Returns null if not authenticated or session expired.
+      operationId: getSession
+      tags:
+        - Authentication
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Session information (may be null if not authenticated)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SessionResponse'
+                  - type: object
+                    properties:
+                      session:
+                        type: null
+                      user:
+                        type: null
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /profile:
+    get:
+      summary: Get user profile
+      description: |
+        Get authenticated user's profile information.
+        Requires valid session.
+      operationId: getProfile
+      tags:
+        - User Profile
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: User profile information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicUser'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: better-auth.session
+      description: Session token cookie set by better-auth
+
+  schemas:
+    SignupRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+          description: User email address (must be unique)
+          example: user@example.com
+        password:
+          type: string
+          minLength: 8
+          maxLength: 128
+          description: |
+            User password. Must contain:
+            - At least 8 characters
+            - At least one uppercase letter
+            - At least one lowercase letter
+            - At least one number
+          example: SecurePass123
+        software_background:
+          type: string
+          enum:
+            - Beginner
+            - Intermediate
+            - Advanced
+            - Expert
+          nullable: true
+          description: User's software/programming experience level
+          example: Intermediate
+        hardware_background:
+          type: string
+          enum:
+            - No Experience
+            - Basic Knowledge
+            - Hands-on Experience
+            - Professional Experience
+          nullable: true
+          description: User's hardware/electronics experience level
+          example: Basic Knowledge
+
+    SigninRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: user@example.com
+        password:
+          type: string
+          description: User password
+          example: SecurePass123
+
+    SessionResponse:
+      type: object
+      required:
+        - session
+        - user
+      properties:
+        session:
+          type: object
+          required:
+            - id
+            - expires_at
+            - created_at
+          properties:
+            id:
+              type: string
+              format: uuid
+              description: Session ID
+              example: 123e4567-e89b-12d3-a456-426614174000
+            expires_at:
+              type: string
+              format: date-time
+              description: Session expiration timestamp (UTC)
+              example: '2026-01-11T10:30:00Z'
+            created_at:
+              type: string
+              format: date-time
+              description: Session creation timestamp (UTC)
+              example: '2026-01-04T10:30:00Z'
+        user:
+          $ref: '#/components/schemas/PublicUser'
+
+    PublicUser:
+      type: object
+      required:
+        - id
+        - email
+        - created_at
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: User ID
+          example: 456e7890-e89b-12d3-a456-426614174001
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: user@example.com
+        software_background:
+          type: string
+          enum:
+            - Beginner
+            - Intermediate
+            - Advanced
+            - Expert
+          nullable: true
+          description: User's software experience level
+          example: Intermediate
+        hardware_background:
+          type: string
+          enum:
+            - No Experience
+            - Basic Knowledge
+            - Hands-on Experience
+            - Professional Experience
+          nullable: true
+          description: User's hardware experience level
+          example: Basic Knowledge
+        created_at:
+          type: string
+          format: date-time
+          description: Account creation timestamp (UTC)
+          example: '2026-01-01T12:00:00Z'
+        last_login_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Last successful login timestamp (UTC)
+          example: '2026-01-04T10:30:00Z'
+
+    ErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Error code for programmatic handling
+          example: AUTH001
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid email or password
+        field:
+          type: string
+          nullable: true
+          description: Field name for validation errors
+          example: password
+        details:
+          type: object
+          nullable: true
+          description: Additional error context (development only)
+          additionalProperties: true
+
+  examples:
+    SignupSuccess:
+      value:
+        session:
+          id: 123e4567-e89b-12d3-a456-426614174000
+          expires_at: '2026-01-11T10:30:00Z'
+          created_at: '2026-01-04T10:30:00Z'
+        user:
+          id: 456e7890-e89b-12d3-a456-426614174001
+          email: user@example.com
+          software_background: Intermediate
+          hardware_background: Basic Knowledge
+          created_at: '2026-01-04T10:30:00Z'
+          last_login_at: '2026-01-04T10:30:00Z'
+
+tags:
+  - name: Authentication
+    description: User authentication operations (signup, signin, signout)
+  - name: User Profile
+    description: User profile management operations

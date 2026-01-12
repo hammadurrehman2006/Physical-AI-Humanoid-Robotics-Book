@@ -1,7 +1,9 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import dotenv from 'dotenv';
 
+dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -132,6 +134,20 @@ const config: Config = {
         hashed: true,
       }),
     ],
+    function () {
+      return {
+        name: 'custom-dotenv-plugin',
+        configureWebpack(_config, _isServer) {
+          return {
+            plugins: [
+              new (require('webpack').DefinePlugin)({
+                'process.env.BETTER_AUTH_URL': JSON.stringify(process.env.BETTER_AUTH_URL || 'http://localhost:3001'),
+              }),
+            ],
+          };
+        },
+      };
+    },
   ],
   themes: [
     '@docusaurus/theme-mermaid',
@@ -157,6 +173,11 @@ const config: Config = {
         },
         {
           type: 'localeDropdown',
+          position: 'right',
+        },
+        // Auth navbar items will be added via a React component
+        {
+          type: 'custom-auth-navbar-items',
           position: 'right',
         },
         {
