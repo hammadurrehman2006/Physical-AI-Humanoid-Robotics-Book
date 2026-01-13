@@ -28,10 +28,19 @@ uvicorn app.main:app --reload
 The API will be available at `http://localhost:8000`.
 Docs at `http://localhost:8000/docs`.
 
-## 4. Auth Integration
+## 4. Database & Migrations
+
+We use **Alembic** for migrations. See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+
+```bash
+# Apply migrations
+alembic upgrade head
+```
+
+## 5. Auth Integration
 
 The backend is configured to share the database with the `book` (Drizzle/BetterAuth) project.
 It reads the `users` and `sessions` tables directly.
 
-- Ensure `book` project has run migrations (`npm run db:push` in `book/`).
+- Ensure the database schema is up to date (using Alembic or Drizzle).
 - The backend verifies the `better-auth.session_token` cookie or `Authorization: Bearer <token>` header.

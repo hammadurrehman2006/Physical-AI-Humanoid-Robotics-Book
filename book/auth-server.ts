@@ -9,8 +9,12 @@ dotenv.config();
 const app = express();
 const PORT = 3001; // Auth server port
 
+const allowedOrigins = process.env.TRUSTED_ORIGINS 
+    ? process.env.TRUSTED_ORIGINS.split(',') 
+    : ['http://localhost:3000'];
+
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: allowedOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']

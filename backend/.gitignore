@@ -7,3 +7,4 @@ env/
 htmlcov/
 .pytest_cache/
 .coverage
+*.db

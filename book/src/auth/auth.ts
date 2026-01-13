@@ -6,10 +6,12 @@ import * as schema from './db/schema';
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3001', // Running on port 3001
   secret: process.env.BETTER_AUTH_SECRET || 'your-super-secret-jwt-secret-change-in-production-min-32-chars',
-  trustedOrigins: [
-    'http://localhost:3000', // Frontend
-    'http://localhost:3001'  // Self
-  ],
+  trustedOrigins: process.env.TRUSTED_ORIGINS 
+    ? process.env.TRUSTED_ORIGINS.split(',') 
+    : [
+        'http://localhost:3000', // Frontend
+        'http://localhost:3001'  // Self
+      ],
   
   database: drizzleAdapter(db, {
     provider: 'pg',
