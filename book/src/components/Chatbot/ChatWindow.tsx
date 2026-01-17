@@ -70,7 +70,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
     }
   }, [messages]);
 
-  const handleSend = (message: string) => {
+  const handleSend = async (message: string) => {
     if (message.trim() === '') return;
 
     // Check if user is authenticated
@@ -95,19 +95,47 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ onClose }) => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
 
-    // Simulate bot response after a delay
-    setTimeout(() => {
+    try {
+      // Call the backend API
+      // Using localhost for development/testing as per CLI environment
+      const response = await fetch('http://localhost:8000/api/v1/chat/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Send cookies for authentication
+        body: JSON.stringify({ message }),
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+           throw new Error("Unauthorized. Please sign in again.");
+        }
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: `I received your message: "${message}". This is a simulated response from the chatbot.`,
+        content: data.response,
         sender: 'bot',
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, botMessage]);
-    }, 1000);
 
-    setInputValue('');
+    } catch (error) {
+      console.error('Chat error:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: error instanceof Error ? `Error: ${error.message}` : "Sorry, I'm having trouble connecting to the server.",
+        sender: 'bot',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    }
   };
 
   // Scroll to bottom when messages change

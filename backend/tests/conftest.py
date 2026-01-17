@@ -9,15 +9,15 @@ import asyncio
 
 from app.main import app
 from app.core.db import get_session
+from app.core.config import settings
 
-# Use SQLite for tests
-DATABASE_URL = "sqlite+aiosqlite:///:memory:"
+# Use the configured DATABASE_URL (Neon DB)
+DATABASE_URL = str(settings.DATABASE_URL)
 
 engine = create_async_engine(
     DATABASE_URL,
     echo=False,
     future=True,
-    connect_args={"check_same_thread": False},
 )
 
 async def override_get_session() -> AsyncGenerator[AsyncSession, None]:

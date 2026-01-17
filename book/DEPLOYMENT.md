@@ -5,9 +5,7 @@
 The application consists of two main parts that need to be deployed:
 
 1.  **Frontend (Docusaurus):** A static website.
-2.  **Auth Server (Node.js/Express):** Handles authentication API requests.
-
-(Optional) **Backend (Python/FastAPI):** Handles AI/RAG tasks (see `backend/README.md`).
+2.  **Backend (Python/FastAPI):** Handles authentication and AI/RAG tasks (see `backend/README.md`).
 
 ## Prerequisites
 
@@ -18,34 +16,30 @@ The application consists of two main parts that need to be deployed:
 
 Ensure your Postgres database is ready. Get the connection string.
 
-Run migrations from the `book` directory to set up the database schema:
+Run migrations from the `backend` directory to set up the database schema:
 
 ```bash
-cd book
-npm run db:push
+cd backend
+alembic upgrade head
 ```
 
 *Note: This requires `DATABASE_URL` to be set in `.env` or passed to the command.*
 
-## 2. Auth Server Deployment
+## 2. Backend Deployment (Python/FastAPI)
 
-The Auth Server is located in `book/auth-server.ts`. It acts as the API for authentication.
+The Backend is located in the `backend/` directory.
 
 **Deployment Steps:**
 
-1.  **Build/Prepare:** Ensure `package.json` dependencies are installed (`better-auth`, `express`, `pg`, `drizzle-orm`, etc.).
-2.  **Start Command:** The server runs via `tsx` (TypeScript Execute) or can be transpiled.
-    *   Development/Simple: `npx tsx auth-server.ts`
-    *   Production: You may want to compile it or use `ts-node`/`tsx` directly if supported by your host.
-    *   Example `start` script for Auth Server: `tsx auth-server.ts`
+1.  **Build/Prepare:** Ensure `requirements.txt` dependencies are installed.
+2.  **Start Command:** The server runs via `uvicorn`.
+    *   Command: `uvicorn app.main:app --host 0.0.0.0 --port 8000`
 3.  **Environment Variables:**
 
     | Variable | Description | Example |
     | :--- | :--- | :--- |
     | `DATABASE_URL` | Postgres connection string | `postgres://user:pass@host:5432/db` |
-    | `BETTER_AUTH_SECRET` | Secret key for encryption (min 32 chars) | `your-super-secret-key...` |
-    | `BETTER_AUTH_URL` | Public URL of this Auth Server | `https://auth.yourdomain.com` |
-    | `PORT` | Port to run on (default 3001) | `3001` |
+    | `SECRET_KEY` | Secret key for JWT/Cookies | `your-super-secret-key...` |
 
 ## 3. Frontend Deployment (Docusaurus)
 
@@ -58,23 +52,13 @@ The frontend is a static site generated in `book/build`.
     cd book
     npm run build
     ```
-    *Important: During build time, `BETTER_AUTH_URL` must be available in the environment to point the frontend to the Auth Server.*
-
-2.  **Environment Variables (Build Time):**
-
-    | Variable | Description |
-    | :--- | :--- |
-    | `BETTER_AUTH_URL` | The URL where your Auth Server is deployed (e.g., `https://auth.yourdomain.com`). This is baked into the static files. |
-
-3.  **Deploy:** Upload the `book/build` directory to any static hosting service (Vercel, Netlify, GitHub Pages, AWS S3, etc.).
-
-    *   **Vercel:** Vercel can handle the build automatically. Set `npm run build` as the build command and `build` as the output directory. Add `BETTER_AUTH_URL` to Vercel project settings.
+2.  **Deploy:** Upload the `book/build` directory to any static hosting service (Vercel, Netlify, GitHub Pages, AWS S3, etc.).
 
 ## Summary of URLs
 
 -   **Frontend:** `https://your-site.com` (User visits this)
--   **Auth Server:** `https://auth.your-site.com` (Frontend calls this API)
--   **Database:** `postgres://...` (Both Auth Server and Backend connect here)
+-   **Backend:** `https://api.your-site.com` (Frontend calls this API)
+-   **Database:** `postgres://...` (Backend connects here)
 
 ## Verification
 

@@ -141,7 +141,8 @@ const config: Config = {
           return {
             plugins: [
               new (require('webpack').DefinePlugin)({
-                'process.env.BETTER_AUTH_URL': JSON.stringify(process.env.BETTER_AUTH_URL || 'http://localhost:3001'),
+                'process.env.NEXT_PUBLIC_API_URL': JSON.stringify(process.env.NEXT_PUBLIC_API_URL || 'https://physical-ai-api.vercel.app'),
+                'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL || 'https://physical-ai-api.vercel.app'),
               }),
             ],
           };

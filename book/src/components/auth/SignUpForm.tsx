@@ -11,6 +11,7 @@ interface SignUpFormProps {
 const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
   const { signUp } = useAuth();
   const [formData, setFormData] = useState<SignupData>({
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -70,27 +71,25 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
     setGeneralError(null);
 
     try {
-      const result = await signUp({
+      await signUp.email({
+        name: formData.name,
         email: formData.email,
         password: formData.password,
-        user: {
-          software_background: formData.software_background,
-          hardware_background: formData.hardware_background,
+        software_background: formData.software_background,
+        hardware_background: formData.hardware_background,
+        callbackURL: '/',
+      }, {
+        onSuccess: () => {
+          if (onSuccess) onSuccess();
         },
+        onError: (ctx) => {
+          if (ctx.error.code === 'USER_EXISTS_WITH_SAME_EMAIL') {
+            setErrors({ email: AUTH_ERRORS.DUPLICATE_EMAIL.message });
+          } else {
+            setGeneralError(ctx.error.message || 'An error occurred during registration');
+          }
+        }
       });
-
-      if (result?.error) {
-        if (result.error.code === 'USER_EXISTS_WITH_SAME_EMAIL') {
-          setErrors({ email: AUTH_ERRORS.DUPLICATE_EMAIL.message });
-        } else {
-          setGeneralError(result.error.message || 'An error occurred during registration');
-        }
-      } else if (result?.data) {
-        // Registration successful
-        if (onSuccess) {
-          onSuccess();
-        }
-      }
     } catch (error: any) {
       setGeneralError(error.message || 'An unexpected error occurred');
     } finally {
@@ -107,7 +106,32 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       )}
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          Full Name <span className="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          aria-label="Full name"
+          placeholder="John Doe"
+          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:placeholder-gray-500 ${
+            errors.name ? 'border-red-500' : 'border-gray-300'
+          }`}
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? 'name-error' : undefined}
+        />
+        {errors.name && (
+          <p id="name-error" className="mt-1 text-sm text-red-600" role="alert">
+            {errors.name}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Email Address <span className="text-red-500">*</span>
         </label>
         <input
@@ -117,7 +141,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           value={formData.email}
           onChange={handleChange}
           aria-label="Email address"
-          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:placeholder-gray-500 ${
             errors.email ? 'border-red-500' : 'border-gray-300'
           }`}
           aria-invalid={!!errors.email}
@@ -131,7 +155,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       </div>
 
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Password <span className="text-red-500">*</span>
         </label>
         <input
@@ -141,7 +165,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           value={formData.password}
           onChange={handleChange}
           aria-label="Password"
-          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:placeholder-gray-500 ${
             errors.password ? 'border-red-500' : 'border-gray-300'
           }`}
           aria-invalid={!!errors.password}
@@ -155,7 +179,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       </div>
 
       <div>
-        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Confirm Password <span className="text-red-500">*</span>
         </label>
         <input
@@ -165,7 +189,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           value={formData.confirmPassword}
           onChange={handleChange}
           aria-label="Confirm password"
-          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:placeholder-gray-500 ${
             errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
           }`}
           aria-invalid={!!errors.confirmPassword}
@@ -179,7 +203,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       </div>
 
       <div>
-        <label htmlFor="software_background" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="software_background" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Software Experience Level <span className="text-red-500">*</span>
         </label>
         <select
@@ -188,7 +212,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           value={formData.software_background}
           onChange={handleChange}
           aria-label="Software experience level"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
         >
           <option value="Beginner">Beginner</option>
           <option value="Intermediate">Intermediate</option>
@@ -198,7 +222,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
       </div>
 
       <div>
-        <label htmlFor="hardware_background" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="hardware_background" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Hardware Experience Level <span className="text-red-500">*</span>
         </label>
         <select
@@ -207,7 +231,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           value={formData.hardware_background}
           onChange={handleChange}
           aria-label="Hardware experience level"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
         >
           <option value="No Experience">No Experience</option>
           <option value="Basic Knowledge">Basic Knowledge</option>

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import Link from '@docusaurus/Link';
+import { useAuth } from '../../auth/hooks/useAuth';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ArrowRight, Github, Terminal, Cpu, Zap, BookOpen } from 'lucide-react';
@@ -11,6 +12,7 @@ export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
+  const { isAuthenticated, isLoading } = useAuth();
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -107,6 +109,15 @@ export default function Hero() {
                 <Github className="w-5 h-5 mr-2" />
                 <Translate id="hero.button.viewOnGithub" description="View on GitHub button text">View on GitHub</Translate>
               </Link>
+
+              {!isLoading && !isAuthenticated && (
+                <Link
+                  to="/signin"
+                  className="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold !text-white dark:!text-white button-text-override transition-all duration-200 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full hover:shadow-lg hover:from-cyan-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                >
+                  <Translate id="hero.button.signIn" description="Sign In button text">Sign In</Translate>
+                </Link>
+              )}
             </div>
           </div>
 

@@ -14,6 +14,7 @@ The backend is configured for immediate deployment to Vercel.
 3.  **Root Directory**: Select `backend` as the root directory.
 4.  **Environment Variables**: Add the following in the deployment settings:
     - `DATABASE_URL`: Your full PostgreSQL connection string (e.g., `postgresql://user:pass@host/db?sslmode=require`).
+    - `SECRET_KEY`: A long, random string for JWT/Cookie security.
     - `BACKEND_CORS_ORIGINS`: `["https://your-frontend-domain.com"]` (or `*` for testing).
 5.  **Deploy**.
 

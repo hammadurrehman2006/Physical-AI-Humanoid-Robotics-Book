@@ -1,6 +1,6 @@
 // book/src/theme/UrduContentWrapper.tsx
 import React from 'react';
-import { useAuth } from '../src/auth/hooks/useAuth';
+import { useAuth } from '../auth/hooks/useAuth';
 import Layout from '@theme/Layout';
 
 interface UrduContentWrapperProps {

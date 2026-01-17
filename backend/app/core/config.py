@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     
     # Database
     DATABASE_URL: str
+    SECRET_KEY: str = "supersecretkey"
     
     # CORS
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []

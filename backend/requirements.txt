@@ -9,4 +9,6 @@ pytest
 httpx
 pytest-asyncio
 aiosqlite
+fastapi-users[sqlalchemy]
+email-validator
 
