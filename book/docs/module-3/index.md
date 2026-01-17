@@ -10,31 +10,31 @@ Isaac Sim is a powerful robotics simulation platform that enables the developmen
 
 This module is organized into several phases, each building upon the previous one:
 
-### [Phase 1: Installation and Setup](./phase-1-installation/index)
+### [Phase 1: Installation and Setup](./phase-1-installation/)
 - Environment setup and prerequisites
 - Isaac Sim installation
 - Hardware requirements and compatibility
 - Initial configuration and testing
 
-### [Phase 2: Scene Creation and Physics Configuration](./phase-2-scene-creation/index)
+### [Phase 2: Scene Creation and Physics Configuration](./phase-2-scene-creation/)
 - Creating photorealistic scenes
 - Integrating robotic platforms
 - Physics configuration and tuning
 - Environment setup for humanoid robots
 
-### [Phase 3: Sensor Simulation](./phase-3-sensor-simulation/index)
+### [Phase 3: Sensor Simulation](./phase-3-sensor-simulation/)
 - Sensor configuration and calibration
 - Data generation for AI training
 - Domain randomization techniques
 - Multi-sensor fusion approaches
 
-### [Phase 4: Reinforcement Learning Infrastructure](./phase-4-rl-infrastructure/index)
+### [Phase 4: Reinforcement Learning Infrastructure](./phase-4-rl-infrastructure/)
 - Setting up RL training environments
 - Training infrastructure configuration
 - Performance optimization for RL
 - Humanoid robot control algorithms
 
-### [Phase 5: Visualization & Debugging Tools](./phase-11-visualization-debugging-tools/index)
+### [Phase 5: Visualization & Debugging Tools](./phase-11-visualization-debugging-tools/)
 - Isaac Sim visualization tools
 - Debugging techniques and tools
 - Performance profiling
@@ -43,7 +43,7 @@ This module is organized into several phases, each building upon the previous on
 - Physics simulation debugging
 - RL training visualization
 
-### [Phase 6: Performance Optimization](./phase-12-performance-optimization/index)
+### [Phase 6: Performance Optimization](./phase-12-performance-optimization/)
 - Rendering optimization techniques
 - Physics simulation optimization
 - Sensor simulation performance
